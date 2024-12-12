@@ -3,6 +3,8 @@
 #include <string>
 #include <functional>
 
+#include "EngineDefine.h"
+
 
 class UEngineMath
 {
@@ -78,18 +80,18 @@ public:
 		float Arr1D[4];
 	};
 
-	FVector()
+	ENGINEAPI FVector()
 		: X(0.0f), Y(0.0f), Z(0.0f), W(1.0f)
 	{
 
 	}
 
-	FVector(float _X, float _Y) : X(_X), Y(_Y), Z(0.0f), W(1.0f)
+	ENGINEAPI FVector(float _X, float _Y) : X(_X), Y(_Y), Z(0.0f), W(1.0f)
 	{
 
 	}
 
-	FVector(float _X, float _Y, float _Z) : X(_X), Y(_Y), Z(_Z), W(1.0f)
+	ENGINEAPI FVector(float _X, float _Y, float _Z) : X(_X), Y(_Y), Z(_Z), W(1.0f)
 	{
 
 	}
@@ -335,8 +337,8 @@ public:
 		return Result;
 	}
 
-	FVector operator*(const class FMatrix& _Matrix) const;
-	FVector& operator*=(const class FMatrix& _Matrix);
+	ENGINEAPI FVector operator*(const class FMatrix& _Matrix) const;
+	ENGINEAPI FVector& operator*=(const class FMatrix& _Matrix);
 
 	FVector& operator-=(const FVector& _Other)
 	{
@@ -588,7 +590,6 @@ public:
 		Arr2D[0][0] = 2.0f / _Width;
 		Arr2D[1][1] = 2.0f / _Height;
 		Arr2D[2][2] = fRange;
-
 		Arr2D[3][2] = -fRange * _Near;
 	}
 
@@ -609,8 +610,8 @@ public:
 		
 		Arr2D[0][0] = 1.0f / (tanf(DivFov) * ScreenRatio);
 		Arr2D[1][1] = 1.0f / tanf(DivFov);
-		Arr2D[2][2] = (_Far + _Near) / (_Far - _Near);
-		Arr2D[3][2] = -2 * (_Near * _Far) / (_Far - _Near);
+		Arr2D[2][2] = _Far / (_Far - _Near);
+		Arr2D[3][2] = -(_Far / (_Far - _Near)) * _Near;
 	}
 
 	void ViewPort(float _Width, float _Height, float _Left, float _Top, float _ZMin, float _ZMax)
