@@ -2,8 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PreCompile.h">
+      <Filter>_PreCompile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>_PreCompile</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="_PreCompile">
+      <UniqueIdentifier>{87217687-d5c3-44ef-9c7f-b319c8e9e2b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

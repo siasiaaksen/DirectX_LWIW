@@ -2,8 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="EngineCore.h" />
+    <ClInclude Include="PreCompile.h">
+      <Filter>_PreCompile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
+    <ClCompile Include="PreCompile.cpp">
+      <Filter>_PreCompile</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="_PreCompile">
+      <UniqueIdentifier>{e86fd03b-b205-44af-829d-daad17726860}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
