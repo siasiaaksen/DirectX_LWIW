@@ -39,6 +39,7 @@ void UEngineCore::LoadContents(std::string_view _DllName)
 	UEngineFile File = Dir.GetFile(_DllName);
 
 	std::string FullPath = File.GetPathToString();
+	// 내 컨텐츠 dll 로드
 	ContentsDLL = LoadLibraryA(FullPath.c_str());
 
 	if (nullptr == ContentsDLL)
@@ -47,7 +48,10 @@ void UEngineCore::LoadContents(std::string_view _DllName)
 		return;
 	}
 
+	//                                                                                                                            내 컨텐츠 코어, 의 함수 "CreateContentsCore"의 주소를
+	//                                                                                                                            함수 포인터 Ptr에 저장
 	INT_PTR(__stdcall * Ptr)(std::shared_ptr<IContentsCore>&) = (INT_PTR(__stdcall*)(std::shared_ptr<IContentsCore>&))GetProcAddress(ContentsDLL, "CreateContentsCore");
+	// 컨텐츠 코어에서 CreateContentsCore를 찾기 때문에 무조건 BreateContentsCoreDefine을 해야됨
 
 	if (nullptr == Ptr)
 	{
