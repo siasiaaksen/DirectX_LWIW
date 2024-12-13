@@ -5,6 +5,9 @@
     <ClInclude Include="PreCompile.h">
       <Filter>_PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="IContentsCore.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
@@ -15,6 +18,12 @@
   <ItemGroup>
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{e86fd03b-b205-44af-829d-daad17726860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{92ab7ebc-c56a-4b11-ba68-f8bc8e56b16c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{fd040aee-4783-417a-b64f-bf76a45b8450}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

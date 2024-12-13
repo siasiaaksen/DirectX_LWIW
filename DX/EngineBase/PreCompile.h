@@ -1,6 +1,6 @@
 #pragma once
 
-// os
+// OS
 #include <Windows.h>
 
 // std
@@ -10,6 +10,12 @@
 #include <string>
 #include <iostream>
 #include <functional>
+#include <memory>
 
-// ¼öÇÐ
 #include "EngineMath.h"
+#include "EngineDirectory.h"
+#include "EngineFile.h"
+#include "EngineSerializer.h"
+#include "EnginePath.h"
+#include "EngineDebug.h"
+#include "EngineDefine.h"

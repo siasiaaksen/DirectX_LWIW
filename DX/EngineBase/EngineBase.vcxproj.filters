@@ -7,6 +7,18 @@
     </ClInclude>
     <ClInclude Include="EngineDefine.h" />
     <ClInclude Include="EngineDebug.h" />
+    <ClInclude Include="EngineDirectory.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineFile.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePath.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSerializer.h">
+      <Filter>IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMath.cpp" />
@@ -14,10 +26,25 @@
       <Filter>_PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="EngineDebug.cpp" />
+    <ClCompile Include="EngineDirectory.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineFile.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EnginePath.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSerializer.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{956c0ca1-3a3d-43aa-8af6-ff12828e3f1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{151210ba-2ae6-486c-b323-fbd1ae86b963}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

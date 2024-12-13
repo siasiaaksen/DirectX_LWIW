@@ -11,7 +11,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE _hInstance,
 	_In_ LPWSTR    _lpCmdLine,
 	_In_ int       _nCmdShow)
 {
-	UEngineCore::EngineStart(_hInstance);
+	UEngineCore::EngineStart(_hInstance, "Little_Witch_In_The_Woods.dll");
 
 	return 0;
 }

@@ -5,12 +5,14 @@
     <ClInclude Include="PreCompile.h">
       <Filter>_PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="ULWIWContentsCore.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>_PreCompile</Filter>
     </ClCompile>
+    <ClCompile Include="ULWIWContentsCore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
