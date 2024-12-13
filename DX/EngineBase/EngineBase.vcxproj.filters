@@ -6,12 +6,14 @@
       <Filter>_PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="EngineDefine.h" />
+    <ClInclude Include="EngineDebug.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineMath.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>_PreCompile</Filter>
     </ClCompile>
+    <ClCompile Include="EngineDebug.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">

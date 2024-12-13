@@ -1,21 +1,53 @@
 #pragma once
-#include <EngineBase/EngineDefine.h>
+#include <Windows.h>
+
+#include <map>
+#include <string>
+#include <functional>
+
+#include <EngineBase/EngineMath.h>
 
 
-class EngineWindow
+class UEngineWindow
 {
 public:
-	ENGINEAPI EngineWindow();
-	ENGINEAPI ~EngineWindow();
+	ENGINEAPI static void EngineWindowInit(HINSTANCE _Instance);
+	ENGINEAPI static void CreateWindowClass(const WNDCLASSEXA& _Class);
+	ENGINEAPI static int WindowMessageLoop(std::function<void()> _StartFunction, std::function<void()> _FrameFunction, std::function<void()> _EndFunction = nullptr);
 
-	EngineWindow(const EngineWindow& _Other) = delete;
-	EngineWindow(EngineWindow&& _Other) noexcept = delete;
-	EngineWindow& operator=(const EngineWindow& _Other) = delete;
-	EngineWindow& operator=(EngineWindow&& _Other) noexcept = delete;
+	ENGINEAPI UEngineWindow();
+	ENGINEAPI ~UEngineWindow();
+
+	UEngineWindow(const UEngineWindow& _Other) = delete;
+	UEngineWindow(UEngineWindow&& _Other) noexcept = delete;
+	UEngineWindow& operator=(const UEngineWindow& _Other) = delete;
+	UEngineWindow& operator=(UEngineWindow&& _Other) noexcept = delete;
+
+	ENGINEAPI void Create(std::string_view _TitleName, std::string_view _ClassName = "Default");
+	ENGINEAPI void Open(std::string_view _TitleName = "Window");
+
+	inline FVector GetWindowSize() const
+	{
+		return WindowSize;
+	}
+
+	inline void SetWindowTitle(std::string_view Text)
+	{
+		SetWindowTextA(WindowHandle, Text.data());
+	}
+
+	void SetWindowPosAndScale(FVector _Pos, FVector _Scale);
+
+	FVector GetMousePos();
 
 protected:
 
 private:
+	static HINSTANCE hInstance;
+	static std::map<std::string, WNDCLASSEXA> WindowClasss;
 
+	FVector WindowSize;
+	HWND WindowHandle = nullptr;
 };
+
 

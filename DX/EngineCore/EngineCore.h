@@ -2,16 +2,13 @@
 #include <EngineBase/EngineDefine.h>
 
 
-class EngineCore
+class UEngineCore
 {
 public:
-	ENGINEAPI EngineCore();
-	ENGINEAPI ~EngineCore();
+	ENGINEAPI UEngineCore();
+	ENGINEAPI virtual ~UEngineCore() = 0;
 
-	EngineCore(const EngineCore& _Other) = delete;
-	EngineCore(EngineCore&& _Other) noexcept = delete;
-	EngineCore& operator=(const EngineCore& _Other) = delete;
-	EngineCore& operator=(EngineCore&& _Other) noexcept = delete;
+	ENGINEAPI static void EngineStart(HINSTANCE _Instance);
 
 protected:
 
