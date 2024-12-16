@@ -3,11 +3,14 @@
 #include <EngineBase/EngineDebug.h>
 #include <EnginePlatform/EngineWindow.h>
 #include "IContentsCore.h"
+#include "Level.h"
 
 
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
+
+std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::Levels;
 
 UEngineCore::UEngineCore()
 {
@@ -93,5 +96,22 @@ void UEngineCore::EngineStart(HINSTANCE _Instance, std::string_view _DllName)
 		[]()
 		{
 			// 엔진이 끝났을때 하고 싶은것.
+
+			EngineEnd();
 		});
+}
+
+std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view _Name)
+{
+	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
+	Ptr->SetName(_Name);
+
+	Levels.insert({ _Name.data(), Ptr });
+
+	return Ptr;
+}
+
+void UEngineCore::EngineEnd()
+{
+	Levels.clear();
 }

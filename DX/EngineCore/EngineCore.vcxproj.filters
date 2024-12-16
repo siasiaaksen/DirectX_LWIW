@@ -8,11 +8,23 @@
     <ClInclude Include="IContentsCore.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>_PreCompile</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -24,6 +36,12 @@
     </Filter>
     <Filter Include="Interface">
       <UniqueIdentifier>{fd040aee-4783-417a-b64f-bf76a45b8450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{eb638aaf-c1d0-4c95-b623-7d91bba87bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component">
+      <UniqueIdentifier>{22a64c6c-f17e-46ca-97ff-f86ae655f222}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
