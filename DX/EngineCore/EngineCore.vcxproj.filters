@@ -26,6 +26,9 @@
     <ClInclude Include="Pawn.h">
       <Filter>Object\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Object\Component\Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
@@ -50,6 +53,9 @@
     <ClCompile Include="Pawn.cpp">
       <Filter>Object\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Object\Component\Contents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
@@ -69,6 +75,9 @@
     </Filter>
     <Filter Include="Object\Actor">
       <UniqueIdentifier>{23dca97b-fc3e-4953-b6bb-df96dd8ee80f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Contents">
+      <UniqueIdentifier>{4a2d1c7d-4d71-45a0-afa0-7f76325a553d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
