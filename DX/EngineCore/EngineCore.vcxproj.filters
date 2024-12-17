@@ -14,6 +14,18 @@
     <ClInclude Include="Level.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="ActorComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneComponent.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Object\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
@@ -25,6 +37,18 @@
     </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneComponent.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Object\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +66,9 @@
     </Filter>
     <Filter Include="Object\Component">
       <UniqueIdentifier>{22a64c6c-f17e-46ca-97ff-f86ae655f222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Actor">
+      <UniqueIdentifier>{23dca97b-fc3e-4953-b6bb-df96dd8ee80f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

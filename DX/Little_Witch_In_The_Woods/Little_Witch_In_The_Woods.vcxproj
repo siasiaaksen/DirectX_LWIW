@@ -172,6 +172,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
+    <ClInclude Include="TitleGameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ULWIWContentsCore.h">
       <SubType>
       </SubType>
@@ -191,6 +195,10 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PreCompile.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PreCompile.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <SubType>
+      </SubType>
     </ClCompile>
     <ClCompile Include="ULWIWContentsCore.cpp">
       <SubType>

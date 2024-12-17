@@ -11,5 +11,9 @@ namespace UEngineDebug
 	ENGINEAPI void LeakCheck();
 
 	ENGINEAPI void OutPutString(const std::string& Text);
+
+	ENGINEAPI void StartConsole();
+
+	ENGINEAPI void EndConsole();
 }
 

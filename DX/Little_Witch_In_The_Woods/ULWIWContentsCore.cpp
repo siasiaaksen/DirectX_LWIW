@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "ULWIWContentsCore.h"
 #include <EngineCore/Level.h>
+#include "TitleGameMode.h"
 
 
 CreateContentsCoreDefine(ULWIWContentsCore);
@@ -18,7 +19,8 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	_Data.WindowPos = { 360, 100 };
 	_Data.WindowSize = { 1280, 720 };
 
-	std::shared_ptr<ULevel> Level = UEngineCore::CreateLevel("TestLevel");
+	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
+	UEngineCore::OpenLevel("Titlelevel");
 }
 
 void ULWIWContentsCore::EngineTick(float _DeltaTime)
