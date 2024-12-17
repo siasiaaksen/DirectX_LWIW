@@ -1,5 +1,5 @@
 #pragma once
-#include <EngineBase/Object.h>
+#include "ActorComponent.h"
 
 
 class AActor : public UObject
@@ -21,9 +21,44 @@ public:
 	virtual void LevelChangeStart() {}
 	virtual void LevelChangeEnd() {}
 
+	template<typename ComponentType>
 	void CreateDefaultSubObject()
 	{
+		static_assert(std::is_base_of_v<UActorComponent, ComponentType>, "액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 했습니다.");
 
+		if (false == std::is_base_of_v<UActorComponent, ComponentType>)
+		{
+			MSGASSERT("액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 했습니다.");
+			return nullptr;
+		}
+
+		char* ComMemory = new char[sizeof(ComponentType)];
+
+		UActorComponent* ComPtr = reinterpret_cast<ComponentType*>(ComMemory);
+		ComPtr->Actor = this;
+
+		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComMemory);
+		std::shared_ptr<ComponentType> NewCom(NewPtr = new(ComMemory) ComponentType());
+
+		if (std::is_base_of_v<USceneComponent, ComponentType>)
+		{
+			if (nullptr != RootComponent)
+			{
+				MSGASSERT("아직 기하구조를 만들지 않았습니다.");
+			}
+
+			RootComponent = NewCom;
+		}
+		else if (std::is_base_of_v<UActorComponent, ComponentType>)
+		{
+
+		}
+		else
+		{
+			MSGASSERT("말도 안됨");
+		}
+
+		return NewCom;
 	}
 
 	ULevel* GetWorld()
@@ -34,9 +69,10 @@ public:
 protected:
 
 private:
+	// 초기화 하지 않기, 생성되면서 리터럴 초기화도 실행됨
 	ULevel* World;
 
-	std::shared_ptr<class USceneComponent> RootComponent;
+	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 	std::list<std::shared_ptr<class UActorComponent>> ActorComponentList;
 };
 
