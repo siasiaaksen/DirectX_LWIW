@@ -24,7 +24,9 @@ public:
 
 	void CreateBackBuffer(const UEngineWindow& _Window);
 
-	void GetHighPerFormanceAdapter();
+	IDXGIAdapter* GetHighPerFormanceAdapter();
+
+	void Release();
 
 protected:
 
