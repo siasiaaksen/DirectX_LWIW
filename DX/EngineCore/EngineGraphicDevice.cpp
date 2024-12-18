@@ -21,7 +21,7 @@ void UEngineGraphicDevice::Release()
     if (nullptr != Device)
     {
         Device->Release();
-        Context = nullptr;
+        Device = nullptr;
     }
 }
 
@@ -96,7 +96,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 
     D3D_FEATURE_LEVEL ResultLevel;
 
-    D3D11CreateDevice(
+    HRESULT Result = D3D11CreateDevice(
         Adapter,
         D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
         nullptr,
@@ -120,10 +120,62 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
         return;
     }
 
+    if (Result != S_OK)
+    {
+        MSGASSERT("뭔가 잘못됨.");
+        return;
+    }
+
+    if (ResultLevel != D3D_FEATURE_LEVEL_11_0
+        && ResultLevel != D3D_FEATURE_LEVEL_11_1)
+    {
+        MSGASSERT("다이렉트 11버전을 지원하지 않는 그래픽카드 입니다.");
+        return;
+    }
+
+    Result = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+
+    if (Result != S_OK)
+    {
+        MSGASSERT("쓰레드 안정성 적용에 문제가 생겼습니다.");
+        return;
+    }
+
     Adapter->Release();
 }
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 {
-    int a = 0;
+    FVector Size = _Window.GetWindowSize();
+
+    DXGI_SWAP_CHAIN_DESC ScInfo = { 0 };
+
+    ScInfo.BufferCount = 2;
+    ScInfo.BufferDesc.Width = Size.iX();
+    ScInfo.BufferDesc.Height = Size.iY();
+    ScInfo.OutputWindow = _Window.GetWindowHandle();
+    // 전체화면, 창화면
+    ScInfo.Windowed = true;
+
+    // 주사율 모니터에 얼마나 빠르게 갱신
+    ScInfo.BufferDesc.RefreshRate.Denominator = 1;
+    ScInfo.BufferDesc.RefreshRate.Numerator = 60;
+
+    // 백버퍼의 색깔범위
+    ScInfo.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+    // 모니터나 윈도우에 픽셀이 갱신되는 순서
+    ScInfo.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+    ScInfo.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+
+    // 용도
+    ScInfo.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;
+
+    // 샘플링
+    ScInfo.SampleDesc.Quality = 0;
+    ScInfo.SampleDesc.Count = 1;
+
+    // n개의 버퍼에 대한 
+    ScInfo.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+    ScInfo.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 }

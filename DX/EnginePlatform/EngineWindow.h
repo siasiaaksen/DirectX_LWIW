@@ -38,11 +38,16 @@ public:
 
 	ENGINEAPI void SetWindowPosAndScale(FVector _Pos, FVector _Scale);
 
-	FVector GetMousePos();
+	ENGINEAPI FVector GetMousePos();
 
-	void ApplicationOff()
+	ENGINEAPI void ApplicationOff()
 	{
 		LoopActive = false;
+	}
+
+	ENGINEAPI HWND GetWindowHandle() const
+	{
+		return WindowHandle;
 	}
 
 protected:
