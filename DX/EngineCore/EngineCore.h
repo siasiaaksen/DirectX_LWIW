@@ -28,11 +28,11 @@ public:
 
 	ENGINEAPI static void OpenLevel(std::string_view _Name);
 
+	ENGINEAPI static UEngineGraphicDevice Device;
+
 protected:
 
 private:
-	ENGINEAPI static UEngineGraphicDevice Device;
-
 	static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;

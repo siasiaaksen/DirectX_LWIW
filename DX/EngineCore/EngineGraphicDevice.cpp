@@ -12,6 +12,24 @@ UEngineGraphicDevice::~UEngineGraphicDevice()
 
 void UEngineGraphicDevice::Release()
 {
+    if (nullptr != RTV)
+    {
+        RTV->Release();
+        RTV = nullptr;
+    }
+
+    if (nullptr != DXBackBufferTexture)
+    {
+        DXBackBufferTexture->Release();
+        DXBackBufferTexture = nullptr;
+    }
+
+    if (nullptr != SwapChain)
+    {
+        SwapChain->Release();
+        SwapChain = nullptr;
+    }
+
     if (nullptr != Context)
     {
         Context->Release();
@@ -86,7 +104,7 @@ IDXGIAdapter* UEngineGraphicDevice::GetHighPerFormanceAdapter()
 
 void UEngineGraphicDevice::CreateDeviceAndContext()
 {
-    IDXGIAdapter* Adapter = GetHighPerFormanceAdapter();
+    MainAdapter = GetHighPerFormanceAdapter();
 
     int iFlag = 0;
 
@@ -97,7 +115,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
     D3D_FEATURE_LEVEL ResultLevel;
 
     HRESULT Result = D3D11CreateDevice(
-        Adapter,
+        MainAdapter,
         D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
         nullptr,
         iFlag,
@@ -141,7 +159,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
         return;
     }
 
-    Adapter->Release();
+    MainAdapter->Release();
 }
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
@@ -178,4 +196,50 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
     // n개의 버퍼에 대한 
     ScInfo.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
     ScInfo.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+    IDXGIFactory* pF = nullptr;
+
+    MainAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&pF));
+
+    pF->CreateSwapChain(Device, &ScInfo, &SwapChain);
+
+    pF->Release();
+    MainAdapter->Release();
+
+    if (nullptr == SwapChain)
+    {
+        MSGASSERT("스왑체인 제작에 실패했습니다.");
+    }
+
+    DXBackBufferTexture = nullptr;
+    if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>
+        (&DXBackBufferTexture)))
+    {
+        MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
+    };
+
+    if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture, nullptr, &RTV))
+    {
+        MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
+    }
+}
+
+void UEngineGraphicDevice::RenderStart()
+{
+    FVector ClearColor;
+
+    ClearColor = FVector(0.0f, 0.0f, 1.0f, 1.0f);
+
+    Context->ClearRenderTargetView(RTV, ClearColor.Arr1D);
+}
+
+void UEngineGraphicDevice::RenderEnd()
+{
+    HRESULT Result = SwapChain->Present(0, 0);
+
+    if (Result == DXGI_ERROR_DEVICE_REMOVED || Result == DXGI_ERROR_DEVICE_RESET)
+    {
+        MSGASSERT("해상도 변경이나 디바이스 관련 설정이 런타임 도중 수정되었습니다");
+        return;
+    }
 }
