@@ -52,6 +52,7 @@ void ULevel::Tick(float _DeltaTime)
 
 void ULevel::Render(float _DeltaTime)
 {
+	// 지운다
 	UEngineCore::Device.RenderStart();
 
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
@@ -60,10 +61,12 @@ void ULevel::Render(float _DeltaTime)
 
 		for (std::shared_ptr<URenderer> Renderer : RenderList)
 		{
+			// 그린다
 			Renderer->Render(_DeltaTime);
 		}
 	}
 
+	// 출력한다
 	UEngineCore::Device.RenderEnd();
 }
 

@@ -2,6 +2,17 @@
 #include "SceneComponent.h"
 
 
+struct EngineVertex
+{
+public:
+	// 점의 위치
+	FVector Pos;
+
+	// 점의 색상
+	FVector Color;
+};
+
+
 class URenderer : public USceneComponent
 {
 	friend class ULevel;
@@ -22,5 +33,11 @@ protected:
 
 private:
 	virtual void Render(float _DeltaTime);
+
+public:
+	ID3D11Buffer* VertexBuffer = nullptr;
+
+	void InputAssembler1Init();
+	void InputAssembler1Setting();
 };
 

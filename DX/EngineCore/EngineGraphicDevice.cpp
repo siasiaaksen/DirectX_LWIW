@@ -218,6 +218,7 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
         MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
     };
 
+    //                                         업캐스팅(ID3D11Texture2D는 ~리소스를 상속받고 있음)
     if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture, nullptr, &RTV))
     {
         MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
@@ -228,7 +229,7 @@ void UEngineGraphicDevice::RenderStart()
 {
     FVector ClearColor;
 
-    ClearColor = FVector(0.0f, 0.0f, 1.0f, 1.0f);
+    ClearColor = FVector(0.4f, 0.5f, 0.3f, 1.0f);
 
     Context->ClearRenderTargetView(RTV, ClearColor.Arr1D);
 }
