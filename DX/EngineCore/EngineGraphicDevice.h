@@ -43,6 +43,11 @@ public:
 		return Context.Get();
 	}
 
+	ENGINEAPI ID3D11RenderTargetView* GetRTV()
+	{
+		return RTV.Get();
+	}
+
 protected:
 
 private:

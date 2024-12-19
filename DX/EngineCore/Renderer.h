@@ -37,15 +37,28 @@ public:
 	void InputAssembler1Setting();
 	void InputAssembler1LayOut();
 
-	Microsoft::WRL::ComPtr<ID3DBlob> ShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> ErrorCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> VSShaderCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> VSErrorCodeBlob = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
 	void VertexShaderInit();
 	void VertexShaderSetting();
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
-	D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	D3D11_PRIMITIVE_TOPOLOGY Topology = D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	void InputAssembler2Init();
 	void InputAssembler2Setting();
+
+	D3D11_VIEWPORT ViewPortInfo;
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> RasterizerState = nullptr;
+	void RasterizerInit();
+	void RasterizerSetting();
+
+	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
+	void PixelShaderInit();
+	void PixelShaderSetting();
+
+	void OutPutMergeSetting();
 };
 
