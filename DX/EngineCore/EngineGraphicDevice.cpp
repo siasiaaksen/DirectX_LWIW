@@ -195,8 +195,6 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
         MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
     };
 
-    DXBackBufferTexture = TexPtr;
-
     //                                         업캐스팅(ID3D11Texture2D는 ~리소스를 상속받고 있음)
     if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture.Get(), nullptr, &RTV))
     {
