@@ -4,12 +4,8 @@
 
 struct EngineVertex
 {
-public:
-	// 점의 위치
-	FVector Pos;
-
-	// 점의 색상
-	FVector Color;
+	float4 POSITION;
+	float4 COLOR;
 };
 
 
@@ -35,9 +31,21 @@ private:
 	virtual void Render(float _DeltaTime);
 
 public:
-	ID3D11Buffer* VertexBuffer = nullptr;
-
+	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayOut = nullptr;
 	void InputAssembler1Init();
 	void InputAssembler1Setting();
+	void InputAssembler1LayOut();
+
+	Microsoft::WRL::ComPtr<ID3DBlob> ShaderCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> ErrorCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
+	void VertexShaderInit();
+	void VertexShaderSetting();
+
+	Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
+	D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	void InputAssembler2Init();
+	void InputAssembler2Setting();
 };
 
