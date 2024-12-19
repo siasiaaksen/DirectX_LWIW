@@ -86,7 +86,10 @@ void URenderer::InputAssembler1Setting()
 	UINT VertexSize = sizeof(EngineVertex);
 	UINT Offset = 0;
 
-	UEngineCore::Device.GetContext()->IASetVertexBuffers(0, 1, &VertexBuffer, &VertexSize, &Offset);
+	ID3D11Buffer* ArrBuffer[1];
+	ArrBuffer[0] = VertexBuffer.Get();
+
+	UEngineCore::Device.GetContext()->IASetVertexBuffers(0, 1, ArrBuffer, &VertexSize, &Offset);
 	UEngineCore::Device.GetContext()->IASetInputLayout(InputLayOut.Get());
 }
 
@@ -194,9 +197,10 @@ void URenderer::RasterizerInit()
 {
 	D3D11_RASTERIZER_DESC Desc = {};
 
-	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
 
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+	// Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
 
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
