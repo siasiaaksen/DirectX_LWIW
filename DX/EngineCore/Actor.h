@@ -66,6 +66,26 @@ public:
 		return World;
 	}
 
+	void SetActorLocation(const FVector& _Value)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->SetLocation(_Value);
+	}
+
+	void SetActorRelativeScale3D(const FVector& _Value)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->SetRelativeScale3D(_Value);
+	}
+
 protected:
 
 private:

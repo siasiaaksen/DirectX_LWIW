@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Renderer.h"
 #include <EngineBase/EngineString.h>
+#include <EngineCore/EngineCamera.h>
 
 
 URenderer::URenderer()
@@ -24,7 +25,7 @@ void URenderer::SetOrder(int _Order)
 
 	std::shared_ptr<URenderer> RendererPtr = GetThis<URenderer>();
 
-	Level->ChangeRenderGroup(PrevOrder, RendererPtr);
+	Level->ChangeRenderGroup(0, PrevOrder, RendererPtr);
 }
 
 ENGINEAPI void URenderer::BeginPlay()
@@ -38,8 +39,18 @@ ENGINEAPI void URenderer::BeginPlay()
 	PixelShaderInit();
 }
 
-void URenderer::Render(float _DeltaTime)
+void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 {
+	FTransform& CameraTrans = _Camera->GetTransformRef();
+	
+	FTransform& RendererTrans = GetTransformRef();
+
+	// 이로써 Renderer는 월드, 뷰, 프로젝션을 다 세팅받음
+	RendererTrans.View = CameraTrans.View;
+	RendererTrans.Projection = CameraTrans.Projection;
+
+	RendererTrans.WVP = RendererTrans.World * RendererTrans.View * RendererTrans.Projection;
+
 	InputAssembler1Setting();
 	VertexShaderSetting();
 	InputAssembler2Setting();
@@ -55,10 +66,10 @@ void URenderer::InputAssembler1Init()
 	std::vector<EngineVertex> Vertexs;
 	Vertexs.resize(4);
 
-	Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {} };
-	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {} };
-	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {} };
-	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {} };
+	Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {1.0f, 0.0f, 0.0f, 1.0f} };
+	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {0.0f, 1.0f, 0.0f, 1.0f} };
+	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 0.0f, 1.0f, 1.0f} };
+	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f, 1.0f, 1.0f} };
 
 	D3D11_BUFFER_DESC BufferInfo = { 0 };
 
