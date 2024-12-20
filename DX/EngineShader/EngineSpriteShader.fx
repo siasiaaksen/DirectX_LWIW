@@ -12,11 +12,26 @@ struct VertexShaderOutPut
     float4 COLOR : COLOR;
 };
 
+cbuffer FTransform : register(b0)
+{
+    float4 Scale;
+    float4 Rotation;
+    float4 Location;
+
+    float4x4 ScaleMat;
+    float4x4 RotationMat;
+    float4x4 LocationMat;
+    float4x4 World;
+    float4x4 View;
+    float4x4 Projection;
+    float4x4 WVP;
+};
+
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
 
-    OutPut.SVPOSITION = _Vertex.POSITION;
+    OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
 	OutPut.NEWPOSITION = _Vertex.POSITION;
     OutPut.COLOR = _Vertex.COLOR;
     
