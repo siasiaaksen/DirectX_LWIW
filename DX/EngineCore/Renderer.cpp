@@ -3,6 +3,10 @@
 #include <EngineBase/EngineString.h>
 #include <EngineCore/EngineCamera.h>
 
+#include "ThirdParty/DirectxTex/Inc/DirectXTex.h"
+
+#pragma comment(lib, "DirectXTex.lib")
+
 
 URenderer::URenderer()
 {
@@ -53,6 +57,64 @@ void URenderer::ShaderResInit()
 		MSGASSERT("상수버퍼 생성에 실패했습니다..");
 		return;
 	}
+
+	UEngineDirectory CurDir;
+	CurDir.MoveParentToDirectory("LWIWResources");
+	UEngineFile File = CurDir.GetFile("Ellie_Test.png");
+
+	std::string Str = File.GetPathToString();
+	std::string Ext = File.GetExtension();
+	std::wstring wLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
+
+	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
+
+	DirectX::TexMetadata Metadata;
+	DirectX::ScratchImage ImageData;
+
+	if (UpperExt == ".DDS")
+	{
+		if (S_OK != DirectX::LoadFromDDSFile(wLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
+		{
+			MSGASSERT("DDS 파일 로드에 실패했습니다.");
+			return;
+		}
+	}
+	else if (UpperExt == ".TGA")
+	{
+		if (S_OK != DirectX::LoadFromTGAFile(wLoadPath.c_str(), DirectX::TGA_FLAGS_NONE, &Metadata, ImageData))
+		{
+			MSGASSERT("TGA 파일 로드에 실패했습니다.");
+			return;
+		}
+	}
+	else
+	{
+		if (S_OK != DirectX::LoadFromWICFile(wLoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, ImageData))
+		{
+			MSGASSERT(UpperExt + "파일 로드에 실패했습니다.");
+			return;
+		}
+	}
+
+	if (S_OK != DirectX::CreateShaderResourceView(
+		UEngineCore::Device.GetDevice(),
+		ImageData.GetImages(),
+		ImageData.GetImageCount(),
+		ImageData.GetMetadata(),
+		&SRV
+	))
+	{
+		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다..");
+		return;
+	}
+
+	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+
+	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+
+	UEngineCore::Device.GetDevice()->CreateSamplerState(&SampInfo, &SamplerState);
 }
 
 void URenderer::ShaderResSetting()
@@ -73,8 +135,13 @@ void URenderer::ShaderResSetting()
 	UEngineCore::Device.GetContext()->Unmap(TransformConstBuffer.Get(), 0);
 
 	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
-
 	UEngineCore::Device.GetContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+
+	ID3D11ShaderResourceView* ArrSRV[16] = { SRV.Get() };
+	UEngineCore::Device.GetContext()->PSSetShaderResources(0, 1, ArrSRV);
+
+	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
+	UEngineCore::Device.GetContext()->PSSetSamplers(0, 1, ArrSMP);
 }
 
 void URenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
@@ -105,10 +172,10 @@ void URenderer::InputAssembler1Init()
 	std::vector<EngineVertex> Vertexs;
 	Vertexs.resize(4);
 
-	Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {1.0f, 0.0f, 0.0f, 1.0f} };
-	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {0.0f, 1.0f, 0.0f, 1.0f} };
-	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 0.0f, 1.0f, 1.0f} };
-	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f, 1.0f, 1.0f} };
+	Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} };
+	Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
+	Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 1.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
+	Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
 
 	D3D11_BUFFER_DESC BufferInfo = { 0 };
 
@@ -161,10 +228,22 @@ void URenderer::InputAssembler1LayOut()
 
 	{
 		D3D11_INPUT_ELEMENT_DESC Desc;
-		Desc.SemanticName = "COLOR";
+		Desc.SemanticName = "TEXCOORD";
 		Desc.InputSlot = 0;
 		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
 		Desc.AlignedByteOffset = 16;
+		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
+		Desc.SemanticIndex = 0;
+		Desc.InstanceDataStepRate = 0;
+		InputLayOutData.push_back(Desc);
+	}
+
+	{
+		D3D11_INPUT_ELEMENT_DESC Desc;
+		Desc.SemanticName = "COLOR";
+		Desc.InputSlot = 0;
+		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		Desc.AlignedByteOffset = 32;
 		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
 		Desc.SemanticIndex = 0;
 		Desc.InstanceDataStepRate = 0;
