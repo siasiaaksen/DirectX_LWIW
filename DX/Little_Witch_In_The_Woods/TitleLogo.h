@@ -18,6 +18,6 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class URenderer> LogoRenderer;
+	std::shared_ptr<class USpriteRenderer> LogoRenderer;
 };
 

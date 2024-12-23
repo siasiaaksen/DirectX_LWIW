@@ -2,10 +2,7 @@
 #include "Renderer.h"
 #include <EngineBase/EngineString.h>
 #include <EngineCore/EngineCamera.h>
-
-#include "ThirdParty/DirectxTex/Inc/DirectXTex.h"
-
-#pragma comment(lib, "DirectXTex.lib")
+#include <EngineCore/EngineTexture.h>
 
 
 URenderer::URenderer()
@@ -17,6 +14,18 @@ URenderer::~URenderer()
 	VertexBuffer = nullptr;
 	VSShaderCodeBlob = nullptr;
 	VSErrorCodeBlob = nullptr;
+}
+
+void URenderer::SetTexture(std::string_view _Value)
+{
+	std::string UpperName = UEngineString::ToUpper(_Value);
+
+	Texture = UEngineTexture::Find(UpperName);
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("존재하지 않는 텍스처를 사용하려고 했습니다.");
+	}
 }
 
 void URenderer::SetOrder(int _Order)
@@ -58,61 +67,21 @@ void URenderer::ShaderResInit()
 		return;
 	}
 
-	UEngineDirectory CurDir;
-	CurDir.MoveParentToDirectory("LWIWResources");
-	UEngineFile File = CurDir.GetFile("Ellie_Test.png");
-
-	std::string Str = File.GetPathToString();
-	std::string Ext = File.GetExtension();
-	std::wstring wLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
-
-	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
-
-	DirectX::TexMetadata Metadata;
-	DirectX::ScratchImage ImageData;
-
-	if (UpperExt == ".DDS")
-	{
-		if (S_OK != DirectX::LoadFromDDSFile(wLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT("DDS 파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-	else if (UpperExt == ".TGA")
-	{
-		if (S_OK != DirectX::LoadFromTGAFile(wLoadPath.c_str(), DirectX::TGA_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT("TGA 파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-	else
-	{
-		if (S_OK != DirectX::LoadFromWICFile(wLoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT(UpperExt + "파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-
-	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::Device.GetDevice(),
-		ImageData.GetImages(),
-		ImageData.GetImageCount(),
-		ImageData.GetMetadata(),
-		&SRV
-	))
-	{
-		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다..");
-		return;
-	}
-
 	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
 
-	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER;
+	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER;
+	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; 
+
+	SampInfo.BorderColor[0] = 0.0f;
+	SampInfo.BorderColor[1] = 0.0f;
+	SampInfo.BorderColor[2] = 0.0f;
+	SampInfo.BorderColor[3] = 0.0f;
+
+	SampInfo.ComparisonFunc = D3D11_COMPARISON_NEVER;
+
+	SampInfo.MaxLOD = 0.0f;
+	SampInfo.MinLOD = 0.0f;
 
 	UEngineCore::Device.GetDevice()->CreateSamplerState(&SampInfo, &SamplerState);
 }
@@ -137,7 +106,7 @@ void URenderer::ShaderResSetting()
 	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
 	UEngineCore::Device.GetContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 
-	ID3D11ShaderResourceView* ArrSRV[16] = { SRV.Get() };
+	ID3D11ShaderResourceView* ArrSRV[16] = { Texture->GetSRV() };
 	UEngineCore::Device.GetContext()->PSSetShaderResources(0, 1, ArrSRV);
 
 	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
@@ -326,15 +295,15 @@ void URenderer::RasterizerInit()
 {
 	D3D11_RASTERIZER_DESC Desc = {};
 
-	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 	// Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
 
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
-	ViewPortInfo.Height = 720.0f;
 	ViewPortInfo.Width = 1280.0f;
+	ViewPortInfo.Height = 720.0f;
 	ViewPortInfo.TopLeftX = 0.0f;
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
