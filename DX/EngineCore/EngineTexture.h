@@ -4,7 +4,7 @@
 #include "ThirdParty/DirectxTex/Inc/DirectXTex.h"
 
 
-class UEngineTexture : public UEngineResources<UEngineTexture>
+class UEngineTexture : public UEngineResources
 {
 public:
 	ENGINEAPI UEngineTexture();
@@ -24,24 +24,16 @@ public:
 		return Load(FileName, _Path);
 	}
 
-	static std::shared_ptr<UEngineTexture> Load(std::string_view _Name, std::string_view _Path)
-	{
-		std::string UpperName = ToUpperName(_Name);
-
-		if (true == Contains(UpperName))
-		{
-			MSGASSERT("이미 로드한 텍스처를 도 로드하려고 했습니다." + UpperName);
-			return nullptr;
-		}
-
-		std::shared_ptr<UEngineTexture> NewTexture = MakeRes(_Name, _Path);
-		NewTexture->ResLoad();
-		return NewTexture;
-	}
+	ENGINEAPI static std::shared_ptr<UEngineTexture> Load(std::string_view _Name, std::string_view _Path);
 
 	ID3D11ShaderResourceView* GetSRV()
 	{
 		return SRV.Get();
+	}
+
+	FVector GetTextureSize()
+	{
+		return Size;
 	}
 
 protected:
@@ -49,6 +41,9 @@ protected:
 private:
 	ENGINEAPI void ResLoad();
 
+	FVector Size;
+	DirectX::TexMetadata Metadata;
+	DirectX::ScratchImage ImageData;
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV = nullptr;
 };

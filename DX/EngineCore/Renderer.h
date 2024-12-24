@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneComponent.h"
+#include "EngineSprite.h"
 
 
 struct EngineVertex
@@ -27,6 +28,8 @@ public:
 
 	void SetTexture(std::string_view _Value);
 
+	ENGINEAPI void SetSpriteData(size_t _Index);
+
 protected:
 	ENGINEAPI void BeginPlay() override;
 
@@ -34,13 +37,13 @@ private:
 	virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
 public:
-	std::shared_ptr<class UEngineTexture> Texture = nullptr;
+	FSpriteData SpriteData;
 
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> SRV = nullptr;
+	std::shared_ptr<class UEngineSprite> Sprite = nullptr;
+
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
-
+	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstBuffer = nullptr;
 	void ShaderResInit();
 	void ShaderResSetting();
 

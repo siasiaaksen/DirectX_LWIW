@@ -2,6 +2,7 @@
 #include "ULWIWContentsCore.h"
 #include <EngineCore/Level.h>
 #include <EngineCore/EngineTexture.h>
+#include <EngineCore/EngineSprite.h>
 #include "TitleGameMode.h"
 
 
@@ -36,6 +37,8 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 			UEngineTexture::Load(FilePath);
 		}
 	}
+
+	UEngineSprite::CreateSpriteToMeta("Ellie_Walk.png", ".SData");
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
 	UEngineCore::OpenLevel("Titlelevel");

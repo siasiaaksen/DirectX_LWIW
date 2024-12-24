@@ -6,10 +6,10 @@
 ATitleLogo::ATitleLogo()
 {
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	LogoRenderer->SetSprite("Ellie_Test.png");
+	LogoRenderer->SetSprite("Ellie_Walk.png", 0);
 
-	SetActorRelativeScale3D({ 200.0f, 100.0f, 1.0f });
-	SetActorLocation({ 200.0f, 100.0f, 1.0f });
+	SetActorRelativeScale3D({ 600.0f, 600.0f, 1.0f });
+	//SetActorLocation({ 200.0f, 100.0f, 1.0f });
 }
 
 ATitleLogo::~ATitleLogo()

@@ -4,7 +4,6 @@
 #include <EngineBase/EngineString.h>
 
 
-template<typename ResType>
 class UEngineResources : public UObject
 {
 public:
@@ -25,17 +24,14 @@ public:
 		return UEngineString::ToUpper(_Name);
 	}
 
+	template<typename ResType>
 	static std::shared_ptr<ResType> Find(std::string_view _Name)
 	{
-		void* Ptr = &ResMap;
-
-		if (false == ResMap.contains(_Name.data()))
-		{
-			return nullptr;
-		}
-
-		return ResMap[_Name.data()];
+		const type_info& Info = typeid(ResType);
+		return std::dynamic_pointer_cast<ResType>(Find(Info.name(), _Name.data()));
 	}
+
+	static std::shared_ptr<UEngineResources> Find(std::string_view _ResName, std::string_view _Name);
 
 	static bool Contains(std::string_view _Name)
 	{
@@ -47,28 +43,28 @@ public:
 		ResMap.clear();
 	}
 
-	ENGINEAPI static std::shared_ptr<ResType> MakeRes(std::string_view _Name, std::string_view _Path)
+	template<typename ResType>
+	ENGINEAPI static void PushRes(std::shared_ptr<UEngineResources> _Res, std::string_view _Name, std::string_view _Path)
 	{
-		std::string UpperName = UEngineString::ToUpper(_Name);
+		const type_info& Info = typeid(ResType);
+		PushRes(_Res, Info.name(), _Name, _Path);
+	}
 
-		std::shared_ptr<ResType> NewRes = std::make_shared<ResType>();
-		NewRes->SetName(UpperName);
-		NewRes->Path = _Path;
-		ResMap.insert({ UpperName, NewRes });
+	ENGINEAPI static void PushRes(std::shared_ptr<UEngineResources> _Res, const std::string_view _Info, std::string_view _Name, std::string_view _Path);
 
-		void* Ptr = &ResMap;
-
-		return NewRes;
+	ENGINEAPI UEnginePath GetPath()
+	{
+		return Path;
 	}
 
 protected:
 	UEnginePath Path;
 
 private:
-	static std::map<std::string, std::shared_ptr<ResType>> ResMap;
+	//                               텍스처                aaaa.png         데이터
+	//                               버텍스버퍼             Box             데이터
+	ENGINEAPI static inline std::map<std::string, std::map<std::string, std::shared_ptr<UEngineResources>>> ResMap;
 };
 
-//template<typename ResType>
-//std::map<std::string, std::shared_ptr<ResType>> UEngineResources<ResType>::ResMap;
 
 

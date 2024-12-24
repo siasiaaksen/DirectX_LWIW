@@ -28,12 +28,21 @@ cbuffer FTransform : register(b0)
     float4x4 WVP;
 };
 
+cbuffer FSpriteData : register(b1)
+{
+    float4 CuttingPos;
+    float4 CuttingSize;
+};
+
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
 
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
-    OutPut.UV = _Vertex.UV;
+    
+    OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
+    OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
+
     OutPut.COLOR = _Vertex.COLOR;
     
 	return OutPut;
