@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineBase/EngineDefine.h>
+#include <EngineBase/EngineTimer.h>
 #include <EnginePlatform/EngineWindow.h>
 #include "EngineGraphicDevice.h"
 #include "IContentsCore.h"
@@ -39,6 +40,8 @@ private:
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
 	static UEngineInitData Data;
+
+	static UEngineTimer Timer;
 
 	static void WindowInit(HINSTANCE _Instance);
 	static void LoadContents(std::string_view _DllName);
