@@ -191,6 +191,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineGUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineGUIWindow.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineResources.h">
       <SubType>
       </SubType>
@@ -208,6 +216,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="IContentsCore.h" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx11.h" />
+    <ClInclude Include="imgui_impl_win32.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
     <ClInclude Include="Pawn.h">
       <SubType>
       </SubType>
@@ -256,6 +272,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineGUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineGUIWindow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineResources.cpp">
       <SubType>
       </SubType>
@@ -272,6 +296,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx11.cpp" />
+    <ClCompile Include="imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="Pawn.cpp">
       <SubType>
       </SubType>

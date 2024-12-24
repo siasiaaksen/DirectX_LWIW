@@ -45,15 +45,24 @@ public:
 		LoopActive = false;
 	}
 
+	ENGINEAPI static bool IsApplicationOn()
+	{
+		return LoopActive;
+	}
+
 	ENGINEAPI HWND GetWindowHandle() const
 	{
 		return WindowHandle;
 	}
 
+	ENGINEAPI static  void SetCustomProc(std::function<bool(HWND, UINT, WPARAM, LPARAM)> _CustomProc);
+
 protected:
 
 private:
+	ENGINEAPI static std::function<bool(HWND, UINT, WPARAM, LPARAM)> CustomProc;
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 	ENGINEAPI static HINSTANCE hInstance;
 	inline static bool LoopActive = true;
 	ENGINEAPI static std::map<std::string, WNDCLASSEXA> WindowClasss;

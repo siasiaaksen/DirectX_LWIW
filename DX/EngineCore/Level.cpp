@@ -5,6 +5,7 @@
 #include "EngineCore.h"
 #include "EngineCamera.h"
 #include "CameraActor.h"
+#include "EngineGUI.h"
 
 
 std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)
@@ -77,6 +78,11 @@ void ULevel::Render(float _DeltaTime)
 	{
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->CameraComponent->Render(_DeltaTime);
+	}
+
+	if (true == UEngineWindow::IsApplicationOn())
+	{
+		UEngineGUI::GUIRender();
 	}
 
 	// 출력한다
