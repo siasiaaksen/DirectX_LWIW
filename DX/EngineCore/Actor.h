@@ -87,6 +87,26 @@ public:
 		RootComponent->AddLocation(_Value);
 	}
 
+	void SetActorRotation(const FVector& _Value)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->SetRotation(_Value);
+	}
+
+	void AddActorRotation(const FVector& _Value)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->AddRotation(_Value);
+	}
+
 protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 

@@ -16,6 +16,7 @@ public:
 	ENGINEAPI void SetSprite(std::string_view _Name, size_t _Index);
 
 protected:
+	void BeginPlay() override;
 
 private:
 

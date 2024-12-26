@@ -9,6 +9,7 @@ UEngineCamera::UEngineCamera()
 
 UEngineCamera::~UEngineCamera()
 {
+	Renderers.clear();
 }
 
 void UEngineCamera::BeginPlay()

@@ -30,6 +30,11 @@ ULevel::ULevel()
 
 ULevel::~ULevel()
 {
+	BeginPlayList.clear();
+
+	AllActorList.clear();
+
+	Cameras.clear();
 }
 
 void ULevel::LevelChangeStart()
