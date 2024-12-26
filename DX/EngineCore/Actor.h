@@ -84,7 +84,7 @@ public:
 			return;
 		}
 
-		RootComponent->AddLocation(_Value);
+		RootComponent->AddRelativeLocation(_Value);
 	}
 
 	void SetActorRotation(const FVector& _Value)

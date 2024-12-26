@@ -8,16 +8,29 @@ class USceneComponent : public UActorComponent
 
 public:
 	USceneComponent();
-	~USceneComponent();
+	virtual ~USceneComponent() = 0;
 
 	USceneComponent(const USceneComponent& _Other) = delete;
 	USceneComponent(USceneComponent&& _Other) noexcept = delete;
 	USceneComponent& operator=(const USceneComponent& _Other) = delete;
 	USceneComponent& operator=(USceneComponent&& _Other) noexcept = delete;
 
-	void AddLocation(const FVector& _Value)
+	void AddRelativeLocation(const FVector& _Value)
 	{
 		Transform.Location += _Value;
+		TransformUpdate();
+	}
+
+	void SetLocation(const FVector& _Value)
+	{
+		IsAbsolute = true;
+		Transform.Location = _Value;
+		TransformUpdate();
+	}
+
+	void SetRelativeLocation(const FVector& _Value)
+	{
+		Transform.Location = _Value;
 		TransformUpdate();
 	}
 
@@ -33,15 +46,16 @@ public:
 		TransformUpdate();
 	}
 
-	void SetRelativeScale3D(const FVector& _Value)
+	void SetScale3D(const FVector& _Value)
 	{
+		IsAbsolute = true;
 		Transform.Scale = _Value;
 		TransformUpdate();
 	}
 
-	void SetLocation(const FVector& _Value)
+	void SetRelativeScale3D(const FVector& _Value)
 	{
-		Transform.Location = _Value;
+		Transform.Scale = _Value;
 		TransformUpdate();
 	}
 
@@ -57,6 +71,8 @@ public:
 	ENGINEAPI void TransformUpdate();
 
 protected:
+	bool IsAbsolute = false;
+
 	FTransform Transform;
 
 	ENGINEAPI void BeginPlay() override;

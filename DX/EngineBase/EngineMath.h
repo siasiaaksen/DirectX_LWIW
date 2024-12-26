@@ -57,6 +57,31 @@ public:
 };
 
 
+class FQuat
+{
+public:
+	union
+	{
+		struct
+		{
+			float X;
+			float Y;
+			float Z;
+			float W;
+		};
+
+		float Arr2D[1][4];
+		float Arr1D[4];
+
+		DirectX::XMVECTOR DirectVector;
+
+	};
+
+	class FVector QuaternionToEulerDeg() const;
+	class FVector QuaternionToEulerRad() const;
+};
+
+
 class FVector
 {
 public:
@@ -442,6 +467,13 @@ public:
 		Stream += "]";
 		return Stream;
 	}
+
+	FQuat DegAngleToQuaternion()
+	{
+		FQuat Result;
+		Result.DirectVector = DirectX::XMQuaternionRotationRollPitchYawFromVector(DirectVector);
+		return Result;
+	}
 };
 
 using float4 = FVector;
@@ -626,6 +658,22 @@ public:
 		Arr2D[1][0] = sinf(_Angle);
 		Arr2D[1][1] = cosf(_Angle);
 	}
+
+	// 역행렬
+	FMatrix InverseReturn()
+	{
+		FMatrix Result;
+
+		Result.DirectMatrix = DirectX::XMMatrixInverse(nullptr, DirectMatrix);
+
+		return Result;
+	}
+
+	// 역분해 크기 회전 위치를 뜯어내는 함수
+	void Decompose(FVector& _Scale, FQuat& _RotQuaternion, FVector& _Pos)
+	{
+		DirectX::XMMatrixDecompose(&_Scale.DirectVector, &_RotQuaternion.DirectVector, &_Pos.DirectVector, DirectMatrix);
+	}
 };
 
 using float4x4 = FMatrix;
@@ -641,15 +689,29 @@ enum class ECollisionType
 
 struct FTransform
 {
+	// 변환용 벨류
 	float4 Scale;
 	float4 Rotation;
 	float4 Location;
+
+	// 릴리에티브 로컬
+	float4 RelativeScale;
+	float4 RelativeRotation;
+	FQuat RelativeQuat;
+	float4 RelativeLocation;
+
+	// 월드
+	float4 WorldScale;
+	float4 WorldRotation;
+	FQuat WorldQuat;
+	float4 WorldLocation;
 
 	float4x4 ScaleMat;
 	float4x4 RotationMat;
 	float4x4 LocationMat;
 	float4x4 RevolveMat;
 	float4x4 ParentMat;
+	float4x4 LocalWorld;
 	float4x4 World;
 	float4x4 View;
 	float4x4 Projection;
@@ -662,7 +724,10 @@ struct FTransform
 	}
 
 public:
-	ENGINEAPI void TransformUpdate();
+	ENGINEAPI void TransformUpdate(bool _IsAbsolute = false);
+
+	// 역분해 크기 회전 위치를 뜯어내는 함수
+	ENGINEAPI void Decompose();
 
 private:
 	friend class CollisionFunctionInit;
