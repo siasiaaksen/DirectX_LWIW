@@ -5,12 +5,14 @@
     <ClInclude Include="PreCompile.h">
       <Filter>_PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="EngineInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineWindow.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>_PreCompile</Filter>
     </ClCompile>
+    <ClCompile Include="EngineInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">

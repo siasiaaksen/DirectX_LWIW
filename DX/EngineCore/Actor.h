@@ -40,16 +40,7 @@ public:
 		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComMemory);
 		std::shared_ptr<ComponentType> NewCom(NewPtr = new(ComMemory) ComponentType());
 
-		if (std::is_base_of_v<USceneComponent, ComponentType>)
-		{
-			if (nullptr != RootComponent)
-			{
-				MSGASSERT("아직 기하구조를 만들지 않았습니다.");
-			}
-
-			RootComponent = NewCom;
-		}
-		else if (std::is_base_of_v<UActorComponent, ComponentType>)
+		if (std::is_base_of_v<UActorComponent, ComponentType>)
 		{
 			ActorComponentList.push_back(NewCom);
 		}
@@ -97,12 +88,11 @@ public:
 	}
 
 protected:
+	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 
 private:
 	// 초기화 하지 않기, 생성되면서 리터럴 초기화도 실행됨
 	ULevel* World;
-
-	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 
 	std::list<std::shared_ptr<class UActorComponent>> ActorComponentList;
 };
