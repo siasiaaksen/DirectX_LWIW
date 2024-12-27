@@ -86,6 +86,9 @@
     <ClInclude Include="DefaultSceneComponent.h">
       <Filter>Object\Component\Contents</Filter>
     </ClInclude>
+    <ClInclude Include="RenderUnit.h">
+      <Filter>Object\Component\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp" />
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="DefaultSceneComponent.cpp">
       <Filter>Object\Component\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderUnit.cpp">
+      <Filter>Object\Component\Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

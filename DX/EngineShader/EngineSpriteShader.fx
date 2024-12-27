@@ -1,6 +1,7 @@
 
 struct EngineVertex
 {
+    //                 시맨틱
     float4 POSITION : POSITION;
 	float4 UV : TEXCOORD;
     float4 COLOR : COLOR;
@@ -18,6 +19,7 @@ cbuffer FTransform : register(b0)
 	// 변환용 벨류
     float4 Scale;
     float4 Rotation;
+    float4 Quat;
     float4 Location;
 
 	// 릴레이티브 로컬
@@ -48,6 +50,7 @@ cbuffer FSpriteData : register(b1)
 {
     float4 CuttingPos;
     float4 CuttingSize;
+	float4 Pivot;
 };
 
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
@@ -71,7 +74,7 @@ SamplerState ImageSampler : register(s0);
 
 float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
-    //float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
-    float4 Color = float4(0.1f, 0.5f, 0.9f, 1.0f);
-    return Color;
+    float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    //float4 Color = float4(0.1f, 0.5f, 0.9f, 1.0f);
+    return /*_Vertex.*/Color;
 }

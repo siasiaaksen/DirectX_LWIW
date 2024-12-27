@@ -21,6 +21,7 @@ public:
 
 	ENGINEAPI virtual void InitializeComponent() {}
 	ENGINEAPI virtual void BeginPlay() {}
+	ENGINEAPI virtual void ComponentTick(float _DeltaTime) {}
 
 protected:
 
