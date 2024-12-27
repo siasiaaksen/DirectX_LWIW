@@ -4,14 +4,6 @@
 #include "RenderUnit.h"
 
 
-struct EngineVertex
-{
-	float4 POSITION;
-	float4 TEXCOORD;
-	float4 COLOR;
-};
-
-
 class URenderer : public USceneComponent
 {
 	friend class UEngineCamera;
@@ -42,7 +34,6 @@ public:
 	FSpriteData SpriteData;
 
 	class UEngineSprite* Sprite = nullptr;
-
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstBuffer = nullptr;

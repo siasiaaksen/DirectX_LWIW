@@ -136,7 +136,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
         return;
     }
 
-    MainAdapter->Release();
+    DefaultResourcesInit();
 }
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)

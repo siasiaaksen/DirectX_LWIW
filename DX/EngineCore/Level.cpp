@@ -77,7 +77,7 @@ void ULevel::Tick(float _DeltaTime)
 void ULevel::Render(float _DeltaTime)
 {
 	// 지운다
-	UEngineCore::Device.RenderStart();
+	UEngineCore::GetDevice().RenderStart();
 
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameras)
 	{
@@ -91,7 +91,7 @@ void ULevel::Render(float _DeltaTime)
 	}
 
 	// 출력한다
-	UEngineCore::Device.RenderEnd();
+	UEngineCore::GetDevice().RenderEnd();
 }
 
 void ULevel::ChangeRenderGroup(int _CameraOrder, int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer)

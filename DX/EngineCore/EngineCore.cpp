@@ -9,6 +9,11 @@
 #include "Level.h"
 
 
+UEngineGraphicDevice& UEngineCore::GetDevice()
+{
+	return Device;
+}
+
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
