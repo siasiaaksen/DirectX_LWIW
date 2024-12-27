@@ -23,9 +23,8 @@ public:
 
 ATitleGameMode::ATitleGameMode()
 {
-	// imgui
 	{
-		UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");
+		Logo = GetWorld()->SpawnActor<ATitleLogo>();
 	}
 
 	// Ä«¸Þ¶ó
@@ -34,8 +33,9 @@ ATitleGameMode::ATitleGameMode()
 		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	}
 
+	// imgui
 	{
-		Logo = GetWorld()->SpawnActor<ATitleLogo>();
+		UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");
 	}
 }
 

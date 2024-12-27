@@ -38,6 +38,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 		}
 	}
 
+	UEngineSprite::CreateSpriteToMeta("Logo.png", ".SData");
 	UEngineSprite::CreateSpriteToMeta("Ellie_Walk.png", ".SData");
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("Titlelevel");
