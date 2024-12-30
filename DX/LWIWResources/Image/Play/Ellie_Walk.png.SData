@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41374fdb2536b7b4ca07e46f20db70ee
+guid: 1c81dc05268c2084e974b86cfb54ae50
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -100,19 +100,19 @@ TextureImporter:
       name: Ellie_Walk_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 359
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 38
+        y: 976
+        width: 73
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0698ea178e230294d89af2f494a61b7e
-      internalID: 805730152
+      spriteID: e73f98d14b42fb84ca48455d58a4abe7
+      internalID: 1514563275
       vertices: []
       indices: 
       edges: []
@@ -121,19 +121,19 @@ TextureImporter:
       name: Ellie_Walk_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 174
+        y: 976
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02434337234a79f42a712deb1120c008
-      internalID: 253926457
+      spriteID: 72361a579285027468dc2709713fa834
+      internalID: -1257213269
       vertices: []
       indices: 
       edges: []
@@ -142,19 +142,19 @@ TextureImporter:
       name: Ellie_Walk_2
       rect:
         serializedVersion: 2
-        x: 114
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 310
+        y: 976
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b5475d2becd1fa4fb7e9db7627ee433
-      internalID: 2109705171
+      spriteID: 50f19f9ee3eee0342a8d9cfc48e95930
+      internalID: 966267289
       vertices: []
       indices: 
       edges: []
@@ -163,19 +163,19 @@ TextureImporter:
       name: Ellie_Walk_3
       rect:
         serializedVersion: 2
-        x: 163
-        y: 359
-        width: 28
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 443
+        y: 976
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bb2d37549a858949845a6c3a5b1f619
-      internalID: -187431298
+      spriteID: db2053f3f1c9d7f499a1aff60a962fda
+      internalID: 1643308747
       vertices: []
       indices: 
       edges: []
@@ -184,19 +184,19 @@ TextureImporter:
       name: Ellie_Walk_4
       rect:
         serializedVersion: 2
-        x: 214
-        y: 359
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 581
+        y: 976
+        width: 74
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 942ab164b5d2be5438e239f0d31ff2ef
-      internalID: -899379284
+      spriteID: c6d5ec5d33ada824889e42afe22930d7
+      internalID: 486260769
       vertices: []
       indices: 
       edges: []
@@ -205,19 +205,19 @@ TextureImporter:
       name: Ellie_Walk_5
       rect:
         serializedVersion: 2
-        x: 264
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 717
+        y: 976
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ef63b2b1e6f8a0439dd9c1cd9a2219d
-      internalID: -2053136854
+      spriteID: a83da1da845d03f478ed72fb0f447301
+      internalID: -1027421199
       vertices: []
       indices: 
       edges: []
@@ -226,19 +226,19 @@ TextureImporter:
       name: Ellie_Walk_6
       rect:
         serializedVersion: 2
-        x: 315
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 856
+        y: 976
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4916a57665c26814b9a0893996188b0f
-      internalID: -493586028
+      spriteID: d6c88ff89981a4f4aa46abf25efe6ad9
+      internalID: -2136825769
       vertices: []
       indices: 
       edges: []
@@ -247,19 +247,19 @@ TextureImporter:
       name: Ellie_Walk_7
       rect:
         serializedVersion: 2
-        x: 365
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 992
+        y: 976
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88cd205e2b5a7f04189925ecceb2fc8c
-      internalID: -1036705893
+      spriteID: 6e6342e5c35284440b14bb24d78eb894
+      internalID: -1201342865
       vertices: []
       indices: 
       edges: []
@@ -268,19 +268,19 @@ TextureImporter:
       name: Ellie_Walk_8
       rect:
         serializedVersion: 2
-        x: 414
-        y: 359
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1125
+        y: 976
+        width: 73
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e84413d5449c964b8da4c170939a3cd
-      internalID: -985322710
+      spriteID: 9eb864359389e83488d41561a3556549
+      internalID: -796858018
       vertices: []
       indices: 
       edges: []
@@ -289,19 +289,19 @@ TextureImporter:
       name: Ellie_Walk_9
       rect:
         serializedVersion: 2
-        x: 464
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1261
+        y: 976
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b48bfbc8424e0b7498ae604fcff1f834
-      internalID: -1163286830
+      spriteID: 4c7a99cc58dbd9a4697368225636d20d
+      internalID: -27922102
       vertices: []
       indices: 
       edges: []
@@ -310,19 +310,19 @@ TextureImporter:
       name: Ellie_Walk_10
       rect:
         serializedVersion: 2
-        x: 515
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1399
+        y: 976
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cda86163d2fd7246b95a7e76f60a167
-      internalID: 180842165
+      spriteID: 3f78acf3e52bcec46b865edc4d6be356
+      internalID: 633107891
       vertices: []
       indices: 
       edges: []
@@ -331,19 +331,19 @@ TextureImporter:
       name: Ellie_Walk_11
       rect:
         serializedVersion: 2
-        x: 565
-        y: 359
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1535
+        y: 976
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65ea889021ede2244add4c0ef953a196
-      internalID: -371549049
+      spriteID: f308846829e534b48b9f246562c3a87e
+      internalID: -469481929
       vertices: []
       indices: 
       edges: []
@@ -352,19 +352,19 @@ TextureImporter:
       name: Ellie_Walk_12
       rect:
         serializedVersion: 2
-        x: 14
-        y: 309
-        width: 25
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 38
+        y: 840
+        width: 68
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb0561412011f8a488a8a54c3849f904
-      internalID: -1113920866
+      spriteID: 4b6750bd8fc36a14ab5488bf52673d37
+      internalID: -1145291333
       vertices: []
       indices: 
       edges: []
@@ -373,19 +373,19 @@ TextureImporter:
       name: Ellie_Walk_13
       rect:
         serializedVersion: 2
-        x: 64
-        y: 309
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 174
+        y: 840
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eaa95163331e4f545af0bd858c0b2c3b
-      internalID: -2011944324
+      spriteID: 820f7636d88f22f4099ab6da0d51570d
+      internalID: 1168298189
       vertices: []
       indices: 
       edges: []
@@ -394,19 +394,19 @@ TextureImporter:
       name: Ellie_Walk_14
       rect:
         serializedVersion: 2
-        x: 114
-        y: 309
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 310
+        y: 840
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3543fd555ec583449aa1b24ebd6bf600
-      internalID: 1147912956
+      spriteID: c9896b97215816a4fbc68b8a3ab1576f
+      internalID: 2100790438
       vertices: []
       indices: 
       edges: []
@@ -415,19 +415,19 @@ TextureImporter:
       name: Ellie_Walk_15
       rect:
         serializedVersion: 2
-        x: 163
-        y: 309
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 443
+        y: 840
+        width: 73
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 860ca6d8e5c1d8840a7d659acab86538
-      internalID: -919869174
+      spriteID: 704b080d530bc694db3b6aeaf71128c7
+      internalID: 1671818320
       vertices: []
       indices: 
       edges: []
@@ -436,19 +436,19 @@ TextureImporter:
       name: Ellie_Walk_16
       rect:
         serializedVersion: 2
-        x: 214
-        y: 309
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 581
+        y: 840
+        width: 68
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60fe4fa1f7c1e6c4298d232b99cd1384
-      internalID: -1689358406
+      spriteID: 8954a20c572d23e4b81f7f00d06a127c
+      internalID: 239839223
       vertices: []
       indices: 
       edges: []
@@ -457,19 +457,19 @@ TextureImporter:
       name: Ellie_Walk_17
       rect:
         serializedVersion: 2
-        x: 264
-        y: 309
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 717
+        y: 840
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84f431a5bf0053e49a87d809924538ef
-      internalID: 1698786479
+      spriteID: 63133c691f8c7dd4fa39bf6337dfc1f6
+      internalID: 1982073935
       vertices: []
       indices: 
       edges: []
@@ -478,19 +478,19 @@ TextureImporter:
       name: Ellie_Walk_18
       rect:
         serializedVersion: 2
-        x: 314
-        y: 309
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 853
+        y: 840
+        width: 68
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c9079a317e4aff49942857b77a57af9
-      internalID: 981364379
+      spriteID: aae2ebd008070ed4697590ad75a02774
+      internalID: 774106219
       vertices: []
       indices: 
       edges: []
@@ -499,19 +499,19 @@ TextureImporter:
       name: Ellie_Walk_19
       rect:
         serializedVersion: 2
-        x: 364
-        y: 309
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 989
+        y: 840
+        width: 68
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47309bff9043d3245af0768c358ec25e
-      internalID: -208458129
+      spriteID: dacba14e57ab5f74d864a538bc5a9ae2
+      internalID: -1050296122
       vertices: []
       indices: 
       edges: []
@@ -520,19 +520,19 @@ TextureImporter:
       name: Ellie_Walk_20
       rect:
         serializedVersion: 2
-        x: 414
-        y: 309
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1125
+        y: 840
+        width: 68
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f3dbd75eda04ee49b2765e7e38f110f
-      internalID: 1748576536
+      spriteID: 2836cf837fb5cdf4b8e80324833e2132
+      internalID: 1022977186
       vertices: []
       indices: 
       edges: []
@@ -541,19 +541,19 @@ TextureImporter:
       name: Ellie_Walk_21
       rect:
         serializedVersion: 2
-        x: 464
-        y: 309
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1261
+        y: 840
+        width: 67
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8272f2259bb8dfe4385247567c3fa48e
-      internalID: 1726389537
+      spriteID: ec8adb83b15272e43bc8b0b2202f2584
+      internalID: 1950445936
       vertices: []
       indices: 
       edges: []
@@ -562,19 +562,19 @@ TextureImporter:
       name: Ellie_Walk_22
       rect:
         serializedVersion: 2
-        x: 514
-        y: 309
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1396
+        y: 840
+        width: 68
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50ed9a10978ced54381f07fcbb218642
-      internalID: -884562908
+      spriteID: a59d930703c802840aeb7c45cd3df04c
+      internalID: -981852146
       vertices: []
       indices: 
       edges: []
@@ -583,19 +583,19 @@ TextureImporter:
       name: Ellie_Walk_23
       rect:
         serializedVersion: 2
-        x: 564
-        y: 309
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1532
+        y: 840
+        width: 68
+        height: 89
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 371cfcfd58dea2840a5750d9b40ec142
-      internalID: -1730985527
+      spriteID: fbf83eff3dbb17b44951e90e52eee2eb
+      internalID: -478605759
       vertices: []
       indices: 
       edges: []
@@ -604,19 +604,19 @@ TextureImporter:
       name: Ellie_Walk_24
       rect:
         serializedVersion: 2
-        x: 14
-        y: 259
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 38
+        y: 704
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 630b44a5fac5a7e499445aa3010ef645
-      internalID: 949871844
+      spriteID: 95c7f5c876775b34b956d7693630888c
+      internalID: 1800192014
       vertices: []
       indices: 
       edges: []
@@ -625,19 +625,19 @@ TextureImporter:
       name: Ellie_Walk_25
       rect:
         serializedVersion: 2
-        x: 64
-        y: 259
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 174
+        y: 704
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b158f7daf3027446a9a79428c7e3b9e
-      internalID: -834161578
+      spriteID: da2005078f9d05842b7c99de7b78a2a2
+      internalID: 2105941172
       vertices: []
       indices: 
       edges: []
@@ -646,19 +646,19 @@ TextureImporter:
       name: Ellie_Walk_26
       rect:
         serializedVersion: 2
-        x: 114
-        y: 259
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 310
+        y: 704
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f98886e6fbea0a4181dced03c5ba994
-      internalID: 689296977
+      spriteID: 59021b3137b526b41b6c187b3b29b232
+      internalID: -586110980
       vertices: []
       indices: 
       edges: []
@@ -667,19 +667,19 @@ TextureImporter:
       name: Ellie_Walk_27
       rect:
         serializedVersion: 2
-        x: 164
-        y: 259
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 446
+        y: 704
+        width: 67
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04c0fd10452de9f40a446438f0d3662a
-      internalID: -268204197
+      spriteID: f90dd28ac4078d34cb4c458e96b3c7de
+      internalID: -1254090678
       vertices: []
       indices: 
       edges: []
@@ -688,19 +688,19 @@ TextureImporter:
       name: Ellie_Walk_28
       rect:
         serializedVersion: 2
-        x: 213
-        y: 259
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 579
+        y: 704
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a38a16fc4a928e4c89cf96d167a9fea
-      internalID: 1421970042
+      spriteID: 44a9adc1d67ddd94891fd77837a5ae0c
+      internalID: -563569334
       vertices: []
       indices: 
       edges: []
@@ -709,19 +709,19 @@ TextureImporter:
       name: Ellie_Walk_29
       rect:
         serializedVersion: 2
-        x: 263
-        y: 259
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 714
+        y: 704
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f87f0517cdcc54340868da2500c4d2e9
-      internalID: 1947742711
+      spriteID: 6e28e5917a6956347b77ab76e8e27dab
+      internalID: -1008070956
       vertices: []
       indices: 
       edges: []
@@ -730,19 +730,19 @@ TextureImporter:
       name: Ellie_Walk_30
       rect:
         serializedVersion: 2
-        x: 314
-        y: 259
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 853
+        y: 704
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23086d9c0a33582428a78508b7da6ed7
-      internalID: -1345151909
+      spriteID: 041d1522f283eb1439f65bd51a10d64a
+      internalID: -520618415
       vertices: []
       indices: 
       edges: []
@@ -751,19 +751,19 @@ TextureImporter:
       name: Ellie_Walk_31
       rect:
         serializedVersion: 2
-        x: 364
-        y: 259
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 989
+        y: 704
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36ed431f99ae83948a476213a2fc1a88
-      internalID: 1333999996
+      spriteID: b802ed8d1d862044cbd503379a322740
+      internalID: -1898004069
       vertices: []
       indices: 
       edges: []
@@ -772,19 +772,19 @@ TextureImporter:
       name: Ellie_Walk_32
       rect:
         serializedVersion: 2
-        x: 413
-        y: 259
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1122
+        y: 704
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27da1d94d94a7744999ff812ed197b92
-      internalID: -1136283884
+      spriteID: 2758ee455ee93a74b91a43fb911847bb
+      internalID: -295404287
       vertices: []
       indices: 
       edges: []
@@ -793,19 +793,19 @@ TextureImporter:
       name: Ellie_Walk_33
       rect:
         serializedVersion: 2
-        x: 463
-        y: 259
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1258
+        y: 704
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f48b33328f2ca24fb09e87e7490a081
-      internalID: 621383194
+      spriteID: 4c96b0e034f21f040bf17b9255be18a8
+      internalID: -2131958550
       vertices: []
       indices: 
       edges: []
@@ -814,19 +814,19 @@ TextureImporter:
       name: Ellie_Walk_34
       rect:
         serializedVersion: 2
-        x: 514
-        y: 259
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1396
+        y: 704
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e4200a67bb50844c8376facc8e0fadd
-      internalID: -2125976310
+      spriteID: f708dfc7b2640af4e93102bff48fa537
+      internalID: -179722911
       vertices: []
       indices: 
       edges: []
@@ -835,19 +835,19 @@ TextureImporter:
       name: Ellie_Walk_35
       rect:
         serializedVersion: 2
-        x: 564
-        y: 259
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1532
+        y: 704
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bae2d877bd28c3b4eacc542be5a4f1e6
-      internalID: -320870884
+      spriteID: 38403f6df7113c8449de141f668702a7
+      internalID: -187581286
       vertices: []
       indices: 
       edges: []
@@ -856,19 +856,19 @@ TextureImporter:
       name: Ellie_Walk_36
       rect:
         serializedVersion: 2
-        x: 13
-        y: 209
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 35
+        y: 568
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 607c284af150cae48839a65c3c0a6cc0
-      internalID: -203184814
+      spriteID: 884a30b3c0b71494ca8e3e1cc0c9a172
+      internalID: 1485749460
       vertices: []
       indices: 
       edges: []
@@ -877,19 +877,19 @@ TextureImporter:
       name: Ellie_Walk_37
       rect:
         serializedVersion: 2
-        x: 63
-        y: 209
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 171
+        y: 568
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aec1d66b6554fc448b93bfd2c715845b
-      internalID: 1620733328
+      spriteID: a6425a6c10ff50640850fb85c282d8a7
+      internalID: -1652363273
       vertices: []
       indices: 
       edges: []
@@ -898,19 +898,19 @@ TextureImporter:
       name: Ellie_Walk_38
       rect:
         serializedVersion: 2
-        x: 113
-        y: 209
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 307
+        y: 568
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a94cbcd605962f48914524954bade61
-      internalID: 651311507
+      spriteID: 66cf2dbc722a4a145bf1fdc96a53dca3
+      internalID: 1412739302
       vertices: []
       indices: 
       edges: []
@@ -919,19 +919,19 @@ TextureImporter:
       name: Ellie_Walk_39
       rect:
         serializedVersion: 2
-        x: 163
-        y: 209
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 443
+        y: 568
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4e04768b94cc3249a762731232fa212
-      internalID: 2122972219
+      spriteID: f1e3c76d2bf87af4eb876c8513c68687
+      internalID: -199293114
       vertices: []
       indices: 
       edges: []
@@ -940,19 +940,19 @@ TextureImporter:
       name: Ellie_Walk_40
       rect:
         serializedVersion: 2
-        x: 213
-        y: 209
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 579
+        y: 568
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e41734295136dd547b64ac45dd0a6ea3
-      internalID: -788559827
+      spriteID: 1c23296e9ae13f14e865e9bde72f378a
+      internalID: -1027750868
       vertices: []
       indices: 
       edges: []
@@ -961,19 +961,19 @@ TextureImporter:
       name: Ellie_Walk_41
       rect:
         serializedVersion: 2
-        x: 263
-        y: 209
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 714
+        y: 568
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89896c8c3273f3943aed406ede3a8b5c
-      internalID: -1993831647
+      spriteID: b4203961285be5b439940ac7eafbedd5
+      internalID: -74313316
       vertices: []
       indices: 
       edges: []
@@ -982,19 +982,19 @@ TextureImporter:
       name: Ellie_Walk_42
       rect:
         serializedVersion: 2
-        x: 313
-        y: 209
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 850
+        y: 568
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8f26eee36e0488458f4bbb98124416e
-      internalID: 1418479452
+      spriteID: 2c15a32241226884a9fa297fd9b6b107
+      internalID: 79466849
       vertices: []
       indices: 
       edges: []
@@ -1003,19 +1003,19 @@ TextureImporter:
       name: Ellie_Walk_43
       rect:
         serializedVersion: 2
-        x: 363
-        y: 209
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 986
+        y: 568
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea0f7e70df54f3d4aba5be9d58381cb9
-      internalID: 459252500
+      spriteID: e6783095a81bcca4181c455efa2ed66b
+      internalID: -928757978
       vertices: []
       indices: 
       edges: []
@@ -1024,19 +1024,19 @@ TextureImporter:
       name: Ellie_Walk_44
       rect:
         serializedVersion: 2
-        x: 412
-        y: 209
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1119
+        y: 568
+        width: 74
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b3f88eb774a5b341aae07db436e42d0
-      internalID: -1007055952
+      spriteID: b164dfcb7c8907b4d8a365a09f499536
+      internalID: 458438216
       vertices: []
       indices: 
       edges: []
@@ -1045,19 +1045,19 @@ TextureImporter:
       name: Ellie_Walk_45
       rect:
         serializedVersion: 2
-        x: 462
-        y: 209
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1255
+        y: 568
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce565b260a496a4498d3fc9f97dd85fe
-      internalID: 2068295448
+      spriteID: 09420226b7b24db48b575d9b86b32212
+      internalID: 1663425987
       vertices: []
       indices: 
       edges: []
@@ -1066,19 +1066,19 @@ TextureImporter:
       name: Ellie_Walk_46
       rect:
         serializedVersion: 2
-        x: 512
-        y: 209
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1391
+        y: 568
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56fa7b30d00cc074abef3f2a93bafa8c
-      internalID: -2024711305
+      spriteID: a9112bf2432fec44394b18a2cdabf886
+      internalID: 95489349
       vertices: []
       indices: 
       edges: []
@@ -1087,19 +1087,19 @@ TextureImporter:
       name: Ellie_Walk_47
       rect:
         serializedVersion: 2
-        x: 562
-        y: 209
-        width: 28
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1527
+        y: 568
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7104dce48579394fb1bda9bf93b7a3d
-      internalID: 294045265
+      spriteID: 572d2ecb19438474a8a2e2704dac8215
+      internalID: -1284800458
       vertices: []
       indices: 
       edges: []
@@ -1108,19 +1108,19 @@ TextureImporter:
       name: Ellie_Walk_48
       rect:
         serializedVersion: 2
-        x: 10
-        y: 159
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 27
+        y: 432
+        width: 74
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c3ac1ee3ae6fe0478320e0acf9366ce
-      internalID: -1531829659
+      spriteID: 65a0ddc3c1110244fbff5dc07954a4f3
+      internalID: 632317878
       vertices: []
       indices: 
       edges: []
@@ -1129,19 +1129,19 @@ TextureImporter:
       name: Ellie_Walk_49
       rect:
         serializedVersion: 2
-        x: 60
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 163
+        y: 432
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af5e61c5599de574780e5618f5781b34
-      internalID: 649982099
+      spriteID: c121ed0621e41cd42851b12c865015f0
+      internalID: 928147964
       vertices: []
       indices: 
       edges: []
@@ -1150,19 +1150,19 @@ TextureImporter:
       name: Ellie_Walk_50
       rect:
         serializedVersion: 2
-        x: 109
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 296
+        y: 432
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 507ac8c04e78ef24982f35f177e65150
-      internalID: -343334465
+      spriteID: 6843b8df3eaa6e243a7f785ad4f799ba
+      internalID: -809680337
       vertices: []
       indices: 
       edges: []
@@ -1171,19 +1171,19 @@ TextureImporter:
       name: Ellie_Walk_51
       rect:
         serializedVersion: 2
-        x: 159
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 432
+        y: 432
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb521b27abc988549b9c390c349feaf6
-      internalID: -853828200
+      spriteID: e252f98647c253b42a4668ea6c7edcb9
+      internalID: 1772726014
       vertices: []
       indices: 
       edges: []
@@ -1192,19 +1192,19 @@ TextureImporter:
       name: Ellie_Walk_52
       rect:
         serializedVersion: 2
-        x: 210
-        y: 159
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 570
+        y: 432
+        width: 74
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf709cef1cda31842b9c218ef1efa5c7
-      internalID: -2059698341
+      spriteID: 8b4df3ab6ba4dcd4a95222bdf53966d0
+      internalID: 1649838403
       vertices: []
       indices: 
       edges: []
@@ -1213,19 +1213,19 @@ TextureImporter:
       name: Ellie_Walk_53
       rect:
         serializedVersion: 2
-        x: 260
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 706
+        y: 432
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19b086f83986fb74986465cd2eaaf3f7
-      internalID: -1891401967
+      spriteID: e2c79ac5b38f47c45a9f39e7d46cf860
+      internalID: 920170993
       vertices: []
       indices: 
       edges: []
@@ -1234,19 +1234,19 @@ TextureImporter:
       name: Ellie_Walk_54
       rect:
         serializedVersion: 2
-        x: 309
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 839
+        y: 432
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 177f95c275a105943961bc3273340e03
-      internalID: 1429363850
+      spriteID: a3283348982709b4ebef4b59c86d1750
+      internalID: -1495276543
       vertices: []
       indices: 
       edges: []
@@ -1255,19 +1255,19 @@ TextureImporter:
       name: Ellie_Walk_55
       rect:
         serializedVersion: 2
-        x: 359
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 975
+        y: 432
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f27ae79cc631c5d4180241846911211e
-      internalID: 657546956
+      spriteID: 44b1218726462f240be41ba6e56991da
+      internalID: 2098809736
       vertices: []
       indices: 
       edges: []
@@ -1276,19 +1276,19 @@ TextureImporter:
       name: Ellie_Walk_56
       rect:
         serializedVersion: 2
-        x: 413
-        y: 159
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1122
+        y: 432
+        width: 73
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c09a69209c233b94c98d4f4411949749
-      internalID: -1855088008
+      spriteID: cbbfcde991d01014ab4b4480a2f98bc0
+      internalID: -794873851
       vertices: []
       indices: 
       edges: []
@@ -1297,19 +1297,19 @@ TextureImporter:
       name: Ellie_Walk_57
       rect:
         serializedVersion: 2
-        x: 463
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1258
+        y: 432
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3993afc0ae484954da7bd0ffd5f6b961
-      internalID: -22586855
+      spriteID: 76849a4202f646e4eac3b9919af8905e
+      internalID: 1328080404
       vertices: []
       indices: 
       edges: []
@@ -1318,19 +1318,19 @@ TextureImporter:
       name: Ellie_Walk_58
       rect:
         serializedVersion: 2
-        x: 513
-        y: 159
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1394
+        y: 432
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c0c0131eb8650f4fb08f1383b9f5ff2
-      internalID: -859628221
+      spriteID: e9b417cc1b09aa845831fd276443fae2
+      internalID: -1464999760
       vertices: []
       indices: 
       edges: []
@@ -1339,19 +1339,19 @@ TextureImporter:
       name: Ellie_Walk_59
       rect:
         serializedVersion: 2
-        x: 563
-        y: 159
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1529
+        y: 432
+        width: 74
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e10af374cff912f4aa002ca000acf860
-      internalID: -1148635208
+      spriteID: 6a709ffc0a5b8d4498cbb8734c2747f5
+      internalID: 1580556727
       vertices: []
       indices: 
       edges: []
@@ -1360,19 +1360,19 @@ TextureImporter:
       name: Ellie_Walk_60
       rect:
         serializedVersion: 2
-        x: 12
-        y: 109
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 33
+        y: 296
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f1d207e5b05f1a4ab8c7a3785173c94
-      internalID: -1991795660
+      spriteID: 74c6bd7c28616064ba79dc8daae57f11
+      internalID: -1388471876
       vertices: []
       indices: 
       edges: []
@@ -1381,19 +1381,19 @@ TextureImporter:
       name: Ellie_Walk_61
       rect:
         serializedVersion: 2
-        x: 62
-        y: 109
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 168
+        y: 296
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66aafb1836577e044a166a4ac0bfc11c
-      internalID: -1708389915
+      spriteID: 6f1ea2e61397fba4fa96f76c3a33b5eb
+      internalID: -2028613729
       vertices: []
       indices: 
       edges: []
@@ -1402,19 +1402,19 @@ TextureImporter:
       name: Ellie_Walk_62
       rect:
         serializedVersion: 2
-        x: 113
-        y: 109
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 307
+        y: 296
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2009bc91aafbe5a4a92772cf5c841567
-      internalID: -1689435481
+      spriteID: 4439f9f825c75404dbb52136f55ff75c
+      internalID: 905719016
       vertices: []
       indices: 
       edges: []
@@ -1423,19 +1423,19 @@ TextureImporter:
       name: Ellie_Walk_63
       rect:
         serializedVersion: 2
-        x: 163
-        y: 109
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 443
+        y: 296
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64c7dace18f4d5a4285d2e0e222afbb9
-      internalID: -1391291281
+      spriteID: 997d85184857ee34b80eb250433e4437
+      internalID: -309996486
       vertices: []
       indices: 
       edges: []
@@ -1444,19 +1444,19 @@ TextureImporter:
       name: Ellie_Walk_64
       rect:
         serializedVersion: 2
-        x: 212
-        y: 109
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 576
+        y: 296
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 575098d563ac52445b215a3b2a755f82
-      internalID: -1568963980
+      spriteID: 5ef25dfa912b78f479d1cc22fa2153ec
+      internalID: 940599084
       vertices: []
       indices: 
       edges: []
@@ -1465,19 +1465,19 @@ TextureImporter:
       name: Ellie_Walk_65
       rect:
         serializedVersion: 2
-        x: 262
-        y: 109
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 712
+        y: 296
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3ce1b5ef95247e4f8d811c6dbd9384f
-      internalID: -1698826768
+      spriteID: 58c833c9b70846f4aa5ad11fe8bc8914
+      internalID: -1862744586
       vertices: []
       indices: 
       edges: []
@@ -1486,19 +1486,19 @@ TextureImporter:
       name: Ellie_Walk_66
       rect:
         serializedVersion: 2
-        x: 313
-        y: 109
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 850
+        y: 296
+        width: 74
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8bb9c3ef5017db458c0eb73713f0c46
-      internalID: 426986989
+      spriteID: 633b9e5aa1663134c93acc5b704f5eb0
+      internalID: -128782545
       vertices: []
       indices: 
       edges: []
@@ -1507,19 +1507,19 @@ TextureImporter:
       name: Ellie_Walk_67
       rect:
         serializedVersion: 2
-        x: 363
-        y: 109
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 986
+        y: 296
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7c6d3079378d3343bdc0d3df27afeb8
-      internalID: 2048389795
+      spriteID: 616a316a19be40647b863c7e3c23e3c2
+      internalID: -409131737
       vertices: []
       indices: 
       edges: []
@@ -1528,19 +1528,19 @@ TextureImporter:
       name: Ellie_Walk_68
       rect:
         serializedVersion: 2
-        x: 413
-        y: 109
-        width: 25
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1122
+        y: 296
+        width: 68
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57add1b571ae5034384f10633ada0068
-      internalID: -1568755990
+      spriteID: 07b9ca6df009f694f9e40fe9763550c4
+      internalID: -635383845
       vertices: []
       indices: 
       edges: []
@@ -1549,19 +1549,19 @@ TextureImporter:
       name: Ellie_Walk_69
       rect:
         serializedVersion: 2
-        x: 463
-        y: 109
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1258
+        y: 296
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0500dc72b6ab45547bbbbd984367392a
-      internalID: -898571940
+      spriteID: 5fbfc4915bf2a5242a76d0aec5c24370
+      internalID: -133404542
       vertices: []
       indices: 
       edges: []
@@ -1570,19 +1570,19 @@ TextureImporter:
       name: Ellie_Walk_70
       rect:
         serializedVersion: 2
-        x: 513
-        y: 109
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1394
+        y: 296
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6126926e89dae6f47a61efbe494b16f1
-      internalID: -207519679
+      spriteID: 38ce0b940b868e546becfe871f13aafb
+      internalID: -590140536
       vertices: []
       indices: 
       edges: []
@@ -1591,19 +1591,19 @@ TextureImporter:
       name: Ellie_Walk_71
       rect:
         serializedVersion: 2
-        x: 562
-        y: 109
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1527
+        y: 296
+        width: 73
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc1b7f3e3b805ef4082820a360050b44
-      internalID: 1709255002
+      spriteID: fc40be87fcad14d4b817490b8d514fd5
+      internalID: 478246579
       vertices: []
       indices: 
       edges: []
@@ -1612,19 +1612,19 @@ TextureImporter:
       name: Ellie_Walk_72
       rect:
         serializedVersion: 2
-        x: 12
-        y: 59
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 33
+        y: 160
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 174111d0b5af6c54391fe56147324f3a
-      internalID: -1631912851
+      spriteID: 18fa50a52616570418db1bceeaffc276
+      internalID: -479539820
       vertices: []
       indices: 
       edges: []
@@ -1633,19 +1633,19 @@ TextureImporter:
       name: Ellie_Walk_73
       rect:
         serializedVersion: 2
-        x: 62
-        y: 59
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 168
+        y: 160
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdad276155b06f048849b17df5e9bb24
-      internalID: -791317039
+      spriteID: 59ad965fcf9375d4e81e59758dc636b9
+      internalID: -1403589629
       vertices: []
       indices: 
       edges: []
@@ -1654,19 +1654,19 @@ TextureImporter:
       name: Ellie_Walk_74
       rect:
         serializedVersion: 2
-        x: 112
-        y: 59
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 304
+        y: 160
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc2629a9cf13e804387f98c67cf2bcfd
-      internalID: -2002301139
+      spriteID: 60a869db568a3db428f7810c02c83c10
+      internalID: -170602519
       vertices: []
       indices: 
       edges: []
@@ -1675,19 +1675,19 @@ TextureImporter:
       name: Ellie_Walk_75
       rect:
         serializedVersion: 2
-        x: 162
-        y: 59
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 440
+        y: 160
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8568df35a769db741b726912fe618d2a
-      internalID: 507087808
+      spriteID: 59c79da00f2cbd345824907199b0c68a
+      internalID: -1847669807
       vertices: []
       indices: 
       edges: []
@@ -1696,19 +1696,19 @@ TextureImporter:
       name: Ellie_Walk_76
       rect:
         serializedVersion: 2
-        x: 212
-        y: 59
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 576
+        y: 160
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eeb10339ef527fb40abf8c24414d9303
-      internalID: -70173604
+      spriteID: 8b83445287696c14695aed0def43c87f
+      internalID: 1964341312
       vertices: []
       indices: 
       edges: []
@@ -1717,19 +1717,19 @@ TextureImporter:
       name: Ellie_Walk_77
       rect:
         serializedVersion: 2
-        x: 262
-        y: 59
-        width: 25
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 712
+        y: 160
+        width: 68
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 948373af416fafb4aa6560a4d071cf8e
-      internalID: 205870678
+      spriteID: 83f60da19e4b5e941b8f2744b3ab2c09
+      internalID: -394564633
       vertices: []
       indices: 
       edges: []
@@ -1738,19 +1738,19 @@ TextureImporter:
       name: Ellie_Walk_78
       rect:
         serializedVersion: 2
-        x: 312
-        y: 59
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 848
+        y: 160
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ff3f5f9032107048873532b9ca6bdf5
-      internalID: -395670690
+      spriteID: c9b5b6c32d6446b42a35dc58fdc6a2fb
+      internalID: 954284395
       vertices: []
       indices: 
       edges: []
@@ -1759,19 +1759,19 @@ TextureImporter:
       name: Ellie_Walk_79
       rect:
         serializedVersion: 2
-        x: 362
-        y: 59
-        width: 25
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 983
+        y: 160
+        width: 68
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fe80710f4d903b45a0b0e820aa2d21b
-      internalID: -1804526412
+      spriteID: 4e72b4d7e87184442a6a5fe98b01a1f4
+      internalID: -486276728
       vertices: []
       indices: 
       edges: []
@@ -1780,19 +1780,19 @@ TextureImporter:
       name: Ellie_Walk_80
       rect:
         serializedVersion: 2
-        x: 413
-        y: 59
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1122
+        y: 160
+        width: 73
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcee2f8ef7d2db1439b7f23dcea4da1b
-      internalID: -119831489
+      spriteID: 2303efdc19d39704e899f133a20d3765
+      internalID: 917323191
       vertices: []
       indices: 
       edges: []
@@ -1801,19 +1801,19 @@ TextureImporter:
       name: Ellie_Walk_81
       rect:
         serializedVersion: 2
-        x: 463
-        y: 59
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1258
+        y: 160
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 580626b0904107c4c90542bdbab408dc
-      internalID: 1901954575
+      spriteID: 83ee76fe4d662d74aaa61a7c9441d4e5
+      internalID: -796709385
       vertices: []
       indices: 
       edges: []
@@ -1822,19 +1822,19 @@ TextureImporter:
       name: Ellie_Walk_82
       rect:
         serializedVersion: 2
-        x: 513
-        y: 59
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1394
+        y: 160
+        width: 73
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62e56696b3d88ba458c10cfc7e9c4fda
-      internalID: 1300111907
+      spriteID: aafd3e8132b06c04c8a88231505254ef
+      internalID: 135450120
       vertices: []
       indices: 
       edges: []
@@ -1843,19 +1843,19 @@ TextureImporter:
       name: Ellie_Walk_83
       rect:
         serializedVersion: 2
-        x: 563
-        y: 59
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1529
+        y: 160
+        width: 74
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ea1d5620fda629489e09ecb27d7ccb3
-      internalID: 511236658
+      spriteID: d92310ca37ddc244da7fba42cb57aaac
+      internalID: -662882977
       vertices: []
       indices: 
       edges: []
@@ -1864,19 +1864,19 @@ TextureImporter:
       name: Ellie_Walk_84
       rect:
         serializedVersion: 2
-        x: 11
-        y: 9
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 30
+        y: 24
+        width: 73
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 137cbf2290cfbfc41a4b4ba24c030ecd
-      internalID: -579045051
+      spriteID: 4ca10fb0d54c5904789f0e21fcd5c538
+      internalID: 1070503333
       vertices: []
       indices: 
       edges: []
@@ -1885,19 +1885,19 @@ TextureImporter:
       name: Ellie_Walk_85
       rect:
         serializedVersion: 2
-        x: 61
-        y: 9
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 166
+        y: 24
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c38088c05ea964428a8c58cc4854004
-      internalID: 949208799
+      spriteID: b7afc676570e3454b8f1ce1d057d1c4e
+      internalID: 1398342373
       vertices: []
       indices: 
       edges: []
@@ -1906,19 +1906,19 @@ TextureImporter:
       name: Ellie_Walk_86
       rect:
         serializedVersion: 2
-        x: 111
-        y: 9
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 302
+        y: 24
+        width: 73
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c4112a093757c94bbe83db2ac352fa9
-      internalID: 1995578899
+      spriteID: ed461e1c013467042a772547070bf1ff
+      internalID: -916969028
       vertices: []
       indices: 
       edges: []
@@ -1927,19 +1927,19 @@ TextureImporter:
       name: Ellie_Walk_87
       rect:
         serializedVersion: 2
-        x: 160
-        y: 9
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 435
+        y: 24
+        width: 73
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a751f709c23d6044b9dda78e8cfde52
-      internalID: 639617684
+      spriteID: 322a031ad3ba20542807e6fdfad83e9a
+      internalID: -1048329889
       vertices: []
       indices: 
       edges: []
@@ -1948,19 +1948,19 @@ TextureImporter:
       name: Ellie_Walk_88
       rect:
         serializedVersion: 2
-        x: 210
-        y: 9
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 570
+        y: 24
+        width: 74
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf793d031b8c60e42b8e5ada86a3b43b
-      internalID: -2126061177
+      spriteID: 3e70426e406fd6140a6896738073df63
+      internalID: 546688723
       vertices: []
       indices: 
       edges: []
@@ -1969,19 +1969,19 @@ TextureImporter:
       name: Ellie_Walk_89
       rect:
         serializedVersion: 2
-        x: 261
-        y: 9
-        width: 27
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 709
+        y: 24
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d547ddc5d245d64faf8cc0487aee5f6
-      internalID: 1479101016
+      spriteID: fca33685383c8964daf1b50a5020567a
+      internalID: -643327796
       vertices: []
       indices: 
       edges: []
@@ -1990,19 +1990,19 @@ TextureImporter:
       name: Ellie_Walk_90
       rect:
         serializedVersion: 2
-        x: 311
-        y: 9
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 845
+        y: 24
+        width: 73
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdd9c65ebe6a13943a8cf44a94f23966
-      internalID: -1725672047
+      spriteID: 40f72c164c13c7345abe4d27c9ea8f43
+      internalID: 262331533
       vertices: []
       indices: 
       edges: []
@@ -2011,19 +2011,19 @@ TextureImporter:
       name: Ellie_Walk_91
       rect:
         serializedVersion: 2
-        x: 360
-        y: 9
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 978
+        y: 24
+        width: 73
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fafbb0b2d0749b4393952724ddfd475
-      internalID: -1180911324
+      spriteID: c7c45639f84d8be4aae0cdaf73ca824f
+      internalID: 1136368094
       vertices: []
       indices: 
       edges: []
@@ -2032,19 +2032,19 @@ TextureImporter:
       name: Ellie_Walk_92
       rect:
         serializedVersion: 2
-        x: 410
-        y: 9
-        width: 27
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1114
+        y: 24
+        width: 73
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3fe07972a217f40ab9cbf6e53dbc1c
-      internalID: 554177903
+      spriteID: 1d71d27ded07e804baa7199e3080debe
+      internalID: 1361785695
       vertices: []
       indices: 
       edges: []
@@ -2052,7 +2052,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b9efb85032c93984db1dc2af4f4e1271
+    spriteID: 5135a3d4cba415d438661da5cfd7ad16
     internalID: 0
     vertices: []
     indices: 
@@ -2060,99 +2060,99 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ellie_Walk_0: 805730152
-      Ellie_Walk_1: 253926457
-      Ellie_Walk_10: 180842165
-      Ellie_Walk_11: -371549049
-      Ellie_Walk_12: -1113920866
-      Ellie_Walk_13: -2011944324
-      Ellie_Walk_14: 1147912956
-      Ellie_Walk_15: -919869174
-      Ellie_Walk_16: -1689358406
-      Ellie_Walk_17: 1698786479
-      Ellie_Walk_18: 981364379
-      Ellie_Walk_19: -208458129
-      Ellie_Walk_2: 2109705171
-      Ellie_Walk_20: 1748576536
-      Ellie_Walk_21: 1726389537
-      Ellie_Walk_22: -884562908
-      Ellie_Walk_23: -1730985527
-      Ellie_Walk_24: 949871844
-      Ellie_Walk_25: -834161578
-      Ellie_Walk_26: 689296977
-      Ellie_Walk_27: -268204197
-      Ellie_Walk_28: 1421970042
-      Ellie_Walk_29: 1947742711
-      Ellie_Walk_3: -187431298
-      Ellie_Walk_30: -1345151909
-      Ellie_Walk_31: 1333999996
-      Ellie_Walk_32: -1136283884
-      Ellie_Walk_33: 621383194
-      Ellie_Walk_34: -2125976310
-      Ellie_Walk_35: -320870884
-      Ellie_Walk_36: -203184814
-      Ellie_Walk_37: 1620733328
-      Ellie_Walk_38: 651311507
-      Ellie_Walk_39: 2122972219
-      Ellie_Walk_4: -899379284
-      Ellie_Walk_40: -788559827
-      Ellie_Walk_41: -1993831647
-      Ellie_Walk_42: 1418479452
-      Ellie_Walk_43: 459252500
-      Ellie_Walk_44: -1007055952
-      Ellie_Walk_45: 2068295448
-      Ellie_Walk_46: -2024711305
-      Ellie_Walk_47: 294045265
-      Ellie_Walk_48: -1531829659
-      Ellie_Walk_49: 649982099
-      Ellie_Walk_5: -2053136854
-      Ellie_Walk_50: -343334465
-      Ellie_Walk_51: -853828200
-      Ellie_Walk_52: -2059698341
-      Ellie_Walk_53: -1891401967
-      Ellie_Walk_54: 1429363850
-      Ellie_Walk_55: 657546956
-      Ellie_Walk_56: -1855088008
-      Ellie_Walk_57: -22586855
-      Ellie_Walk_58: -859628221
-      Ellie_Walk_59: -1148635208
-      Ellie_Walk_6: -493586028
-      Ellie_Walk_60: -1991795660
-      Ellie_Walk_61: -1708389915
-      Ellie_Walk_62: -1689435481
-      Ellie_Walk_63: -1391291281
-      Ellie_Walk_64: -1568963980
-      Ellie_Walk_65: -1698826768
-      Ellie_Walk_66: 426986989
-      Ellie_Walk_67: 2048389795
-      Ellie_Walk_68: -1568755990
-      Ellie_Walk_69: -898571940
-      Ellie_Walk_7: -1036705893
-      Ellie_Walk_70: -207519679
-      Ellie_Walk_71: 1709255002
-      Ellie_Walk_72: -1631912851
-      Ellie_Walk_73: -791317039
-      Ellie_Walk_74: -2002301139
-      Ellie_Walk_75: 507087808
-      Ellie_Walk_76: -70173604
-      Ellie_Walk_77: 205870678
-      Ellie_Walk_78: -395670690
-      Ellie_Walk_79: -1804526412
-      Ellie_Walk_8: -985322710
-      Ellie_Walk_80: -119831489
-      Ellie_Walk_81: 1901954575
-      Ellie_Walk_82: 1300111907
-      Ellie_Walk_83: 511236658
-      Ellie_Walk_84: -579045051
-      Ellie_Walk_85: 949208799
-      Ellie_Walk_86: 1995578899
-      Ellie_Walk_87: 639617684
-      Ellie_Walk_88: -2126061177
-      Ellie_Walk_89: 1479101016
-      Ellie_Walk_9: -1163286830
-      Ellie_Walk_90: -1725672047
-      Ellie_Walk_91: -1180911324
-      Ellie_Walk_92: 554177903
+      Ellie_Walk_0: 1514563275
+      Ellie_Walk_1: -1257213269
+      Ellie_Walk_10: 633107891
+      Ellie_Walk_11: -469481929
+      Ellie_Walk_12: -1145291333
+      Ellie_Walk_13: 1168298189
+      Ellie_Walk_14: 2100790438
+      Ellie_Walk_15: 1671818320
+      Ellie_Walk_16: 239839223
+      Ellie_Walk_17: 1982073935
+      Ellie_Walk_18: 774106219
+      Ellie_Walk_19: -1050296122
+      Ellie_Walk_2: 966267289
+      Ellie_Walk_20: 1022977186
+      Ellie_Walk_21: 1950445936
+      Ellie_Walk_22: -981852146
+      Ellie_Walk_23: -478605759
+      Ellie_Walk_24: 1800192014
+      Ellie_Walk_25: 2105941172
+      Ellie_Walk_26: -586110980
+      Ellie_Walk_27: -1254090678
+      Ellie_Walk_28: -563569334
+      Ellie_Walk_29: -1008070956
+      Ellie_Walk_3: 1643308747
+      Ellie_Walk_30: -520618415
+      Ellie_Walk_31: -1898004069
+      Ellie_Walk_32: -295404287
+      Ellie_Walk_33: -2131958550
+      Ellie_Walk_34: -179722911
+      Ellie_Walk_35: -187581286
+      Ellie_Walk_36: 1485749460
+      Ellie_Walk_37: -1652363273
+      Ellie_Walk_38: 1412739302
+      Ellie_Walk_39: -199293114
+      Ellie_Walk_4: 486260769
+      Ellie_Walk_40: -1027750868
+      Ellie_Walk_41: -74313316
+      Ellie_Walk_42: 79466849
+      Ellie_Walk_43: -928757978
+      Ellie_Walk_44: 458438216
+      Ellie_Walk_45: 1663425987
+      Ellie_Walk_46: 95489349
+      Ellie_Walk_47: -1284800458
+      Ellie_Walk_48: 632317878
+      Ellie_Walk_49: 928147964
+      Ellie_Walk_5: -1027421199
+      Ellie_Walk_50: -809680337
+      Ellie_Walk_51: 1772726014
+      Ellie_Walk_52: 1649838403
+      Ellie_Walk_53: 920170993
+      Ellie_Walk_54: -1495276543
+      Ellie_Walk_55: 2098809736
+      Ellie_Walk_56: -794873851
+      Ellie_Walk_57: 1328080404
+      Ellie_Walk_58: -1464999760
+      Ellie_Walk_59: 1580556727
+      Ellie_Walk_6: -2136825769
+      Ellie_Walk_60: -1388471876
+      Ellie_Walk_61: -2028613729
+      Ellie_Walk_62: 905719016
+      Ellie_Walk_63: -309996486
+      Ellie_Walk_64: 940599084
+      Ellie_Walk_65: -1862744586
+      Ellie_Walk_66: -128782545
+      Ellie_Walk_67: -409131737
+      Ellie_Walk_68: -635383845
+      Ellie_Walk_69: -133404542
+      Ellie_Walk_7: -1201342865
+      Ellie_Walk_70: -590140536
+      Ellie_Walk_71: 478246579
+      Ellie_Walk_72: -479539820
+      Ellie_Walk_73: -1403589629
+      Ellie_Walk_74: -170602519
+      Ellie_Walk_75: -1847669807
+      Ellie_Walk_76: 1964341312
+      Ellie_Walk_77: -394564633
+      Ellie_Walk_78: 954284395
+      Ellie_Walk_79: -486276728
+      Ellie_Walk_8: -796858018
+      Ellie_Walk_80: 917323191
+      Ellie_Walk_81: -796709385
+      Ellie_Walk_82: 135450120
+      Ellie_Walk_83: -662882977
+      Ellie_Walk_84: 1070503333
+      Ellie_Walk_85: 1398342373
+      Ellie_Walk_86: -916969028
+      Ellie_Walk_87: -1048329889
+      Ellie_Walk_88: 546688723
+      Ellie_Walk_89: -643327796
+      Ellie_Walk_9: -27922102
+      Ellie_Walk_90: 262331533
+      Ellie_Walk_91: 1136368094
+      Ellie_Walk_92: 1361785695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

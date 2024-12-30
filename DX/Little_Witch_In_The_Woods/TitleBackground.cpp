@@ -10,8 +10,8 @@ ATitleBackground::ATitleBackground()
 	RootComponent = Default;
 
 	BGRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	BGRenderer->SetSprite("Logo.png");
-	BGRenderer->SetRelativeScale3D({ 679, 330, 1.0f });
+	BGRenderer->SetSprite("Title_Train_Sky.png", 0);
+	BGRenderer->SetRelativeScale3D({ 1280, 720, 1.0f });
 	BGRenderer->SetupAttachment(RootComponent);
 }
 

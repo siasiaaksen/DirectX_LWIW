@@ -17,6 +17,27 @@
     <ClInclude Include="PlayGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
+    <ClInclude Include="TitleMoon.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMountain.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBridge.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleTrain.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleTree.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleStar.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellie.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -35,6 +56,27 @@
     <ClCompile Include="PlayGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
+    <ClCompile Include="TitleMoon.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMountain.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBridge.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleTrain.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleTree.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleStar.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellie.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
@@ -45,6 +87,9 @@
     </Filter>
     <Filter Include="Title">
       <UniqueIdentifier>{a257b561-e912-4470-b9cc-b57cad6dc754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play">
+      <UniqueIdentifier>{60df8352-56c7-492c-82c8-f0a47da95829}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

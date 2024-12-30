@@ -167,12 +167,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Ellie.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h" />
     <ClInclude Include="TitleBackground.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleBridge.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -184,12 +192,36 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TitleMoon.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleMountain.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleStar.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleTrain.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TitleTree.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ULWIWContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ellie.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayGameMode.cpp">
       <SubType>
       </SubType>
@@ -208,11 +240,35 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TitleBridge.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleMoon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleMountain.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleStar.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleTrain.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TitleTree.cpp">
       <SubType>
       </SubType>
     </ClCompile>

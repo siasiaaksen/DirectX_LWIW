@@ -190,7 +190,7 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 
     ID3D11Texture2D* TexPtr = nullptr;
 
-    if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(DXBackBufferTexture.GetAddressOf())))
+    if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &DXBackBufferTexture))
     {
         MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
     };

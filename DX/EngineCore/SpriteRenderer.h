@@ -50,8 +50,6 @@ public:
 		return CurAnimation->CurIndex;
 	}
 
-	FVector SetSpriteScale(float _Ratio = 1.0f, int _CurIndex = 0);
-
 	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, int _Start, int _End, float Time = 0.1f, bool _Loop = true);
 
 	ENGINEAPI void CreateAnimation(std::string_view _AnimationName, std::string_view _SpriteName, std::vector<int> _Indexs, std::vector<float> _Frame, bool _Loop = true);
@@ -86,6 +84,9 @@ public:
 		CurAnimationSpeed = 1.0f;
 	}
 
+	void SetSprite(UEngineSprite* _Sprite);
+	void SetSprite(std::string_view _Value);
+
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
@@ -97,5 +98,6 @@ private:
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
+	UEngineSprite* Sprite = nullptr;
 };
 

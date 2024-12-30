@@ -19,10 +19,13 @@ public:
 
 	ENGINEAPI void SetOrder(int _Order) override;
 
-	ENGINEAPI void SetSprite(UEngineSprite* _Sprite);
-	ENGINEAPI void SetSprite(std::string_view _Value);
+	ENGINEAPI void SetTexture(UEngineTexture* _Value);
 
-	ENGINEAPI void SetSpriteData(size_t _Index);
+	ENGINEAPI void SetSpriteData(UEngineSprite* _Sprite, size_t _Index);
+
+	ENGINEAPI void SetMesh(std::string_view _Name);
+
+	ENGINEAPI void SetBlend(std::string_view _Name);
 
 protected:
 	ENGINEAPI void BeginPlay() override;
@@ -31,18 +34,21 @@ protected:
 private:
 
 public:
-	FSpriteData SpriteData;
+	class UMesh* Mesh = nullptr;
+	class UEngineBlend* Blend = nullptr;
 
-	class UEngineSprite* Sprite = nullptr;
+	FSpriteData SpriteData;
+	UEngineTexture* Texture = nullptr;
+
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstBuffer = nullptr;
 	void ShaderResInit();
 	void ShaderResSetting();
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
+	//Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayOut = nullptr;
-	void InputAssembler1Init();
+	//void InputAssembler1Init();
 	void InputAssembler1Setting();
 	void InputAssembler1LayOut();
 
@@ -52,9 +58,9 @@ public:
 	void VertexShaderInit();
 	void VertexShaderSetting();
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
+	//Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
 	D3D11_PRIMITIVE_TOPOLOGY Topology = D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	void InputAssembler2Init();
+	//void InputAssembler2Init();
 	void InputAssembler2Setting();
 
 	D3D11_VIEWPORT ViewPortInfo;

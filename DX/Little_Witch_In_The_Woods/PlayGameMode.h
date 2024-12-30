@@ -13,9 +13,11 @@ public:
 	APlayGameMode& operator=(const APlayGameMode& _Other) = delete;
 	APlayGameMode& operator=(APlayGameMode&& _Other) noexcept = delete;
 
+	void Tick(float _DeltaTime);
+
 protected:
 
 private:
-
+	std::shared_ptr<class AEllie> Ellie/* = nullptr*/;
 };
 
