@@ -14,10 +14,13 @@ public:
 	AEllie& operator=(const AEllie& _Other) = delete;
 	AEllie& operator=(AEllie&& _Other) noexcept = delete;
 
-	std::shared_ptr<USpriteRenderer> GetRenderer()
+	std::shared_ptr<USpriteRenderer>& GetRenderer()
 	{
 		return EllieRenderer;
 	}
+
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 	
 protected:
 

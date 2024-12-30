@@ -48,6 +48,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToMeta("Title_Train_TrainBlur.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Title_Train_Tree.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Title_Train_Star.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Title_Train_ShootingStar.png", ".SData");
 	}
 
 	{
@@ -71,7 +72,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	}
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
-	UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
+	UEngineCore::CreateLevel<APlayGameMode, AEllie>("PlayLevel");
 	UEngineCore::OpenLevel("TitleLevel");
 }
 

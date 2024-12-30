@@ -13,7 +13,8 @@ public:
 	APlayGameMode& operator=(const APlayGameMode& _Other) = delete;
 	APlayGameMode& operator=(APlayGameMode&& _Other) noexcept = delete;
 
-	void Tick(float _DeltaTime);
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 protected:
 

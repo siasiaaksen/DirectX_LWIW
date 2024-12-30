@@ -13,6 +13,9 @@ public:
 	APawn& operator=(const APawn& _Other) = delete;
 	APawn& operator=(APawn&& _Other) noexcept = delete;
 
+	ENGINEAPI void BeginPlay() override;
+	ENGINEAPI void Tick(float _DeltaTime) override;
+
 protected:
 
 private:
