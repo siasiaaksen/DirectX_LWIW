@@ -1,7 +1,6 @@
 #include "PreCompile.h"
 #include "TitleLogo.h"
 #include <EngineCore/SpriteRenderer.h>
-#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
 
@@ -12,7 +11,7 @@ ATitleLogo::ATitleLogo()
 
 	LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	LogoRenderer->SetSprite("Logo.png");
-	LogoRenderer->SetRelativeScale3D({ 679, 330, 1.0f });
+	LogoRenderer->SetRelativeScale3D({ 453, 220, 1.0f });
 	LogoRenderer->SetupAttachment(RootComponent);
 }
 
