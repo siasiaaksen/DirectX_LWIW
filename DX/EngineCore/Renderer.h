@@ -19,6 +19,7 @@ public:
 
 	ENGINEAPI void SetOrder(int _Order) override;
 
+	ENGINEAPI void SetTexture(std::string_view _Value);
 	ENGINEAPI void SetTexture(UEngineTexture* _Value);
 
 	ENGINEAPI void SetSpriteData(UEngineSprite* _Sprite, size_t _Index);

@@ -14,6 +14,7 @@ AEllie::AEllie()
 
 	EllieRenderer = CreateDefaultSubObject<USpriteRenderer>();
 
+	// EllieWalk
 	{
 		EllieRenderer->SetSprite("Ellie_Walk.png");
 		//EllieRenderer->SetRelativeScale3D({ 73, 92, 1.0f });
@@ -35,7 +36,7 @@ AEllie::AEllie()
 			Animation->IsAutoScale = true;
 			Animation->AutoScaleRatio = 1.0f;
 		}
-		EllieRenderer->CreateAnimation("Ellie_Walk_BLeft", "Ellie_Walk.png", 56, 63, 0.1f);
+		EllieRenderer->CreateAnimation("Ellie_Walk_BLeft", "Ellie_Walk.png", 60, 67, 0.1f);
 		{
 			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_BLeft");
 			Animation->IsAutoScale = true;
@@ -55,6 +56,7 @@ AEllie::AEllie()
 		}
 	}
 
+	// EllieIdle
 	{
 		EllieRenderer->SetSprite("Ellie_Idle.png");
 		//EllieRenderer->SetRelativeScale3D({ 76, 96, 1.0f });
@@ -100,7 +102,9 @@ AEllie::AEllie()
 	EllieRenderer->ChangeAnimation("Ellie_Idle_Front");
 	EllieRenderer->SetupAttachment(RootComponent);
 
+	// 카메라가 엘리를 따라다니게
 	Camera = GetWorld()->GetMainCamera();
+	Camera->AttachToActor(this);
 
 	State = EEllieState::IDLE;
 }
@@ -133,21 +137,28 @@ void AEllie::Tick(float _DeltaTime)
 
 void AEllie::Idle()
 {
-	if (0 == PosValue)
+	switch (PosValue)
 	{
+	case 0:
 		EllieRenderer->ChangeAnimation("Ellie_Idle_Front");
-	}
-	else if (1 == PosValue)
-	{
+		break;
+	case 1:
 		EllieRenderer->ChangeAnimation("Ellie_Idle_Back");
-	}
-	else if (2 == PosValue)
-	{
+		break;
+	case 2:
 		EllieRenderer->ChangeAnimation("Ellie_Idle_FLeft");
-	}
-	else if (3 == PosValue)
-	{
+		break;
+	case 3:
 		EllieRenderer->ChangeAnimation("Ellie_Idle_FRight");
+		break;
+	case 4:
+		EllieRenderer->ChangeAnimation("Ellie_Idle_BLeft");
+		break;
+	case 5:
+		EllieRenderer->ChangeAnimation("Ellie_Idle_BRight");
+		break;
+	default:
+		break;
 	}
 
 	if (true == UEngineInput::IsPress('W') || true == UEngineInput::IsPress('S') ||
@@ -161,12 +172,42 @@ void AEllie::Move(float _DeltaTime)
 {
 	if (true == UEngineInput::IsPress('W'))
 	{
+		if (true == UEngineInput::IsPress('A'))
+		{
+			EllieRenderer->ChangeAnimation("Ellie_Walk_BLeft");
+			AddActorLocation(FVector({ -1.0f, 1.0f }).NormalizeReturn() * _DeltaTime * 80.0f);
+			PosValue = 4;
+			return;
+		}
+		if (true == UEngineInput::IsPress('D'))
+		{
+			EllieRenderer->ChangeAnimation("Ellie_Walk_BRight");
+			AddActorLocation(FVector({ 1.0f, 1.0f }).NormalizeReturn() * _DeltaTime * 80.0f);
+			PosValue = 5;
+			return;
+		}
+
 		EllieRenderer->ChangeAnimation("Ellie_Walk_Back");
 		AddActorLocation(FVector({ 0.0f, 1.0f }) * _DeltaTime * 80.0f);
 		PosValue = 1;
 	}
 	if (true == UEngineInput::IsPress('S'))
 	{
+		if (true == UEngineInput::IsPress('A'))
+		{
+			EllieRenderer->ChangeAnimation("Ellie_Walk_FLeft");
+			AddActorLocation(FVector({ -1.0f, -1.0f }).NormalizeReturn() * _DeltaTime * 80.0f);
+			PosValue = 2;
+			return;
+		}
+		if (true == UEngineInput::IsPress('D'))
+		{
+			EllieRenderer->ChangeAnimation("Ellie_Walk_FRight");
+			AddActorLocation(FVector({ 1.0f, -1.0f }).NormalizeReturn() * _DeltaTime * 80.0f);
+			PosValue = 3;
+			return;
+		}
+
 		EllieRenderer->ChangeAnimation("Ellie_Walk_Front");
 		AddActorLocation(FVector({ 0.0f, -1.0f }) * _DeltaTime * 80.0f);
 		PosValue = 0;

@@ -16,6 +16,16 @@ URenderer::~URenderer()
 {
 }
 
+void URenderer::SetTexture(std::string_view _Value)
+{
+	Texture = UEngineTexture::Find<UEngineTexture>(_Value).get();
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("존재하지 않는 텍스처를 세팅하려고 했습니다.");
+	}
+}
+
 void URenderer::SetTexture(UEngineTexture* _Texture)
 {
 	Texture = _Texture;
@@ -23,6 +33,11 @@ void URenderer::SetTexture(UEngineTexture* _Texture)
 
 void URenderer::SetOrder(int _Order)
 {
+	if (0 != GetOrder() && _Order == GetOrder())
+	{
+		return;
+	}
+
 	int PrevOrder = GetOrder();
 	UObject::SetOrder(_Order);
 	ULevel* Level = GetActor()->GetWorld();
@@ -34,7 +49,7 @@ void URenderer::SetOrder(int _Order)
 ENGINEAPI void URenderer::BeginPlay()
 {
 	USceneComponent::BeginPlay();
-	SetOrder(0);
+	SetOrder(GetOrder());
 
 	//InputAssembler1Init();
 	VertexShaderInit();
@@ -336,8 +351,8 @@ void URenderer::RasterizerInit()
 
 	UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&Desc, &RasterizerState);
 
-	ViewPortInfo.Width = 1280.0f;
-	ViewPortInfo.Height = 720.0f;
+	ViewPortInfo.Width = UEngineCore::GetScreenScale().X;
+	ViewPortInfo.Height = UEngineCore::GetScreenScale().Y;
 	ViewPortInfo.TopLeftX = 0.0f;
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;

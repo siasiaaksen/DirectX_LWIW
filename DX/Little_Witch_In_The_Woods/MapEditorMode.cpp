@@ -4,6 +4,7 @@
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/imgui.h>
 #include <EngineCore/CameraActor.h>
+#include <EnginePlatform/EngineInput.h>
 
 
 class TestWindow : public UEngineGUIWindow
@@ -44,5 +45,10 @@ void AMapEditorMode::BeginPlay()
 void AMapEditorMode::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	if (true == UEngineInput::IsDown(VK_HOME))
+	{
+		UEngineCore::OpenLevel("TitleLevel");
+	}
 }
 
