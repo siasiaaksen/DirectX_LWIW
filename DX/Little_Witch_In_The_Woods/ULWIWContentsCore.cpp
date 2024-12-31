@@ -5,6 +5,7 @@
 #include <EngineCore/EngineSprite.h>
 #include "TitleGameMode.h"
 #include "PlayGameMode.h"
+#include "MapEditorMode.h"
 #include "Ellie.h"
 
 
@@ -73,6 +74,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
 	UEngineCore::CreateLevel<APlayGameMode, AEllie>("PlayLevel");
+	UEngineCore::CreateLevel<AMapEditorMode, APawn>("MapEditorLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 }
 

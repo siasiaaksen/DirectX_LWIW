@@ -2,9 +2,6 @@
 #include "TitleGameMode.h"
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/SpriteRenderer.h>
-#include <EngineCore/EngineGUIWindow.h>
-#include <EngineCore/EngineGUI.h>
-#include <EngineCore/imgui.h>
 #include <EnginePlatform/EngineInput.h>
 #include "TitleLogo.h"
 #include "TitleBackground.h"
@@ -14,19 +11,6 @@
 #include "TitleTrain.h"
 #include "TitleTree.h"
 #include "TitleStar.h"
-
-
-class TestWindow : public UEngineGUIWindow
-{
-public:
-	void OnGUI() override
-	{
-		ImGui::Button("WindowButton");
-		ImGui::SameLine();
-		ImGui::Text("test");
-
-	}
-};
 
 
 ATitleGameMode::ATitleGameMode()
@@ -47,11 +31,6 @@ ATitleGameMode::ATitleGameMode()
 		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	}
-
-	// imgui
-	{
-		UEngineGUI::CreateGUIWindow<TestWindow>("TestWindow");
-	}
 }
 
 ATitleGameMode::~ATitleGameMode()
@@ -66,5 +45,9 @@ void ATitleGameMode::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsPress(VK_SPACE))
 	{
 		UEngineCore::OpenLevel("PlayLevel");
+	}
+	if (true == UEngineInput::IsPress(VK_F1))
+	{
+		UEngineCore::OpenLevel("MapEditorLevel");
 	}
 }

@@ -100,7 +100,7 @@ AEllie::AEllie()
 	EllieRenderer->ChangeAnimation("Ellie_Idle_Front");
 	EllieRenderer->SetupAttachment(RootComponent);
 
-	Camera = GetWorld()->GetCamera(0);
+	Camera = GetWorld()->GetMainCamera();
 
 	State = EEllieState::IDLE;
 }
@@ -190,6 +190,7 @@ void AEllie::Move(float _DeltaTime)
 		State = EEllieState::IDLE;
 	}
 }
+
 
 
 
