@@ -43,7 +43,6 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 	if (nullptr != CurAnimation)
 	{
 		UEngineSprite* Sprite = CurAnimation->Sprite;
-		size_t CurIndex = CurAnimation->CurIndex;
 
 		URenderer::SetTexture(Sprite->GetTexture(CurIndex));
 		URenderer::SetSpriteData(Sprite, CurIndex);
@@ -265,18 +264,6 @@ void USpriteRenderer::SetAnimationEvent(std::string_view _AnimationName, int _Fr
 void USpriteRenderer::SetSprite(UEngineSprite* _Sprite)
 {
 	Sprite = _Sprite;
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("존재하지 않는 스프라이트를 사용하려고 했습니다.");
-	}
-}
-
-void USpriteRenderer::SetSprite(std::string_view _Value)
-{
-	std::string UpperName = UEngineString::ToUpper(_Value);
-
-	Sprite = UEngineSprite::Find<UEngineSprite>(UpperName).get();
 
 	if (nullptr == Sprite)
 	{

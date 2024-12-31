@@ -85,7 +85,6 @@ public:
 	}
 
 	void SetSprite(UEngineSprite* _Sprite);
-	void SetSprite(std::string_view _Value);
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;

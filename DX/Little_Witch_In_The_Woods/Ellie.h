@@ -3,6 +3,14 @@
 #include <EngineCore/SpriteRenderer.h>
 
 
+enum class EEllieState
+{
+	IDLE,
+	MOVE,
+	MAX,
+};
+
+
 class AEllie : public APawn
 {
 public:
@@ -21,10 +29,17 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void Idle();
+	void Move(float _DeltaTime);
 	
 protected:
 
 private:
 	std::shared_ptr<USpriteRenderer> EllieRenderer;
+	std::shared_ptr<class ACameraActor> Camera;
+
+	EEllieState State;
+	int PosValue = 0;
 };
 

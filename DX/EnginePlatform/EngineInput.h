@@ -128,7 +128,7 @@ public:
 		return GetInst().Keys[_KeyIndex].IsDown;
 	}
 
-	bool IsUp(int _KeyIndex)
+	static bool IsUp(int _KeyIndex)
 	{
 		if (false == GetInst().Keys.contains(_KeyIndex))
 		{

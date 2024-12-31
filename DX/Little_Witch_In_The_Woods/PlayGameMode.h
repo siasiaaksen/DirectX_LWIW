@@ -19,6 +19,6 @@ public:
 protected:
 
 private:
-	std::shared_ptr<class AEllie> Ellie/* = nullptr*/;
+	std::shared_ptr<class AEllie> Ellie = nullptr;
 };
 

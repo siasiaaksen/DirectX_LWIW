@@ -73,7 +73,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
 	UEngineCore::CreateLevel<APlayGameMode, AEllie>("PlayLevel");
-	UEngineCore::OpenLevel("TitleLevel");
+	UEngineCore::OpenLevel("PlayLevel");
 }
 
 void ULWIWContentsCore::EngineTick(float _DeltaTime)

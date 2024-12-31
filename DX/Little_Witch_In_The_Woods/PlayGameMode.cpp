@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "PlayGameMode.h"
+#include <EnginePlatform/EngineInput.h>
 #include "Ellie.h"
 
 
@@ -21,5 +22,10 @@ void APlayGameMode::Tick(float _DeltaTime)
 {
 	// 부모 호출
 	AActor::Tick(_DeltaTime);
+
+	if (true == UEngineInput::IsDown(VK_HOME))
+	{
+		UEngineCore::OpenLevel("TitleLevel");
+	}
 }
 
