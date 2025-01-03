@@ -22,7 +22,7 @@ public:
 	ENGINEAPI void BeginPlay() override;
 	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
-	URenderUnit& GetRenderUnit(UINT  _Index);
+	URenderUnit& GetRenderUnit(UINT  _Index = 0);
 
 	URenderUnit& CreateRenderUnit();
 

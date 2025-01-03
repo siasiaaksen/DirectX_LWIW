@@ -17,6 +17,13 @@ void UEngineCamera::BeginPlay()
 	FVector Scale = UEngineCore::GetScreenScale();
 
 	ProjectionScale = Scale;
+
+	ViewPortInfo.Width = UEngineCore::GetScreenScale().X;
+	ViewPortInfo.Height = UEngineCore::GetScreenScale().Y;
+	ViewPortInfo.TopLeftX = 0.0f;
+	ViewPortInfo.TopLeftY = 0.0f;
+	ViewPortInfo.MinDepth = 0.0f;
+	ViewPortInfo.MaxDepth = 1.0f;
 }
 
 void UEngineCamera::Tick(float _DetlaTime)
@@ -27,6 +34,8 @@ void UEngineCamera::Tick(float _DetlaTime)
 
 void UEngineCamera::Render(float _DetlaTime)
 {
+	UEngineCore::GetDevice().GetContext()->RSSetViewports(1, &ViewPortInfo);
+
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;

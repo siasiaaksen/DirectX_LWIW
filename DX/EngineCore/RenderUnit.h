@@ -2,6 +2,7 @@
 #include "EngineShaderResources.h"
 #include "Mesh.h"
 #include "EngineMaterial.h"
+#include "EngineEnums.h"
 
 
 class URenderUnit
@@ -9,6 +10,8 @@ class URenderUnit
 public:
 	URenderUnit();
 	~URenderUnit();
+
+	URenderer* ParentRenderer = nullptr;
 
 	URenderUnit(const URenderUnit& _Other) = delete;
 	URenderUnit(URenderUnit&& _Other) noexcept = delete;
@@ -27,10 +30,23 @@ public:
 
 	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
 
+	void MaterialResourcesCheck();
+
+	template<typename Data>
+	void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
+	{
+		ConstantBufferLinkData(_Name, reinterpret_cast<void*>(&_Data));
+	}
+
+	void ConstantBufferLinkData(std::string_view Name, void* _Data);
+
+	void SetTexture(std::string_view _Name, std::string_view _ResName);
+	void SetSampler(std::string_view Name, std::string_view _ResName);
+
 protected:
 
 private:
-	UEngineConstantBufferRes Res;
+	std::map<EShaderType, UEngineShaderResources> Resources;
 
 	void InputLayOutCreate();
 };

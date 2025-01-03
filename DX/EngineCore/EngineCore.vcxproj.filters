@@ -136,6 +136,9 @@
     <ClInclude Include="EngineInputLayOutInfo.h">
       <Filter>Resources\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="EngineSampler.h">
+      <Filter>Resources\Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -260,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="EngineInputLayOutInfo.cpp">
       <Filter>Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSampler.cpp">
+      <Filter>Resources\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

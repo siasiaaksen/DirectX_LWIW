@@ -3,6 +3,20 @@
 #include <EngineBase/EngineDelegate.h>
 
 
+struct FUVValue
+{
+	float4 PlusUVValue;
+};
+
+
+struct ResultColor
+{
+public:
+	float4 PlusColor;
+	float4 MulColor;
+};
+
+
 class USpriteRenderer : public URenderer
 {
 public:
@@ -86,6 +100,8 @@ public:
 
 	void SetSprite(UEngineSprite* _Sprite);
 
+	ResultColor ColorData;
+
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
 	void BeginPlay() override;
@@ -100,5 +116,7 @@ private:
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
 	UEngineSprite* Sprite = nullptr;
+	FUVValue UVValue;
+	FSpriteData SpriteData;
 };
 

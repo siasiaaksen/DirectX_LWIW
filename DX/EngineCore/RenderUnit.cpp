@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "RenderUnit.h"
+#include "EngineEnums.h"
+#include "Renderer.h"
 
 
 URenderUnit::URenderUnit()
@@ -8,6 +10,93 @@ URenderUnit::URenderUnit()
 
 URenderUnit::~URenderUnit()
 {
+}
+
+void URenderUnit::MaterialResourcesCheck()
+{
+	if (nullptr == Material)
+	{
+		MSGASSERT("존재하지 않는 머티리얼의 리소스를 체크할 수 없습니다.");
+		return;
+	}
+
+	{
+		UEngineShaderResources& Vs = Material->GetVertexShader()->ShaderResources;
+		Resources[EShaderType::VS] = Material->GetVertexShader()->ShaderResources;
+	}
+
+	{
+		UEngineShaderResources& Ps = Material->GetPixelShader()->ShaderResources;
+		Resources[EShaderType::PS] = Material->GetPixelShader()->ShaderResources;
+	}
+
+	if (nullptr != ParentRenderer)
+	{
+		for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+		{
+			if (false == Resources.contains(i))
+			{
+				continue;
+			}
+
+			FTransform& Ref = ParentRenderer->GetTransformRef();
+			Resources[i].ConstantBufferLinkData("FTransform", Ref);
+		}
+	}
+}
+
+void URenderUnit::ConstantBufferLinkData(std::string_view _Name, void* _Data)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == Resources.contains(i))
+		{
+			continue;
+		}
+
+		if (false == Resources[i].IsConstantBuffer(_Name))
+		{
+			continue;
+		}
+
+		Resources[i].ConstantBufferLinkData(_Name, _Data);
+	}
+}
+
+void URenderUnit::SetTexture(std::string_view _Name, std::string_view _ResName)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == Resources.contains(i))
+		{
+			continue;
+		}
+
+		if (false == Resources[i].IsTexture(_Name))
+		{
+			continue;
+		}
+
+		Resources[i].TextureSetting(_Name, _ResName);
+	}
+}
+
+void URenderUnit::SetSampler(std::string_view _Name, std::string_view _ResName)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == Resources.contains(i))
+		{
+			continue;
+		}
+
+		if (false == Resources[i].IsSampler(_Name))
+		{
+			continue;
+		}
+
+		Resources[i].SamplerSetting(_Name, _ResName);
+	}
 }
 
 void URenderUnit::SetMesh(std::string_view _Name)
@@ -34,6 +123,8 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 		MSGASSERT("존재하지 않는 머티리얼을를 세팅하려고 했습니다.");
 	}
 
+	MaterialResourcesCheck();
+
 	if (nullptr != Mesh)
 	{
 		InputLayOutCreate();
@@ -42,6 +133,11 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 
 void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 {
+	for (std::pair<const EShaderType, UEngineShaderResources>& Pair : Resources)
+	{
+		Pair.second.Setting();
+	}
+
 	//	InputAssembler1Setting();
 	Mesh->GetVertexBuffer()->Setting();
 
@@ -66,6 +162,9 @@ void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
 	ArrRtv[0] = RTV; 
 	UEngineCore::GetDevice().GetContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
+
+	// Draw Call
+	UEngineCore::GetDevice().GetContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }
 
 void URenderUnit::InputLayOutCreate()

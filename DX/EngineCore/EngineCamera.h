@@ -57,6 +57,8 @@ private:
 
 	EProjectionType Type = EProjectionType::Orthographic;
 
+	D3D11_VIEWPORT ViewPortInfo;
+
 	FVector ProjectionScale = { 0.0f, 0.0f };
 
 	std::map<int, std::list<std::shared_ptr<class URenderer>>> Renderers;

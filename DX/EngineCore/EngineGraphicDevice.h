@@ -69,5 +69,6 @@ private:
 	ENGINEAPI void ShaderInit();
 	ENGINEAPI void MaterialInit();
 	ENGINEAPI void RasterizerStateInit();
+	ENGINEAPI void TextureInit();
 };
 

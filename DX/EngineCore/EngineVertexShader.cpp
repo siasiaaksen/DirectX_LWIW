@@ -4,6 +4,7 @@
 
 UEngineVertexShader::UEngineVertexShader()
 {
+	ShaderType = EShaderType::VS;
 }
 
 UEngineVertexShader::~UEngineVertexShader()

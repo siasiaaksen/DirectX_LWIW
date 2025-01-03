@@ -82,5 +82,8 @@ URenderUnit& URenderer::CreateRenderUnit()
 	// Arr[9];
 	// new(&Arr[9]) URenderUnit();
 
-	return Units.emplace_back();
+	URenderUnit& NewUnit = Units.emplace_back();
+	NewUnit.ParentRenderer = this;
+
+	return NewUnit;
 }

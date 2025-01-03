@@ -92,6 +92,9 @@ void UEngineShader::ShaderResCheck()
 			std::shared_ptr<UEngineConstantBuffer> Buffer = UEngineConstantBuffer::CreateOrFind(BufferInfo.Size, UpperName);
 
 			UEngineConstantBufferRes NewRes;
+			NewRes.ShaderType = ShaderType;
+			NewRes.Name = UpperName;
+			NewRes.BindIndex = ResDesc.BindPoint;
 			NewRes.Res = Buffer;
 			NewRes.BufferSize = BufferInfo.Size;
 
@@ -100,12 +103,28 @@ void UEngineShader::ShaderResCheck()
 		}
 		case D3D_SIT_TEXTURE:
 		{
-			int a = 0;
+			std::shared_ptr<UEngineTexture> Res = UEngineTexture::Find<UEngineTexture>("NSBase.png");
+
+			UEngineTextureRes NewRes;
+			NewRes.ShaderType = ShaderType;
+			NewRes.Name = UpperName;
+			NewRes.BindIndex = ResDesc.BindPoint;
+			NewRes.Res = Res;
+
+			ShaderResources.CreateTextureRes(UpperName, NewRes);
 			break;
 		}
 		case D3D_SIT_SAMPLER:
 		{
-			int a = 0;
+			std::shared_ptr<UEngineSampler> Res = UEngineSampler::Find<UEngineSampler>("WRapSampler");
+
+			UEngineSamplerRes NewRes;
+			NewRes.ShaderType = ShaderType;
+			NewRes.Name = UpperName;
+			NewRes.BindIndex = ResDesc.BindPoint;
+			NewRes.Res = Res;
+
+			ShaderResources.CreateSamplerRes(UpperName, NewRes);
 			break;
 		}
 		case D3D_SIT_STRUCTURED:
