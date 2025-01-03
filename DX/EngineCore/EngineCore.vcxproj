@@ -191,7 +191,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineConstantBuffer.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineCore.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineDeviceBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -208,7 +216,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineRasterizerState.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineResources.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineShader.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineShaderResources.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -221,6 +241,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineVertex.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineVertexShader.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -237,7 +261,7 @@
     <ClInclude Include="imstb_rectpack.h" />
     <ClInclude Include="imstb_textedit.h" />
     <ClInclude Include="imstb_truetype.h" />
-    <ClInclude Include="IndexBuffer.h">
+    <ClInclude Include="EngineIndexBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -271,7 +295,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ThirdParty\DirectxTex\Inc\DirectXTex.h" />
-    <ClInclude Include="VertexBuffer.h">
+    <ClInclude Include="EngineVertexBuffer.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -301,7 +325,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineConstantBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineDeviceBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -318,7 +350,19 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineRasterizerState.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineResources.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineShader.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineShaderResources.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -327,6 +371,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineTexture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineVertexShader.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -340,7 +388,7 @@
     <ClCompile Include="imgui_impl_win32.cpp" />
     <ClCompile Include="imgui_tables.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
-    <ClCompile Include="IndexBuffer.cpp">
+    <ClCompile Include="EngineIndexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -382,7 +430,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp">
+    <ClCompile Include="EngineVertexBuffer.cpp">
       <SubType>
       </SubType>
     </ClCompile>

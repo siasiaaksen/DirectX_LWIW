@@ -24,7 +24,7 @@ UEngineDirectory::~UEngineDirectory()
 {
 }
 
-std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive, std::vector<std::string> _Exts)
+std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive, const std::vector<std::string>& _Exts)
 {
 	std::vector<std::string> UpperExts;
 
@@ -46,7 +46,7 @@ std::vector<class UEngineFile> UEngineDirectory::GetAllFile(bool _IsRecursive, s
 		{
 			if (true == _IsRecursive)
 			{
-				GetAllFileRecursive(FilePath, Result);
+				GetAllFileRecursive(FilePath, Result, _Exts);
 			}
 
 			++Diriter;
@@ -103,9 +103,15 @@ std::vector<class UEngineDirectory> UEngineDirectory::GetAllDirectory()
 	return Result;
 }
 
-void UEngineDirectory::GetAllFileRecursive(std::filesystem::path _Path
-	, std::vector<class UEngineFile>& _Result)
+void UEngineDirectory::GetAllFileRecursive(std::filesystem::path _Path, std::vector<class UEngineFile>& _Result, const std::vector<std::string>& _Exts)
 {
+	std::vector<std::string> UpperExts;
+
+	for (size_t i = 0; i < _Exts.size(); i++)
+	{
+		UpperExts.push_back(UEngineString::ToUpper(_Exts[i]));
+	}
+
 	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(_Path);
 
 	while (false == Diriter._At_end())
@@ -115,7 +121,26 @@ void UEngineDirectory::GetAllFileRecursive(std::filesystem::path _Path
 		UEnginePath Path = UEnginePath(FilePath);
 		if (true == Path.IsDirectory())
 		{
-			GetAllFileRecursive(FilePath, _Result);
+			GetAllFileRecursive(FilePath, _Result, _Exts);
+			++Diriter;
+			continue;
+		}
+
+		bool Check = true;
+
+		for (size_t i = 0; i < UpperExts.size(); i++)
+		{
+			std::string CurUpperExt = UEngineString::ToUpper(Path.GetExtension());
+
+			if (CurUpperExt == UpperExts[i])
+			{
+				Check = false;
+				break;
+			}
+		}
+
+		if (true == Check)
+		{
 			++Diriter;
 			continue;
 		}
