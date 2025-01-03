@@ -6,7 +6,17 @@
 #include "Mesh.h"
 #include "EngineBlend.h"
 #include "EngineShader.h"
+#include "EngineMaterial.h"
 
+
+void UEngineGraphicDevice::DefaultResourcesInit()
+{
+	ShaderInit();
+	MeshInit();
+	BlendInit();
+	RasterizerStateInit();
+	MaterialInit();
+}
 
 void UEngineGraphicDevice::ShaderInit()
 {
@@ -31,12 +41,12 @@ void UEngineGraphicDevice::DefaultResourcesInit()
 void UEngineGraphicDevice::MeshInit()
 {
 	{
-		std::vector<EngineVertex> Vertexs;
+		std::vector<FEngineVertex> Vertexs;
 		Vertexs.resize(4);
-		Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
-		Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
-		Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
-		Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
+		Vertexs[0] = FEngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+		Vertexs[1] = FEngineVertex{ FVector(0.5f, 0.5f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
+		Vertexs[2] = FEngineVertex{ FVector(-0.5f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
+		Vertexs[3] = FEngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
 
 		UEngineVertexBuffer::Create("Rect", Vertexs);
 	}
@@ -87,4 +97,24 @@ void UEngineGraphicDevice::BlendInit()
 	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
 	UEngineBlend::Create("AlphaBlend", Desc);
+}
+
+void UEngineGraphicDevice::RasterizerStateInit()
+{
+	D3D11_RASTERIZER_DESC Desc = {};
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
+	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+
+	UEngineRasterizerState::Create("EngineBase", Desc);
+}
+
+void UEngineGraphicDevice::MaterialInit()
+{
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
+		Mat->SetVertexShader("EngineSpriteShader.fx");
+		Mat->SetPixelShader("EngineSpriteShader.fx");
+		Mat->SetRasterizerState("EngineBase");
+		Mat->SetBlend("AlphaBlend");
+	}
 }

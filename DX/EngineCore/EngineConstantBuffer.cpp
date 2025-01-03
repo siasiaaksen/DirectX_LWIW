@@ -12,7 +12,7 @@ UEngineConstantBuffer::~UEngineConstantBuffer()
 {
 }
 
-std::shared_ptr<UEngineConstantBuffer> UEngineConstantBuffer::CreateOrFind(int _Byte, const std::string_view& _Name)
+std::shared_ptr<UEngineConstantBuffer> UEngineConstantBuffer::CreateOrFind(UINT _Byte, const std::string_view& _Name)
 {
 	std::string UpperName = UEngineString::ToUpper(_Name);
 
@@ -25,17 +25,18 @@ std::shared_ptr<UEngineConstantBuffer> UEngineConstantBuffer::CreateOrFind(int _
 	}
 
 	std::shared_ptr<UEngineConstantBuffer> NewRes = std::make_shared<UEngineConstantBuffer>();
-	NewRes->ResCreate();
+	NewRes->SetName(UpperName);
+	NewRes->ResCreate(_Byte);
 	BufferMap[_Byte][UpperName] = NewRes;
 
-	return nullptr;
+	return NewRes;
 }
 
-void UEngineConstantBuffer::ResCreate()
+void UEngineConstantBuffer::ResCreate(UINT _Byte)
 {
-	/*{
+	{
 		D3D11_BUFFER_DESC BufferInfo = { 0 };
-		BufferInfo.ByteWidth = sizeof(FTransform);
+		BufferInfo.ByteWidth = _Byte;
 		BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
 		BufferInfo.Usage = D3D11_USAGE_DYNAMIC;
@@ -45,5 +46,30 @@ void UEngineConstantBuffer::ResCreate()
 			MSGASSERT("상수버퍼 생성에 실패했습니다..");
 			return;
 		}
-	}*/
+	}
+}
+
+void UEngineConstantBuffer::ChangeData(void* _Data, UINT _Size)
+{
+	if (_Size != BufferInfo.ByteWidth)
+	{
+		MSGASSERT("바이트 크기가 다르게 세팅되었습니다" + GetName());
+		return;
+	}
+
+	D3D11_MAPPED_SUBRESOURCE Data = {};
+	UEngineCore::GetDevice().GetContext()->Map(Buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &Data);
+
+	if (nullptr == Data.pData)
+	{
+		MSGASSERT("그래픽카드가 수정을 거부했습니다.");
+	}
+	memcpy_s(Data.pData, sizeof(FTransform), _Data, sizeof(FTransform));
+	UEngineCore::GetDevice().GetContext()->Unmap(Buffer.Get(), 0);
+}
+
+void UEngineConstantBuffer::Setting()
+{
+	ID3D11Buffer* ArrPtr[16] = { Buffer.Get() };
+	UEngineCore::GetDevice().GetContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 }

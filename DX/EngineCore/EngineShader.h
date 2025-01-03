@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineEnums.h"
 #include <EngineBase/EngineFile.h>
+#include "EngineShaderResources.h"
 
 
 class UEngineShader
@@ -17,6 +18,13 @@ public:
 	UEngineShader& operator=(UEngineShader&& _Other) noexcept = delete;
 
 	static void ReflectionCompile(UEngineFile& _File);
+
+	UEngineShaderResources ShaderResources;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> GetShaderCodeBlob()
+	{
+		return ShaderCodeBlob;
+	};
 
 protected:
 	UINT VersionHigh = 5;

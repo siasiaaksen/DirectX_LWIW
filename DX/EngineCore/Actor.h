@@ -40,11 +40,13 @@ public:
 		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComMemory);
 		std::shared_ptr<ComponentType> NewCom(NewPtr = new(ComMemory) ComponentType());
 
-		if (std::is_base_of_v<UActorComponent, ComponentType>)
+		if (std::is_base_of_v<UActorComponent, ComponentType>
+			&& !std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			ActorComponentList.push_back(NewCom);
 		}
-		else
+		else if (!std::is_base_of_v<UActorComponent, ComponentType>
+			&& !std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			MSGASSERT("¸»µµ ¾ÈµÊ");
 		}

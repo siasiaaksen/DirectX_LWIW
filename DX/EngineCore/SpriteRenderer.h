@@ -92,6 +92,8 @@ protected:
 	void ComponentTick(float _DeltaTime) override;
 
 private:
+	URenderUnit* MainUnit;
+
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
 

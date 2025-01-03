@@ -53,7 +53,7 @@ cbuffer FSpriteData : register(b1)
 	float4 Pivot;
 };
 
-VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
+VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     
@@ -75,10 +75,14 @@ Texture2D ImageTexture : register(t0);
 
 SamplerState ImageSampler : register(s0);
 
-
-float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
+cbuffer ResultColor : register(b0)
 {
-    float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    float4 Albedo;
+};
+
+float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
+{
+    //float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
     //float4 Color = float4(0.1f, 0.5f, 0.9f, 1.0f);
-    return /*_Vertex.*/Color;
+    return /*_Vertex.*/Albedo;
 }

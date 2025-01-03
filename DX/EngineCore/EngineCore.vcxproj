@@ -216,6 +216,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineInputLayOutInfo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EngineMaterial.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EnginePixelShader.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineRasterizerState.h">
       <SubType>
       </SubType>
@@ -350,6 +362,18 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineInputLayOutInfo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineMaterial.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EnginePixelShader.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="EngineRasterizerState.cpp">
       <SubType>
       </SubType>
@@ -374,6 +398,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineVertex.cpp" />
     <ClCompile Include="EngineVertexShader.cpp">
       <SubType>
       </SubType>

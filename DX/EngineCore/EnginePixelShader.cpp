@@ -1,16 +1,16 @@
 #include "PreCompile.h"
-#include "EngineVertexShader.h"
+#include "EnginePixelShader.h"
 
 
-UEngineVertexShader::UEngineVertexShader()
+UEnginePixelShader::UEnginePixelShader()
 {
 }
 
-UEngineVertexShader::~UEngineVertexShader()
+UEnginePixelShader::~UEnginePixelShader()
 {
 }
 
-std::shared_ptr<UEngineVertexShader> UEngineVertexShader::Load(std::string_view _Name, std::string_view _Path, const std::string_view& _EntryPoint, UINT _VersionHigh /*= 5*/, UINT _VersionLow /*= 0*/)
+std::shared_ptr<UEnginePixelShader> UEnginePixelShader::Load(std::string_view _Name, std::string_view _Path, const std::string_view& _EntryPoint, UINT _VersionHigh /*= 5*/, UINT _VersionLow /*= 0*/)
 {
 	std::string UpperName = ToUpperName(_Name);
 
@@ -20,8 +20,8 @@ std::shared_ptr<UEngineVertexShader> UEngineVertexShader::Load(std::string_view 
 		return nullptr;
 	}
 
-	std::shared_ptr<UEngineVertexShader> NewRes = std::make_shared<UEngineVertexShader>();
-	PushRes<UEngineVertexShader>(NewRes, _Name, _Path);
+	std::shared_ptr<UEnginePixelShader> NewRes = std::make_shared<UEnginePixelShader>();
+	PushRes<UEnginePixelShader>(NewRes, _Name, _Path);
 	NewRes->VersionHigh = _VersionHigh;
 	NewRes->VersionLow = _VersionLow;
 	NewRes->EntryName = _EntryPoint;
@@ -30,11 +30,11 @@ std::shared_ptr<UEngineVertexShader> UEngineVertexShader::Load(std::string_view 
 	return NewRes;
 }
 
-void UEngineVertexShader::ResLoad()
+void UEnginePixelShader::ResLoad()
 {
 	std::wstring WPath = UEngineString::AnsiToUnicode(GetPath().GetPathToString());
 
-	std::string version = "vs_" + std::to_string(VersionHigh) + "_" + std::to_string(VersionLow);
+	std::string version = "ps_" + std::to_string(VersionHigh) + "_" + std::to_string(VersionLow);
 
 	int Flag0 = 0;
 	int Flag1 = 0;
@@ -46,7 +46,7 @@ void UEngineVertexShader::ResLoad()
 
 	D3DCompileFromFile(
 		WPath.c_str(),
-		nullptr,
+		nullptr, 
 		nullptr,
 		EntryName.c_str(),
 		version.c_str(),
@@ -63,7 +63,7 @@ void UEngineVertexShader::ResLoad()
 		return;
 	}
 
-	HRESULT Result = UEngineCore::GetDevice().GetDevice()->CreateVertexShader(
+	HRESULT Result = UEngineCore::GetDevice().GetDevice()->CreatePixelShader(
 		ShaderCodeBlob->GetBufferPointer(),
 		ShaderCodeBlob->GetBufferSize(),
 		nullptr,
@@ -72,13 +72,13 @@ void UEngineVertexShader::ResLoad()
 
 	if (S_OK != Result)
 	{
-		MSGASSERT("버텍스 쉐이더 생성에 실패했습니다.");
+		MSGASSERT("픽셀 쉐이더 생성에 실패했습니다.");
 	}
 
 	UEngineShader::ShaderResCheck();
 }
 
-void UEngineVertexShader::Setting()
+void UEnginePixelShader::Setting()
 {
-	UEngineCore::GetDevice().GetContext()->VSSetShader(ShaderRes.Get(), nullptr, 0);
+	UEngineCore::GetDevice().GetContext()->PSSetShader(ShaderRes.Get(), nullptr, 0);
 }
