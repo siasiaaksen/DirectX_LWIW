@@ -46,7 +46,7 @@ void UEngineGUI::Init()
     }
 
     // Setup Platform/Renderer backends
-    ImGui_ImplWin32_Init(UEngineCore::MainWindow.GetWindowHandle());
+    ImGui_ImplWin32_Init(UEngineCore::GetMainWindow().GetWindowHandle());
     ImGui_ImplDX11_Init(UEngineCore::GetDevice().GetDevice(), UEngineCore::GetDevice().GetContext());
 
     // Load Fonts
