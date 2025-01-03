@@ -16,7 +16,7 @@ public:
 	UEngineMaterial& operator=(const UEngineMaterial& _Other) = delete;
 	UEngineMaterial& operator=(UEngineMaterial&& _Other) noexcept = delete;
 
-	static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name);
+	ENGINEAPI static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name);
 
 	ENGINEAPI std::shared_ptr<UEngineVertexShader> GetVertexShader()
 	{

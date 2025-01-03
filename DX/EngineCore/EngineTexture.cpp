@@ -104,3 +104,25 @@ void UEngineTexture::Setting(EShaderType _Type, UINT _BindIndex)
 		break;
 	}
 }
+
+void UEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value)
+{
+	Desc = _Value;
+
+	UEngineCore::GetDevice().GetDevice()->CreateTexture2D(&Desc, nullptr, &Texture2D);
+
+	if (nullptr == Texture2D)
+	{
+		MSGASSERT("텍스처 생성에 실패했습니다.");
+		return;
+	}
+
+	if (Desc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+	{
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DSV))
+		{
+			MSGASSERT("깊이버퍼 생성에 실패했습니다..");
+			return;
+		}
+	}
+}

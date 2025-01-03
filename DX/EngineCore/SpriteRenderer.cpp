@@ -60,10 +60,17 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 {
 	if (nullptr != CurAnimation)
 	{
-		UEngineSprite* Sprite = CurAnimation->Sprite;
+		Sprite = CurAnimation->Sprite;
 
 		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
 		SpriteData = Sprite->GetSpriteData(CurIndex);
+	}
+
+	if (true == IsAutoScale)
+	{
+		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
+		Scale.Z = 1.0f;
+		SetRelativeScale3D(Scale * AutoScaleRatio);
 	}
 
 	URenderer::Render(_Camera, _DeltaTime);
@@ -71,7 +78,7 @@ void USpriteRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 
 void USpriteRenderer::ComponentTick(float _DeltaTime)
 {
-	//URenderer::ComponentTick(_DeltaTime);
+	URenderer::ComponentTick(_DeltaTime);
 
 	// 애니메이션 진행시키는 코드 -> ComponentTick
 	if (nullptr != CurAnimation)
@@ -125,13 +132,6 @@ void USpriteRenderer::ComponentTick(float _DeltaTime)
 		}
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
-
-		if (true == CurAnimation->IsAutoScale)
-		{
-			FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
-			Scale.Z = 1.0f;
-			SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
-		}
 	}
 }
 
@@ -239,11 +239,11 @@ void USpriteRenderer::ChangeAnimation(std::string_view _AnimationName, bool _For
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
 
-	if (true == CurAnimation->IsAutoScale)
+	if (true == IsAutoScale)
 	{
 		FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
 		Scale.Z = 1.0f;
-		SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
+		SetRelativeScale3D(Scale * AutoScaleRatio);
 	}
 }
 

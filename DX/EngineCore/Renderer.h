@@ -22,12 +22,11 @@ public:
 	ENGINEAPI void BeginPlay() override;
 	ENGINEAPI virtual void Render(UEngineCamera* _Camera, float _DeltaTime);
 
-	URenderUnit& GetRenderUnit(UINT  _Index = 0);
+	ENGINEAPI URenderUnit& GetRenderUnit(UINT  _Index = 0);
+	ENGINEAPI URenderUnit& CreateRenderUnit();
 
-	URenderUnit& CreateRenderUnit();
-
-	void SetMesh(std::string_view _Name, UINT _Index = 0);
-	void SetMaterial(std::string_view _Name, UINT _Index = 0);
+	ENGINEAPI void SetMesh(std::string_view _Name, UINT _Index = 0);
+	ENGINEAPI void SetMaterial(std::string_view _Name, UINT _Index = 0);
 
 protected:
 

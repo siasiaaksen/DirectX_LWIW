@@ -4,6 +4,11 @@
 
 std::map<int, std::map<std::string, std::shared_ptr<UEngineConstantBuffer>>> UEngineConstantBuffer::BufferMap;
 
+void UEngineConstantBuffer::Release()
+{
+	BufferMap.clear();
+}
+
 UEngineConstantBuffer::UEngineConstantBuffer()
 {
 }

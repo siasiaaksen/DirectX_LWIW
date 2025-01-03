@@ -33,8 +33,6 @@ public:
 		float CurTime = 0.0f;
 		bool Loop = true;
 		bool IsEnd = false;
-		bool IsAutoScale = true;
-		float AutoScaleRatio = 1.0f;
 
 		void Reset()
 		{
@@ -98,9 +96,21 @@ public:
 		CurAnimationSpeed = 1.0f;
 	}
 
+	void SetAutoScale(bool _Value)
+	{
+		IsAutoScale = _Value;
+	}
+
+	void SetAutoScaleRatio(float _Scale)
+	{
+		AutoScaleRatio = _Scale;
+	}
+
 	void SetSprite(UEngineSprite* _Sprite);
 
 	ResultColor ColorData;
+	FUVValue UVValue;
+	FSpriteData SpriteData;
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
@@ -116,7 +126,8 @@ private:
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
 	UEngineSprite* Sprite = nullptr;
-	FUVValue UVValue;
-	FSpriteData SpriteData;
+
+	bool IsAutoScale = true;
+	float AutoScaleRatio = 1.0f;
 };
 

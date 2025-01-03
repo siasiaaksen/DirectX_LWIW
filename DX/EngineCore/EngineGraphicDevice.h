@@ -3,6 +3,7 @@
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include <EnginePlatform/EngineWindow.h>
+#include <memory>
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler") 
@@ -61,6 +62,8 @@ private:
 
 	Microsoft::WRL::ComPtr <ID3D11Texture2D> DXBackBufferTexture = nullptr;
 	Microsoft::WRL::ComPtr <ID3D11RenderTargetView> RTV = nullptr;
+
+	std::shared_ptr<class UEngineTexture> DepthTex;
 
 	ENGINEAPI void DefaultResourcesInit();
 

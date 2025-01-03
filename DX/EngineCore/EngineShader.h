@@ -17,7 +17,7 @@ public:
 	UEngineShader& operator=(const UEngineShader& _Other) = delete;
 	UEngineShader& operator=(UEngineShader&& _Other) noexcept = delete;
 
-	static void ReflectionCompile(UEngineFile& _File);
+	ENGINEAPI static void ReflectionCompile(UEngineFile& _File);
 
 	UEngineShaderResources ShaderResources;
 

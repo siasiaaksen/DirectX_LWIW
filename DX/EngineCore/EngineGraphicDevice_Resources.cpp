@@ -147,7 +147,5 @@ void UEngineGraphicDevice::MaterialInit()
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
 		Mat->SetVertexShader("EngineSpriteShader.fx");
 		Mat->SetPixelShader("EngineSpriteShader.fx");
-		Mat->SetRasterizerState("EngineBase");
-		Mat->SetBlend("AlphaBlend");
 	}
 }

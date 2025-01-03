@@ -4,6 +4,8 @@
 
 UEngineMaterial::UEngineMaterial()
 {
+	SetRasterizerState("EngineBase");
+	SetBlend("AlphaBlend");
 }
 
 UEngineMaterial::~UEngineMaterial()

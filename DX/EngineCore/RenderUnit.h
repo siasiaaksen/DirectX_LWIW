@@ -30,18 +30,18 @@ public:
 
 	ENGINEAPI virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
 
-	void MaterialResourcesCheck();
+	ENGINEAPI void MaterialResourcesCheck();
 
 	template<typename Data>
-	void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
+	ENGINEAPI void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
 	{
 		ConstantBufferLinkData(_Name, reinterpret_cast<void*>(&_Data));
 	}
 
-	void ConstantBufferLinkData(std::string_view Name, void* _Data);
+	ENGINEAPI void ConstantBufferLinkData(std::string_view Name, void* _Data);
 
-	void SetTexture(std::string_view _Name, std::string_view _ResName);
-	void SetSampler(std::string_view Name, std::string_view _ResName);
+	ENGINEAPI void SetTexture(std::string_view _Name, std::string_view _ResName);
+	ENGINEAPI void SetSampler(std::string_view Name, std::string_view _ResName);
 
 protected:
 
