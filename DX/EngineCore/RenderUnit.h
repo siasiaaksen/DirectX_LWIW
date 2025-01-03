@@ -11,12 +11,12 @@ public:
 	URenderUnit();
 	~URenderUnit();
 
-	URenderer* ParentRenderer = nullptr;
-
 	URenderUnit(const URenderUnit& _Other) = delete;
 	URenderUnit(URenderUnit&& _Other) noexcept = delete;
 	URenderUnit& operator=(const URenderUnit& _Other) = delete;
 	URenderUnit& operator=(URenderUnit&& _Other) noexcept = delete;
+
+	URenderer* ParentRenderer = nullptr;
 
 	// ¸Å½¬(À°Ã¼) 
 	std::shared_ptr<UMesh> Mesh;

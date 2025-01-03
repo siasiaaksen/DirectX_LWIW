@@ -53,6 +53,11 @@ cbuffer FSpriteData : register(b1)
 	float4 Pivot;
 };
 
+cbuffer FUVValue : register(b2)
+{
+    float4 PlusUVValue;
+};
+
 VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
@@ -65,7 +70,9 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
     
     OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
     OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
-
+    OutPut.UV.x += PlusUVValue.x;
+    OutPut.UV.y += PlusUVValue.y;
+    
     OutPut.COLOR = _Vertex.COLOR;
     
 	return OutPut;
@@ -77,12 +84,14 @@ SamplerState ImageSampler : register(s0);
 
 cbuffer ResultColor : register(b0)
 {
-    float4 Albedo;
+    float4 PlusColor;
+    float4 MulColor;
 };
 
 float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
-    //float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
-    //float4 Color = float4(0.1f, 0.5f, 0.9f, 1.0f);
-    return /*_Vertex.*/Albedo;
+    float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    Color += PlusColor;
+    Color *= MulColor;
+    return Color;
 }

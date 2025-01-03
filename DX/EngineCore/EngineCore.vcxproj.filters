@@ -79,9 +79,6 @@
     <ClInclude Include="DefaultSceneComponent.h">
       <Filter>Object\Component\Contents</Filter>
     </ClInclude>
-    <ClInclude Include="RenderUnit.h">
-      <Filter>Object\Component\Render</Filter>
-    </ClInclude>
     <ClInclude Include="EngineBlend.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -138,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="EngineSampler.h">
       <Filter>Resources\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderUnit.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -207,9 +207,6 @@
     <ClCompile Include="DefaultSceneComponent.cpp">
       <Filter>Object\Component\Contents</Filter>
     </ClCompile>
-    <ClCompile Include="RenderUnit.cpp">
-      <Filter>Object\Component\Render</Filter>
-    </ClCompile>
     <ClCompile Include="EngineGraphicDevice_Resources.cpp">
       <Filter>Graphic</Filter>
     </ClCompile>
@@ -266,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="EngineSampler.cpp">
       <Filter>Resources\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderUnit.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

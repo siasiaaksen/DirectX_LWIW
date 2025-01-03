@@ -13,47 +13,19 @@ AEllie::AEllie()
 	RootComponent = Default;
 
 	EllieRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	EllieRenderer->SetupAttachment(RootComponent);
+	EllieRenderer->SetAutoScaleRatio(1.0f);
 
 	// EllieWalk
 	{
 		EllieRenderer->SetSprite("Ellie_Walk.png");
 		//EllieRenderer->SetRelativeScale3D({ 73, 92, 1.0f });
 		EllieRenderer->CreateAnimation("Ellie_Walk_FLeft", "Ellie_Walk.png", 28, 35, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_FLeft");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Walk_Front", "Ellie_Walk.png", 12, 19, 0.1f);
-				{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_Front");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Walk_FRight", "Ellie_Walk.png", 44, 51, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_FRight");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Walk_BLeft", "Ellie_Walk.png", 60, 67, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_BLeft");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Walk_Back", "Ellie_Walk.png", 68, 75, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_Back");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Walk_BRight", "Ellie_Walk.png", 80, 87, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Walk_BRight");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 	}
 
 	// EllieIdle
@@ -61,46 +33,15 @@ AEllie::AEllie()
 		EllieRenderer->SetSprite("Ellie_Idle.png");
 		//EllieRenderer->SetRelativeScale3D({ 76, 96, 1.0f });
 		EllieRenderer->CreateAnimation("Ellie_Idle_FLeft", "Ellie_Idle.png", 0, 3, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Idle_FLeft");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Idle_Front", "Ellie_Idle.png", 4, 7, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Idle_Front");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Idle_FRight", "Ellie_Idle.png", 8, 11, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Idle_FRight");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Idle_BLeft", "Ellie_Idle.png", 12, 15, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Idle_BLeft");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Idle_Back", "Ellie_Idle.png", 16, 19, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Idle_Back");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 		EllieRenderer->CreateAnimation("Ellie_Idle_BRight", "Ellie_Idle.png", 20, 23, 0.1f);
-		{
-			USpriteRenderer::FrameAnimation* Animation = EllieRenderer->FindAnimation("Ellie_Idle_BRight");
-			Animation->IsAutoScale = true;
-			Animation->AutoScaleRatio = 1.0f;
-		}
 	}
 
 	//EllieRenderer->SetRelativeScale3D({ 76, 96, 1.0f });
 	EllieRenderer->ChangeAnimation("Ellie_Idle_Front");
-	EllieRenderer->SetupAttachment(RootComponent);
 
 	// 카메라가 엘리를 따라다니게
 	Camera = GetWorld()->GetMainCamera();

@@ -64,13 +64,6 @@ void UEngineGraphicDevice::ShaderInit()
 	}
 }
 
-void UEngineGraphicDevice::DefaultResourcesInit()
-{
-	ShaderInit();
-	MeshInit();
-	BlendInit();
-}
-
 void UEngineGraphicDevice::MeshInit()
 {
 	{

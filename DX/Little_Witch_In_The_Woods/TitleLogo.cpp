@@ -18,7 +18,7 @@ ATitleLogo::ATitleLogo()
 
 	{
 		LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		LogoRenderer->SetTexture("Title_StartText.png");
+		LogoRenderer->SetSprite("Title_StartText.png");
 		LogoRenderer->SetRelativeScale3D({ 276, 30, 1.0f });
 		LogoRenderer->SetWorldLocation({ 402 , 0 , 0.0f });
 	}
