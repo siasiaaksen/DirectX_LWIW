@@ -12,7 +12,7 @@ ATitleMountain::ATitleMountain()
 	MountainRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	MountainRenderer->SetSprite("Title_Train_Mountain.png", 0);
 	MountainRenderer->SetAutoScaleRatio(1.0f);
-	MountainRenderer->SetWorldLocation({ 17, -119, 0.0f });
+	MountainRenderer->SetWorldLocation({ 17.0f, -119.0f, 6.0f });
 	MountainRenderer->SetupAttachment(RootComponent);
 }
 

@@ -172,11 +172,19 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineWinImage.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PreCompile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineInput.cpp" />
     <ClCompile Include="EngineWindow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineWinImage.cpp">
       <SubType>
       </SubType>
     </ClCompile>

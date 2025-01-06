@@ -13,7 +13,7 @@ ATitleTrain::ATitleTrain()
 		TrainRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		TrainRenderer->SetSprite("Title_Train_Train.png", 0);
 		TrainRenderer->SetAutoScaleRatio(1.0f);
-		TrainRenderer->SetWorldLocation({ -341, -107, 0.0f });
+		TrainRenderer->SetWorldLocation({ -341.0f, -107.0f, 5.0f });
 		TrainRenderer->SetupAttachment(RootComponent);
 	}
 
@@ -21,7 +21,7 @@ ATitleTrain::ATitleTrain()
 		TrainRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		TrainRenderer->SetSprite("Title_Train_TrainBlur.png", 0);
 		TrainRenderer->SetAutoScaleRatio(1.0f);
-		TrainRenderer->SetWorldLocation({ -205, -328, 0.0f });
+		TrainRenderer->SetWorldLocation({ -205.0f, -328.0f, 5.0f });
 		TrainRenderer->SetupAttachment(RootComponent);
 	}
 }

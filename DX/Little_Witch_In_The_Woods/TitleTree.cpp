@@ -12,7 +12,7 @@ ATitleTree::ATitleTree()
 	TreeRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	TreeRenderer->SetSprite("Title_Train_Tree.png", 0);
 	TreeRenderer->SetAutoScaleRatio(1.0f);
-	TreeRenderer->SetWorldLocation({ -74, -190, 0.0f });
+	TreeRenderer->SetWorldLocation({ -74.0f, -190.0f, 3.0f });
 	TreeRenderer->SetupAttachment(RootComponent);
 }
 

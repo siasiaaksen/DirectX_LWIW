@@ -12,7 +12,7 @@ ATitleMoon::ATitleMoon()
 	MoonRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	MoonRenderer->SetSprite("Title_Train_Moon.png", 0);
 	MoonRenderer->SetAutoScaleRatio(2.6f);
-	MoonRenderer->SetWorldLocation({ -326, 209, 0.0f });
+	MoonRenderer->SetWorldLocation({ -326.0f, 209.0f, 7.0f });
 	MoonRenderer->SetupAttachment(RootComponent);
 }
 

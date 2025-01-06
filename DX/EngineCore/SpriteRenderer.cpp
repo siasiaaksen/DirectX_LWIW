@@ -26,7 +26,7 @@ USpriteRenderer::~USpriteRenderer()
 {
 }
 
-void USpriteRenderer::SetSprite(std::string_view _Name, size_t _Index)
+void USpriteRenderer::SetSprite(std::string_view _Name, UINT _Index)
 {
 	Sprite = UEngineSprite::Find<UEngineSprite>(_Name).get();
 
