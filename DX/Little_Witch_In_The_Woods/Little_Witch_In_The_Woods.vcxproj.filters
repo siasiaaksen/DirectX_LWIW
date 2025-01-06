@@ -41,6 +41,12 @@
     <ClInclude Include="MapEditorMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
+    <ClInclude Include="TitleTrainSmoke.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleCloud.h">
+      <Filter>Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -82,6 +88,12 @@
     </ClCompile>
     <ClCompile Include="MapEditorMode.cpp">
       <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleTrainSmoke.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleCloud.cpp">
+      <Filter>Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

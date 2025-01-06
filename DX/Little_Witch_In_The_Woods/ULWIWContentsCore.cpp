@@ -47,9 +47,12 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToMeta("Title_Train_Bridge.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Title_Train_Train.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Title_Train_TrainBlur.png", ".SData");
-		UEngineSprite::CreateSpriteToMeta("Title_Train_Tree.png", ".SData");
+		//UEngineSprite::CreateSpriteToMeta("Title_Train_Tree.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Title_Train_Star.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Title_Train_ShootingStar.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Title_Train_SmokeB.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Title_Train_SmokeM.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Title_Train_SmokeS.png", ".SData");
 	}
 
 	{

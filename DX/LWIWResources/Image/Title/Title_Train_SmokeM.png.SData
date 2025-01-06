@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b946c5ee63251f044827c1c77cf9260d
+guid: 82727f5018eb8c246a89e155529b11c5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Title_Train_Tree_0
+      name: Title_Train_SmokeM_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1468
-        height: 345
+        width: 363
+        height: 133
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,8 +111,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48252e9c20730114bab0be3090fef52f
-      internalID: 576031768
+      spriteID: 37cc92e5afcfbde49a00f84039f49346
+      internalID: -1841694989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title_Train_SmokeM_1
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 1
+        width: 365
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed9b505fe0ea6c4b9a64c0b94f36ae4
+      internalID: 1550427072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title_Train_SmokeM_2
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 0
+        width: 380
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df0cc70baa82f4d4a8af36866e99d165
+      internalID: 842617823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title_Train_SmokeM_3
+      rect:
+        serializedVersion: 2
+        x: 1108
+        y: 4
+        width: 388
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eb967bab66a02c4da14956c5261810c
+      internalID: 479769770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Title_Train_SmokeM_4
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 4
+        width: 388
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fdc671aac025864cb3c20e59b6c22de
+      internalID: -904339711
       vertices: []
       indices: 
       edges: []
@@ -120,7 +204,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 381c65eeda44c78408b2d474af97c736
+    spriteID: de82e77805033e64f844a07aafdee328
     internalID: 0
     vertices: []
     indices: 
@@ -128,7 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Title_Train_Tree_0: 576031768
+      Title_Train_SmokeM_0: -1841694989
+      Title_Train_SmokeM_1: 1550427072
+      Title_Train_SmokeM_2: 842617823
+      Title_Train_SmokeM_3: 479769770
+      Title_Train_SmokeM_4: -904339711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

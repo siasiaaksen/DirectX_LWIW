@@ -28,5 +28,7 @@ void ATitleBridge::BeginPlay()
 void ATitleBridge::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	BridgeRenderer->UVValue.PlusUVValue += float4(0.5f * _DeltaTime, 0.0f, 0.0f, 1.0f);
 }
 

@@ -13,7 +13,7 @@ ATitleLogo::ATitleLogo()
 		LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		LogoRenderer->SetSprite("Logo.png", 0);
 		LogoRenderer->SetAutoScaleRatio(0.7f);
-		LogoRenderer->SetWorldLocation({ 380, 134.0f, 2.0f });
+		LogoRenderer->SetWorldLocation({ 380, 134.0f, 1.0f });
 		LogoRenderer->SetupAttachment(RootComponent);
 	}
 

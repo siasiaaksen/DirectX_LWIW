@@ -12,25 +12,29 @@
 #include "TitleTrain.h"
 #include "TitleTree.h"
 #include "TitleStar.h"
+#include "TitleTrainSmoke.h"
+#include "TitleCloud.h"
 
 
 ATitleGameMode::ATitleGameMode()
 {
 	{
-		std::shared_ptr<class ATitleBackground> BG = GetWorld()->SpawnActor<ATitleBackground>();
-		std::shared_ptr<class ATitleStar> Star = GetWorld()->SpawnActor<ATitleStar>();
-		std::shared_ptr<class ATitleMoon> Moon = GetWorld()->SpawnActor<ATitleMoon>();
-		std::shared_ptr<class ATitleMountain> Mountain = GetWorld()->SpawnActor<ATitleMountain>();
-		std::shared_ptr<class ATitleTrain> Train = GetWorld()->SpawnActor<ATitleTrain>();
-		std::shared_ptr<class ATitleBridge> Bridge = GetWorld()->SpawnActor<ATitleBridge>();
-		std::shared_ptr<class ATitleTree> Tree = GetWorld()->SpawnActor<ATitleTree>();
-		std::shared_ptr<class ATitleLogo> Logo = GetWorld()->SpawnActor<ATitleLogo>();
+		std::shared_ptr<ATitleBackground> BG = GetWorld()->SpawnActor<ATitleBackground>();
+		std::shared_ptr<ATitleStar> Star = GetWorld()->SpawnActor<ATitleStar>();
+		std::shared_ptr<ATitleMoon> Moon = GetWorld()->SpawnActor<ATitleMoon>();
+		std::shared_ptr<ATitleCloud> Cloud = GetWorld()->SpawnActor<ATitleCloud>();
+		std::shared_ptr<ATitleMountain> Mountain = GetWorld()->SpawnActor<ATitleMountain>();
+		std::shared_ptr<ATitleTrain> Train = GetWorld()->SpawnActor<ATitleTrain>();
+		std::shared_ptr<ATitleTrainSmoke> Smoke = GetWorld()->SpawnActor<ATitleTrainSmoke>();
+		std::shared_ptr<ATitleBridge> Bridge = GetWorld()->SpawnActor<ATitleBridge>();
+		std::shared_ptr<ATitleTree> Tree = GetWorld()->SpawnActor<ATitleTree>();
+		std::shared_ptr<ATitleLogo> Logo = GetWorld()->SpawnActor<ATitleLogo>();
 	}
 
 	// Ä«¸Þ¶ó
 	{
 		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
-		Camera->SetActorLocation({ 0.0f, 0.0f, -614.0f, 1.0f });
+		Camera->SetActorLocation({ 0.0f, 0.0f, -609.0f, 1.0f });
 		Camera->GetCameraComponent()->SetProjectionType(EProjectionType::Perspective);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}

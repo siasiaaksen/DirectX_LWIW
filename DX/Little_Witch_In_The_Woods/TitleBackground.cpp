@@ -12,7 +12,7 @@ ATitleBackground::ATitleBackground()
 	BGRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	BGRenderer->SetSprite("Title_Train_Sky.png", 0);
 	BGRenderer->SetAutoScaleRatio(1.0f);
-	BGRenderer->SetWorldLocation({ 0.0f, 0.0f, 10.0f });
+	BGRenderer->SetWorldLocation({ 0.0f, 0.0f, 15.0f });
 	BGRenderer->SetupAttachment(RootComponent);
 }
 

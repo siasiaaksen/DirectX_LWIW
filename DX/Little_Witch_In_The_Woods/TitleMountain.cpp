@@ -28,4 +28,6 @@ void ATitleMountain::BeginPlay()
 void ATitleMountain::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	MountainRenderer->UVValue.PlusUVValue += float4(0.05f * _DeltaTime, 0.0f, 0.0f, 1.0f);
 }
