@@ -13,6 +13,7 @@ public:
 	ATitleCloud& operator=(const ATitleCloud& _Other) = delete;
 	ATitleCloud& operator=(ATitleCloud&& _Other) noexcept = delete;
 
+	void SetCloud(std::string_view _SpriteName, FVector& _Location);
 	void CloudMove(float _DeltaTime);
 
 protected:

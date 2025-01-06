@@ -47,16 +47,16 @@ ATitleCloud::ATitleCloud()
 
 	TimeEvent = CreateDefaultSubObject<UTimeEventComponent>();
 
-	TimeEvent->AddEvent(1.0f,
-		[this](float _DeltaTime, float _A)
-		{
-			CloudMove(_DeltaTime);
-		},
-		[this]()
-		{
-			CloudRenderer->SetWorldLocation({ -588.0f, 211.0f, 11.0f });
-		},
-		true);
+	//TimeEvent->AddEvent(1.0f,
+	//	[this](float _DeltaTime, float _A)
+	//	{
+	//		CloudMove(_DeltaTime);
+	//	},
+	//	[this]()
+	//	{
+	//		CloudRenderer->SetWorldLocation({ -588.0f, 211.0f, 11.0f });
+	//	},
+	//	true);
 }
 
 ATitleCloud::~ATitleCloud()
@@ -79,3 +79,9 @@ void ATitleCloud::CloudMove(float _DeltaTime)
 {
 	CloudRenderer->AddRelativeLocation({ -15.0f * _DeltaTime, 0.0f, 0.0f, 1.0f });
 }
+
+void ATitleCloud::SetCloud(std::string_view _SpriteName, FVector& _Location)
+{
+
+}
+

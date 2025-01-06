@@ -45,7 +45,8 @@ AEllie::AEllie()
 
 	// 카메라가 엘리를 따라다니게
 	Camera = GetWorld()->GetMainCamera();
-	Camera->AttachToActor(this);
+	//Camera->AttachToActor(this);
+	Camera->SetActorLocation(GetActorTransform().Location);
 
 	State = EEllieState::IDLE;
 }
