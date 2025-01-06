@@ -47,6 +47,9 @@
     <ClInclude Include="TitleCloud.h">
       <Filter>Title</Filter>
     </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="TitleCloud.cpp">
       <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

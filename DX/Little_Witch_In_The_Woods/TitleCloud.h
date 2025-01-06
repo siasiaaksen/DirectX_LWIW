@@ -13,11 +13,14 @@ public:
 	ATitleCloud& operator=(const ATitleCloud& _Other) = delete;
 	ATitleCloud& operator=(ATitleCloud&& _Other) noexcept = delete;
 
+	void CloudMove(float _DeltaTime);
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class USpriteRenderer> CloudRenderer;
+	std::shared_ptr<class USpriteRenderer> CloudRenderer = nullptr;
+	std::shared_ptr<class UTimeEventComponent> TimeEvent = nullptr;
 };
 

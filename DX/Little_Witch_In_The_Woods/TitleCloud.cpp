@@ -2,6 +2,7 @@
 #include "TitleCloud.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/TimeEventComponent.h>
 
 
 ATitleCloud::ATitleCloud()
@@ -43,6 +44,19 @@ ATitleCloud::ATitleCloud()
 		CloudRenderer->SetWorldLocation({ 357.0f, 228.0f, 7.0f });
 		CloudRenderer->SetupAttachment(RootComponent);
 	}
+
+	TimeEvent = CreateDefaultSubObject<UTimeEventComponent>();
+
+	TimeEvent->AddEvent(1.0f,
+		[this](float _DeltaTime, float _A)
+		{
+			CloudMove(_DeltaTime);
+		},
+		[this]()
+		{
+			CloudRenderer->SetWorldLocation({ -588.0f, 211.0f, 11.0f });
+		},
+		true);
 }
 
 ATitleCloud::~ATitleCloud()
@@ -57,5 +71,11 @@ void ATitleCloud::BeginPlay()
 void ATitleCloud::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	CloudMove(_DeltaTime);
 }
 
+void ATitleCloud::CloudMove(float _DeltaTime)
+{
+	CloudRenderer->AddRelativeLocation({ -15.0f * _DeltaTime, 0.0f, 0.0f, 1.0f });
+}
