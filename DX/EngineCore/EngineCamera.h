@@ -47,6 +47,8 @@ public:
 		Type = _Type;
 	}
 
+	ENGINEAPI void SetZSort(int _Order, bool _Value);
+
 protected:
 
 private:
@@ -62,6 +64,7 @@ private:
 	FVector ProjectionScale = { 0.0f, 0.0f };
 
 	std::map<int, std::list<std::shared_ptr<class URenderer>>> Renderers;
+	std::map<int, bool> RendererZSort;
 
 	void ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer);
 };

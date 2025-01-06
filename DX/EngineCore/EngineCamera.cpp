@@ -40,11 +40,24 @@ void UEngineCamera::Render(float _DetlaTime)
 	{
 		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
 
+		if (true == RendererZSort[RenderGroup.first])
+		{
+			RenderList.sort([](std::shared_ptr<URenderer>& _Left, std::shared_ptr<URenderer>& _Right)
+				{
+					return _Left->GetTransformRef().WorldLocation.Z > _Right->GetTransformRef().WorldLocation.Z;
+				});
+		}
+
 		for (std::shared_ptr<URenderer> Renderer : RenderList)
 		{
 			Renderer->Render(this, _DetlaTime);
 		}
 	}
+}
+
+void UEngineCamera::SetZSort(int _Order, bool _Value)
+{
+	RendererZSort[_Order] = _Value;
 }
 
 void UEngineCamera::ChangeRenderGroup(int _PrevGroupOrder, std::shared_ptr<URenderer> _Renderer)
