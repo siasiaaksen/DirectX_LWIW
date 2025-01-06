@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/SpriteRenderer.h>
 
 
 class ARoom : public AActor
@@ -15,7 +16,7 @@ public:
 
 	void SetRoomSize(FVector _Value)
 	{
-		RoomSize = _Value;
+		BaseSprite->SetScale3D(_Value);
 	}
 
 	FVector& GetRoomSize()
@@ -28,7 +29,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class USpriteRenderer> BaseSprite = nullptr;
+	std::shared_ptr<USpriteRenderer> BaseSprite = nullptr;
 	FVector RoomSize = { 1280.0f, 720.0f };
 };
 

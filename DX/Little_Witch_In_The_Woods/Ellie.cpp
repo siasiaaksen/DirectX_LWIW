@@ -5,6 +5,7 @@
 #include <EngineCore/EngineSprite.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
+#include "Room.h"
 
 
 AEllie::AEllie()
@@ -46,7 +47,6 @@ AEllie::AEllie()
 	// 카메라가 엘리를 따라다니게
 	Camera = GetWorld()->GetMainCamera();
 	//Camera->AttachToActor(this);
-	Camera->SetActorLocation(GetActorTransform().Location);
 
 	State = EEllieState::IDLE;
 }

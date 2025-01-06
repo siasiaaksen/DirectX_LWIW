@@ -38,6 +38,7 @@ protected:
 private:
 	std::shared_ptr<USpriteRenderer> EllieRenderer;
 	std::shared_ptr<class ACameraActor> Camera;
+	std::shared_ptr<class ARoom> Room;
 
 	EEllieState State;
 	int PosValue = 0;

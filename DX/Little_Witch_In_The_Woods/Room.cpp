@@ -1,6 +1,5 @@
 #include "PreCompile.h"
 #include "Room.h"
-#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
 
