@@ -226,6 +226,7 @@ void UEngineGraphicDevice::RenderStart()
 {
     FVector ClearColor;
 
+    // ¾Æ¹«°Íµµ ¾È ¶ç¿üÀ» ¶§ Ã³À½ È­¸é »ö±ò
     ClearColor = FVector(0.4f, 0.5f, 0.3f, 1.0f);
 
     Context->ClearRenderTargetView(RTV.Get(), ClearColor.Arr1D);

@@ -12,23 +12,23 @@ ATitleStar::ATitleStar()
 	{
 		StarRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		StarRenderer->SetSprite("Title_Train_Star.png", 0);
-		StarRenderer->SetRelativeScale3D({ 4991, 1061, 1.0f });
+		StarRenderer->SetAutoScaleRatio(1.0f);
 		StarRenderer->SetWorldLocation({ 3, 187, 0.0f });
 		StarRenderer->CreateAnimation("TwinkleStar", "Title_Train_Star.png", 0, 4, 0.3f);
 		StarRenderer->ChangeAnimation("TwinkleStar");
-		//StarRenderer->SetupAttachment(RootComponent);
+		StarRenderer->SetupAttachment(RootComponent);
 	}
 
 	{
 		StarRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		StarRenderer->SetSprite("Title_Train_ShootingStar.png", 0);
-		StarRenderer->SetRelativeScale3D({ 1280, 330, 1.0f });
+		StarRenderer->SetAutoScaleRatio(1.0f);
 		StarRenderer->SetWorldLocation({ 0, 195, 0.0f });
 		StarRenderer->CreateAnimation("FallingStar", "Title_Train_ShootingStar.png", 0, 3, 0.5f);
 		StarRenderer->ChangeAnimation("FallingStar");
+		StarRenderer->SetupAttachment(RootComponent);
 	}
 
-	StarRenderer->SetupAttachment(RootComponent);
 }
 
 ATitleStar::~ATitleStar()

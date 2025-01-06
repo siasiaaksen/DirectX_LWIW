@@ -11,7 +11,7 @@ ATitleBackground::ATitleBackground()
 
 	BGRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	BGRenderer->SetSprite("Title_Train_Sky.png", 0);
-	BGRenderer->SetRelativeScale3D({ 1280, 720, 1.0f });
+	BGRenderer->SetAutoScaleRatio(1.0f);
 	BGRenderer->SetupAttachment(RootComponent);
 }
 

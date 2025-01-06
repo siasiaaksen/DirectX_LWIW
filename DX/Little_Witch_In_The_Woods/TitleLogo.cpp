@@ -12,15 +12,15 @@ ATitleLogo::ATitleLogo()
 	{
 		LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		LogoRenderer->SetSprite("Logo.png", 0);
-		LogoRenderer->SetRelativeScale3D({ 453, 220, 1.0f });
+		LogoRenderer->SetAutoScaleRatio(0.7f);
 		LogoRenderer->SetWorldLocation({ 402 , 134 , 0.0f });
 	}
 
 	{
-		LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		LogoRenderer->SetSprite("Title_StartText.png");
-		LogoRenderer->SetRelativeScale3D({ 276, 30, 1.0f });
-		LogoRenderer->SetWorldLocation({ 402 , 0 , 0.0f });
+		//LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		//LogoRenderer->SetSprite("Title_StartText.png");
+		//LogoRenderer->SetRelativeScale3D({ 276, 30, 1.0f });
+		//LogoRenderer->SetWorldLocation({ 402 , 0 , 0.0f });
 	}
 
 	LogoRenderer->SetupAttachment(RootComponent);

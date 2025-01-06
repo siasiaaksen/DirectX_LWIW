@@ -11,7 +11,7 @@ ATitleBridge::ATitleBridge()
 
 	BridgeRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	BridgeRenderer->SetSprite("Title_Train_Bridge.png", 0);
-	BridgeRenderer->SetRelativeScale3D({ 1407, 219, 1.0f });
+	BridgeRenderer->SetAutoScaleRatio(1.0f);
 	BridgeRenderer->SetWorldLocation({ 1, -251, 0.0f });
 	BridgeRenderer->SetupAttachment(RootComponent);
 }
