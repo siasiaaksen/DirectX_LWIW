@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineGraphicDevice.h"
 #include "EngineTexture.h"
+#include "EngineDepthStencilState.h"
 
 
 UEngineGraphicDevice::UEngineGraphicDevice()
@@ -227,9 +228,20 @@ void UEngineGraphicDevice::RenderStart()
     FVector ClearColor;
 
     // 아무것도 안 띄웠을 때 처음 화면 색깔
+    // 한 번 싹 지워
     ClearColor = FVector(0.4f, 0.5f, 0.3f, 1.0f);
 
     Context->ClearRenderTargetView(RTV.Get(), ClearColor.Arr1D);
+    Context->ClearDepthStencilView(DepthTex->GetDSV(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+    // 여기에 다시 그려
+    ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRTV();
+    ID3D11RenderTargetView* ArrRtv[16] = { 0 };
+    ArrRtv[0] = RTV; 
+    Context->OMSetRenderTargets(1, &ArrRtv[0], DepthTex->GetDSV());
+
+    std::shared_ptr<UEngineDepthStencilState> DepthState = UEngineDepthStencilState::Find<UEngineDepthStencilState>("BaseDepth");
+    DepthState->Setting();
 }
 
 void UEngineGraphicDevice::RenderEnd()

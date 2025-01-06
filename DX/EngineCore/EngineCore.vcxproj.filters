@@ -139,6 +139,9 @@
     <ClInclude Include="RenderUnit.h">
       <Filter>Render</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDepthStencilState.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -266,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="RenderUnit.cpp">
       <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDepthStencilState.cpp">
+      <Filter>Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
