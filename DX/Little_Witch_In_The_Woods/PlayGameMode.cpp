@@ -47,27 +47,22 @@ void APlayGameMode::Tick(float _DeltaTime)
 bool APlayGameMode::IsCameraMove()
 {
 	FVector RoomSize = Room->GetRoomSize();
-	FVector ElliePos = Ellie->GetActorTransform().Location;
-	FVector EllieSize = Ellie->GetActorTransform().Scale;
+	FVector ElliePos = Ellie->GetActorLocation();
 	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
-	FVector CameraPos = Camera->GetActorTransform().Location;
 
-	if (-RoomSize.Half().X + WindowSize.Half().X < ElliePos.X)
+	float X1 = -RoomSize.Half().X + WindowSize.Half().X;
+	float X2 = RoomSize.Half().X - WindowSize.Half().X > ElliePos.X;
+	float ElliePosX = ElliePos.X;
+	float ElliePosY = ElliePos.Y;
+
+	int a = 0;
+
+	if (-RoomSize.Half().X <= ElliePos.X - WindowSize.Half().X)
 	{
 		return true;
 	}
 
-	if (-RoomSize.Half().Y + WindowSize.Half().Y < ElliePos.Y)
-	{
-		return true;
-	}
-
-	if (RoomSize.Half().X - WindowSize.Half().X > ElliePos.X)
-	{
-		return true;
-	}
-
-	if (RoomSize.Half().Y - WindowSize.Half().Y > ElliePos.Y)
+	if (RoomSize.Half().X >= ElliePos.X + WindowSize.Half().X)
 	{
 		return true;
 	}
@@ -77,9 +72,21 @@ bool APlayGameMode::IsCameraMove()
 
 void APlayGameMode::CameraMove()
 {
-	if (true == IsCameraMove())
+	FVector RoomSize = Room->GetRoomSize();
+	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
+
+	float CameraLeftX = CameraPos.X - WindowSize.Half().X;
+	float RoomLeftX = -RoomSize.Half().X;
+
+	int a = 0;
+
+	//CameraPos = Ellie->GetActorLocation();
+
+	if (RoomLeftX - CameraLeftX > 0)
 	{
-		Camera->SetActorLocation(Ellie->GetActorTransform().Location);
+		CameraPos.X += RoomLeftX - CameraLeftX;
 	}
+	
+	Camera->SetActorLocation(CameraPos);
 }
 

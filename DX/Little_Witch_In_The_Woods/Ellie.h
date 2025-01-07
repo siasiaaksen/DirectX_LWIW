@@ -32,6 +32,11 @@ public:
 
 	void Idle();
 	void Move(float _DeltaTime);
+
+	void SetIsMove(bool _Value)
+	{
+		IsMove = _Value;
+	}
 	
 protected:
 
@@ -42,5 +47,7 @@ private:
 
 	EEllieState State;
 	int PosValue = 0;
+	float Speed = 200.0f;
+	bool IsMove = true;
 };
 

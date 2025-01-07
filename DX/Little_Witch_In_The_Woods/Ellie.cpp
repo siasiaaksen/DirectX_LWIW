@@ -45,7 +45,7 @@ AEllie::AEllie()
 	EllieRenderer->ChangeAnimation("Ellie_Idle_Front");
 
 	// 카메라가 엘리를 따라다니게
-	Camera = GetWorld()->GetMainCamera();
+	//Camera = GetWorld()->GetMainCamera();
 	//Camera->AttachToActor(this);
 
 	State = EEllieState::IDLE;
@@ -112,25 +112,30 @@ void AEllie::Idle()
 
 void AEllie::Move(float _DeltaTime)
 {
+	if (false == IsMove)
+	{
+		return;
+	}
+
 	if (true == UEngineInput::IsPress('W'))
 	{
 		if (true == UEngineInput::IsPress('A'))
 		{
 			EllieRenderer->ChangeAnimation("Ellie_Walk_BLeft");
-			AddActorLocation(FVector(-1.0f, 1.0f).NormalizeReturn() * _DeltaTime * 80.0f);
+			AddActorLocation(FVector(-1.0f, 1.0f).NormalizeReturn() * _DeltaTime * Speed);
 			PosValue = 4;
 			return;
 		}
 		if (true == UEngineInput::IsPress('D'))
 		{
 			EllieRenderer->ChangeAnimation("Ellie_Walk_BRight");
-			AddActorLocation(FVector(1.0f, 1.0f).NormalizeReturn() * _DeltaTime * 80.0f);
+			AddActorLocation(FVector(1.0f, 1.0f).NormalizeReturn() * _DeltaTime * Speed);
 			PosValue = 5;
 			return;
 		}
 
 		EllieRenderer->ChangeAnimation("Ellie_Walk_Back");
-		AddActorLocation(FVector(0.0f, 1.0f) * _DeltaTime * 80.0f);
+		AddActorLocation(FVector(0.0f, 1.0f) * _DeltaTime * Speed);
 		PosValue = 1;
 	}
 	if (true == UEngineInput::IsPress('S'))
@@ -138,32 +143,32 @@ void AEllie::Move(float _DeltaTime)
 		if (true == UEngineInput::IsPress('A'))
 		{
 			EllieRenderer->ChangeAnimation("Ellie_Walk_FLeft");
-			AddActorLocation(FVector(-1.0f, -1.0f).NormalizeReturn() * _DeltaTime * 80.0f);
+			AddActorLocation(FVector(-1.0f, -1.0f).NormalizeReturn() * _DeltaTime * Speed);
 			PosValue = 2;
 			return;
 		}
 		if (true == UEngineInput::IsPress('D'))
 		{
 			EllieRenderer->ChangeAnimation("Ellie_Walk_FRight");
-			AddActorLocation(FVector(1.0f, -1.0f).NormalizeReturn() * _DeltaTime * 80.0f);
+			AddActorLocation(FVector(1.0f, -1.0f).NormalizeReturn() * _DeltaTime * Speed);
 			PosValue = 3;
 			return;
 		}
 
 		EllieRenderer->ChangeAnimation("Ellie_Walk_Front");
-		AddActorLocation(FVector(0.0f, -1.0f) * _DeltaTime * 80.0f);
+		AddActorLocation(FVector(0.0f, -1.0f) * _DeltaTime * Speed);
 		PosValue = 0;
 	}
 	if (true == UEngineInput::IsPress('A'))
 	{
 		EllieRenderer->ChangeAnimation("Ellie_Walk_FLeft");
-		AddActorLocation(FVector(-1.0f, 0.0f) * _DeltaTime * 80.0f);
+		AddActorLocation(FVector(-1.0f, 0.0f) * _DeltaTime * Speed);
 		PosValue = 2;
 	}
 	if (true == UEngineInput::IsPress('D'))
 	{
 		EllieRenderer->ChangeAnimation("Ellie_Walk_FRight");
-		AddActorLocation(FVector(1.0f, 0.0f) * _DeltaTime * 80.0f);
+		AddActorLocation(FVector(1.0f, 0.0f) * _DeltaTime * Speed);
 		PosValue = 3;
 	}
 
