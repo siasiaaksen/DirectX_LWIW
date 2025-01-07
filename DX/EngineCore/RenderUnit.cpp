@@ -163,6 +163,7 @@ void URenderUnit::Render(class UEngineCamera* _Camera, float _DeltaTime)
 
 	//	OutPutMergeSetting();
 	Material->GetBlend()->Setting();
+	Material->GetDepthStencilState()->Setting();
 
 	// Draw Call
 	UEngineCore::GetDevice().GetContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);

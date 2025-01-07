@@ -111,6 +111,11 @@ public:
 
 	ENGINEAPI void AttachToActor(AActor* _Parent);
 
+	FVector GetActorLocation()
+	{
+		return RootComponent->Transform.WorldLocation;
+	}
+
 	// 트랜스폼 자체를 고칠수는 없음
 	// 복사본을 주는 함수
 	FTransform GetActorTransform()
