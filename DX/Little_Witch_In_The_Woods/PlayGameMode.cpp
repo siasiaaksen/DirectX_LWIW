@@ -40,27 +40,5 @@ void APlayGameMode::Tick(float _DeltaTime)
 	{
 		UEngineCore::OpenLevel("TitleLevel");
 	}
-
-	FVector RoomSize = Room->GetRoomSize();
-	FVector ElliePos = Ellie->GetActorTransform().Location;
-	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
-
-	FVector Pos = ElliePos - WindowSize;
-
-
-	int a = 0;
-
-	// 엘리 따라다니게, 범위 밖으로 못 나가게
-	{
-		if (ElliePos.X - WindowSize.X > 0 &&
-			ElliePos.X - WindowSize.X < RoomSize.X &&
-			ElliePos.Y - WindowSize.Y > 0 &&
-			ElliePos.Y - WindowSize.Y < RoomSize.Y)
-		{
-			Camera->SetActorLocation(Ellie->GetActorTransform().Location);
-		}
-
-		//Camera->SetActorLocation(Ellie->GetActorTransform().Location);
-	}
 }
 

@@ -33,6 +33,10 @@ public:
 	void Idle();
 	void Move(float _DeltaTime);
 	
+	void IsMove();
+
+	void CameraMove();
+	
 protected:
 
 private:

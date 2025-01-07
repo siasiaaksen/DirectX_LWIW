@@ -10,7 +10,7 @@ ARoom::ARoom()
 
 	{
 		BaseSprite = CreateDefaultSubObject<USpriteRenderer>();
-		BaseSprite->SetTexture("TestBaseMap.png", true, 1.0f);
+		BaseSprite->SetTexture("TestBaseMap.png"/*, true, 1.0f*/);
 		BaseSprite->SetScale3D({ RoomSize.X, RoomSize.Y });
 		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 100.0f });
 		BaseSprite->SetupAttachment(RootComponent);

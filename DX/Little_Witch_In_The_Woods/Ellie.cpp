@@ -64,6 +64,8 @@ void AEllie::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
 
+	CameraMove();
+
 	switch (State)
 	{
 	case EEllieState::IDLE:
@@ -112,6 +114,8 @@ void AEllie::Idle()
 
 void AEllie::Move(float _DeltaTime)
 {
+	IsMove();
+
 	if (true == UEngineInput::IsPress('W'))
 	{
 		if (true == UEngineInput::IsPress('A'))
@@ -171,6 +175,36 @@ void AEllie::Move(float _DeltaTime)
 		true == UEngineInput::IsUp('A') || true == UEngineInput::IsUp('D'))
 	{
 		State = EEllieState::IDLE;
+	}
+}
+
+void AEllie::IsMove()
+{
+	FVector ElliePos = GetActorTransform().Location;
+	FVector EllieSize = GetActorTransform().Scale;
+	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
+
+	// 엘리 따라다니게, 범위 밖으로 못 나가게
+	{
+		if (GetActorTransform().Location.X < -WindowSize.Half().X/* ||
+			GetActorTransform().Location.X >(Room->GetRoomSize().X) ||
+			GetActorTransform().Location.Y < -(Room->GetRoomSize().Y) ||
+			GetActorTransform().Location.Y >(Room->GetRoomSize().Y)*/)
+		{
+			int a = 0;
+			return;
+		}
+	}
+}
+
+void AEllie::CameraMove()
+{
+	//if (ElliePos.X - WindowSize.Half().X > -RoomSize.Half().X /*||
+	//ElliePos.Y - WindowSize.Half().Y > -RoomSize.Half().Y ||
+	//ElliePos.X + WindowSize.Half().X < RoomSize.Half().X ||
+	//ElliePos.Y + WindowSize.Half().Y < RoomSize.Half().Y*/)
+	{
+		Camera->SetActorLocation(GetActorTransform().Location);
 	}
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EnginePlatform/EngineWinImage.h>
 
 
 class ARoom : public AActor
@@ -17,9 +18,10 @@ public:
 	void SetRoomSize(FVector _Value)
 	{
 		BaseSprite->SetScale3D(_Value);
+		RoomSize = _Value;
 	}
 
-	FVector& GetRoomSize()
+	FVector GetRoomSize()
 	{
 		return RoomSize;
 	}
@@ -30,6 +32,6 @@ protected:
 
 private:
 	std::shared_ptr<USpriteRenderer> BaseSprite = nullptr;
-	FVector RoomSize = { 1280.0f, 720.0f };
+	FVector RoomSize/* = { 1280.0f, 720.0f }*/;
 };
 
