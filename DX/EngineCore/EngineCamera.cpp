@@ -50,7 +50,33 @@ void UEngineCamera::Render(float _DetlaTime)
 
 		for (std::shared_ptr<URenderer> Renderer : RenderList)
 		{
+			if (false == Renderer->IsActive())
+			{
+				continue;
+			}
+
 			Renderer->Render(this, _DetlaTime);
+		}
+	}
+}
+
+void UEngineCamera::Release(float _DeltaTime)
+{
+	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
+	{
+		std::list<std::shared_ptr<URenderer>>& RenderList = RenderGroup.second;
+		std::list<std::shared_ptr<URenderer>>::iterator StartIter = RenderList.begin();
+		std::list<std::shared_ptr<URenderer>>::iterator EndIter = RenderList.end();
+
+		for (; StartIter != EndIter; )
+		{
+			if (false == (*StartIter)->IsDestroy())
+			{
+				++StartIter;
+				continue;
+			}
+
+			StartIter = RenderList.erase(StartIter);
 		}
 	}
 }

@@ -5,6 +5,8 @@
 
 class ULevel : public UObject
 {
+	friend class UCollision;
+
 public:
 	ENGINEAPI ULevel();
 	ENGINEAPI ~ULevel();
@@ -21,6 +23,8 @@ public:
 
 	void Tick(float _DeltaTime);
 	void Render(float _DeltaTime);
+	void Collision(float _DeltaTime);
+	void Release(float _DeltaTime);
 
 	std::shared_ptr<class ACameraActor> GetMainCamera()
 	{
@@ -69,7 +73,15 @@ public:
 		return NewActor;
 	}
 
-	void ChangeRenderGroup(int _CameraOrder, int _PrevGroupOrder, std::shared_ptr<class URenderer> _Renderer);
+	ENGINEAPI void ChangeRenderGroup(int _CameraOrder, int _PrevGroupOrder, std::shared_ptr<class URenderer> _Renderer);
+
+	ENGINEAPI void ChangeCollisionProfileName(std::string_view _ProfileName, std::string_view _PrevProfileName, std::shared_ptr<class UCollision> _Collision);
+
+	ENGINEAPI void PushCollisionProfileEvent(std::shared_ptr<class URenderer> _Renderer);
+
+	ENGINEAPI void CreateCollisionProfile(std::string_view _ProfileName);
+
+	ENGINEAPI void LinkCollisionProfile(std::string_view _LeftProfileName, std::string_view _RightProfileName);
 
 protected:
 
@@ -80,6 +92,10 @@ private:
 
 	std::map<int, std::shared_ptr<class ACameraActor>> Cameras;
 
-	//std::map<int, std::list<std::shared_ptr<class URenderer>>> Renderers;
+	std::map<std::string, std::list<std::shared_ptr<class UCollision>>> Collisions;
+
+	std::map<std::string, std::list<std::shared_ptr<class UCollision>>> CheckCollisions;
+
+	std::map<std::string, std::list<std::string>> CollisionLinks;
 };
 
