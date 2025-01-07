@@ -12,7 +12,6 @@ APlayGameMode::APlayGameMode()
 	// Ä«¸Þ¶ó
 	{
 		Camera = GetWorld()->GetMainCamera();
-		Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 		Camera->GetCameraComponent()->SetProjectionType(EProjectionType::Orthographic);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
@@ -20,6 +19,8 @@ APlayGameMode::APlayGameMode()
 	Ellie = GetWorld()->SpawnActor<AEllie>();
 	Room = GetWorld()->SpawnActor<ARoom>();
 	Room->SetRoomSize({ 1920.0f, 720.0f });
+	
+	Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f});
 }
 
 APlayGameMode::~APlayGameMode()
@@ -74,19 +75,20 @@ void APlayGameMode::CameraMove()
 {
 	FVector RoomSize = Room->GetRoomSize();
 	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
+	FVector ElliePos = Ellie->GetActorLocation();
+
+	CameraPos = Camera->GetActorLocation();
 
 	float CameraLeftX = CameraPos.X - WindowSize.Half().X;
 	float RoomLeftX = -RoomSize.Half().X;
 
 	int a = 0;
 
-	//CameraPos = Ellie->GetActorLocation();
-
-	if (RoomLeftX - CameraLeftX > 0)
+	if (RoomLeftX - CameraLeftX >= 0)
 	{
-		CameraPos.X += RoomLeftX - CameraLeftX;
+		CameraPos.X = RoomLeftX - CameraLeftX;
 	}
 	
-	Camera->SetActorLocation(CameraPos);
+	Camera->SetActorLocation(ElliePos + CameraPos);
 }
 
