@@ -36,9 +36,50 @@ void APlayGameMode::Tick(float _DeltaTime)
 	// 부모 호출
 	AActor::Tick(_DeltaTime);
 
+	CameraMove();
+
 	if (true == UEngineInput::IsDown(VK_HOME))
 	{
 		UEngineCore::OpenLevel("TitleLevel");
+	}
+}
+
+bool APlayGameMode::IsCameraMove()
+{
+	FVector RoomSize = Room->GetRoomSize();
+	FVector ElliePos = Ellie->GetActorTransform().Location;
+	FVector EllieSize = Ellie->GetActorTransform().Scale;
+	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
+	FVector CameraPos = Camera->GetActorTransform().Location;
+
+	if (-RoomSize.Half().X + WindowSize.Half().X < ElliePos.X)
+	{
+		return true;
+	}
+
+	if (-RoomSize.Half().Y + WindowSize.Half().Y < ElliePos.Y)
+	{
+		return true;
+	}
+
+	if (RoomSize.Half().X - WindowSize.Half().X > ElliePos.X)
+	{
+		return true;
+	}
+
+	if (RoomSize.Half().Y - WindowSize.Half().Y > ElliePos.Y)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void APlayGameMode::CameraMove()
+{
+	if (true == IsCameraMove())
+	{
+		Camera->SetActorLocation(Ellie->GetActorTransform().Location);
 	}
 }
 
