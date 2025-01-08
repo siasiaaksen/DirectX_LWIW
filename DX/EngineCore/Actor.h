@@ -157,6 +157,10 @@ protected:
 	std::shared_ptr<class USceneComponent> RootComponent = nullptr;
 
 private:
+	// 누구의 자식인지, 누가 자기의 자식인지 알게 됨
+	AActor* Parent = nullptr;
+	std::list<std::shared_ptr<AActor>> ChildList;
+
 	// 초기화 하지 않기, 생성되면서 리터럴 초기화도 실행됨
 	ULevel* World;
 

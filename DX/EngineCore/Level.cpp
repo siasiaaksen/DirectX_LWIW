@@ -67,6 +67,12 @@ void ULevel::Tick(float _DeltaTime)
 		StartIter = BeginPlayList.erase(StartIter);
 
 		CurActor->BeginPlay();
+
+		if (nullptr != CurActor->Parent)
+		{
+			continue;
+		}
+
 		AllActorList.push_back(CurActor);
 	}
 
@@ -237,6 +243,14 @@ void ULevel::Release(float _DeltaTime)
 
 		for (; StartIter != EndIter; )
 		{
+			if (nullptr != (*StartIter)->Parent)
+			{
+				// 부모가 있는 애는 어차피 부모가 다 tick
+				// 레벨이 돌려줄필요가 없어졌다.
+				StartIter = List.erase(StartIter);
+				continue;
+			}
+
 			if (false == (*StartIter)->IsDestroy())
 			{
 				++StartIter;
@@ -246,4 +260,10 @@ void ULevel::Release(float _DeltaTime)
 			StartIter = List.erase(StartIter);
 		}
 	}
+}
+
+void ULevel::InitLevel(AGameMode* _GameMode, APawn* _Pawn)
+{
+	GameMode = _GameMode;
+	MainPawn = _Pawn;
 }
