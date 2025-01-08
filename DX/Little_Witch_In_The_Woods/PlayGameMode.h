@@ -18,6 +18,8 @@ public:
 
 	void CameraMove();
 
+	void RoomChange();
+
 protected:
 
 private:
