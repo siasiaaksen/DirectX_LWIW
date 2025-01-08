@@ -19,5 +19,7 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> SmokeRenderer;
+
+	float SmokeAlpha = 0.5f;
 };
 

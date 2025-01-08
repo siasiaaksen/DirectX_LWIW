@@ -1,6 +1,5 @@
 #include "PreCompile.h"
 #include "TitleCloud.h"
-#include <EngineBase/EngineRandom.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/Collision.h>
@@ -44,7 +43,7 @@ ATitleCloud::ATitleCloud()
 		CloudCollision->SetupAttachment(RootComponent);
 		CloudColV.push_back(CloudCollision);
 
-		CloudSpeed.push_back(2.0f);
+		CloudSpeed.push_back(1.5f);
 	}
 
 	{
@@ -62,7 +61,7 @@ ATitleCloud::ATitleCloud()
 		CloudCollision->SetupAttachment(RootComponent);
 		CloudColV.push_back(CloudCollision);
 
-		CloudSpeed.push_back(1.5f);
+		CloudSpeed.push_back(1.3f);
 	}
 
 	{
@@ -80,7 +79,7 @@ ATitleCloud::ATitleCloud()
 		CloudCollision->SetupAttachment(RootComponent);
 		CloudColV.push_back(CloudCollision);
 
-		CloudSpeed.push_back(1.8f);
+		CloudSpeed.push_back(1.4f);
 	}
 
 	{
@@ -109,6 +108,8 @@ ATitleCloud::~ATitleCloud()
 void ATitleCloud::BeginPlay()
 {
 	AActor::BeginPlay();
+
+	Random.SetSeed(100);
 }
 
 void ATitleCloud::Tick(float _DeltaTime)
@@ -120,17 +121,17 @@ void ATitleCloud::Tick(float _DeltaTime)
 
 void ATitleCloud::CloudMove(float _DeltaTime)
 {
-	FVector Dir = { -15.0f * _DeltaTime * Speed, 0.0f, 0.0f, 1.0f};
+	FVector Dir = { -15.0f * _DeltaTime, 0.0f, 0.0f, 1.0f};
 
 	CloudCheck(Dir);
 
 	for (int i = 0; i < CloudRendV.size(); i++)
 	{
-		CloudRendV[i]->AddRelativeLocation(Dir);
-	}
+		int RandomIndex = Random.RandomInt(0, (CloudSpeed.size() - 1));
+		Speed = CloudSpeed[RandomIndex];
 
-	for (int i = 0; i < CloudColV.size(); i++)
-	{
+		Dir.X *= Speed;
+		CloudRendV[i]->AddRelativeLocation(Dir);
 		CloudColV[i]->AddRelativeLocation(Dir);
 	}
 }
@@ -150,10 +151,3 @@ void ATitleCloud::CloudCheck(FVector _Dir)
 	}
 }
 
-float ATitleCloud::RandomCloudSpeed()
-{
-	UEngineRandom Random;
-	int RandomIndex = Random.RandomInt(0, (CloudSpeed.size() - 1));
-	Speed = CloudSpeed[RandomIndex];
-	return Speed;
-}

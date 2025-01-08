@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineBase/EngineRandom.h>
 
 
 class ATitleCloud : public AActor
@@ -16,8 +17,6 @@ public:
 	void CloudMove(float _DeltaTime);
 	void CloudCheck(FVector _Dir);
 
-	float RandomCloudSpeed();
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -32,5 +31,7 @@ private:
 
 	float CloudAlpha = 0.8f;
 	float Speed = 1.0f;
+
+	UEngineRandom Random;
 };
 

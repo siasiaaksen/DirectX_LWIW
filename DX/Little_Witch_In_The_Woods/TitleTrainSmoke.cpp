@@ -15,6 +15,7 @@ ATitleTrainSmoke::ATitleTrainSmoke()
 		SmokeRenderer->SetSprite("Title_Train_SmokeB.png", 0);
 		SmokeRenderer->SetAutoScaleRatio(1.0f);
 		SmokeRenderer->SetWorldLocation({ -50.0f, -15.0f, 4.0f });
+		SmokeRenderer->ColorData.MulColor = float4(1.0f, 1.0f, 1.0f, SmokeAlpha);
 		SmokeRenderer->CreateAnimation("BigSmoke", "Title_Train_SmokeB.png", 0, 3, 0.1f);
 		SmokeRenderer->ChangeAnimation("BigSmoke");
 		SmokeRenderer->SetupAttachment(RootComponent);
@@ -26,6 +27,7 @@ ATitleTrainSmoke::ATitleTrainSmoke()
 		SmokeRenderer->SetSprite("Title_Train_SmokeM.png", 0);
 		SmokeRenderer->SetAutoScaleRatio(1.0f);
 		SmokeRenderer->SetWorldLocation({ 12.0f, -25.0f, 3.0f });
+		SmokeRenderer->ColorData.MulColor = float4(1.0f, 1.0f, 1.0f, SmokeAlpha);
 		SmokeRenderer->CreateAnimation("MidSmoke", "Title_Train_SmokeM.png", 0, 4, 0.1f);
 		SmokeRenderer->ChangeAnimation("MidSmoke");
 		SmokeRenderer->SetupAttachment(RootComponent);
@@ -37,6 +39,7 @@ ATitleTrainSmoke::ATitleTrainSmoke()
 		SmokeRenderer->SetSprite("Title_Train_SmokeS.png", 0);
 		SmokeRenderer->SetAutoScaleRatio(1.0f);
 		SmokeRenderer->SetWorldLocation({ 108.0f, -35.0f, 2.0f });
+		SmokeRenderer->ColorData.MulColor = float4(1.0f, 1.0f, 1.0f, SmokeAlpha);
 		SmokeRenderer->CreateAnimation("SmallSmoke", "Title_Train_SmokeS.png", 0, 3, 0.1f);
 		SmokeRenderer->ChangeAnimation("SmallSmoke");
 		SmokeRenderer->SetupAttachment(RootComponent);
