@@ -46,6 +46,11 @@ void ULevel::LevelChangeEnd()
 
 void ULevel::Tick(float _DeltaTime)
 {
+	if (GetMainCamera()->IsFreeCamera())
+	{
+		return;
+	}
+
 	std::list<std::shared_ptr<class AActor>>::iterator StartIter = BeginPlayList.begin();
 	std::list<std::shared_ptr<class AActor>>::iterator EndIter = BeginPlayList.end();
 	
@@ -109,7 +114,7 @@ void ULevel::Render(float _DeltaTime)
 
 	if (true == UEngineWindow::IsApplicationOn())
 	{
-		UEngineGUI::GUIRender();
+		UEngineGUI::GUIRender(this);
 	}
 
 	// 출력한다

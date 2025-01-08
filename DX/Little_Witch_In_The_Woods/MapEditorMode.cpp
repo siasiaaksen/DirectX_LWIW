@@ -12,9 +12,17 @@ class TestWindow : public UEngineGUIWindow
 public:
 	void OnGUI() override
 	{
-		ImGui::Button("WindowButton");
-		ImGui::SameLine();
-		ImGui::Text("test");
+		if (true == ImGui::Button("WindowButton"))
+		{
+		}
+
+		if (true == ImGui::Button("FreeCameraOn"))
+		{
+			GetWorld()->GetMainCamera()->FreeCameraSwitch();
+		}
+
+		ImGui::SameLine(); 
+		//ImGui::Text("test");
 	}
 };
 

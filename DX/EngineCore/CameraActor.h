@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "EngineEnums.h"
 
 
 class ACameraActor : public AActor
@@ -25,9 +26,36 @@ public:
 
 	ENGINEAPI FVector ScreenMousePosToWorldPosWithOutPos();
 
+	ENGINEAPI inline bool IsFreeCamera()
+	{
+		return IsFreeCameraValue;
+	}
+
+	ENGINEAPI void FreeCameraOn();
+
+	ENGINEAPI void FreeCameraOff();
+
+	ENGINEAPI void FreeCameraSwitch();
+
+	void SetFreeCameraSpeed(float _Speed)
+	{
+		FreeSpeed = _Speed;
+	}
+
 protected:
 
 private:
 	std::shared_ptr<class UEngineCamera> CameraComponent = nullptr;
+
+	bool IsFreeCameraValue = false;
+	ENGINEAPI void FreeCameraCheck();
+
+	FTransform PrevTrans;
+	EProjectionType PrevProjectionType = EProjectionType::Orthographic;
+	float FreeSpeed = 500.0f;
+
+	FVector ScreenPos;
+	FVector PrevScreenPos;
+	float RotSpeed = 360.0f;
 };
 

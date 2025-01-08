@@ -791,6 +791,37 @@ public:
 	// 역분해 크기 회전 위치를 뜯어내는 함수
 	ENGINEAPI void Decompose();
 
+	FVector GetWorldFoward()
+	{
+		return World.GetFoward();;
+	}
+
+	FVector GetWorldRight()
+	{
+		return World.GetRight();
+	}
+
+	FVector GetWorldUp()
+	{
+		return World.GetUp();
+	}
+
+	FVector GetLocalFoward()
+	{
+		// 부모행렬이 곱해지지 않은 월드
+		return LocalWorld.GetFoward();;
+	}
+
+	FVector GetLocalRight()
+	{
+		return LocalWorld.GetRight();
+	}
+
+	FVector GetLocalUp()
+	{
+		return LocalWorld.GetUp();
+	}
+
 private:
 	friend class CollisionFunctionInit;
 

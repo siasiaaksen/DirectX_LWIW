@@ -330,9 +330,9 @@ void FTransform::TransformUpdate(bool _IsAbsolute /*= false*/)
 	else
 	{
 		// 나의 로컬은 알지만 부모가 아직 안곱해져서 부모를 굽해서 나의 월드 값을 찾아낸다.
-		LocalWorld = ScaleMat * RotationMat * LocationMat;
-		//      크         자             이            공           부
-		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
+		LocalWorld = CheckWorld;
+		//      크자이          공           부
+		World = CheckWorld * RevolveMat * ParentMat;
 	}
 
 	Decompose();
