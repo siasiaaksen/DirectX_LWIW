@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include <EngineCore/GameMode.h>
 
 
-class AMapEditorMode : public AActor
+class AMapEditorMode : public AGameMode
 {
 public:
 	AMapEditorMode();

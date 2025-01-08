@@ -19,5 +19,6 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> BGRenderer;
+	std::shared_ptr<class UCollision> BGCollision;
 };
 

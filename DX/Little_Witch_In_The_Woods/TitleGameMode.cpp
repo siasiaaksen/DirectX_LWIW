@@ -18,6 +18,10 @@
 
 ATitleGameMode::ATitleGameMode()
 {
+	GetWorld()->CreateCollisionProfile("BG");
+	GetWorld()->CreateCollisionProfile("Cloud");
+	GetWorld()->LinkCollisionProfile("BG", "Cloud");
+
 	{
 		std::shared_ptr<ATitleBackground> BG = GetWorld()->SpawnActor<ATitleBackground>();
 		std::shared_ptr<ATitleStar> Star = GetWorld()->SpawnActor<ATitleStar>();

@@ -13,8 +13,10 @@ public:
 	ATitleCloud& operator=(const ATitleCloud& _Other) = delete;
 	ATitleCloud& operator=(ATitleCloud&& _Other) noexcept = delete;
 
-	void SetCloud(std::string_view _SpriteName, FVector& _Location);
 	void CloudMove(float _DeltaTime);
+	void CloudCheck(FVector _Dir);
+
+	float RandomCloudSpeed();
 
 protected:
 	void BeginPlay() override;
@@ -22,6 +24,13 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> CloudRenderer = nullptr;
-	std::shared_ptr<class UTimeEventComponent> TimeEvent = nullptr;
+	std::shared_ptr<class UCollision> CloudCollision = nullptr;
+
+	std::vector<std::shared_ptr<class USpriteRenderer>> CloudRendV;
+	std::vector<std::shared_ptr<class UCollision>> CloudColV;
+	std::vector<float> CloudSpeed;
+
+	float CloudAlpha = 0.8f;
+	float Speed = 1.0f;
 };
 

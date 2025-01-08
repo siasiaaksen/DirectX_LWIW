@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include <EngineCore/GameMode.h>
 
 
-class ATitleGameMode : public AActor
+class ATitleGameMode : public AGameMode
 {
 public:
 	ATitleGameMode();
