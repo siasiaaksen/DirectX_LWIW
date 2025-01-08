@@ -33,21 +33,26 @@ public:
 	void Idle();
 	void Move(float _DeltaTime);
 
-	void SetIsMove(bool _Value)
+	bool IsMoveCheck(FVector _Dir);
+	void DirCheck();
+
+	FVector GetEllieSize()
 	{
-		IsMove = _Value;
+		return EllieSize;
 	}
-	
+
 protected:
 
 private:
 	std::shared_ptr<USpriteRenderer> EllieRenderer;
+	std::shared_ptr<class UCollision> EllieCollision;
 	std::shared_ptr<class ACameraActor> Camera;
 	std::shared_ptr<class ARoom> Room;
 
 	EEllieState State;
-	int PosValue = 0;
 	float Speed = 200.0f;
-	bool IsMove = true;
+
+	FVector EllieSize = { 70.0f, 100.0f };
+	std::string DirString = "_Front";
 };
 

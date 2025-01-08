@@ -9,6 +9,10 @@
 
 APlayGameMode::APlayGameMode()
 {
+	GetWorld()->CreateCollisionProfile("Room");
+	GetWorld()->CreateCollisionProfile("Ellie");
+	GetWorld()->LinkCollisionProfile("Room", "Ellie");
+
 	// Ä«¸Þ¶ó
 	{
 		Camera = GetWorld()->GetMainCamera();
@@ -20,6 +24,7 @@ APlayGameMode::APlayGameMode()
 	Ellie = GetWorld()->SpawnActor<AEllie>();
 	Room = GetWorld()->SpawnActor<ARoom>();
 	Room->SetRoomSize({ 1920.0f, 720.0f });
+	Room->SetCollisionSize(FVector(1920.0f, 720.0f) - (Ellie->GetEllieSize() * 2.0f));
 }
 
 APlayGameMode::~APlayGameMode()
@@ -44,45 +49,18 @@ void APlayGameMode::Tick(float _DeltaTime)
 	}
 }
 
-bool APlayGameMode::IsCameraMove()
-{
-	FVector RoomSize = Room->GetRoomSize();
-	FVector ElliePos = Ellie->GetActorLocation();
-	FVector WindowSize = UEngineCore::GetMainWindow().GetWindowSize();
-
-	float X1 = -RoomSize.Half().X + WindowSize.Half().X;
-	float X2 = RoomSize.Half().X - WindowSize.Half().X > ElliePos.X;
-	float ElliePosX = ElliePos.X;
-	float ElliePosY = ElliePos.Y;
-
-	int a = 0;
-
-	if (-RoomSize.Half().X <= ElliePos.X - WindowSize.Half().X)
-	{
-		return true;
-	}
-
-	if (RoomSize.Half().X >= ElliePos.X + WindowSize.Half().X)
-	{
-		return true;
-	}
-
-	return false;
-}
-
 void APlayGameMode::CameraMove()
 {
 	FVector RoomSize = Room->GetRoomSize();
 	FVector WindowSize = UEngineCore::GetScreenScale();
 	FVector ElliePos = Ellie->GetActorLocation();
-	FVector CameraPos = Camera->GetActorLocation();;
 	FVector CurCameraPos = { 0.0f, 0.0f, 0.0f };
 
-	if (-RoomSize.Half().X + WindowSize.Half().X >= CameraPos.X)
+	if (-RoomSize.Half().X + WindowSize.Half().X >= ElliePos.X)
 	{
 		CurCameraPos.X = -RoomSize.Half().X + WindowSize.Half().X;
 	}
-	else if (RoomSize.Half().X - WindowSize.Half().X <= CameraPos.X)
+	else if (RoomSize.Half().X - WindowSize.Half().X <= ElliePos.X)
 	{
 		CurCameraPos.X = RoomSize.Half().X - WindowSize.Half().X;
 	}
@@ -91,11 +69,11 @@ void APlayGameMode::CameraMove()
 		CurCameraPos.X = ElliePos.X;
 	}
 
-	if (-RoomSize.Half().Y + WindowSize.Half().Y >= CameraPos.Y)
+	if (-RoomSize.Half().Y + WindowSize.Half().Y >= ElliePos.Y)
 	{
 		CurCameraPos.Y = -RoomSize.Half().Y + WindowSize.Half().Y;
 	}
-	else if (RoomSize.Half().Y - WindowSize.Half().Y <= CameraPos.Y)
+	else if (RoomSize.Half().Y - WindowSize.Half().Y <= ElliePos.Y)
 	{
 		CurCameraPos.Y = RoomSize.Half().Y - WindowSize.Half().Y;
 	}

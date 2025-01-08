@@ -15,6 +15,13 @@ ARoom::ARoom()
 		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 100.0f });
 		BaseSprite->SetupAttachment(RootComponent);
 	}
+
+	{
+		BaseCollision = CreateDefaultSubObject<UCollision>();
+		BaseCollision->SetCollisionProfileName("Room");
+		BaseCollision->SetScale3D(CollisionSize);
+		BaseCollision->SetupAttachment(RootComponent);
+	}
 }
 
 ARoom::~ARoom()

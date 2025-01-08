@@ -2,6 +2,7 @@
 #include <EngineCore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineWinImage.h>
+#include <EngineCore/Collision.h>
 
 
 class ARoom : public AActor
@@ -17,13 +18,24 @@ public:
 
 	void SetRoomSize(FVector _Value)
 	{
-		BaseSprite->SetScale3D(_Value);
 		RoomSize = _Value;
+		BaseSprite->SetScale3D(RoomSize);
 	}
 
 	FVector GetRoomSize()
 	{
 		return RoomSize;
+	}
+
+	void SetCollisionSize(FVector _Value)
+	{
+		CollisionSize = _Value;
+		BaseCollision->SetScale3D(CollisionSize);
+	}
+
+	FVector GetCollisionSize()
+	{
+		return CollisionSize;
 	}
 
 protected:
@@ -32,6 +44,9 @@ protected:
 
 private:
 	std::shared_ptr<USpriteRenderer> BaseSprite = nullptr;
+	std::shared_ptr<UCollision> BaseCollision = nullptr;
+
 	FVector RoomSize/* = { 1280.0f, 720.0f }*/;
+	FVector CollisionSize;
 };
 
