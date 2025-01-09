@@ -3,6 +3,9 @@
 #include <EngineCore/Level.h>
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/EngineSprite.h>
+#include <EngineCore/EngineGUI.h>
+#include <EngineCore/EngineGUIWindow.h>
+#include "ContentsEditorGUI.h"
 #include "TitleGameMode.h"
 #include "PlayGameMode.h"
 #include "MapEditorMode.h"
@@ -78,7 +81,13 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
 	UEngineCore::CreateLevel<APlayGameMode, AEllie>("PlayLevel");
 	UEngineCore::CreateLevel<AMapEditorMode, APawn>("MapEditorLevel");
-	UEngineCore::OpenLevel("PlayLevel");
+	UEngineCore::OpenLevel("MapEditorLevel");
+
+	UEngineGUI::AllWindowOff();
+
+	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+	Window->SetActive(true);
 }
 
 void ULWIWContentsCore::EngineTick(float _DeltaTime)

@@ -38,9 +38,6 @@
     <ClInclude Include="Ellie.h">
       <Filter>Play</Filter>
     </ClInclude>
-    <ClInclude Include="MapEditorMode.h">
-      <Filter>GameMode</Filter>
-    </ClInclude>
     <ClInclude Include="TitleTrainSmoke.h">
       <Filter>Title</Filter>
     </ClInclude>
@@ -49,6 +46,12 @@
     </ClInclude>
     <ClInclude Include="Room.h">
       <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEditorMode.h">
+      <Filter>GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEditorGUI.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +92,6 @@
     <ClCompile Include="Ellie.cpp">
       <Filter>Play</Filter>
     </ClCompile>
-    <ClCompile Include="MapEditorMode.cpp">
-      <Filter>GameMode</Filter>
-    </ClCompile>
     <ClCompile Include="TitleTrainSmoke.cpp">
       <Filter>Title</Filter>
     </ClCompile>
@@ -100,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="Room.cpp">
       <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEditorMode.cpp">
+      <Filter>GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsEditorGUI.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +120,9 @@
     </Filter>
     <Filter Include="Play">
       <UniqueIdentifier>{60df8352-56c7-492c-82c8-f0a47da95829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{99de96d3-5b72-47df-aa78-5ef2ef5d70f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

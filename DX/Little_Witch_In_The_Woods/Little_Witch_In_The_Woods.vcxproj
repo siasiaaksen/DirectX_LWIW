@@ -167,14 +167,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ContentsEditorGUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Ellie.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MapEditorMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="MapEditorMode.h" />
     <ClInclude Include="PlayGameMode.h">
       <SubType>
       </SubType>
@@ -234,14 +235,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ContentsEditorGUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Ellie.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="MapEditorMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="MapEditorMode.cpp" />
     <ClCompile Include="PlayGameMode.cpp">
       <SubType>
       </SubType>

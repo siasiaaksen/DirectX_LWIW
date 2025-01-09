@@ -2,8 +2,12 @@
 #include "TitleGameMode.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EnginePlatform/EngineInput.h>
+#include <EngineCore/EngineGUIWindow.h>
+#include <EngineCore/EngineGUI.h>
+#include <EngineCore/imgui.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/EngineCamera.h>
+#include "ContentsEditorGUI.h"
 #include "TitleLogo.h"
 #include "TitleBackground.h"
 #include "TitleMoon.h"
@@ -14,6 +18,26 @@
 #include "TitleStar.h"
 #include "TitleTrainSmoke.h"
 #include "TitleCloud.h"
+
+
+class UTitleGUIWindow : public UEngineGUIWindow
+{
+public:
+	void OnGUI() override
+	{
+		//if (true == ImGui::Button("WindowButton"))
+		//{
+		//}
+
+		if (true == ImGui::Button("FreeCameraOn"))
+		{
+			GetWorld()->GetMainCamera()->FreeCameraSwitch();
+		}
+
+		ImGui::SameLine();
+		//ImGui::Text("test");
+	}
+};
 
 
 ATitleGameMode::ATitleGameMode()
@@ -60,5 +84,32 @@ void ATitleGameMode::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsPress(VK_F1))
 	{
 		UEngineCore::OpenLevel("MapEditorLevel");
+	}
+}
+
+void ATitleGameMode::LevelChangeStart()
+{
+	UEngineGUI::AllWindowOff();
+
+	{
+		std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+		}
+
+		Window->SetActive(true);
+	}
+
+	{
+		std::shared_ptr<UTitleGUIWindow> Window = UEngineGUI::FindGUIWindow<UTitleGUIWindow>("TitleGUIWindow");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<UTitleGUIWindow>("TitleGUIWindow");
+		}
+
+		Window->SetActive(true);
 	}
 }

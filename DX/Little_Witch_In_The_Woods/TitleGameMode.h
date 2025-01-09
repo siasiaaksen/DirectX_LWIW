@@ -16,6 +16,7 @@ public:
 	void Tick(float _DeltaTime);
 
 protected:
+	void LevelChangeStart() override;
 
 private:
 };

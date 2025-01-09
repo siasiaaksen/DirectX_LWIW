@@ -17,8 +17,9 @@ public:
 	void Tick(float _DeltaTime) override;
 
 protected:
+	void LevelChangeStart() override;
 
 private:
-
+	std::shared_ptr<class UMapEditorWindow> TileMapWindow;
 };
 
