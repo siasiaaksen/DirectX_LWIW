@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "PlayGameMode.h"
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineWinImage.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/EngineCamera.h>
 #include <EngineCore/EngineGUIWindow.h>
@@ -45,9 +46,12 @@ APlayGameMode::APlayGameMode()
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
+
 	Ellie = GetWorld()->SpawnActor<AEllie>();
+	Ellie->SetActorLocation({ 0.0f, -100.0f });
+
 	Room = GetWorld()->SpawnActor<ARoom>();
-	Room->SetRoomSize({ 500.0f, 500.0f });
+	Room->SetRoomSize({1920.0f, 1280.0f});
 	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()/* * 2.0f*/));
 }
 

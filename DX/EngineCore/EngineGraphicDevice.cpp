@@ -229,7 +229,7 @@ void UEngineGraphicDevice::RenderStart()
 
     // ¾Æ¹«°Íµµ ¾È ¶ç¿üÀ» ¶§ Ã³À½ È­¸é »ö±ò
     // ÇÑ ¹ø ½Ï Áö¿ö
-    ClearColor = FVector(0.4f, 0.5f, 0.3f, 1.0f);
+    ClearColor = FVector(0.46f, 0.75f, 0.65f, 1.0f);
 
     Context->ClearRenderTargetView(RTV.Get(), ClearColor.Arr1D);
     Context->ClearDepthStencilView(DepthTex->GetDSV(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);

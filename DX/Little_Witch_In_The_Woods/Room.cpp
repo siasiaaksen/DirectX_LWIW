@@ -11,7 +11,7 @@ ARoom::ARoom()
 
 	{
 		BaseSprite = CreateDefaultSubObject<USpriteRenderer>();
-		BaseSprite->SetTexture("TestBaseMap.png");
+		BaseSprite->SetTexture("MainField.png");
 		BaseSprite->SetScale3D(RoomSize);
 		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 100.0f });
 		BaseSprite->SetupAttachment(RootComponent);
@@ -19,7 +19,7 @@ ARoom::ARoom()
 
 	{
 		BaseColSprite = CreateDefaultSubObject<USpriteRenderer>();
-		BaseColSprite->SetTexture("TestBaseMap_Col.png", true, 1.0f);
+		BaseColSprite->SetTexture("MainField_Col.png", true, 1.0f);
 		BaseColSprite->SetWorldLocation({ 0.0f, 0.0f, 80.0f });
 		BaseColSprite->SetupAttachment(RootComponent);
 	}

@@ -1,7 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
-#include <EnginePlatform/EngineWinImage.h>
 #include <EngineCore/Collision.h>
 
 
