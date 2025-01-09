@@ -20,6 +20,7 @@ public:
 	{
 		RoomSize = _Value;
 		BaseSprite->SetScale3D(RoomSize);
+		//BaseColSprite->SetScale3D(RoomSize);
 	}
 
 	FVector GetRoomSize()
@@ -44,6 +45,7 @@ protected:
 
 private:
 	std::shared_ptr<USpriteRenderer> BaseSprite = nullptr;
+	std::shared_ptr<USpriteRenderer> BaseColSprite = nullptr;
 	std::shared_ptr<UCollision> BaseCollision = nullptr;
 
 	FVector RoomSize/* = { 1280.0f, 720.0f }*/;

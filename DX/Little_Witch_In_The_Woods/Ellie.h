@@ -1,4 +1,5 @@
 #pragma once
+#include <EnginePlatform/EngineWinImage.h>
 #include <EngineCore/Pawn.h>
 #include <EngineCore/SpriteRenderer.h>
 
@@ -41,6 +42,8 @@ public:
 		return EllieSize;
 	}
 
+	void SetColImage(std::string_view _ColImageName, std::string_view _FolderName);
+
 protected:
 
 private:
@@ -54,5 +57,7 @@ private:
 
 	FVector EllieSize = { 70.0f, 100.0f };
 	std::string DirString = "_Front";
+
+	UEngineWinImage ColImage;
 };
 

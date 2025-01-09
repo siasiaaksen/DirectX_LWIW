@@ -21,6 +21,7 @@ public:
 	void RoomChange();
 
 protected:
+	void LevelChangeStart() override;
 
 private:
 	std::shared_ptr<class AEllie> Ellie = nullptr;

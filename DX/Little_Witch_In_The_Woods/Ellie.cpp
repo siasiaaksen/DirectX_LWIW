@@ -58,6 +58,8 @@ AEllie::AEllie()
 		EllieCollision->SetWorldLocation(CollisionCenter);
 		EllieCollision->SetupAttachment(RootComponent);
 	}
+
+	SetColImage("TestBaseMap_Col.png", "Play");
 }
 
 AEllie::~AEllie()
@@ -144,6 +146,28 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 		return false;
 	}
 
+	FVector EllieHalf = EllieSize.Half();
+	FVector ElliePos = GetActorLocation();
+
+	if (_Dir.X < 0)
+	{
+		EllieHalf.X *= -1.01f;
+	}
+	if (_Dir.Y < 0)
+	{
+		EllieHalf.Y *= -0.01f;
+	}
+
+	//                        RoomSize
+	FVector NextPoint = FVector(250.0f, -250.0f) + GetActorLocation() + EllieHalf;
+	NextPoint.Y *= -1.0f;
+
+	UColor Color = ColImage.GetColor(NextPoint, UColor::WHITE);
+	if (Color == UColor::MAGENTA) 
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -189,7 +213,20 @@ void AEllie::DirCheck()
 	}
 }
 
+void AEllie::SetColImage(std::string_view _ColImageName, std::string_view _FolderName)
+{
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
 
+		Dir.Append(_FolderName);
+		UEngineFile ImageFiles = Dir.GetFile(_ColImageName);
 
-
+		ColImage.Load(nullptr, ImageFiles.GetPathToString());
+	}
+}
 

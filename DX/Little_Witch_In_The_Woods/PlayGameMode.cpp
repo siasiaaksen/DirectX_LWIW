@@ -3,8 +3,32 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
 #include <EngineCore/EngineCamera.h>
+#include <EngineCore/EngineGUIWindow.h>
+#include <EngineCore/EngineGUI.h>
+#include <EngineCore/imgui.h>
+#include "ContentsEditorGUI.h"
 #include "Ellie.h"
 #include "Room.h"
+
+
+class UPlayGUIWindow : public UEngineGUIWindow
+{
+public:
+	void OnGUI() override
+	{
+		//if (true == ImGui::Button("WindowButton"))
+		//{
+		//}
+
+		if (true == ImGui::Button("FreeCameraOn"))
+		{
+			GetWorld()->GetMainCamera()->FreeCameraSwitch();
+		}
+
+		ImGui::SameLine();
+		//ImGui::Text("test");
+	}
+};
 
 
 APlayGameMode::APlayGameMode()
@@ -24,7 +48,7 @@ APlayGameMode::APlayGameMode()
 	Ellie = GetWorld()->SpawnActor<AEllie>();
 	Room = GetWorld()->SpawnActor<ARoom>();
 	Room->SetRoomSize({ 500.0f, 500.0f });
-	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize() * 2.0f));
+	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()/* * 2.0f*/));
 }
 
 APlayGameMode::~APlayGameMode()
@@ -96,6 +120,33 @@ void APlayGameMode::RoomChange()
 	{
 		//Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 		Room->SetRoomSize({ 2000.0f, 800.0f });
-		Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize() * 2.0f));
+		Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()/* * 2.0f*/));
+	}
+}
+
+void APlayGameMode::LevelChangeStart()
+{
+	UEngineGUI::AllWindowOff();
+
+	{
+		std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+		}
+
+		Window->SetActive(true);
+	}
+
+	{
+		std::shared_ptr<UPlayGUIWindow> Window = UEngineGUI::FindGUIWindow<UPlayGUIWindow>("UPlayGUIWindow");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<UPlayGUIWindow>("UPlayGUIWindow");
+		}
+
+		Window->SetActive(true);
 	}
 }
