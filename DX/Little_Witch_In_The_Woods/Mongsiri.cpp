@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
+#include "Ellie.h"
 
 
 AMongsiri::AMongsiri()
@@ -49,16 +50,22 @@ void AMongsiri::BeginPlay()
 void AMongsiri::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	ChaseCheck(_DeltaTime);
 }
 
-void AMongsiri::ChaseCheck()
+void AMongsiri::ChaseCheck(float _DeltaTime)
 {
+	//FVector StartPos = GetActorLocation();
+	////FVector EndPos = /* ¿¤¸® À§Ä¡ */ ;
+
+	//FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime);
+
 	std::vector<UCollision*> Result;
-	if (false == MongsiriCollision->CollisionCheck("Ellie", Result))
+	if (true == MongsiriCollision->CollisionCheck("Ellie", Result))
 	{
-		//FVector NewCloudColPos = CloudColV[i]->GetTransformRef().WorldLocation;
-		//NewCloudColPos.X = UEngineCore::GetScreenScale().Half().X + CloudColV[i]->GetWorldScale3D().Half().X;
-		//CloudColV[i]->SetWorldLocation(NewCloudColPos);
-		//CloudRendV[i]->SetWorldLocation(NewCloudColPos);
+		//SetActorLocation(CurPos);
+
+		int a = 0;
 	}
 }

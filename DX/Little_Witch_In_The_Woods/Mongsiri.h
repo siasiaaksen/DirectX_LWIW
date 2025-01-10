@@ -16,7 +16,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void ChaseCheck();
+	void ChaseCheck(float _DeltaTime);
 
 protected:
 
@@ -24,6 +24,8 @@ private:
 	std::shared_ptr<class USpriteRenderer> MongsiriRenderer;
 	std::shared_ptr<class UCollision> MongsiriCollision;
 	std::shared_ptr<class ACameraActor> Camera;
+
+	std::shared_ptr<class AEllie> Ellie;
 
 	FVector MongsiriSize = { 50.0f, 50.0f };
 };

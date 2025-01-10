@@ -355,7 +355,7 @@ AMapEditorMode::AMapEditorMode()
 
 	TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
 	TileMapRenderer->SetupAttachment(RootComponent);
-	TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tiles", { 50.0f, 50.0f }, { 50.0f, 50.0f }, { 0.0f, 0.0f });
+	TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tiles", TileSize, TileSize, { 0.0f, 0.0f });
 }
 
 AMapEditorMode::~AMapEditorMode()

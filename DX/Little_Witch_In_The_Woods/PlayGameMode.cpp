@@ -54,11 +54,11 @@ APlayGameMode::APlayGameMode()
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 	Room->SetRoomSize({1920.0f, 1280.0f});
-	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()/* * 2.0f*/));
+	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()));
 	Room->SetActorLocation({ 0.0f, 0.0f, 500.0f });
 
 	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-	Mongsiri->SetActorLocation({ 0.0f, -200.0f, 20.0f });
+	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 20.0f });
 }
 
 APlayGameMode::~APlayGameMode()
