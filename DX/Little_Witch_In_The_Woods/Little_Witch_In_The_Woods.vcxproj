@@ -229,7 +229,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="ULWIWContentsCore.h">
+    <ClInclude Include="LWIWContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -240,6 +240,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Ellie.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="LWIWContentsCore_Resources.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -306,7 +310,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="ULWIWContentsCore.cpp">
+    <ClCompile Include="LWIWContentsCore.cpp">
       <SubType>
       </SubType>
     </ClCompile>

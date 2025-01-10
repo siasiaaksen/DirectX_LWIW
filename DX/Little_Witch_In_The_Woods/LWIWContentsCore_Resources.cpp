@@ -1,32 +1,18 @@
 #include "PreCompile.h"
-#include "ULWIWContentsCore.h"
-#include <EngineCore/Level.h>
+#include "LWIWContentsCore.h"
+#include <EngineCore/EngineGraphicDevice.h>
+#include <EngineCore/EngineVertex.h>
+#include <EngineCore/EngineIndexBuffer.h>
+#include <EngineCore/Mesh.h>
+#include <EngineCore/EngineBlend.h>
+#include <EngineCore/EngineShader.h>
+#include <EngineCore/EngineMaterial.h>
 #include <EngineCore/EngineTexture.h>
 #include <EngineCore/EngineSprite.h>
-#include <EngineCore/EngineGUI.h>
-#include <EngineCore/EngineGUIWindow.h>
-#include "ContentsEditorGUI.h"
-#include "TitleGameMode.h"
-#include "PlayGameMode.h"
-#include "MapEditorMode.h"
-#include "Ellie.h"
 
 
-CreateContentsCoreDefine(ULWIWContentsCore);
-
-ULWIWContentsCore::ULWIWContentsCore()
+void ULWIWContentsCore::LWIWResourcesSetting()
 {
-}
-
-ULWIWContentsCore::~ULWIWContentsCore()
-{
-}
-
-void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
-{
-	_Data.WindowPos = { 360, 100 };
-	_Data.WindowSize = { 1280, 720 };
-
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
@@ -78,22 +64,23 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 		UEngineSprite::CreateSpriteToMeta("Ellie_Idle.png", ".SData");
 	}
 
-	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
-	UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
-	UEngineCore::CreateLevel<AMapEditorMode, APawn>("MapEditorLevel");
-	UEngineCore::OpenLevel("PlayLevel");
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
 
-	UEngineGUI::AllWindowOff();
+		Dir.Append("Tiles");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineTexture::Load(FilePath);
+		}
 
-	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
-	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
-	Window->SetActive(true);
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 }
 
-void ULWIWContentsCore::EngineTick(float _DeltaTime)
-{
-}
-
-void ULWIWContentsCore::EngineEnd()
-{
-}

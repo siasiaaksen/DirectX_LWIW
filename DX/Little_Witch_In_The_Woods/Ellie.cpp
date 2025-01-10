@@ -147,7 +147,6 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 	}
 
 	FVector EllieHalf = EllieSize.Half();
-	FVector ElliePos = GetActorLocation();
 
 	if (_Dir.X < 0)
 	{

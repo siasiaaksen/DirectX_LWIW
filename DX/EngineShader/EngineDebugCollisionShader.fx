@@ -41,7 +41,7 @@ cbuffer FTransform : register(b0)
     float4x4 WVP;
 };
 
-VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
+VertexShaderOutPut Debug_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
@@ -53,7 +53,7 @@ cbuffer OutColor : register(b0)
     float4 Color;
 };
 
-float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
+float4 Debug_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
     return Color;
 }

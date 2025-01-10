@@ -4,7 +4,7 @@
     <ClInclude Include="PreCompile.h">
       <Filter>_PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="ULWIWContentsCore.h" />
+    <ClInclude Include="LWIWContentsCore.h" />
     <ClInclude Include="TitleGameMode.h">
       <Filter>GameMode</Filter>
     </ClInclude>
@@ -58,7 +58,7 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>_PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="ULWIWContentsCore.cpp" />
+    <ClCompile Include="LWIWContentsCore.cpp" />
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>GameMode</Filter>
     </ClCompile>
@@ -107,6 +107,7 @@
     <ClCompile Include="ContentsEditorGUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="LWIWContentsCore_Resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">

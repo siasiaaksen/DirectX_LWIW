@@ -21,5 +21,7 @@ protected:
 
 private:
 	std::shared_ptr<class UMapEditorWindow> TileMapWindow;
+	std::shared_ptr<class USpriteRenderer> PivotSpriteRenderer;
+	std::shared_ptr<class UTileMapRenderer> TileMapRenderer;
 };
 
