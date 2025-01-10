@@ -5,6 +5,13 @@
 #include <unordered_map>
 
 
+enum ETileMapType
+{
+	Rect,
+	Iso,
+};
+
+
 struct FTileIndex
 {
 	union
@@ -69,7 +76,7 @@ public:
 		return Sprite->GetName();
 	}
 
-	ENGINEAPI void SetTileSetting(std::string_view _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot);
+	ENGINEAPI void SetTileSetting(ETileMapType _Type, std::string_view _Name, FVector _TileSize, FVector _ImageSize, FVector _Pivot);
 
 	ENGINEAPI void SetTile(FVector _Pos, int _Spriteindex);
 	ENGINEAPI void SetTile(int _X, int _Y, int _Spriteindex);
@@ -81,6 +88,9 @@ public:
 	{
 		return Sprite;
 	}
+
+	FTileIndex WorldPosToTileIndex(FVector _Pos);
+	FVector TileIndexToWorldPos(FTileIndex _Pos);
 
 protected:
 	ENGINEAPI void Render(class UEngineCamera* _Camera, float _DeltaTime) override;
@@ -95,6 +105,7 @@ private:
 	FVector TileSize;
 	FVector ImageSize;
 	FVector TilePivot;
+	ETileMapType TileMapType = ETileMapType::Rect;
 
 	class UEngineSprite* Sprite = nullptr;
 

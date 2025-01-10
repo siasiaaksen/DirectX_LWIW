@@ -56,9 +56,9 @@ void AMongsiri::ChaseCheck()
 	std::vector<UCollision*> Result;
 	if (false == MongsiriCollision->CollisionCheck("Ellie", Result))
 	{
-		FVector NewCloudColPos = CloudColV[i]->GetTransformRef().WorldLocation;
-		NewCloudColPos.X = UEngineCore::GetScreenScale().Half().X + CloudColV[i]->GetWorldScale3D().Half().X;
-		CloudColV[i]->SetWorldLocation(NewCloudColPos);
-		CloudRendV[i]->SetWorldLocation(NewCloudColPos);
+		//FVector NewCloudColPos = CloudColV[i]->GetTransformRef().WorldLocation;
+		//NewCloudColPos.X = UEngineCore::GetScreenScale().Half().X + CloudColV[i]->GetWorldScale3D().Half().X;
+		//CloudColV[i]->SetWorldLocation(NewCloudColPos);
+		//CloudRendV[i]->SetWorldLocation(NewCloudColPos);
 	}
 }

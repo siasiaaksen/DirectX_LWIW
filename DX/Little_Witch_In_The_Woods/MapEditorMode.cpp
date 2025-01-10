@@ -46,6 +46,8 @@ public:
 			for (size_t i = 0; i < Sprite->GetSpriteCount(); i++)
 			{
 				UEngineTexture* Texture = Sprite->GetTexture(i);
+				FSpriteData Data = Sprite->GetSpriteData(i);
+
 				ImTextureID SRV = reinterpret_cast<ImTextureID>(Texture->GetSRV());
 
 				std::string Text = std::to_string(i);
@@ -59,7 +61,9 @@ public:
 					}
 				}
 
-				if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }))
+				ImVec2 Pos = { Data.CuttingPos.X, Data.CuttingPos.Y };
+				ImVec2 Size = { Data.CuttingPos.X + Data.CuttingSize.X, Data.CuttingPos.Y + Data.CuttingSize.Y };
+				if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }, Pos, Size))
 				{
 					SelectTileIndex = static_cast<int>(i);
 				}
@@ -74,7 +78,7 @@ public:
 				{
 					for (int x = 0; x < TileCountX; x++)
 					{
-						TileMapRenderer->SetTile(x, y, 0);
+						TileMapRenderer->SetTile(x, y, SelectTileIndex);
 					}
 				}
 			}
@@ -350,7 +354,7 @@ AMapEditorMode::AMapEditorMode()
 
 	TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
 	TileMapRenderer->SetupAttachment(RootComponent);
-	TileMapRenderer->SetTileSetting("Tiles", { 50.0f, 50.0f }, { 50.0f, 50.0f }, { 0.0f, 0.0f });
+	TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tiles", { 50.0f, 50.0f }, { 50.0f, 50.0f }, { 0.0f, 0.0f });
 }
 
 AMapEditorMode::~AMapEditorMode()

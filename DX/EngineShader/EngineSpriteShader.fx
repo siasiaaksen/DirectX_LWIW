@@ -91,6 +91,12 @@ cbuffer ResultColor : register(b0)
 float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+
+    if (0.0f >= Color.a)
+    {
+        clip(-1);
+    }
+    
     Color += PlusColor;
     Color *= MulColor;
     return Color;
