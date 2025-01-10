@@ -163,13 +163,10 @@ public:
 
 			//if (0 < Arr.size())
 			//{
-			//	ImGui::ListBox("AllActorList", &ObjectItem, &Arr[0], Arr.size());
-
-			//	// AllMonsterList[SelectItem]->Destroy();
+			//	ImGui::ListBox("AllActorList", &ObjectItem, &Arr[0], static_cast<int>(Arr.size()));
 
 			//	if (ObjectItem != -1)
 			//	{
-			//		// AllMonsterList[ObjectItem]->
 			//	}
 
 			//	if (true == ImGui::Button("Delete"))
@@ -215,7 +212,7 @@ public:
 			{
 				//std::list<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorListByClass<AMon>();
 
-				//UEngineSerializer Ser;
+				UEngineSerializer Ser;
 
 				//Ser << static_cast<int>(AllMonsterList.size());
 
@@ -225,10 +222,12 @@ public:
 				//	Actor->Serialize(Ser);
 				//}
 
-				//UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
+				TileMapRenderer->Serialize(Ser);
 
-				//NewFile.FileOpen("wb");
-				//NewFile.Write(Ser);
+				UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
+
+				NewFile.FileOpen("wb");
+				NewFile.Write(Ser);
 			}
 		}
 
@@ -261,11 +260,11 @@ public:
 
 			if (GetOpenFileNameA(&ofn) == TRUE)
 			{
-				//UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
-				//UEngineSerializer Ser;
+				UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
+				UEngineSerializer Ser;
 
-				//NewFile.FileOpen("rb");
-				//NewFile.Read(Ser);
+				NewFile.FileOpen("rb");
+				NewFile.Read(Ser);
 
 				//int MonsterCount = 0;
 
@@ -294,6 +293,8 @@ public:
 
 				//	NewMon->DeSerialize(Ser);
 				//}
+
+				TileMapRenderer->DeSerialize(Ser);
 			}
 		}
 	}
