@@ -26,6 +26,7 @@ protected:
 private:
 	std::shared_ptr<class AEllie> Ellie = nullptr;
 	std::shared_ptr<class ARoom> Room = nullptr;
+	std::shared_ptr<class AMongsiri> Mongsiri = nullptr;
 	std::shared_ptr<class ACameraActor> Camera = nullptr;
 };
 

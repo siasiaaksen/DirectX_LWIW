@@ -176,6 +176,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MapEditorMode.h" />
+    <ClInclude Include="Mongsiri.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayGameMode.h">
       <SubType>
       </SubType>
@@ -248,6 +252,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MapEditorMode.cpp" />
+    <ClCompile Include="Mongsiri.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PlayGameMode.cpp">
       <SubType>
       </SubType>

@@ -53,6 +53,9 @@
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Mongsiri.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -108,6 +111,9 @@
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="LWIWContentsCore_Resources.cpp" />
+    <ClCompile Include="Mongsiri.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">

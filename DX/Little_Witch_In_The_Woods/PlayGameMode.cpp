@@ -10,6 +10,7 @@
 #include "ContentsEditorGUI.h"
 #include "Ellie.h"
 #include "Room.h"
+#include "Mongsiri.h"
 
 
 class UPlayGUIWindow : public UEngineGUIWindow
@@ -36,7 +37,9 @@ APlayGameMode::APlayGameMode()
 {
 	GetWorld()->CreateCollisionProfile("Room");
 	GetWorld()->CreateCollisionProfile("Ellie");
+	GetWorld()->CreateCollisionProfile("Mongsiri");
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
+	GetWorld()->LinkCollisionProfile("Ellie", "Mongsiri");
 
 	// Ä«¸Þ¶ó
 	{
@@ -46,13 +49,16 @@ APlayGameMode::APlayGameMode()
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
-
 	Ellie = GetWorld()->SpawnActor<AEllie>();
-	Ellie->SetActorLocation({ 0.0f, -100.0f });
+	Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 	Room->SetRoomSize({1920.0f, 1280.0f});
 	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()/* * 2.0f*/));
+	Room->SetActorLocation({ 0.0f, 0.0f, 500.0f });
+
+	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
+	Mongsiri->SetActorLocation({ 0.0f, -200.0f, 20.0f });
 }
 
 APlayGameMode::~APlayGameMode()

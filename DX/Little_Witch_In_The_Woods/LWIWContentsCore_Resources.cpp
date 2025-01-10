@@ -62,6 +62,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 
 		UEngineSprite::CreateSpriteToMeta("Ellie_Walk.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Idle.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Idle.png", ".SData");
 	}
 
 	{
