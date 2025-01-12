@@ -30,7 +30,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	LWIWResourcesSetting();
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
-	UEngineCore::CreateLevel<APlayGameMode, APawn>("PlayLevel");
+	UEngineCore::CreateLevel<APlayGameMode, AEllie>("PlayLevel");
 	UEngineCore::CreateLevel<AMapEditorMode, APawn>("MapEditorLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 

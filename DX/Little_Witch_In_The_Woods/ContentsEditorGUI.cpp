@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "ContentsEditorGUI.h"
-#include "EngineCore/EngineCore.h"
-#include "EngineCore/EngineGUI.h"
+#include <EngineCore/EngineCore.h>
+#include <EngineCore/EngineGUI.h>
 
 
 UContentsEditorGUI::UContentsEditorGUI()

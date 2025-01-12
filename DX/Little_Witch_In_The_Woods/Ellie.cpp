@@ -166,7 +166,7 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 	}
 
 	//                        RoomSize
-	FVector NextPoint = FVector(990.0f, -640.0f) + GetActorLocation() + EllieHalf;
+	FVector NextPoint = FVector(1600.0f, -900.0f) + GetActorLocation() + EllieHalf;
 	NextPoint.Y *= -1.0f;
 
 	UColor Color = ColImage.GetColor(NextPoint, UColor::WHITE);

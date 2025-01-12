@@ -19,7 +19,7 @@
 //};
 
 
-enum class EEditMode
+enum class EEDITMode
 {
 	TileMap,
 	Object,
@@ -32,7 +32,7 @@ public:
 	int SelectItem = 0;
 	int ObjectItem = -1;
 	UTileMapRenderer* TileMapRenderer = nullptr;
-	EEditMode Mode = EEditMode::TileMap;
+	EEDITMode Mode = EEDITMode::TileMap;
 
 	int TileCountX = 10;
 	int TileCountY = 10;
@@ -302,28 +302,28 @@ public:
 	void OnGUI() override
 	{
 		{
-			if (Mode == EEditMode::Object)
+			if (Mode == EEDITMode::Object)
 			{
 				if (ImGui::Button("ObjectMode"))
 				{
-					Mode = EEditMode::TileMap;
+					Mode = EEDITMode::TileMap;
 				}
 			}
 			else
 			{
 				if (ImGui::Button("TileMapMode"))
 				{
-					Mode = EEditMode::Object;
+					Mode = EEDITMode::Object;
 				}
 			}
 		}
 
 		switch (Mode)
 		{
-		case EEditMode::TileMap:
+		case EEDITMode::TileMap:
 			TileMapMode();
 			break;
-		case EEditMode::Object:
+		case EEDITMode::Object:
 			ObjectMode();
 			break;
 		default:

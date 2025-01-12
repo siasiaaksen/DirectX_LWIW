@@ -48,17 +48,6 @@ APlayGameMode::APlayGameMode()
 		Camera->GetCameraComponent()->SetProjectionType(EProjectionType::Orthographic);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
-
-	Ellie = GetWorld()->SpawnActor<AEllie>();
-	Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
-
-	Room = GetWorld()->SpawnActor<ARoom>();
-	Room->SetRoomSize({1920.0f, 1280.0f});
-	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()));
-	Room->SetActorLocation({ 0.0f, 0.0f, 500.0f });
-
-	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 20.0f });
 }
 
 APlayGameMode::~APlayGameMode()
@@ -68,6 +57,17 @@ APlayGameMode::~APlayGameMode()
 void APlayGameMode::BeginPlay()
 {
 	AActor::BeginPlay();
+
+	Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
+	Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
+
+	Room = GetWorld()->SpawnActor<ARoom>();
+	Room->SetRoomSize({ 3200.0f, 1800.0f });
+	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()));
+	Room->SetActorLocation({ 0.0f, 0.0f, 500.0f });
+
+	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
+	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 20.0f });
 }
 
 void APlayGameMode::Tick(float _DeltaTime)

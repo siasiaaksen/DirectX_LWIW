@@ -21,8 +21,8 @@ AMongsiri::AMongsiri()
 			MongsiriRenderer->SetAutoScaleRatio(3.0f);
 
 			MongsiriRenderer->SetSprite("Mongsiri_Idle.png");
-			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_Front", "Mongsiri_Idle.png", { 0, 1, 2, 1 }, 0.2f);
-			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_Back", "Mongsiri_Idle.png", { 3, 4, 5, 4 }, 0.2f);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_Front", "Mongsiri_Idle.png", { 0, 1, 2, 1 }, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_Back", "Mongsiri_Idle.png", { 3, 4, 5, 4 }, AnimSpeed);
 			MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_Front");
 		}
 
@@ -56,16 +56,14 @@ void AMongsiri::Tick(float _DeltaTime)
 
 void AMongsiri::ChaseCheck(float _DeltaTime)
 {
-	//FVector StartPos = GetActorLocation();
-	////FVector EndPos = /* ¿¤¸® À§Ä¡ */ ;
+	FVector StartPos = GetActorLocation();
+	FVector EndPos = GetWorld()->GetMainPawn()->GetActorLocation();
 
-	//FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime);
+	FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime);
 
 	std::vector<UCollision*> Result;
 	if (true == MongsiriCollision->CollisionCheck("Ellie", Result))
 	{
-		//SetActorLocation(CurPos);
-
-		int a = 0;
+		SetActorLocation(CurPos);
 	}
 }

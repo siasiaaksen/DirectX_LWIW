@@ -35,17 +35,11 @@
     <ClInclude Include="TitleStar.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="Ellie.h">
-      <Filter>Play</Filter>
-    </ClInclude>
     <ClInclude Include="TitleTrainSmoke.h">
       <Filter>Title</Filter>
     </ClInclude>
     <ClInclude Include="TitleCloud.h">
       <Filter>Title</Filter>
-    </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>Play</Filter>
     </ClInclude>
     <ClInclude Include="MapEditorMode.h">
       <Filter>GameMode</Filter>
@@ -53,8 +47,14 @@
     <ClInclude Include="ContentsEditorGUI.h">
       <Filter>GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellie.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
     <ClInclude Include="Mongsiri.h">
-      <Filter>Play</Filter>
+      <Filter>Play\Creatures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -92,17 +92,11 @@
     <ClCompile Include="TitleStar.cpp">
       <Filter>Title</Filter>
     </ClCompile>
-    <ClCompile Include="Ellie.cpp">
-      <Filter>Play</Filter>
-    </ClCompile>
     <ClCompile Include="TitleTrainSmoke.cpp">
       <Filter>Title</Filter>
     </ClCompile>
     <ClCompile Include="TitleCloud.cpp">
       <Filter>Title</Filter>
-    </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="MapEditorMode.cpp">
       <Filter>GameMode</Filter>
@@ -111,8 +105,14 @@
       <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="LWIWContentsCore_Resources.cpp" />
+    <ClCompile Include="Room.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellie.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
     <ClCompile Include="Mongsiri.cpp">
-      <Filter>Play</Filter>
+      <Filter>Play\Creatures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +130,12 @@
     </Filter>
     <Filter Include="GUI">
       <UniqueIdentifier>{99de96d3-5b72-47df-aa78-5ef2ef5d70f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Global">
+      <UniqueIdentifier>{41b66bab-ae82-4b57-929f-174ae54f05a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Creatures">
+      <UniqueIdentifier>{908d5220-e2fd-4b33-a36f-b259ad223949}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
