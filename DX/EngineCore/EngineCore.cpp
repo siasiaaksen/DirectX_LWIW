@@ -183,7 +183,8 @@ void UEngineCore::EngineFrame()
 	{
 		UEngineInput::KeyCheck(DeltaTime);
 	}
-	else {
+	else 
+	{
 		UEngineInput::KeyReset();
 	}
 

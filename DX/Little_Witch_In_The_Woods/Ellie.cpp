@@ -94,8 +94,8 @@ void AEllie::Idle()
 
 	EllieRenderer->ChangeAnimation("Ellie_Idle" + DirString);
 
-	if (true == UEngineInput::IsPress('W') || true == UEngineInput::IsPress('S') ||
-		true == UEngineInput::IsPress('A') || true == UEngineInput::IsPress('D'))
+	if (true == UEngineInput::IsPress(VK_UP) || true == UEngineInput::IsPress(VK_DOWN) ||
+		true == UEngineInput::IsPress(VK_LEFT) || true == UEngineInput::IsPress(VK_RIGHT))
 	{
 		State = EEllieState::MOVE;
 	}
@@ -107,19 +107,19 @@ void AEllie::Move(float _DeltaTime)
 
 	FVector Pos = FVector::ZERO;
 
-	if (true == UEngineInput::IsPress('W'))
+	if (true == UEngineInput::IsPress(VK_UP))
 	{
 		Pos += FVector::UP;
 	}
-	if (true == UEngineInput::IsPress('S'))
+	if (true == UEngineInput::IsPress(VK_DOWN))
 	{
 		Pos += FVector::DOWN;
 	}
-	if (true == UEngineInput::IsPress('A'))
+	if (true == UEngineInput::IsPress(VK_LEFT))
 	{
 		Pos += FVector::LEFT;
 	}
-	if (true == UEngineInput::IsPress('D'))
+	if (true == UEngineInput::IsPress(VK_RIGHT))
 	{
 		Pos += FVector::RIGHT;
 	}
@@ -131,8 +131,8 @@ void AEllie::Move(float _DeltaTime)
 	
 	EllieRenderer->ChangeAnimation("Ellie_Walk" + DirString);
 
-	if (true == UEngineInput::IsUp('W') || true == UEngineInput::IsUp('S') ||
-		true == UEngineInput::IsUp('A') || true == UEngineInput::IsUp('D'))
+	if (true == UEngineInput::IsUp(VK_UP) || true == UEngineInput::IsUp(VK_DOWN) ||
+		true == UEngineInput::IsUp(VK_LEFT) || true == UEngineInput::IsUp(VK_RIGHT))
 	{
 		State = EEllieState::IDLE;
 	}
@@ -180,14 +180,14 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 
 void AEllie::DirCheck()
 {
-	if (true == UEngineInput::IsPress('W'))
+	if (true == UEngineInput::IsPress(VK_UP))
 	{
-		if (true == UEngineInput::IsPress('A'))
+		if (true == UEngineInput::IsPress(VK_LEFT))
 		{
 			DirString = "_BLeft";
 			return;
 		}
-		if (true == UEngineInput::IsPress('D'))
+		if (true == UEngineInput::IsPress(VK_RIGHT))
 		{
 			DirString = "_BRight";
 			return;
@@ -195,14 +195,14 @@ void AEllie::DirCheck()
 
 		DirString = "_Back";
 	}
-	if (true == UEngineInput::IsPress('S'))
+	if (true == UEngineInput::IsPress(VK_DOWN))
 	{
-		if (true == UEngineInput::IsPress('A'))
+		if (true == UEngineInput::IsPress(VK_LEFT))
 		{
 			DirString = "_FLeft";
 			return;
 		}
-		if (true == UEngineInput::IsPress('D'))
+		if (true == UEngineInput::IsPress(VK_RIGHT))
 		{
 			DirString = "_FRight";
 			return;
@@ -210,11 +210,11 @@ void AEllie::DirCheck()
 
 		DirString = "_Front";
 	}
-	if (true == UEngineInput::IsPress('A'))
+	if (true == UEngineInput::IsPress(VK_LEFT))
 	{
 		DirString = "_FLeft";
 	}
-	if (true == UEngineInput::IsPress('D'))
+	if (true == UEngineInput::IsPress(VK_RIGHT))
 	{
 		DirString = "_FRight";
 	}
