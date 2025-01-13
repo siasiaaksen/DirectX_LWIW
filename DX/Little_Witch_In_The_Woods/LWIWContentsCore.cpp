@@ -5,6 +5,7 @@
 #include <EngineCore/EngineSprite.h>
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/EngineGUIWindow.h>
+#include <EngineCore/HUD.h>
 #include "ContentsEditorGUI.h"
 #include "TitleGameMode.h"
 #include "PlayGameMode.h"
@@ -29,9 +30,9 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 
 	LWIWResourcesSetting();
 
-	UEngineCore::CreateLevel<ATitleGameMode, APawn>("TitleLevel");
-	UEngineCore::CreateLevel<APlayGameMode, AEllie>("PlayLevel");
-	UEngineCore::CreateLevel<AMapEditorMode, APawn>("MapEditorLevel");
+	UEngineCore::CreateLevel<ATitleGameMode, APawn, AHUD>("TitleLevel");
+	UEngineCore::CreateLevel<APlayGameMode, AEllie, AHUD>("PlayLevel");
+	UEngineCore::CreateLevel<AMapEditorMode, APawn, AHUD>("MapEditorLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 
 	UEngineGUI::AllWindowOff();

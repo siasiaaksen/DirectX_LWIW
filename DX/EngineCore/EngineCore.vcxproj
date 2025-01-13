@@ -280,6 +280,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="IContentsCore.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
@@ -332,6 +336,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="TimeEventComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TransformObject.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -447,6 +459,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_dx11.cpp" />
@@ -504,6 +520,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TimeEventComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TransformObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
       <SubType>
       </SubType>
     </ClCompile>

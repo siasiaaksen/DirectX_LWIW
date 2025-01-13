@@ -118,6 +118,8 @@ public:
 protected:
 
 private:
+	class AHUD* HUD = nullptr;
+
 	class AGameMode* GameMode = nullptr;
 	class APawn* MainPawn = nullptr;
 
@@ -135,6 +137,8 @@ private:
 
 	std::map<std::string, std::list<std::string>> CollisionLinks;
 
-	ENGINEAPI void InitLevel(AGameMode* _GameMode, APawn* _Pawn);
+	std::map<int, std::list<std::shared_ptr<class UWidget>>> Widgets;
+
+	ENGINEAPI void InitLevel(AGameMode* _GameMode, APawn* _Pawn, AHUD* _HUD);
 };
 
