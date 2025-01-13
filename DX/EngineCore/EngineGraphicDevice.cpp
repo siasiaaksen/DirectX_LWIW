@@ -2,6 +2,7 @@
 #include "EngineGraphicDevice.h"
 #include "EngineTexture.h"
 #include "EngineDepthStencilState.h"
+#include "EngineRenderTarget.h"
 
 
 UEngineGraphicDevice::UEngineGraphicDevice()
@@ -16,8 +17,6 @@ UEngineGraphicDevice::~UEngineGraphicDevice()
 void UEngineGraphicDevice::Release()
 {
     MainAdapter = nullptr;
-    DXBackBufferTexture = nullptr;
-    RTV = nullptr;
     SwapChain = nullptr;
     Context = nullptr;
     Device = nullptr;
@@ -146,24 +145,6 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
 {
     FVector Size = _Window.GetWindowSize();
 
-    D3D11_TEXTURE2D_DESC Desc = { 0 };
-    Desc.ArraySize = 1;
-    Desc.Width = Size.iX();
-    Desc.Height = Size.iY();
-    Desc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-
-    Desc.SampleDesc.Count = 1;
-    Desc.SampleDesc.Quality = 0;
-
-    Desc.MipLevels = 1;
-    Desc.Usage = D3D11_USAGE_DEFAULT;
-    Desc.CPUAccessFlags = 0;
-    Desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
-
-    DepthTex = std::make_shared<UEngineTexture>();
-
-    DepthTex->ResCreate(Desc);
-
     DXGI_SWAP_CHAIN_DESC ScInfo = { 0 };
 
     ScInfo.BufferCount = 2;
@@ -209,36 +190,31 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& _Window)
         MSGASSERT("스왑체인 제작에 실패했습니다.");
     }
 
-    ID3D11Texture2D* TexPtr = nullptr;
+    Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
 
     if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &DXBackBufferTexture))
     {
         MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
     };
 
-    //                                         업캐스팅(ID3D11Texture2D는 ~리소스를 상속받고 있음)
-    if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture.Get(), nullptr, &RTV))
-    {
-        MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
-    }
+    BackBufferTarget = std::make_shared<UEngineRenderTarget>();
+    BackBufferTarget->CreateTarget(DXBackBufferTexture);
+    BackBufferTarget->CreateDepth();
 }
 
 void UEngineGraphicDevice::RenderStart()
 {
-    FVector ClearColor;
+    BackBufferTarget->Clear();
+    BackBufferTarget->Setting();
 
-    // 아무것도 안 띄웠을 때 처음 화면 색깔
-    // 한 번 싹 지워
-    ClearColor = FVector(0.46f, 0.75f, 0.65f, 1.0f);
+    //Context->ClearRenderTargetView(RTV.Get(), ClearColor.Arr1D);
+    //Context->ClearDepthStencilView(DepthTex->GetDSV(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-    Context->ClearRenderTargetView(RTV.Get(), ClearColor.Arr1D);
-    Context->ClearDepthStencilView(DepthTex->GetDSV(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-    // 여기에 다시 그려
-    ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRTV();
-    ID3D11RenderTargetView* ArrRtv[16] = { 0 };
-    ArrRtv[0] = RTV; 
-    Context->OMSetRenderTargets(1, &ArrRtv[0], DepthTex->GetDSV());
+    //// 여기에 다시 그려
+    //ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRTV();
+    //ID3D11RenderTargetView* ArrRtv[16] = { 0 };
+    //ArrRtv[0] = RTV; 
+    //Context->OMSetRenderTargets(1, &ArrRtv[0], DepthTex->GetDSV());
 }
 
 void UEngineGraphicDevice::RenderEnd()

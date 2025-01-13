@@ -7,6 +7,7 @@
 #include "EngineCamera.h"
 #include "CameraActor.h"
 #include "EngineGUI.h"
+#include "EngineRenderTarget.h"
 
 
 std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)
@@ -26,7 +27,12 @@ std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int _Order)
 
 ULevel::ULevel()
 {
-	SpawnCamera(0);
+	SpawnCamera(EEngineCameraType::MainCamera);
+	SpawnCamera(EEngineCameraType::UICamera);
+
+	LastRenderTarget = std::make_shared<UEngineRenderTarget>();
+	LastRenderTarget->CreateTarget(UEngineCore::GetScreenScale());
+	LastRenderTarget->CreateDepth();
 }
 
 ULevel::~ULevel()
@@ -110,11 +116,17 @@ void ULevel::Render(float _DeltaTime)
 	// Áö¿î´Ù
 	UEngineCore::GetDevice().RenderStart();
 
+	LastRenderTarget->Clear();
+
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameras)
 	{
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->GetCameraComponent()->Render(_DeltaTime);
+		Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
 	}
+
+	std::shared_ptr<UEngineRenderTarget> BackBuffer = UEngineCore::GetDevice().GetBackBufferTarget();
+	LastRenderTarget->MergeTo(BackBuffer);
 
 	{
 		std::shared_ptr<class ACameraActor> Camera = GetMainCamera();

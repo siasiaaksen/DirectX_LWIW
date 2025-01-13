@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "EngineCamera.h"
 #include "Renderer.h"
+#include "EngineRenderTarget.h"
 
 
 UEngineCamera::UEngineCamera()
@@ -24,6 +25,10 @@ void UEngineCamera::BeginPlay()
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
 	ViewPortInfo.MaxDepth = 1.0f;
+
+	CameraTarget = std::make_shared<UEngineRenderTarget>();
+	CameraTarget->CreateTarget(UEngineCore::GetScreenScale());
+	CameraTarget->CreateDepth();
 }
 
 void UEngineCamera::Tick(float _DetlaTime)
@@ -35,6 +40,9 @@ void UEngineCamera::Tick(float _DetlaTime)
 void UEngineCamera::Render(float _DetlaTime)
 {
 	UEngineCore::GetDevice().GetContext()->RSSetViewports(1, &ViewPortInfo);
+
+	CameraTarget->Clear();
+	CameraTarget->Setting();
 
 	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Renderers)
 	{
