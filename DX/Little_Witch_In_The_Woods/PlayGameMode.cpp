@@ -37,9 +37,11 @@ APlayGameMode::APlayGameMode()
 {
 	GetWorld()->CreateCollisionProfile("Room");
 	GetWorld()->CreateCollisionProfile("Ellie");
-	GetWorld()->CreateCollisionProfile("Mongsiri");
+	GetWorld()->CreateCollisionProfile("MongsiriOuter");
+	GetWorld()->CreateCollisionProfile("MongsiriInner");
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
-	GetWorld()->LinkCollisionProfile("Ellie", "Mongsiri");
+	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
+	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
 
 	// Ä«¸Þ¶ó
 	{
@@ -62,12 +64,16 @@ void APlayGameMode::BeginPlay()
 	Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
 
 	Room = GetWorld()->SpawnActor<ARoom>();
-	Room->SetRoomSize({ 3200.0f, 1800.0f });
-	Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()));
-	Room->SetActorLocation({ 0.0f, 0.0f, 500.0f });
+
+	Room->SetColImage("Map_Col.png", "Play");
+	FVector RoomSize = Room->GetColImage().GetImageScale();
+
+	Room->SetRoomSize(RoomSize);
+	Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+	Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
 	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 20.0f });
+	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
 }
 
 void APlayGameMode::Tick(float _DeltaTime)

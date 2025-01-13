@@ -1,4 +1,5 @@
 #pragma once
+#include <EnginePlatform/EngineWinImage.h>
 #include <EngineCore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
@@ -38,6 +39,13 @@ public:
 		return CollisionSize;
 	}
 
+	void SetColImage(std::string_view _ColImageName, std::string_view _FolderName);
+
+	UEngineWinImage& GetColImage()
+	{
+		return ColImage;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -49,5 +57,7 @@ private:
 
 	FVector RoomSize/* = { 1280.0f, 720.0f }*/;
 	FVector CollisionSize;
+
+	UEngineWinImage ColImage;
 };
 

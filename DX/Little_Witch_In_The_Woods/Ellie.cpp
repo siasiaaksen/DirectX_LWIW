@@ -59,7 +59,7 @@ AEllie::AEllie()
 		EllieCollision->SetupAttachment(RootComponent);
 	}
 
-	SetColImage("MainField_Col.png", "Play");
+	SetColImage("Map_Col.png", "Play");
 }
 
 AEllie::~AEllie()
@@ -86,6 +86,12 @@ void AEllie::Tick(float _DeltaTime)
 	default:
 		break;
 	}
+
+	// Sorting
+ 	FVector Pos = GetActorLocation();
+	Pos.Z = Pos.Y;
+
+	SetActorLocation(Pos);
 }
 
 void AEllie::Idle()
@@ -150,7 +156,7 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 
 	if (_Dir.X < 0)
 	{
-		EllieHalf.X -= EllieHalf.X * 3.0f;
+		EllieHalf.X -= EllieHalf.X * 2.0f;
 	}
 	if (_Dir.X >= 0)
 	{
@@ -165,8 +171,10 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 		EllieHalf.Y -= EllieHalf.Y * 0.5f;
 	}
 
-	//                        RoomSize
-	FVector NextPoint = FVector(1600.0f, -900.0f) + GetActorLocation() + EllieHalf;
+	FVector ColImageSize = FVector(ColImage.GetImageScale().Half().X, -ColImage.GetImageScale().Half().Y);
+
+	//                    RoomSize
+	FVector NextPoint = ColImageSize + GetActorLocation() + EllieHalf;
 	NextPoint.Y *= -1.0f;
 
 	UColor Color = ColImage.GetColor(NextPoint, UColor::WHITE);

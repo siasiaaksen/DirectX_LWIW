@@ -43,7 +43,7 @@ public:
 	}
 
 	void SetColImage(std::string_view _ColImageName, std::string_view _FolderName);
-	
+
 	UEngineWinImage& GetColImage()
 	{
 		return ColImage;

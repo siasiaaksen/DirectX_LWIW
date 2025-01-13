@@ -30,6 +30,7 @@ ARoom::ARoom()
 		BaseCollision->SetScale3D(CollisionSize);
 		BaseCollision->SetupAttachment(RootComponent);
 	}
+
 }
 
 ARoom::~ARoom()
@@ -48,5 +49,22 @@ void ARoom::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsDown(VK_F2))
 	{
 		BaseColSprite->SetActiveSwitch();
+	}
+}
+
+void ARoom::SetColImage(std::string_view _ColImageName, std::string_view _FolderName)
+{
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+
+		Dir.Append(_FolderName);
+		UEngineFile ImageFiles = Dir.GetFile(_ColImageName);
+
+		ColImage.Load(nullptr, ImageFiles.GetPathToString());
 	}
 }
