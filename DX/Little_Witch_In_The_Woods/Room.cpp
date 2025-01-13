@@ -13,14 +13,14 @@ ARoom::ARoom()
 		BaseSprite = CreateDefaultSubObject<USpriteRenderer>();
 		BaseSprite->SetTexture("Map.png");
 		BaseSprite->SetScale3D(RoomSize);
-		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 100.0f });
+		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 1000.0f });
 		BaseSprite->SetupAttachment(RootComponent);
 	}
 
 	{
 		BaseColSprite = CreateDefaultSubObject<USpriteRenderer>();
 		BaseColSprite->SetTexture("Map_Col.png", true, 1.0f);
-		BaseColSprite->SetWorldLocation({ 0.0f, 0.0f, 80.0f });
+		BaseColSprite->SetWorldLocation({ 0.0f, 0.0f, 800.0f });
 		BaseColSprite->SetupAttachment(RootComponent);
 	}
 

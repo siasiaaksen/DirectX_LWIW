@@ -87,6 +87,8 @@ void AEllie::Tick(float _DeltaTime)
 		break;
 	}
 
+	CollectItem();
+
 	// Sorting
  	FVector Pos = GetActorLocation();
 	Pos.Z = Pos.Y;
@@ -245,3 +247,15 @@ void AEllie::SetColImage(std::string_view _ColImageName, std::string_view _Folde
 	}
 }
 
+void AEllie::CollectItem()
+{
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		// 엘리 위치 이동 및 크리쳐의 콜랙트 관련 함수 호출
+
+		std::vector<UCollision*> Result;
+		if (true == EllieCollision->CollisionCheck("MongsiriInner", Result))
+		{
+		}
+	}
+}

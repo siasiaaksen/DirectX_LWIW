@@ -37,6 +37,8 @@ public:
 	bool IsMoveCheck(FVector _Dir);
 	void DirCheck();
 
+	void CollectItem();
+
 	FVector GetEllieSize()
 	{
 		return EllieSize;
