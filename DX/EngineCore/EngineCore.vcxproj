@@ -213,6 +213,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineEnums.h" />
+    <ClInclude Include="EngineFont.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="EngineGraphicDevice.h">
       <SubType>
       </SubType>
@@ -332,6 +336,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h" />
     <ClInclude Include="TileMapRenderer.h">
       <SubType>
       </SubType>
@@ -391,6 +396,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="EngineDeviceBuffer.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EngineFont.cpp">
       <SubType>
       </SubType>
     </ClCompile>
