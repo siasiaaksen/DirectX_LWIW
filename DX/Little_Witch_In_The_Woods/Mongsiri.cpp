@@ -17,21 +17,31 @@ AMongsiri::AMongsiri()
 	{
 		MongsiriRenderer = CreateDefaultSubObject<USpriteRenderer>();
 		MongsiriRenderer->SetupAttachment(RootComponent);
-		MongsiriRenderer->SetAutoScaleRatio(3.0f);
+		MongsiriRenderer->SetAutoScaleRatio(2.5f);
 
 		{
 			MongsiriRenderer->SetSprite("Mongsiri_Idle.png");
-			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_Front", "Mongsiri_Idle.png", { 0, 1, 2, 1 }, AnimSpeed);
-			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_Back", "Mongsiri_Idle.png", { 3, 4, 5, 4 }, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_FLeft", "Mongsiri_Idle.png", { 0, 1, 2, 1 }, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_BLeft", "Mongsiri_Idle.png", { 3, 4, 5, 4 }, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_FRight", "Mongsiri_Idle.png", { 6, 7, 8, 7 }, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Idle_BRight", "Mongsiri_Idle.png", { 9, 10, 11, 10 }, AnimSpeed);
 		}
 
 		{
 			MongsiriRenderer->SetSprite("Mongsiri_Jump.png");
-			MongsiriRenderer->CreateAnimation("Mongsiri_Jump_Front", "Mongsiri_Jump.png", 0, 9, AnimSpeed);
-			MongsiriRenderer->CreateAnimation("Mongsiri_Jump_Back", "Mongsiri_Jump.png", 10, 19, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Jump_FLeft", "Mongsiri_Jump.png", 0, 9, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Jump_BLeft", "Mongsiri_Jump.png", 10, 19, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Jump_FRight", "Mongsiri_Jump.png", 20, 29, AnimSpeed);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Jump_BRight", "Mongsiri_Jump.png", 30, 39, AnimSpeed);
 		}
 
-		MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_Front");
+		{
+			MongsiriRenderer->SetSprite("Mongsiri_Collected.png");
+			MongsiriRenderer->CreateAnimation("Mongsiri_Collected_FLeft", "Mongsiri_Collected.png", 0, 6, AnimSpeed, false);
+			MongsiriRenderer->CreateAnimation("Mongsiri_Collected_FRight", "Mongsiri_Collected.png", { 13, 12, 11, 10, 9, 8, 7 }, AnimSpeed, false);
+		}
+
+		MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_FLeft");
 	}
 
 	{
@@ -48,7 +58,7 @@ AMongsiri::AMongsiri()
 		{
 			MongsiriInnerCol = CreateDefaultSubObject<UCollision>();
 			MongsiriInnerCol->SetCollisionProfileName("MongsiriInner");
-			MongsiriInnerCol->SetScale3D(MongsiriSize * 10);
+			MongsiriInnerCol->SetScale3D(MongsiriSize * 2);
 			FVector CollisionCenter;
 			CollisionCenter.Y = MongsiriSize.Y - MongsiriSize.Half().Y;
 			MongsiriInnerCol->SetWorldLocation(CollisionCenter);
@@ -59,7 +69,7 @@ AMongsiri::AMongsiri()
 	{
 		FindMark = CreateDefaultSubObject<USpriteRenderer>();
 		FindMark->SetupAttachment(MongsiriRenderer);
-		FindMark->SetTexture("Exclamation.png", true, 0.05f);
+		FindMark->SetTexture("Question.png", true, 0.05f);
 		FindMark->SetRelativeLocation({ 0.0f, 1.3f, 0.0f });
 		FindMark->SetActive(false);
 	}
@@ -73,14 +83,25 @@ AMongsiri::~AMongsiri()
 
 void AMongsiri::BeginPlay()
 {
-	AActor::BeginPlay();
+	ACreature::BeginPlay();
 
 	random.SetSeed(50);
 }
 
 void AMongsiri::Tick(float _DeltaTime)
 {
-	AActor::Tick(_DeltaTime);
+	ACreature::Tick(_DeltaTime);
+
+	// Sorting
+	{
+		if (true == IsSort)
+		{
+			FVector Pos = GetActorLocation();
+			Pos.Z = Pos.Y;
+
+			SetActorLocation(Pos);
+		}
+	}
 
 	switch (State)
 	{
@@ -88,24 +109,19 @@ void AMongsiri::Tick(float _DeltaTime)
 		Idle(_DeltaTime);
 		break;
 	case EMongsiriState::MOVE:
-		MOVE(_DeltaTime);
+		Move(_DeltaTime);
 		break;
 	case EMongsiriState::COLLECTED:
+		Collected(_DeltaTime);
+		break;
+	case EMongsiriState::ESCAPE:
 	{
 		int a = 0;
 	}
 		break;
-	case EMongsiriState::ESCAPE:
-		break;
 	default:
 		break;
 	}
-
-	// Sorting
-	FVector Pos = GetActorLocation();
-	Pos.Z = Pos.Y;
-
-	SetActorLocation(Pos);
 
 	SwitchAnim();
 }
@@ -113,12 +129,43 @@ void AMongsiri::Tick(float _DeltaTime)
 void AMongsiri::Idle(float _DeltaTime)
 {
 	FindCheck(_DeltaTime);
-	ChaseCheck(_DeltaTime);
 }
 
-void AMongsiri::MOVE(float _DeltaTime)
+void AMongsiri::Move(float _DeltaTime)
 {
 	MoveToEllie(_DeltaTime);
+}
+
+void AMongsiri::Collected(float _DeltaTime)
+{
+	int Frame = 0;
+	AEllie* Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
+
+	SetActorLocation(Ellie->GetActorLocation() + FVector(-2.0f, 10.0f));
+
+	if (GetActorLocation().X - Ellie->GetActorLocation().X <= 0)
+	{
+		DirName = "_FLeft";
+		Frame = 6;
+	}
+	else
+	{
+		DirName = "_FRight";
+		Frame = 7;
+	}
+
+	MongsiriRenderer->ChangeAnimation("Mongsiri_Collected" + DirName);
+	MongsiriRenderer->SetAnimationEvent("Mongsiri_Collected" + DirName, Frame, 
+		[this, Ellie]() 
+		{ 
+			SetActorLocation(Ellie->GetActorLocation() - FVector( 5.0f, 20.0f ));
+			IsSort = true;
+
+			// Escape Part
+			State = EMongsiriState::IDLE;
+			IsEscape = true;
+		});
+	
 }
 
 void AMongsiri::FindCheck(float _DeltaTime)
@@ -126,24 +173,23 @@ void AMongsiri::FindCheck(float _DeltaTime)
 	std::vector<UCollision*> Result;
 	if (true == MongsiriOuterCol->CollisionCheck("Ellie", Result))
 	{
-		FindMark->SetActive(true);
+		if (false == IsEscape)
+		{
+			FindMark->SetActive(true);
+			State = EMongsiriState::MOVE;
+			MongsiriRenderer->ChangeAnimation("Mongsiri_Jump" + DirName);
+		}
+		else
+		{
+			// Escape Part
+			FindMark->SetActive(false);
+			State = EMongsiriState::IDLE;
+			MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_FLeft");
+		}
 	}
 	else
 	{
 		FindMark->SetActive(false);
-	}
-}
-
-void AMongsiri::ChaseCheck(float _DeltaTime)
-{
-	std::vector<UCollision*> Result;
-	if (true == MongsiriInnerCol->CollisionCheck("Ellie", Result))
-	{
-		State = EMongsiriState::MOVE;
-		MongsiriRenderer->ChangeAnimation("Mongsiri_Jump" + DirName);
-	}
-	else
-	{
 		State = EMongsiriState::IDLE;
 		MongsiriRenderer->ChangeAnimation("Mongsiri_Idle" + DirName);
 	}
@@ -169,12 +215,26 @@ void AMongsiri::SwitchAnim()
 	FVector ElliePos = Ellie->GetActorLocation();
 	FVector MongsiriPos = GetActorLocation();
 
-	if (MongsiriPos.Y - ElliePos.Y < 0)
+	if (MongsiriPos.Y - ElliePos.Y <= 0)
 	{
-		DirName = "_Back";
+		if (MongsiriPos.X - ElliePos.X <= 0)
+		{
+			DirName = "_BRight";
+		}
+		else
+		{
+			DirName = "_BLeft";
+		}
 	}
 	else
 	{
-		DirName = "_Front";
+		if (MongsiriPos.X - ElliePos.X <= 0)
+		{
+			DirName = "_FRight";
+		}
+		else
+		{
+			DirName = "_FLeft";
+		}
 	}
 }

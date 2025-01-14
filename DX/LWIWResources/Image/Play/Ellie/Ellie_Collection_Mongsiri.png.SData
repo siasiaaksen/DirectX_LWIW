@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4f29c099eb9457a4aa70bf24fa655a4b
+guid: fb2fd0f7518892340b031792254b4d5d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mongsiri_Idle_0
+      name: Ellie_Collection_Mongsiri_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 158
-        width: 14
-        height: 15
+        x: 36
+        y: 165
+        width: 76
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5b9d9d2126e8c742866aff6fbe2d101
-      internalID: 1234387661
+      spriteID: aed6bf7e0b75c84468d09d03116d042c
+      internalID: 584189613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_1
+      name: Ellie_Collection_Mongsiri_1
       rect:
         serializedVersion: 2
-        x: 68
-        y: 158
-        width: 14
-        height: 15
+        x: 171
+        y: 165
+        width: 75
+        height: 93
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8058af9b172a88e479eb99053d5b1bb1
-      internalID: 2064760825
+      spriteID: 2c838317ec8f929499f1d01c5c6c7bb3
+      internalID: 901681596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_2
+      name: Ellie_Collection_Mongsiri_2
       rect:
         serializedVersion: 2
-        x: 117
-        y: 158
-        width: 16
-        height: 13
+        x: 314
+        y: 165
+        width: 72
+        height: 90
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69eb83ca942b9dd4da500fb6f336c12e
-      internalID: 1678228529
+      spriteID: 852f6268b75db164491b935563ef86ac
+      internalID: 2042043169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_3
+      name: Ellie_Collection_Mongsiri_3
       rect:
         serializedVersion: 2
-        x: 18
-        y: 108
-        width: 14
-        height: 15
+        x: 456
+        y: 165
+        width: 76
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3c9746f86da8ea469e234523043fd90
-      internalID: -1698254090
+      spriteID: 55942ce8ad8f1f0469d4b50fbe36cb35
+      internalID: 1423850158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_4
+      name: Ellie_Collection_Mongsiri_4
       rect:
         serializedVersion: 2
-        x: 68
-        y: 108
-        width: 14
-        height: 15
+        x: 596
+        y: 165
+        width: 76
+        height: 96
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81b0b131a5cd8514c830e11922129e39
-      internalID: 1800160220
+      spriteID: c5d858857c9a664428c428fc90824845
+      internalID: -138163200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_5
+      name: Ellie_Collection_Mongsiri_5
       rect:
         serializedVersion: 2
-        x: 117
-        y: 108
-        width: 16
-        height: 13
+        x: 28
+        y: 25
+        width: 76
+        height: 95
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9440b3675063d074096e10e7da2befbe
-      internalID: 1377035469
+      spriteID: 732372391c85a62449632cee9e8387ff
+      internalID: 1442446199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_6
+      name: Ellie_Collection_Mongsiri_6
       rect:
         serializedVersion: 2
-        x: 18
-        y: 58
-        width: 16
-        height: 13
+        x: 174
+        y: 25
+        width: 75
+        height: 93
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9074cb1f8259194bbcf14c1f3647732
-      internalID: -1986150327
+      spriteID: 393172ce170113b43836b0dee66a20ab
+      internalID: 161834759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_7
+      name: Ellie_Collection_Mongsiri_7
       rect:
         serializedVersion: 2
-        x: 69
-        y: 58
-        width: 14
-        height: 15
+        x: 314
+        y: 25
+        width: 72
+        height: 90
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b20899e0af753ed4aa50956c9aae51a9
-      internalID: -1488293610
+      spriteID: c88c64194f43b204eab47336b35cdf6e
+      internalID: 99618837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_8
+      name: Ellie_Collection_Mongsiri_8
       rect:
         serializedVersion: 2
-        x: 119
-        y: 58
-        width: 14
-        height: 15
+        x: 448
+        y: 25
+        width: 76
+        height: 95
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +279,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9960c41bd8b6494587b89fd463f7ecb
-      internalID: -117651815
+      spriteID: 73011396f2ae2ca4f963d931809acc54
+      internalID: 1265759879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Idle_9
+      name: Ellie_Collection_Mongsiri_9
       rect:
         serializedVersion: 2
-        x: 18
-        y: 8
-        width: 16
-        height: 13
+        x: 588
+        y: 25
+        width: 76
+        height: 95
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,50 +300,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a45922f6b0e0864db018855814047c5
-      internalID: 177477763
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mongsiri_Idle_10
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 8
-        width: 14
-        height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c5332e44a430b24f992874a7df9b796
-      internalID: 302214805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mongsiri_Idle_11
-      rect:
-        serializedVersion: 2
-        x: 119
-        y: 8
-        width: 14
-        height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62dde47f45ae70a429e755bd06802a11
-      internalID: -493178368
+      spriteID: aba7be9c61b2696499cd3feefe57da96
+      internalID: 20427590
       vertices: []
       indices: 
       edges: []
@@ -351,7 +309,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: aed536af6e289cc468fb14839d9f6533
+    spriteID: b0707e8d483e71642b81a3f722848fca
     internalID: 0
     vertices: []
     indices: 
@@ -359,18 +317,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mongsiri_Idle_0: 1234387661
-      Mongsiri_Idle_1: 2064760825
-      Mongsiri_Idle_10: 302214805
-      Mongsiri_Idle_11: -493178368
-      Mongsiri_Idle_2: 1678228529
-      Mongsiri_Idle_3: -1698254090
-      Mongsiri_Idle_4: 1800160220
-      Mongsiri_Idle_5: 1377035469
-      Mongsiri_Idle_6: -1986150327
-      Mongsiri_Idle_7: -1488293610
-      Mongsiri_Idle_8: -117651815
-      Mongsiri_Idle_9: 177477763
+      Ellie_Collection_Mongsiri_0: 584189613
+      Ellie_Collection_Mongsiri_1: 901681596
+      Ellie_Collection_Mongsiri_2: 2042043169
+      Ellie_Collection_Mongsiri_3: 1423850158
+      Ellie_Collection_Mongsiri_4: -138163200
+      Ellie_Collection_Mongsiri_5: 1442446199
+      Ellie_Collection_Mongsiri_6: 161834759
+      Ellie_Collection_Mongsiri_7: 99618837
+      Ellie_Collection_Mongsiri_8: 1265759879
+      Ellie_Collection_Mongsiri_9: 20427590
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

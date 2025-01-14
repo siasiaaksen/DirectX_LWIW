@@ -8,6 +8,7 @@ enum class EEllieState
 {
 	IDLE,
 	MOVE,
+	COLLECTING,
 	MAX,
 };
 
@@ -33,11 +34,12 @@ public:
 
 	void Idle();
 	void Move(float _DeltaTime);
+	void Collecting(float _DeltaTime);
 
 	bool IsMoveCheck(FVector _Dir);
 	void DirCheck();
 
-	void CollectItem();
+	void CollectItem(float _DeltaTime);
 
 	FVector GetEllieSize()
 	{
@@ -58,12 +60,14 @@ private:
 	std::shared_ptr<class UCollision> EllieCollision;
 	std::shared_ptr<class ACameraActor> Camera;
 	std::shared_ptr<class ARoom> Room;
+	class AMongsiri* Mongsiri;
 
 	EEllieState State;
 	float Speed = 200.0f;
 
 	FVector EllieSize = { 70.0f, 100.0f };
-	std::string DirString = "_Front";
+	std::string DirName = "_Front";
+	float AnimSpeed = 0.2f;
 
 	UEngineWinImage ColImage;
 };

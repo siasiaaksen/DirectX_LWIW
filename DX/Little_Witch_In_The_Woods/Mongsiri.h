@@ -1,6 +1,6 @@
 #pragma once
-#include <EngineCore/Actor.h>
 #include <EngineBase/EngineRandom.h>
+#include "Creature.h"
 
 
 enum class EMongsiriState
@@ -13,7 +13,7 @@ enum class EMongsiriState
 };
 
 
-class AMongsiri : public AActor
+class AMongsiri : public ACreature
 {
 public:
 	AMongsiri();
@@ -28,10 +28,10 @@ public:
 	void Tick(float _DeltaTime) override;
 
 	void Idle(float _DeltaTime);
-	void MOVE(float _DeltaTime);
+	void Move(float _DeltaTime);
+	void Collected(float _DeltaTime);
 
 	void FindCheck(float _DeltaTime);
-	void ChaseCheck(float _DeltaTime);
 	void MoveToEllie(float _DeltaTime);
 
 	void SwitchAnim();
@@ -39,6 +39,11 @@ public:
 	void SetState(EMongsiriState _State)
 	{
 		State = _State;
+	}
+
+	void SetSort(bool _Value)
+	{
+		IsSort = _Value;
 	}
 
 protected:
@@ -52,10 +57,13 @@ private:
 
 	EMongsiriState State;
 
-	std::string DirName = "_Front";
+	std::string DirName = "_FLeft";
 	FVector MongsiriSize = { 50.0f, 50.0f };
 	float AnimSpeed = 0.2f;
 	float MoveSpeed = 0.3f;
+
+	bool IsSort = true;
+	bool IsEscape = false;
 
 	UEngineRandom random;
 };

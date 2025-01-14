@@ -59,6 +59,9 @@
     <ClInclude Include="PlayHUD.h">
       <Filter>HUD</Filter>
     </ClInclude>
+    <ClInclude Include="Creature.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="PlayHUD.cpp">
       <Filter>HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature.cpp">
+      <Filter>Play\Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

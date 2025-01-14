@@ -101,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 18
-        y: 158
+        y: 358
         width: 14
         height: 15
       alignment: 7
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e7a40095b968914fb4e98cc9ffb81ed
-      internalID: -398817750
+      spriteID: c7352168623d8a1429f142dfc61627e2
+      internalID: 54971996
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 68
-        y: 158
+        y: 358
         width: 14
         height: 15
       alignment: 7
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64b2384dc890b204296bce05528d61f8
-      internalID: -556324403
+      spriteID: 69271f2c402cfb84abb0a31a02ca47a7
+      internalID: 1439702632
       vertices: []
       indices: 
       edges: []
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 117
-        y: 158
+        y: 358
         width: 16
         height: 13
       alignment: 7
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 997b7c992e148cc4599e98d05f0e391d
-      internalID: -803159965
+      spriteID: c90495e36010cd649826954baf9e0943
+      internalID: -1905388523
       vertices: []
       indices: 
       edges: []
@@ -164,6 +164,384 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 170
+        y: 358
+        width: 10
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f019929bbb6d0ae46a5667045ff5cee3
+      internalID: 633138387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_4
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 358
+        width: 10
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3fcf7895df9b0d408e2e9222926c726
+      internalID: 452561529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_6
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 308
+        width: 12
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e96ba0b90339f254f9eb0e16dbf8ab18
+      internalID: 1006801808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_7
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 308
+        width: 12
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 780742a47136ca14387d89e9d2ad2b61
+      internalID: -551440002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_8
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 308
+        width: 12
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3df2956a8a0a7449a6a8a7f50b27810
+      internalID: -1805050504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_9
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 308
+        width: 14
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df46244658553d04b8d4c525972f4bb6
+      internalID: -221646974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_10
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 308
+        width: 14
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c958f9e19d0476e49a1ed72f8a4483a6
+      internalID: -873201648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_13
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 258
+        width: 14
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa9eff3cc4bf935488eb9e7bc836c342
+      internalID: 2143288458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_14
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 258
+        width: 14
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4be5d735931c44c85d67284a3c2c12
+      internalID: 1910329679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_15
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 258
+        width: 16
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c916100ab833b4ca400839ea79e459
+      internalID: 1376074591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_16
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 258
+        width: 10
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54ab68a03edbc74ba78c0e28e4dd994
+      internalID: -92670155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_17
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 258
+        width: 10
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca90acc2eaec1044be21b2f124d0397
+      internalID: -1237968815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_19
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 208
+        width: 12
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186dc1228f9401c4f88670dd4a1d19b8
+      internalID: 1013387458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_20
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 208
+        width: 12
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75434751bf5ba6f408001e2baafac1dd
+      internalID: -2071132998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_21
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 208
+        width: 12
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639b8e35851d0b642ba98e1d199a1f7a
+      internalID: 1992219645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_22
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 208
+        width: 14
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bbb082b71e905f4f8b6f7faf8deb30f
+      internalID: 647836620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_23
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 208
+        width: 14
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff9139aad6fb8741bca8d9bf57f84af
+      internalID: -1686781774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_26
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 158
+        width: 10
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebb1596b0f3d3843b92e5128dea62d6
+      internalID: 815345187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_27
+      rect:
+        serializedVersion: 2
+        x: 70
         y: 158
         width: 10
         height: 19
@@ -174,20 +552,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea3adbfcb22e17642b83e92003a36aa7
-      internalID: 1398597727
+      spriteID: 847001b7b4a336149a12fcc9c1b8e484
+      internalID: -1640267318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_4
+      name: Mongsiri_Jump_28
       rect:
         serializedVersion: 2
-        x: 220
+        x: 117
         y: 158
-        width: 10
-        height: 21
+        width: 16
+        height: 13
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +573,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b292108648bb995468e24c6bd3c7b8c7
-      internalID: -1092553816
+      spriteID: 57f32a0926b78d44b8ccf4d07343eab0
+      internalID: 241289979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_6
+      name: Mongsiri_Jump_29
       rect:
         serializedVersion: 2
-        x: 19
-        y: 108
-        width: 12
-        height: 21
+        x: 168
+        y: 158
+        width: 14
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +594,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c876e2f54e346e44ad6e42350ebda2e
-      internalID: -226385628
+      spriteID: ebdcd853543b1834b8c655f6c6f10954
+      internalID: 85149296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_7
+      name: Mongsiri_Jump_30
       rect:
         serializedVersion: 2
-        x: 69
-        y: 108
-        width: 12
-        height: 20
+        x: 218
+        y: 158
+        width: 14
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,14 +615,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc846406786954c418ba29dad6ff2b23
-      internalID: -987813640
+      spriteID: 7ba71261d94f25743a3e079212e7d55c
+      internalID: -1696300168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_8
+      name: Mongsiri_Jump_32
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 108
+        width: 14
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d3167d7753452408fa8b5e207bb0b9
+      internalID: -1942937610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_33
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 108
+        width: 14
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37656e301c9e8154c8644b9841657efc
+      internalID: 660880638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mongsiri_Jump_34
       rect:
         serializedVersion: 2
         x: 119
@@ -258,20 +678,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3877f1c0e31e4774b85b87228ebd663a
-      internalID: 1998468894
+      spriteID: 40d7b0cd1654f1d4b883c151de1afb1b
+      internalID: -1275054721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_9
+      name: Mongsiri_Jump_35
       rect:
         serializedVersion: 2
-        x: 168
+        x: 169
         y: 108
-        width: 14
-        height: 15
+        width: 12
+        height: 20
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +699,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7eb9a70d9e560b4498c089ecad69a82b
-      internalID: -1688101475
+      spriteID: f1f46cf59f6af724eb190fbe4236bec5
+      internalID: 1362858888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_10
+      name: Mongsiri_Jump_36
       rect:
         serializedVersion: 2
-        x: 218
+        x: 219
         y: 108
-        width: 14
-        height: 14
+        width: 12
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,20 +720,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06ab41419eb04014894656746b53bdcb
-      internalID: -1819744577
+      spriteID: 5e32fb8f6c75fa043bb46e193fbf1f07
+      internalID: 1502006555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_13
+      name: Mongsiri_Jump_39
       rect:
         serializedVersion: 2
-        x: 18
+        x: 20
         y: 58
-        width: 14
-        height: 15
+        width: 10
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,20 +741,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ddb7448a39fdab479d28ce66e6180de
-      internalID: -1547490947
+      spriteID: f765c643b7d09c24289b5cfe8b603b4a
+      internalID: 2021607130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_14
+      name: Mongsiri_Jump_40
       rect:
         serializedVersion: 2
-        x: 68
+        x: 70
         y: 58
-        width: 14
-        height: 15
+        width: 10
+        height: 19
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,14 +762,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79071a6eaeabd844a8cce3aae2785703
-      internalID: -250115915
+      spriteID: 0698c9640c69ce9488110e172554bbf3
+      internalID: -1457075622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_15
+      name: Mongsiri_Jump_41
       rect:
         serializedVersion: 2
         x: 117
@@ -363,20 +783,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4912dabeb3d2784ab34c27e2ef338ea
-      internalID: 1622225209
+      spriteID: a1203fbc77b7d9246a493e123e91a78a
+      internalID: 1025159032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_16
+      name: Mongsiri_Jump_42
       rect:
         serializedVersion: 2
-        x: 170
+        x: 168
         y: 58
-        width: 10
-        height: 19
+        width: 14
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,20 +804,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd3d3680d16c18047b80a7f567ccaf63
-      internalID: 260439988
+      spriteID: 26ed2acb589d98342916c0a2ebf0b845
+      internalID: 1086969043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_17
+      name: Mongsiri_Jump_43
       rect:
         serializedVersion: 2
-        x: 220
+        x: 218
         y: 58
-        width: 10
-        height: 21
+        width: 14
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -405,20 +825,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bf735b544b522648bd2c30020ff01bc
-      internalID: -248898883
+      spriteID: 36303b2f1da6b644c9787acfd80b97f9
+      internalID: 970488919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_19
+      name: Mongsiri_Jump_45
       rect:
         serializedVersion: 2
-        x: 19
+        x: 18
         y: 8
-        width: 12
-        height: 21
+        width: 14
+        height: 14
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,20 +846,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f144facafb824d4889a626082f1a91f
-      internalID: 1936533529
+      spriteID: d5fd6ed9ce3de044888deef7f4afd726
+      internalID: -1712836406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_20
+      name: Mongsiri_Jump_46
       rect:
         serializedVersion: 2
-        x: 69
+        x: 68
         y: 8
-        width: 12
-        height: 20
+        width: 14
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -447,14 +867,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26aef0d6c4a084b478283a501944cabc
-      internalID: -1006653068
+      spriteID: 7a734699c9748f0499b51d849718a668
+      internalID: 1300686787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_21
+      name: Mongsiri_Jump_47
       rect:
         serializedVersion: 2
         x: 119
@@ -468,20 +888,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1336445e3ad02484881fbe0f06cb02f1
-      internalID: 562378134
+      spriteID: d196d7f4d178b1b4d965551b98d0f68b
+      internalID: 875544444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_22
+      name: Mongsiri_Jump_48
       rect:
         serializedVersion: 2
-        x: 168
+        x: 169
         y: 8
-        width: 14
-        height: 15
+        width: 12
+        height: 20
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -489,20 +909,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b776d3ff57384846b2cf776f6dcac48
-      internalID: 229543503
+      spriteID: 94af886c4e41d324bbaf2ac1300008da
+      internalID: 651391597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mongsiri_Jump_23
+      name: Mongsiri_Jump_49
       rect:
         serializedVersion: 2
-        x: 218
+        x: 219
         y: 8
-        width: 14
-        height: 14
+        width: 12
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -510,8 +930,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4dd4640f20358341b374282d25d2599
-      internalID: 122221449
+      spriteID: 00da9bc67529cc74f930fcf187d84f32
+      internalID: -1694421860
       vertices: []
       indices: 
       edges: []
@@ -519,7 +939,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6ed062da2884f6f42a639dcb57ed94ec
+    spriteID: 61f4bccc096da404e92e92c9c5959407
     internalID: 0
     vertices: []
     indices: 
@@ -527,32 +947,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mongsiri_Jump_0: -398817750
-      Mongsiri_Jump_1: -556324403
-      Mongsiri_Jump_10: -1819744577
-      Mongsiri_Jump_11: 1306158691
-      Mongsiri_Jump_12: -1101593722
-      Mongsiri_Jump_13: -1547490947
-      Mongsiri_Jump_14: -250115915
-      Mongsiri_Jump_15: 1622225209
-      Mongsiri_Jump_16: 260439988
-      Mongsiri_Jump_17: -248898883
-      Mongsiri_Jump_18: -833736739
-      Mongsiri_Jump_19: 1936533529
-      Mongsiri_Jump_2: -803159965
-      Mongsiri_Jump_20: -1006653068
-      Mongsiri_Jump_21: 562378134
-      Mongsiri_Jump_22: 229543503
-      Mongsiri_Jump_23: 122221449
-      Mongsiri_Jump_24: 616774010
-      Mongsiri_Jump_25: 1677014060
-      Mongsiri_Jump_3: 1398597727
-      Mongsiri_Jump_4: -1092553816
-      Mongsiri_Jump_5: -870148037
-      Mongsiri_Jump_6: -226385628
-      Mongsiri_Jump_7: -987813640
-      Mongsiri_Jump_8: 1998468894
-      Mongsiri_Jump_9: -1688101475
+      Mongsiri_Jump_0: 54971996
+      Mongsiri_Jump_1: 1439702632
+      Mongsiri_Jump_10: -873201648
+      Mongsiri_Jump_11: 1094292286
+      Mongsiri_Jump_12: 1437007728
+      Mongsiri_Jump_13: 2143288458
+      Mongsiri_Jump_14: 1910329679
+      Mongsiri_Jump_15: 1376074591
+      Mongsiri_Jump_16: -92670155
+      Mongsiri_Jump_17: -1237968815
+      Mongsiri_Jump_18: 278372777
+      Mongsiri_Jump_19: 1013387458
+      Mongsiri_Jump_2: -1905388523
+      Mongsiri_Jump_20: -2071132998
+      Mongsiri_Jump_21: 1992219645
+      Mongsiri_Jump_22: 647836620
+      Mongsiri_Jump_23: -1686781774
+      Mongsiri_Jump_24: 616971115
+      Mongsiri_Jump_25: 1919305528
+      Mongsiri_Jump_26: 815345187
+      Mongsiri_Jump_27: -1640267318
+      Mongsiri_Jump_28: 241289979
+      Mongsiri_Jump_29: 85149296
+      Mongsiri_Jump_3: 633138387
+      Mongsiri_Jump_30: -1696300168
+      Mongsiri_Jump_31: 1887530890
+      Mongsiri_Jump_32: -1942937610
+      Mongsiri_Jump_33: 660880638
+      Mongsiri_Jump_34: -1275054721
+      Mongsiri_Jump_35: 1362858888
+      Mongsiri_Jump_36: 1502006555
+      Mongsiri_Jump_37: -1785374162
+      Mongsiri_Jump_38: 716216371
+      Mongsiri_Jump_39: 2021607130
+      Mongsiri_Jump_4: 452561529
+      Mongsiri_Jump_40: -1457075622
+      Mongsiri_Jump_41: 1025159032
+      Mongsiri_Jump_42: 1086969043
+      Mongsiri_Jump_43: 970488919
+      Mongsiri_Jump_44: 1076771429
+      Mongsiri_Jump_45: -1712836406
+      Mongsiri_Jump_46: 1300686787
+      Mongsiri_Jump_47: 875544444
+      Mongsiri_Jump_48: 651391597
+      Mongsiri_Jump_49: -1694421860
+      Mongsiri_Jump_5: 108836601
+      Mongsiri_Jump_50: 2146391027
+      Mongsiri_Jump_51: 1481370530
+      Mongsiri_Jump_6: 1006801808
+      Mongsiri_Jump_7: -551440002
+      Mongsiri_Jump_8: -1805050504
+      Mongsiri_Jump_9: -221646974
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
