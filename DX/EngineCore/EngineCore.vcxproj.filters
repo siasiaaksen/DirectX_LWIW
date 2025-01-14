@@ -163,6 +163,9 @@
     <ClInclude Include="TransformObject.h">
       <Filter>Object\Component</Filter>
     </ClInclude>
+    <ClInclude Include="EngineDataStruct.h">
+      <Filter>Data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">

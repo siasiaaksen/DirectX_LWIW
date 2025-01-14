@@ -15,6 +15,8 @@ UEngineCamera::~UEngineCamera()
 
 void UEngineCamera::BeginPlay()
 {
+	USceneComponent::BeginPlay();
+
 	FVector Scale = UEngineCore::GetScreenScale();
 
 	ProjectionScale = Scale;
@@ -33,6 +35,8 @@ void UEngineCamera::BeginPlay()
 
 void UEngineCamera::Tick(float _DetlaTime)
 {
+	USceneComponent::ComponentTick(_DetlaTime);
+
 	Transform.View;
 	Transform.Projection;
 }

@@ -32,6 +32,11 @@ void URenderUnit::MaterialResourcesCheck()
 
 	if (nullptr != ParentRenderer)
 	{
+		TransformObject = ParentRenderer;
+	}
+
+	if (nullptr != TransformObject)
+	{
 		for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
 		{
 			if (false == Resources.contains(i))
@@ -44,7 +49,7 @@ void URenderUnit::MaterialResourcesCheck()
 				continue;
 			}
 
-			FTransform& Ref = ParentRenderer->GetTransformRef();
+			FTransform& Ref = TransformObject->GetTransformRef();
 			Resources[i].ConstantBufferLinkData("FTransform", Ref);
 		}
 	}

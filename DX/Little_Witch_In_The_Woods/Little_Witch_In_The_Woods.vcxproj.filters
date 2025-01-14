@@ -56,6 +56,9 @@
     <ClInclude Include="Mongsiri.h">
       <Filter>Play\Creatures</Filter>
     </ClInclude>
+    <ClInclude Include="PlayHUD.h">
+      <Filter>HUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -114,6 +117,9 @@
     <ClCompile Include="Mongsiri.cpp">
       <Filter>Play\Creatures</Filter>
     </ClCompile>
+    <ClCompile Include="PlayHUD.cpp">
+      <Filter>HUD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
@@ -136,6 +142,9 @@
     </Filter>
     <Filter Include="Play\Creatures">
       <UniqueIdentifier>{908d5220-e2fd-4b33-a36f-b259ad223949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HUD">
+      <UniqueIdentifier>{bdd6481d-6db0-4ce7-8db0-d3783561aa6d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

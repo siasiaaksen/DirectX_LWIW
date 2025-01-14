@@ -81,6 +81,8 @@ public:
 		return Transform;
 	}
 
+	ENGINEAPI virtual void CameraTransUpdate(class UEngineCamera* _Camera);
+
 	ENGINEAPI void SetupAttachment(std::shared_ptr<UTransformObject> _Parent);
 	ENGINEAPI void SetupAttachment(UTransformObject* _Parent);
 

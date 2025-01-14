@@ -203,6 +203,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineDataStruct.h" />
     <ClInclude Include="EngineDepthStencilState.h">
       <SubType>
       </SubType>

@@ -10,6 +10,7 @@
 #include "TitleGameMode.h"
 #include "PlayGameMode.h"
 #include "MapEditorMode.h"
+#include "PlayHUD.h"
 #include "Ellie.h"
 
 
@@ -31,7 +32,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	LWIWResourcesSetting();
 
 	UEngineCore::CreateLevel<ATitleGameMode, APawn, AHUD>("TitleLevel");
-	UEngineCore::CreateLevel<APlayGameMode, AEllie, AHUD>("PlayLevel");
+	UEngineCore::CreateLevel<APlayGameMode, AEllie, APlayHUD>("PlayLevel");
 	UEngineCore::CreateLevel<AMapEditorMode, APawn, AHUD>("MapEditorLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 

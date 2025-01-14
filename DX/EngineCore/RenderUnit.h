@@ -11,6 +11,8 @@ public:
 	URenderUnit();
 	~URenderUnit();
 
+	UTransformObject* TransformObject = nullptr;
+
 	URenderer* ParentRenderer = nullptr;
 
 	// ¸Å½¬(À°Ã¼) 
