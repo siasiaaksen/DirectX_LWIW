@@ -7,6 +7,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
 #include "Room.h"
+#include "Mongsiri.h"
 
 
 AEllie::AEllie()
@@ -59,7 +60,7 @@ AEllie::AEllie()
 		EllieCollision->SetupAttachment(RootComponent);
 	}
 
-	SetColImage("Map_Col.png", "Play");
+	SetColImage("Map_Col.png", "Map");
 }
 
 AEllie::~AEllie()
@@ -234,7 +235,7 @@ void AEllie::SetColImage(std::string_view _ColImageName, std::string_view _Folde
 {
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
@@ -256,6 +257,8 @@ void AEllie::CollectItem()
 		std::vector<UCollision*> Result;
 		if (true == EllieCollision->CollisionCheck("MongsiriInner", Result))
 		{
+			AMongsiri* Mongsiri = dynamic_cast<AMongsiri*>(Result[0]->GetActor());
+			Mongsiri->SetState(EMongsiriState::COLLECTED);
 		}
 	}
 }

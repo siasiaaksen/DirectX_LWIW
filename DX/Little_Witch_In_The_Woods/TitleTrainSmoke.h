@@ -18,7 +18,9 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	std::shared_ptr<class USpriteRenderer> SmokeRenderer;
+	std::shared_ptr<class USpriteRenderer> BigSmokeRenderer;
+	std::shared_ptr<class USpriteRenderer> MidSmokeRenderer;
+	std::shared_ptr<class USpriteRenderer> SmallSmokeRenderer;
 
 	float SmokeAlpha = 0.5f;
 };

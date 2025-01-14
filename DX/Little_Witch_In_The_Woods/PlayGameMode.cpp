@@ -65,7 +65,7 @@ void APlayGameMode::BeginPlay()
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
-	Room->SetColImage("Map_Col.png", "Play");
+	Room->SetColImage("Map_Col.png", "Map");
 	FVector RoomSize = Room->GetColImage().GetImageScale();
 
 	Room->SetRoomSize(RoomSize);

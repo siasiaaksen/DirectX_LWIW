@@ -18,10 +18,10 @@ ATitleLogo::ATitleLogo()
 	}
 
 	{
-		LogoRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		LogoRenderer->SetTexture("Title_StartText.png", true, 1.0f);
-		LogoRenderer->SetWorldLocation({ 402 , 0 , 2.0f });
-		LogoRenderer->SetupAttachment(RootComponent);
+		TextRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		TextRenderer->SetTexture("Title_StartText.png", true, 1.0f);
+		TextRenderer->SetWorldLocation({ 402 , 0 , 2.0f });
+		TextRenderer->SetupAttachment(RootComponent);
 	}
 
 }

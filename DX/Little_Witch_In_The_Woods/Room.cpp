@@ -56,7 +56,7 @@ void ARoom::SetColImage(std::string_view _ColImageName, std::string_view _Folder
 {
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;

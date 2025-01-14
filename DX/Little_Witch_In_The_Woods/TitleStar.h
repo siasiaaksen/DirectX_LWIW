@@ -19,5 +19,6 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> StarRenderer;
+	std::shared_ptr<class USpriteRenderer> ShootingStarRenderer;
 };
 

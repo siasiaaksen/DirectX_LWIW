@@ -19,5 +19,6 @@ protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> TrainRenderer;
+	std::shared_ptr<class USpriteRenderer> TrainBlurRenderer;
 };
 

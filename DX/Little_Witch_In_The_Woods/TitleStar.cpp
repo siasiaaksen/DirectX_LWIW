@@ -20,13 +20,13 @@ ATitleStar::ATitleStar()
 	}
 
 	{
-		StarRenderer = CreateDefaultSubObject<USpriteRenderer>();
-		StarRenderer->SetSprite("Title_Train_ShootingStar.png", 0);
-		StarRenderer->SetAutoScaleRatio(1.0f);
-		StarRenderer->SetWorldLocation({ 0.0f, 195.0f, 13.0f });
-		StarRenderer->CreateAnimation("FallingStar", "Title_Train_ShootingStar.png", 0, 3, 0.5f);
-		StarRenderer->ChangeAnimation("FallingStar");
-		StarRenderer->SetupAttachment(RootComponent);
+		ShootingStarRenderer = CreateDefaultSubObject<USpriteRenderer>();
+		ShootingStarRenderer->SetSprite("Title_Train_ShootingStar.png", 0);
+		ShootingStarRenderer->SetAutoScaleRatio(1.0f);
+		ShootingStarRenderer->SetWorldLocation({ 0.0f, 195.0f, 13.0f });
+		ShootingStarRenderer->CreateAnimation("FallingStar", "Title_Train_ShootingStar.png", 0, 3, 0.5f);
+		ShootingStarRenderer->ChangeAnimation("FallingStar");
+		ShootingStarRenderer->SetupAttachment(RootComponent);
 	}
 
 }

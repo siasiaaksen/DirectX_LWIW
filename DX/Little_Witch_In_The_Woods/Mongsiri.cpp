@@ -38,7 +38,7 @@ AMongsiri::AMongsiri()
 		{
 			MongsiriOuterCol = CreateDefaultSubObject<UCollision>();
 			MongsiriOuterCol->SetCollisionProfileName("MongsiriOuter");
-			MongsiriOuterCol->SetScale3D(MongsiriSize * 10);
+			MongsiriOuterCol->SetScale3D(MongsiriSize * 15);
 			FVector CollisionCenter;
 			CollisionCenter.Y = MongsiriSize.Y - MongsiriSize.Half().Y;
 			MongsiriOuterCol->SetWorldLocation(CollisionCenter);
@@ -48,7 +48,7 @@ AMongsiri::AMongsiri()
 		{
 			MongsiriInnerCol = CreateDefaultSubObject<UCollision>();
 			MongsiriInnerCol->SetCollisionProfileName("MongsiriInner");
-			MongsiriInnerCol->SetScale3D(MongsiriSize * 5);
+			MongsiriInnerCol->SetScale3D(MongsiriSize * 10);
 			FVector CollisionCenter;
 			CollisionCenter.Y = MongsiriSize.Y - MongsiriSize.Half().Y;
 			MongsiriInnerCol->SetWorldLocation(CollisionCenter);
@@ -74,6 +74,8 @@ AMongsiri::~AMongsiri()
 void AMongsiri::BeginPlay()
 {
 	AActor::BeginPlay();
+
+	random.SetSeed(50);
 }
 
 void AMongsiri::Tick(float _DeltaTime)
@@ -85,16 +87,15 @@ void AMongsiri::Tick(float _DeltaTime)
 	case EMongsiriState::IDLE:
 		Idle(_DeltaTime);
 		break;
-	case EMongsiriState::JUMP:
-		Jump(_DeltaTime);
+	case EMongsiriState::MOVE:
+		MOVE(_DeltaTime);
 		break;
 	case EMongsiriState::COLLECTED:
+	{
+		int a = 0;
+	}
 		break;
 	case EMongsiriState::ESCAPE:
-		break;
-	case EMongsiriState::DISAPPEAR:
-		break;
-	case EMongsiriState::MAX:
 		break;
 	default:
 		break;
@@ -115,7 +116,7 @@ void AMongsiri::Idle(float _DeltaTime)
 	ChaseCheck(_DeltaTime);
 }
 
-void AMongsiri::Jump(float _DeltaTime)
+void AMongsiri::MOVE(float _DeltaTime)
 {
 	MoveToEllie(_DeltaTime);
 }
@@ -138,7 +139,7 @@ void AMongsiri::ChaseCheck(float _DeltaTime)
 	std::vector<UCollision*> Result;
 	if (true == MongsiriInnerCol->CollisionCheck("Ellie", Result))
 	{
-		State = EMongsiriState::JUMP;
+		State = EMongsiriState::MOVE;
 		MongsiriRenderer->ChangeAnimation("Mongsiri_Jump" + DirName);
 	}
 	else
@@ -150,8 +151,10 @@ void AMongsiri::ChaseCheck(float _DeltaTime)
 
 void AMongsiri::MoveToEllie(float _DeltaTime)
 {
+	float RandomPosX = random.Randomfloat(-50.0f, 50.0f);
+	float RandomPosY = random.Randomfloat(-50.0f, 50.0f);
 	FVector StartPos = GetActorLocation();
-	FVector EndPos = GetWorld()->GetMainPawn()->GetActorLocation() - FVector(0.0f, 50.0f);
+	FVector EndPos = GetWorld()->GetMainPawn()->GetActorLocation() - FVector(RandomPosX, RandomPosY);
 
 	FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * MoveSpeed);
 
