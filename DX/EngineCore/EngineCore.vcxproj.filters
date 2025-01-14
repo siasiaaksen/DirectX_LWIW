@@ -166,6 +166,12 @@
     <ClInclude Include="EngineDataStruct.h">
       <Filter>Data</Filter>
     </ClInclude>
+    <ClInclude Include="EngineFont.h">
+      <Filter>Resources\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>ThirdParty\FW1FontWrapper\Inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -318,6 +324,9 @@
     <ClCompile Include="TransformObject.cpp">
       <Filter>Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="EngineFont.cpp">
+      <Filter>Resources\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
@@ -403,6 +412,15 @@
     </Filter>
     <Filter Include="Object\UI">
       <UniqueIdentifier>{0a380073-299b-40f8-b060-49ab35521abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Font">
+      <UniqueIdentifier>{8201ab8d-4369-4f4c-ae7d-a351e7d51d87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper">
+      <UniqueIdentifier>{c3571c44-0ffc-4f83-9273-76bcf499dcdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FW1FontWrapper\Inc">
+      <UniqueIdentifier>{3f3e2e5c-ef28-4a7f-a3b2-5a943f00af79}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
