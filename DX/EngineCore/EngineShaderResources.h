@@ -30,6 +30,10 @@ public:
 
 		Res->Setting(ShaderType, BindIndex);
 	}
+
+	void Reset()
+	{
+	}
 };
 
 
@@ -42,6 +46,11 @@ public:
 	{
 		Res->Setting(ShaderType, BindIndex);
 	}
+
+	void Reset()
+	{
+		Res->Reset(ShaderType, BindIndex);
+	}
 };
 
 
@@ -51,6 +60,11 @@ public:
 	std::shared_ptr<UEngineSampler> Res;
 
 	void Setting()
+	{
+		Res->Setting(ShaderType, BindIndex);
+	}
+
+	void Reset()
 	{
 		Res->Setting(ShaderType, BindIndex);
 	}
@@ -91,6 +105,8 @@ public:
 	bool IsConstantBuffer(std::string_view _Name);
 
 	void Setting();
+
+	void Reset();
 
 protected:
 

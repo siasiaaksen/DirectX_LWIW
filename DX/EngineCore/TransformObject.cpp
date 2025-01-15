@@ -4,6 +4,7 @@
 
 
 UTransformObject::UTransformObject()
+	: Parent(nullptr)
 {
 }
 
