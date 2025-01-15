@@ -8,6 +8,7 @@
 #include "EngineShader.h"
 #include "EngineMaterial.h"
 #include "EngineTexture.h"
+#include "EngineFont.h"
 #include "EngineDepthStencilState.h"
 
 
@@ -20,6 +21,9 @@ void UEngineGraphicDevice::DefaultResourcesInit()
 	RasterizerStateInit();
 	ShaderInit();
 	MaterialInit();
+
+	// 폰트 로드
+	UEngineFont::Load("Cafe24Ohsquare", "Cafe24Ohsquare");
 }
 
 void UEngineGraphicDevice::DepthStencilInit()

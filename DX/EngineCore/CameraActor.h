@@ -23,8 +23,10 @@ public:
 	void Tick(float _DeltaTime);
 
 	ENGINEAPI FVector ScreenMousePosToWorldPos();
-
 	ENGINEAPI FVector ScreenMousePosToWorldPosWithOutPos();
+
+	ENGINEAPI FVector ScreenPosToWorldPos(FVector _Pos);
+	ENGINEAPI FVector WorldPosToScreenPos(FVector _Pos);
 
 	ENGINEAPI inline bool IsFreeCamera()
 	{

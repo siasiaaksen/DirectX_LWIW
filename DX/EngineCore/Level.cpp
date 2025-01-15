@@ -8,6 +8,7 @@
 #include "CameraActor.h"
 #include "EngineGUI.h"
 #include "HUD.h"
+#include "EngineFont.h"
 #include "EngineRenderTarget.h"
 
 
