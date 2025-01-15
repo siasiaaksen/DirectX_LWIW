@@ -49,9 +49,9 @@ public:
 		Hover = _Value;
 	}
 
-	void SetClickEvent(std::function<void()> _Value)
+	void SetDownEvent(std::function<void()> _Value)
 	{
-		Click = _Value;
+		Down = _Value;
 	}
 
 	void SetUpEvent(std::function<void()> _Value)
@@ -61,7 +61,7 @@ public:
 
 private:
 	std::function<void()> Hover;
-	std::function<void()> Click;
+	std::function<void()> Down;
 	std::function<void()> Up;
 
 	class AHUD* HUD;

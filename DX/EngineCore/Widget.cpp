@@ -48,12 +48,18 @@ void UWidget::Tick(float _DeltaTime)
 
 		if (true == UEngineInput::IsDown(VK_LBUTTON))
 		{
-			Click();
+			if (nullptr != Down)
+			{
+				Down();
+			}
 		}
 
 		if (true == UEngineInput::IsUp(VK_LBUTTON))
 		{
-			Up();
+			if (nullptr != Up)
+			{
+				Up();
+			}
 		}
 	};
 }

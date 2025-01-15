@@ -28,8 +28,9 @@ public:
 
 	void SetRadius(float _Value);
 
-	ENGINEAPI bool CollisionCheck(std::string_view _OtherName, std::vector<UCollision*>& _Vector);
+	void Release();
 
+	ENGINEAPI bool CollisionCheck(std::string_view _OtherName, std::vector<UCollision*>& _Vector);
 	ENGINEAPI bool CollisionCheck(std::string_view _OtherName, FVector _NextPos, std::vector<UCollision*>& _Vector);
 
 	void SetCollisionType(ECollisionType _Type)

@@ -20,7 +20,7 @@ void APlayHUD::BeginPlay()
 	//Button->SetScale3D({ 100, 100, 1 });
 	//Button->SetWorldLocation({ -200, 300 });
 	//Button->SetTexture("BackGround.png");
-	//Button->SetClickEvent([]()
+	//Button->SetDownEvent([]()
 	//	{
 	//		UEngineDebug::OutPutString("Click~~~~~~~~~");
 	//	});

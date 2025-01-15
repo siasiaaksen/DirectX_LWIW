@@ -12,7 +12,7 @@ UCollision::~UCollision()
 {
 	for (UCollision* Other : CollisionCheckSet)
 	{
-		// 없애기 전, 너한테서 나를 빼야해
+		// 너한테서 나를 빼야해를 하고 사라짐
 		Other->CollisionCheckSet.erase(this);
 	}
 }
