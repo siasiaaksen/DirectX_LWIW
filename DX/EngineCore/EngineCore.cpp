@@ -8,6 +8,7 @@
 #include "EngineConstantBuffer.h"
 #include "EngineGUI.h"
 #include "Level.h"
+#include "GameInstance.h"
 
 
 UEngineGraphicDevice& UEngineCore::GetDevice()
@@ -30,6 +31,11 @@ UEngineCore* GEngine = nullptr;
 FVector UEngineCore::GetScreenScale()
 {
 	return GEngine->Data.WindowSize;
+}
+
+UGameInstance* UEngineCore::GetGameInstance()
+{
+	return GEngine->GameInstance.get();
 }
 
 UEngineCore::UEngineCore()
