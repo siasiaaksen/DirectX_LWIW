@@ -30,6 +30,7 @@ public:
 	void Idle(float _DeltaTime);
 	void Move(float _DeltaTime);
 	void Collected(float _DeltaTime);
+	void Escape(float _DeltaTime);
 
 	void FindCheck(float _DeltaTime);
 	void MoveToEllie(float _DeltaTime);
@@ -45,6 +46,8 @@ public:
 	{
 		IsSort = _Value;
 	}
+
+	void YSorting();
 
 protected:
 
@@ -64,7 +67,5 @@ private:
 
 	bool IsSort = true;
 	bool IsEscape = false;
-
-	UEngineRandom random;
 };
 

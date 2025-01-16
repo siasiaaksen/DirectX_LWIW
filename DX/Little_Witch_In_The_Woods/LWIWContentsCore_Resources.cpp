@@ -60,13 +60,17 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 			UEngineTexture::Load(FilePath);
 		}
 
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Idle.png", ".SData");
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Jump.png", ".SData");
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Collected.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Walk.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Idle.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Collection_Mongsiri.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Ellie_Collection_WitchFlower.png", ".SData");
+
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Idle.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Jump.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Collected.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Mongsiri_Escape.png", ".SData");
+
+		UEngineSprite::CreateSpriteToMeta("WitchFlower.png", ".SData");
 	}
 
 	{

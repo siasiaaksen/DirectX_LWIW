@@ -11,6 +11,8 @@
 #include "Ellie.h"
 #include "Room.h"
 #include "Mongsiri.h"
+#include "MongsiriHole.h"
+#include "EntranceCollision.h"
 
 
 class UPlayGUIWindow : public UEngineGUIWindow
@@ -39,9 +41,13 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("Ellie");
 	GetWorld()->CreateCollisionProfile("MongsiriOuter");
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
+	GetWorld()->CreateCollisionProfile("MongsiriHole");
+	GetWorld()->CreateCollisionProfile("Entrance");
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
+	GetWorld()->LinkCollisionProfile("MongsiriInner", "MongsiriHole");
+	GetWorld()->LinkCollisionProfile("Ellie", "Entrance");
 
 	// Ä«¸Þ¶ó
 	{
@@ -61,7 +67,11 @@ void APlayGameMode::BeginPlay()
 	AActor::BeginPlay();
 
 	Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
-	Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
+	
+	// Mid
+	//Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
+	// WitchHouseEntrance
+	Ellie->SetActorLocation({ 1200.0f, 1000.0f, 10.0f });
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
@@ -74,6 +84,11 @@ void APlayGameMode::BeginPlay()
 
 	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
 	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
+
+	std::shared_ptr<AMongsiriHole> MongsiriHole = GetWorld()->SpawnActor<AMongsiriHole>();
+	MongsiriHole->SetActorLocation({ 0.0f, 0.0f, 10.0f });
+
+	EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
 }
 
 void APlayGameMode::Tick(float _DeltaTime)

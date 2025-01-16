@@ -1,0 +1,510 @@
+fileFormatVersion: 2
+guid: 8667b9e5b2fff664f9fa7162582d6e48
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 168
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffd2b36cdb6c92541ab9622ff04e243a
+      internalID: -1842597020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 168
+        width: 76
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77a420884388fc4a9283870144a182c
+      internalID: 396980058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_2
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 168
+        width: 73
+        height: 87
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f30e3225825d2c49ae50514e643b6fe
+      internalID: 2062264406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_3
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 168
+        width: 73
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e500694687d2c6498887472202769e6
+      internalID: 195320996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_4
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 168
+        width: 76
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6678a22c472c5c3448f1b4a49c15bcbc
+      internalID: -2139692329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_5
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 168
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9456e900e3416f9469bd489616511cb1
+      internalID: -615336924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_6
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 168
+        width: 79
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ea9cad6acaddc244886678e75eff555
+      internalID: -1231824584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_7
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 168
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e168bd118303a4f8c3f2a75fd324be
+      internalID: 563764786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_8
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 168
+        width: 76
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add50ea1e5567524fb1357d0ad8ad63f
+      internalID: 1672389469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_9
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 28
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4031ffe0a92b95b409a60ccda503608b
+      internalID: 1007595220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_10
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 28
+        width: 75
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbdeb1ad12ecbd140afbc134e3a56feb
+      internalID: 2132129276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_11
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 28
+        width: 72
+        height: 87
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2690b798fc8447147bda16cf6d1e1ffe
+      internalID: 1017175832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_12
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 28
+        width: 72
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 199341521f9a04c48a6c73e5267a9328
+      internalID: -1025960730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_13
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 28
+        width: 76
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2adf5a9b0b84e4ea1a94b525f6b6cf
+      internalID: -913358572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_14
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 28
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b22a8aa0f2c75334b86220a0aa845ed8
+      internalID: 528628133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_15
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 28
+        width: 79
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f92e3fcbb9003aa4693da3befee139f8
+      internalID: 1525854729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_16
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 28
+        width: 81
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9696827a0de29040a234c6259258e24
+      internalID: 702731688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ellie_Collection_Witchflower_17
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 28
+        width: 76
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c01758befda06804280bb7a4fbc1ec02
+      internalID: 267880478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 20020d103cca0b247b54071c511caea1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ellie_Collection_Witchflower_0: -1842597020
+      Ellie_Collection_Witchflower_1: 396980058
+      Ellie_Collection_Witchflower_10: 2132129276
+      Ellie_Collection_Witchflower_11: 1017175832
+      Ellie_Collection_Witchflower_12: -1025960730
+      Ellie_Collection_Witchflower_13: -913358572
+      Ellie_Collection_Witchflower_14: 528628133
+      Ellie_Collection_Witchflower_15: 1525854729
+      Ellie_Collection_Witchflower_16: 702731688
+      Ellie_Collection_Witchflower_17: 267880478
+      Ellie_Collection_Witchflower_2: 2062264406
+      Ellie_Collection_Witchflower_3: 195320996
+      Ellie_Collection_Witchflower_4: -2139692329
+      Ellie_Collection_Witchflower_5: -615336924
+      Ellie_Collection_Witchflower_6: -1231824584
+      Ellie_Collection_Witchflower_7: 563764786
+      Ellie_Collection_Witchflower_8: 1672389469
+      Ellie_Collection_Witchflower_9: 1007595220
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

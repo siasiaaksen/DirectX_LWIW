@@ -44,12 +44,18 @@ AEllie::AEllie()
 			EllieRenderer->CreateAnimation("Ellie_Idle_BRight", "Ellie_Idle.png", 20, 23, AnimSpeed);
 		}
 
-		// EllieCollecting
+		// EllieCollectingMongsiri
 		{
 			EllieRenderer->SetSprite("Ellie_Collection_Mongsiri.png");
-			//EllieRenderer->SetRelativeScale3D({ 76, 96, 1.0f });
-			EllieRenderer->CreateAnimation("Ellie_Collecting_FLeft", "Ellie_Collection_Mongsiri.png", 0, 4, 0.4f, false);
-			EllieRenderer->CreateAnimation("Ellie_Collecting_FRight", "Ellie_Collection_Mongsiri.png", 5, 9, 0.4f, false);
+			EllieRenderer->CreateAnimation("Ellie_Collecting_FLeft_M", "Ellie_Collection_Mongsiri.png", 0, 4, 0.4f, false);
+			EllieRenderer->CreateAnimation("Ellie_Collecting_FRight_M", "Ellie_Collection_Mongsiri.png", 5, 9, 0.4f, false);
+		}
+
+		// EllieCollectingWitchFlower
+		{
+			EllieRenderer->SetSprite("Ellie_Collection_WitchFlower.png");
+			EllieRenderer->CreateAnimation("Ellie_Collecting_FLeft_F", "Ellie_Collection_WitchFlower.png", 0, 8, 0.4f, false);
+			EllieRenderer->CreateAnimation("Ellie_Collecting_FRight_F", "Ellie_Collection_WitchFlower.png", 9, 17, 0.4f, false);
 		}
 
 		//EllieRenderer->SetRelativeScale3D({ 76, 96, 1.0f });
@@ -87,7 +93,7 @@ void AEllie::Tick(float _DeltaTime)
 	switch (State)
 	{
 	case EEllieState::IDLE:
-		Idle();
+		Idle(_DeltaTime);
 		CollectItem(_DeltaTime);
 		break;
 	case EEllieState::MOVE:
@@ -109,7 +115,7 @@ void AEllie::Tick(float _DeltaTime)
 	}
 }
 
-void AEllie::Idle()
+void AEllie::Idle(float _DeltaTime)
 {
 	DirCheck();
 
@@ -174,8 +180,8 @@ void AEllie::Collecting(float _DeltaTime)
 		Frame = 9;
 	}
 
-	EllieRenderer->ChangeAnimation("Ellie_Collecting" + DirName);
-	EllieRenderer->SetAnimationEvent("Ellie_Collecting" + DirName, Frame, [this]() { State = EEllieState::IDLE; });
+	EllieRenderer->ChangeAnimation("Ellie_Collecting" + DirName + "_M");
+	EllieRenderer->SetAnimationEvent("Ellie_Collecting" + DirName + "_M", Frame, [this]() { State = EEllieState::IDLE; });
 }
 
 bool AEllie::IsMoveCheck(FVector _Dir)
@@ -299,7 +305,6 @@ void AEllie::CollectItem(float _DeltaTime)
 			
 			State = EEllieState::COLLECTING;
 			Mongsiri->SetSort(false);
-			//if (Mongsiri->GetActorLocation() == GetActorLocation() - FVector())
 			Mongsiri->SetState(EMongsiriState::COLLECTED);
 		}
 	}

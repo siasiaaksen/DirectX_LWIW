@@ -179,8 +179,16 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EntranceCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MapEditorMode.h" />
     <ClInclude Include="Mongsiri.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MongsiriHole.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -259,12 +267,20 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EntranceCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="LWIWContentsCore_Resources.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="MapEditorMode.cpp" />
     <ClCompile Include="Mongsiri.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MongsiriHole.cpp">
       <SubType>
       </SubType>
     </ClCompile>

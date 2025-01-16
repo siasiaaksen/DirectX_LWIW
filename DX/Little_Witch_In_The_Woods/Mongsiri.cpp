@@ -7,6 +7,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
 #include "Ellie.h"
+#include "MongsiriHole.h"
 
 
 AMongsiri::AMongsiri()
@@ -39,6 +40,11 @@ AMongsiri::AMongsiri()
 			MongsiriRenderer->SetSprite("Mongsiri_Collected.png");
 			MongsiriRenderer->CreateAnimation("Mongsiri_Collected_FLeft", "Mongsiri_Collected.png", 0, 6, AnimSpeed, false);
 			MongsiriRenderer->CreateAnimation("Mongsiri_Collected_FRight", "Mongsiri_Collected.png", { 13, 12, 11, 10, 9, 8, 7 }, AnimSpeed, false);
+		}
+
+		{
+			MongsiriRenderer->SetSprite("Mongsiri_Escape.png");
+			MongsiriRenderer->CreateAnimation("Mongsiri_Escape_FLeft", "Mongsiri_Escape.png", 0, 23, AnimSpeed, false);
 		}
 
 		MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_FLeft");
@@ -84,24 +90,11 @@ AMongsiri::~AMongsiri()
 void AMongsiri::BeginPlay()
 {
 	ACreature::BeginPlay();
-
-	random.SetSeed(50);
 }
 
 void AMongsiri::Tick(float _DeltaTime)
 {
 	ACreature::Tick(_DeltaTime);
-
-	// Sorting
-	{
-		if (true == IsSort)
-		{
-			FVector Pos = GetActorLocation();
-			Pos.Z = Pos.Y;
-
-			SetActorLocation(Pos);
-		}
-	}
 
 	switch (State)
 	{
@@ -115,25 +108,29 @@ void AMongsiri::Tick(float _DeltaTime)
 		Collected(_DeltaTime);
 		break;
 	case EMongsiriState::ESCAPE:
-	{
-		int a = 0;
-	}
+		Escape(_DeltaTime);
 		break;
 	default:
 		break;
 	}
 
-	SwitchAnim();
+	// Sorting
+	if (true == IsSort)
+	{
+		YSorting();
+	}
 }
 
 void AMongsiri::Idle(float _DeltaTime)
 {
 	FindCheck(_DeltaTime);
+	SwitchAnim();
 }
 
 void AMongsiri::Move(float _DeltaTime)
 {
 	MoveToEllie(_DeltaTime);
+	SwitchAnim();
 }
 
 void AMongsiri::Collected(float _DeltaTime)
@@ -158,14 +155,56 @@ void AMongsiri::Collected(float _DeltaTime)
 	MongsiriRenderer->SetAnimationEvent("Mongsiri_Collected" + DirName, Frame, 
 		[this, Ellie]() 
 		{ 
-			SetActorLocation(Ellie->GetActorLocation() - FVector( 5.0f, 20.0f ));
+			FVector CollectPos = Ellie->GetActorLocation() - FVector(5.0f, 20.0f);
+			SetActorLocation(CollectPos);
 			IsSort = true;
 
 			// Escape Part
-			State = EMongsiriState::IDLE;
+			State = EMongsiriState::ESCAPE;
 			IsEscape = true;
 		});
 	
+}
+
+void AMongsiri::Escape(float _DeltaTime)
+{
+	std::vector<UCollision*> Result;
+	if (true == MongsiriOuterCol->CollisionCheck("MongsiriHole", Result))
+	{
+		MongsiriRenderer->ChangeAnimation("Mongsiri_Jump_FLeft");
+
+		AMongsiriHole* Hole = dynamic_cast<AMongsiriHole*>(Result[0]->GetActor());
+
+		FVector StartPos = GetActorLocation();
+		FVector EndPos = Hole->GetActorLocation();
+
+		FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * 1.0f);
+
+		if (CurPos != EndPos)
+		{
+			SetActorLocation(CurPos);
+		}
+		else
+		{
+			if (true == MongsiriInnerCol->CollisionCheck("MongsiriHole", Result))
+			{
+				MongsiriRenderer->ChangeAnimation("Mongsiri_Escape_FLeft");
+				MongsiriRenderer->SetAnimationEvent("Mongsiri_Escape_FLeft", 23,
+					[this]()
+					{
+						SetActive(false);
+					});
+			}
+		}
+	}
+}
+
+void AMongsiri::YSorting()
+{
+	FVector Pos = GetActorLocation();
+	Pos.Z = Pos.Y;
+
+	SetActorLocation(Pos);
 }
 
 void AMongsiri::FindCheck(float _DeltaTime)
@@ -179,13 +218,13 @@ void AMongsiri::FindCheck(float _DeltaTime)
 			State = EMongsiriState::MOVE;
 			MongsiriRenderer->ChangeAnimation("Mongsiri_Jump" + DirName);
 		}
-		else
-		{
-			// Escape Part
-			FindMark->SetActive(false);
-			State = EMongsiriState::IDLE;
-			MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_FLeft");
-		}
+		//else
+		//{
+		//	// Escape Part
+		//	FindMark->SetActive(false);
+		//	State = EMongsiriState::IDLE;
+		//	MongsiriRenderer->ChangeAnimation("Mongsiri_Idle_FLeft");
+		//}
 	}
 	else
 	{
@@ -197,10 +236,8 @@ void AMongsiri::FindCheck(float _DeltaTime)
 
 void AMongsiri::MoveToEllie(float _DeltaTime)
 {
-	float RandomPosX = random.Randomfloat(-50.0f, 50.0f);
-	float RandomPosY = random.Randomfloat(-50.0f, 50.0f);
 	FVector StartPos = GetActorLocation();
-	FVector EndPos = GetWorld()->GetMainPawn()->GetActorLocation() - FVector(RandomPosX, RandomPosY);
+	FVector EndPos = GetWorld()->GetMainPawn()->GetActorLocation();
 
 	FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * MoveSpeed);
 

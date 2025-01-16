@@ -32,7 +32,7 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void Idle();
+	void Idle(float _DeltaTime);
 	void Move(float _DeltaTime);
 	void Collecting(float _DeltaTime);
 
@@ -52,6 +52,8 @@ public:
 	{
 		return ColImage;
 	}
+
+	void YSorting();
 
 protected:
 
