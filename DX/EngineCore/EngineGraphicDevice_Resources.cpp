@@ -23,7 +23,7 @@ void UEngineGraphicDevice::DefaultResourcesInit()
 	MaterialInit();
 
 	// 폰트 로드
-	UEngineFont::Load("Cafe24Ohsquare", "Cafe24Ohsquare");
+	UEngineFont::Load("SDSamliphopangcheTTFBasic", "SDSamliphopangcheTTFBasic");
 }
 
 void UEngineGraphicDevice::DepthStencilInit()

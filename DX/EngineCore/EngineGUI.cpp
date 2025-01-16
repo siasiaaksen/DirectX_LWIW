@@ -52,7 +52,7 @@ void UEngineGUI::Init()
     UEngineDirectory NewDir;
     NewDir.MoveParentToDirectory("EngineResources");
     NewDir.Move("Font");
-    UEngineFile File = NewDir.GetFile("Cafe24Ohsquare.ttf");
+    UEngineFile File = NewDir.GetFile("SDSamliphopangcheTTFBasic.ttf");
 
     File.GetPathToString();
     std::string UTF8Path = UEngineString::AnsiToUTF8(File.GetPathToString());

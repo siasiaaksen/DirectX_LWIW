@@ -4,6 +4,11 @@
 
 UEngineInputLayOutInfo FEngineVertex::Info;
 
+UEngineInputLayOutInfo& FEngineVertex::GetInfo()
+{
+	return Info;
+}
+
 class EngineVertexInit
 {
 public:
