@@ -12,8 +12,8 @@ AEntranceCollision::AEntranceCollision()
 	EntranceCol = CreateDefaultSubObject<UCollision>();
 	EntranceCol->SetCollisionProfileName("Entrance");
 	EntranceCol->SetupAttachment(RootComponent);
-	EntranceCol->SetScale3D(EntranceSize);
-	EntranceCol->SetWorldLocation(EntrancePos);
+	//EntranceCol->SetScale3D(EntranceSize);
+	//EntranceCol->SetWorldLocation(EntrancePos);
 }
 
 AEntranceCollision::~AEntranceCollision()

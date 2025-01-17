@@ -2,7 +2,7 @@
 #include "Room.h"
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EnginePlatform/EngineInput.h>
-
+#include "Ellie.h"
 
 ARoom::ARoom()
 {

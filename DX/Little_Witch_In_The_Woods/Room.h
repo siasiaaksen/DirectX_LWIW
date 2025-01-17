@@ -16,6 +16,19 @@ public:
 	ARoom& operator=(const ARoom& _Other) = delete;
 	ARoom& operator=(ARoom&& _Other) noexcept = delete;
 
+	void SetRoomSprite(std::string_view _Name, FVector _RoomSize)
+	{
+		BaseSprite->SetTexture(_Name);
+		BaseSprite->SetScale3D(_RoomSize);
+		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 1000.0f });
+	}
+
+	void SetRoomColSprite(std::string_view _Name)
+	{
+		BaseColSprite->SetTexture(_Name, true, 1.0f);
+		BaseColSprite->SetWorldLocation({ 0.0f, 0.0f, 800.0f });
+	}
+
 	void SetRoomSize(FVector _Value)
 	{
 		RoomSize = _Value;
@@ -25,7 +38,7 @@ public:
 
 	FVector GetRoomSize()
 	{
-		return RoomSize;
+		return ColImage.GetImageScale();
 	}
 
 	void SetCollisionSize(FVector _Value)

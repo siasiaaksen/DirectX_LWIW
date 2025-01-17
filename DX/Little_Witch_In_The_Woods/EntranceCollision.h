@@ -22,9 +22,24 @@ public:
 		EntranceSize = _EntranceSize;
 	}
 
+	FVector& GetEntranceSize()
+	{
+		return EntranceSize;
+	}
+
 	void SetEntrancePos(FVector _EntrancePos)
 	{
 		EntrancePos = _EntrancePos;
+	}
+
+	FVector& GetEntrancePos()
+	{
+		return EntrancePos;
+	}
+
+	std::shared_ptr<class UCollision>& GetEntranceCol()
+	{
+		return EntranceCol;
 	}
 
 protected:
@@ -32,7 +47,7 @@ protected:
 private:
 	std::shared_ptr<class UCollision> EntranceCol;
 
-	FVector EntranceSize = { 300.0f, 100.0f };
-	FVector EntrancePos = { 1000.0f, 1350, 0.0f };
+	FVector EntranceSize/* = { 300.0f, 100.0f }*/;
+	FVector EntrancePos/* = { 1000.0f, 1395, 0.0f }*/;
 };
 

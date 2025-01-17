@@ -69,7 +69,7 @@ private:
 
 	FVector EllieSize = { 70.0f, 100.0f };
 	std::string DirName = "_Front";
-	float AnimSpeed = 0.2f;
+	float AnimSpeed = 0.3f;
 
 	UEngineWinImage ColImage;
 };

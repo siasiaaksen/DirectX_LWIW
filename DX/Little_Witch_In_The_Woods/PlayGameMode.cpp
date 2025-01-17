@@ -69,9 +69,9 @@ void APlayGameMode::BeginPlay()
 	Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
 	
 	// Mid
-	//Ellie->SetActorLocation({ 0.0f, -100.0f, 10.0f });
+	//Ellie->SetActorLocation({ 0.0f, 0.0f, 10.0f });
 	// WitchHouseEntrance
-	Ellie->SetActorLocation({ 1200.0f, 1000.0f, 10.0f });
+	Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
@@ -81,14 +81,17 @@ void APlayGameMode::BeginPlay()
 	Room->SetRoomSize(RoomSize);
 	Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 	Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+	RoomName = "MainMap";
 
-	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
+	//Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
+	//Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
 
-	std::shared_ptr<AMongsiriHole> MongsiriHole = GetWorld()->SpawnActor<AMongsiriHole>();
-	MongsiriHole->SetActorLocation({ 0.0f, 0.0f, 10.0f });
+	//std::shared_ptr<AMongsiriHole> MongsiriHole = GetWorld()->SpawnActor<AMongsiriHole>();
+	//MongsiriHole->SetActorLocation({ 0.0f, 0.0f, 10.0f });
 
 	EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
+	EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
+	EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
 }
 
 void APlayGameMode::Tick(float _DeltaTime)
@@ -108,7 +111,7 @@ void APlayGameMode::Tick(float _DeltaTime)
 
 void APlayGameMode::CameraMove()
 {
-	FVector RoomSize = Room->GetRoomSize();
+	RoomSize = Room->GetRoomSize();
 	FVector WindowSize = UEngineCore::GetScreenScale();
 	FVector ElliePos = Ellie->GetActorLocation();
 	FVector CurCameraPos = { 0.0f, 0.0f, 0.0f };
@@ -147,11 +150,49 @@ void APlayGameMode::CameraMove()
 
 void APlayGameMode::RoomChange()
 {
-	if (true == UEngineInput::IsPress('Q'))
+	std::vector<UCollision*> Result;
+	if (true == EntranceCol->GetEntranceCol()->CollisionCheck("Ellie", Result))
 	{
-		//Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
-		Room->SetRoomSize({ 2000.0f, 800.0f });
-		Room->SetCollisionSize(Room->GetRoomSize() - (Ellie->GetEllieSize()/* * 2.0f*/));
+		if ("MainMap" == RoomName)
+		{
+			Ellie->SetColImage("WitchHouse_Outside_Col.png", "Map");
+			Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
+			FVector RoomSize = Room->GetColImage().GetImageScale();
+
+			Room->SetRoomSprite("WitchHouse_Outside.png", RoomSize);
+			Room->SetRoomColSprite("WitchHouse_Outside_Col.png");
+
+			FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+			Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+
+			Ellie->SetActorLocation({ 0.0f, -500.0f, 10.0f });
+
+			EntranceCol->SetActorLocation({ 0.0f, -((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
+
+			RoomName = "WitchHouse";
+		}
+		else if ("WitchHouse" == RoomName)
+		{
+			Ellie->SetColImage("Map_Col.png", "Map");
+			Room->SetColImage("Map_Col.png", "Map");
+			FVector RoomSize = Room->GetColImage().GetImageScale();
+
+			Room->SetRoomSprite("Map.png", RoomSize);
+			Room->SetRoomColSprite("Map_Col.png");
+
+			FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+			Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+
+			Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
+
+			EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
+
+			RoomName = "MainMap";
+		}
+
+		Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });
 	}
 }
 
