@@ -5,7 +5,7 @@ class UGameInstance
 {
 public:
 	ENGINEAPI UGameInstance();
-	ENGINEAPI ~UGameInstance();
+	ENGINEAPI virtual ~UGameInstance();
 
 	UGameInstance(const UGameInstance& _Other) = delete;
 	UGameInstance(UGameInstance&& _Other) noexcept = delete;

@@ -7,6 +7,8 @@
     </ClInclude>
     <ClInclude Include="EngineInput.h" />
     <ClInclude Include="EngineWinImage.h" />
+    <ClInclude Include="EngineThread.h" />
+    <ClInclude Include="EngineWorkThreadPool.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineWindow.cpp" />
@@ -15,6 +17,8 @@
     </ClCompile>
     <ClCompile Include="EngineInput.cpp" />
     <ClCompile Include="EngineWinImage.cpp" />
+    <ClCompile Include="EngineThread.cpp" />
+    <ClCompile Include="EngineWorkThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">

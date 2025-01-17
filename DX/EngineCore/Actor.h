@@ -65,7 +65,7 @@ public:
 		return dynamic_cast<Type*>(GetGameInstance());
 	}
 
-	class UGameInstance* GetGameInstance();
+	ENGINEAPI class UGameInstance* GetGameInstance();
 
 	ULevel* GetWorld()
 	{
