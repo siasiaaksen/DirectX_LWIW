@@ -86,9 +86,24 @@ void AEllie::BeginPlay()
 	APawn::BeginPlay();
 }
 
+void AEllie::EllieSpeedUpDown()
+{
+	if (true == UEngineInput::IsDown(VK_INSERT))
+	{
+		Speed += 100.0f;
+	}
+
+	if (true == UEngineInput::IsDown(VK_DELETE))
+	{
+		Speed -= 100.0f;
+	}
+}
+
 void AEllie::Tick(float _DeltaTime)
 {
 	APawn::Tick(_DeltaTime);
+
+	EllieSpeedUpDown();
 
 	switch (State)
 	{

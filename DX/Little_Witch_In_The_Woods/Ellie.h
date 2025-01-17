@@ -29,6 +29,8 @@ public:
 		return EllieRenderer;
 	}
 
+	void EllieSpeedUpDown();
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 

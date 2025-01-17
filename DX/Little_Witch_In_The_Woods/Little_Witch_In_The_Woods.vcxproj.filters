@@ -68,6 +68,9 @@
     <ClInclude Include="EntranceCollision.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Play\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -138,6 +141,9 @@
     <ClCompile Include="EntranceCollision.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Play\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
@@ -163,6 +169,9 @@
     </Filter>
     <Filter Include="HUD">
       <UniqueIdentifier>{bdd6481d-6db0-4ce7-8db0-d3783561aa6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Map">
+      <UniqueIdentifier>{604cff64-0b3d-4772-8676-e1cb4fd8ef50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
