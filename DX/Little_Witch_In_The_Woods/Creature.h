@@ -2,6 +2,12 @@
 #include <EngineCore/Actor.h>
 
 
+enum class ECreatureType
+{
+	TREE,
+};
+
+
 class ACreature : public AActor
 {
 public:
@@ -15,6 +21,8 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	ECreatureType CreatureTypeValue;
 
 protected:
 

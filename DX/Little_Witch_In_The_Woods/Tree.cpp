@@ -14,7 +14,6 @@ ATree::ATree()
 	TreeSprite = CreateDefaultSubObject<USpriteRenderer>();
 	TreeSprite->SetupAttachment(RootComponent);
 	TreeSprite->SetTexture("Tree_0.png", true, 1.0f);
-	TreeSprite->SetWorldLocation({ 100.0f, 100.0f });
 	TreeSprite->SpriteData.Pivot = { 0.5f, 0.25f };
 
 	TreeCollision = CreateDefaultSubObject<UCollision>();
@@ -22,6 +21,8 @@ ATree::ATree()
 	TreeCollision->SetCollisionProfileName("Tree");
 	TreeCollision->SetScale3D({ 5.0f, 0.5f });
 	TreeCollision->SetWorldLocation({ GetActorLocation().X, GetActorLocation().Y - 30.0f});
+
+	//SetActorLocation({ 100.0f, 100.0f });
 }
 
 ATree::~ATree()

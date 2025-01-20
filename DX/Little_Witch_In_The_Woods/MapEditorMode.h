@@ -13,13 +13,15 @@ public:
 	AMapEditorMode& operator=(const AMapEditorMode& _Other) = delete;
 	AMapEditorMode& operator=(AMapEditorMode&& _Other) noexcept = delete;
 
-	void BeginPlay() override;
+	//void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
 protected:
 	void LevelChangeStart() override;
 
 private:
+	std::shared_ptr<class ACameraActor> Camera;
+
 	std::shared_ptr<class UMapEditorWindow> TileMapWindow;
 	std::shared_ptr<class USpriteRenderer> PivotSpriteRenderer;
 	std::shared_ptr<class UTileMapRenderer> TileMapRenderer;

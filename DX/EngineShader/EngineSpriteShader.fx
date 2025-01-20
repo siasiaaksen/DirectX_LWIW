@@ -58,7 +58,7 @@ cbuffer FUVValue : register(b2)
     float4 PlusUVValue;
 };
 
-VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
+VertexShaderOutPut SpriteRender_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     
@@ -88,7 +88,7 @@ cbuffer ResultColor : register(b0)
     float4 MulColor;
 };
 
-float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
+float4 SpriteRender_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
 

@@ -33,7 +33,7 @@ public:
 	int SelectItem = 0;
 	int ObjectItem = -1;
 	UTileMapRenderer* TileMapRenderer = nullptr;
-	EEDITMode Mode = EEDITMode::TileMap;
+	EEDITMode Mode = EEDITMode::Object;
 
 	int TileCountX = 10;
 	int TileCountY = 10;
@@ -103,13 +103,16 @@ public:
 	void ObjectMode()
 	{
 		{
+			ImGui::ListBox("SpawnList", &SelectItem, &Arr[0], Arr.size());
+
+		}
+
+		{
 			std::vector<const char*> Arr;
 			Arr.push_back("TREE");
 			//Arr.push_back("Monster2");
 
-			ImGui::ListBox("SpawnList", &SelectItem, &Arr[0], 2);
-
-			 //GetMainWindow()->IsScreenOut();
+			ImGui::ListBox("SpawnCreatureList", &SelectItem, &Arr[0], Arr.size());
 
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
@@ -208,19 +211,19 @@ public:
 
 			if (GetSaveFileNameA(&ofn) == TRUE)
 			{
-				//std::list<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorListByClass<AMon>();
+				std::list<std::shared_ptr<ACreature>> AllCreatureList = GetWorld()->GetAllActorListByClass<ACreature>();
 
 				UEngineSerializer Ser;
 
-				//Ser << static_cast<int>(AllMonsterList.size());
+				Ser << static_cast<int>(AllCreatureList.size());
 
-				//for (std::shared_ptr<AMon> Actor : AllMonsterList)
-				//{
-				//	Ser << static_cast<int>(Actor->MonsterTypeValue);
-				//	Actor->Serialize(Ser);
-				//}
+				for (std::shared_ptr<ACreature> Actor : AllCreatureList)
+				{
+					Ser << static_cast<int>(Actor->CreatureTypeValue);
+					Actor->Serialize(Ser);
+				}
 
-				TileMapRenderer->Serialize(Ser);
+				//TileMapRenderer->Serialize(Ser);
 
 				UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
 
@@ -264,35 +267,32 @@ public:
 				NewFile.FileOpen("rb");
 				NewFile.Read(Ser);
 
-				//int MonsterCount = 0;
+				int CreatureCount = 0;
 
-				//Ser >> MonsterCount;
+				Ser >> CreatureCount;
 
-				//for (size_t i = 0; i < MonsterCount; i++)
-				//{
-				//	int MonsterTypeValue = 0;
-				//	Ser >> MonsterTypeValue;
+				for (size_t i = 0; i < CreatureCount; i++)
+				{
+					int CreatureTypeValue = 0;
+					Ser >> CreatureTypeValue;
 
-				//	EMonsterType MonsterType = static_cast<EMonsterType>(MonsterTypeValue);
+					ECreatureType CreatureType = static_cast<ECreatureType>(CreatureTypeValue);
 
-				//	std::shared_ptr<AMon> NewMon = nullptr;
+					std::shared_ptr<ACreature> NewCreature = nullptr;
 
-				//	switch (MonsterType)
-				//	{
-				//	case Monster:
-				//		NewMon = GetWorld()->SpawnActor<AMonster>();
-				//		break;
-				//	case Monster2:
-				//		NewMon = GetWorld()->SpawnActor<AMonster2>();
-				//		break;
-				//	default:
-				//		break;
-				//	}
+					switch (CreatureType)
+					{
+					case ECreatureType::TREE:
+						NewCreature = GetWorld()->SpawnActor<ATree>();
+						break;
+					default:
+						break;
+					}
 
-				//	NewMon->DeSerialize(Ser);
-				//}
+					NewCreature->DeSerialize(Ser);
+				}
 
-				TileMapRenderer->DeSerialize(Ser);
+				//TileMapRenderer->DeSerialize(Ser);
 			}
 		}
 	}
@@ -342,7 +342,7 @@ AMapEditorMode::AMapEditorMode()
 
 	// Ä«¸Þ¶ó
 	{
-		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+		Camera = GetWorld()->GetMainCamera();
 		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
@@ -360,10 +360,10 @@ AMapEditorMode::~AMapEditorMode()
 {
 }
 
-void AMapEditorMode::BeginPlay()
-{
-	AActor::BeginPlay();
-}
+//void AMapEditorMode::BeginPlay()
+//{
+//	AActor::BeginPlay();
+//}
 
 void AMapEditorMode::Tick(float _DeltaTime)
 {
@@ -372,6 +372,27 @@ void AMapEditorMode::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsDown(VK_HOME))
 	{
 		UEngineCore::OpenLevel("TitleLevel");
+	}
+
+	if (true == UEngineInput::IsPress('W'))
+	{
+		Camera->AddActorLocation({ 0.0f, 300.0f * _DeltaTime, 0.0f });
+	}
+	if (true == UEngineInput::IsPress('S'))
+	{
+		Camera->AddActorLocation({ 0.0f, -300.0f * _DeltaTime, 0.0f });
+	}
+	if (true == UEngineInput::IsPress('A'))
+	{
+		Camera->AddActorLocation({ -300.0f * _DeltaTime, 0.0f, 0.0f });
+	}
+	if (true == UEngineInput::IsPress('D'))
+	{
+		Camera->AddActorLocation({ 300.0f * _DeltaTime, 0.0f, 0.0f });
+	}
+	if (true == UEngineInput::IsPress(VK_F3))
+	{
+		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	}
 }
 

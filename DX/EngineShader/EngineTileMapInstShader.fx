@@ -58,7 +58,7 @@ StructuredBuffer<FTransform> TileMapInstTransformBuffer : register(t0);
 
 StructuredBuffer<FSpriteData> TileMapInstSpriteBuffer : register(t1);
 
-VertexShaderOutPut TileMapInst_VS(EngineVertex _Vertex)
+VertexShaderOutPut TileMap_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     
@@ -88,7 +88,7 @@ cbuffer ResultColor : register(b0)
     float4 MulColor;
 };
 
-float4 TileMapInst_PS(VertexShaderOutPut _Vertex) : SV_Target0
+float4 TileMap_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
     float4 Color = TileMapTex.Sample(ImageSampler, _Vertex.UV.xy);
 
