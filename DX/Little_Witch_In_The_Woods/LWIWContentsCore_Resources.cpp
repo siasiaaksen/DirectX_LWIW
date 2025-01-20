@@ -58,7 +58,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		{
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
-		}
+		} 
 
 		UEngineSprite::CreateSpriteToMeta("Ellie_Walk.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Idle.png", ".SData");

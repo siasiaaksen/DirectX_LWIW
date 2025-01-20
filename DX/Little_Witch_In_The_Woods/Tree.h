@@ -1,8 +1,8 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "Creature.h"
 
 
-class ATree : public AActor
+class ATree : public ACreature
 {
 public:
 	ATree();
@@ -22,6 +22,9 @@ public:
 	{
 		return TreeCollision;
 	}
+
+	void BeginPlay();
+	void Tick(float _DeltaTime);
 
 protected:
 

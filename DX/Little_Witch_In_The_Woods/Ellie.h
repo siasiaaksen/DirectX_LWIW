@@ -55,8 +55,6 @@ public:
 		return ColImage;
 	}
 
-	void YSorting();
-
 protected:
 
 private:

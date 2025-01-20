@@ -10,13 +10,14 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include "ContentsEditorGUI.h"
+#include "Creature.h"
+#include "Tree.h"
 
 
-//enum class ESpawnList
-//{
-//	Monster,
-//	Monster2,
-//};
+enum class ESpawnList
+{
+	TREE,
+};
 
 
 enum class EEDITMode
@@ -38,143 +39,140 @@ public:
 	int TileCountY = 10;
 	int SelectTileIndex = 0;
 
-	void TileMapMode()
-	{
-		{
-			UEngineSprite* Sprite = TileMapRenderer->GetSprite();
+	//void TileMapMode()
+	//{
+	//	{
+	//		UEngineSprite* Sprite = TileMapRenderer->GetSprite();
 
-			for (size_t i = 0; i < Sprite->GetSpriteCount(); i++)
-			{
-				UEngineTexture* Texture = Sprite->GetTexture(i);
-				FSpriteData Data = Sprite->GetSpriteData(i);
+	//		for (size_t i = 0; i < Sprite->GetSpriteCount(); i++)
+	//		{
+	//			UEngineTexture* Texture = Sprite->GetTexture(i);
+	//			FSpriteData Data = Sprite->GetSpriteData(i);
 
-				ImTextureID SRV = reinterpret_cast<ImTextureID>(Texture->GetSRV());
+	//			ImTextureID SRV = reinterpret_cast<ImTextureID>(Texture->GetSRV());
 
-				std::string Text = std::to_string(i);
+	//			std::string Text = std::to_string(i);
 
-				if (i != 0)
-				{
-					if (0 != (i % 10))
-					{
-						// 엔터를 치지 않는
-						ImGui::SameLine();
-					}
-				}
+	//			if (i != 0)
+	//			{
+	//				if (0 != (i % 10))
+	//				{
+	//					// 엔터를 치지 않는
+	//					ImGui::SameLine();
+	//				}
+	//			}
 
-				ImVec2 Pos = { Data.CuttingPos.X, Data.CuttingPos.Y };
-				ImVec2 Size = { Data.CuttingPos.X + Data.CuttingSize.X, Data.CuttingPos.Y + Data.CuttingSize.Y };
-				if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }, Pos, Size))
-				{
-					SelectTileIndex = static_cast<int>(i);
-				}
-			}
+	//			ImVec2 Pos = { Data.CuttingPos.X, Data.CuttingPos.Y };
+	//			ImVec2 Size = { Data.CuttingPos.X + Data.CuttingSize.X, Data.CuttingPos.Y + Data.CuttingSize.Y };
+	//			if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }, Pos, Size))
+	//			{
+	//				SelectTileIndex = static_cast<int>(i);
+	//			}
+	//		}
 
-			ImGui::InputInt("TileMapX", &TileCountX);
-			ImGui::InputInt("TileMapY", &TileCountY);
+	//		ImGui::InputInt("TileMapX", &TileCountX);
+	//		ImGui::InputInt("TileMapY", &TileCountY);
 
-			if (ImGui::Button("TileMap Create"))
-			{
-				for (int y = 0; y < TileCountY; y++)
-				{
-					for (int x = 0; x < TileCountX; x++)
-					{
-						TileMapRenderer->SetTile(x, y, SelectTileIndex);
-					}
-				}
-			}
+	//		if (ImGui::Button("TileMap Create"))
+	//		{
+	//			for (int y = 0; y < TileCountY; y++)
+	//			{
+	//				for (int x = 0; x < TileCountX; x++)
+	//				{
+	//					TileMapRenderer->SetTile(x, y, SelectTileIndex);
+	//				}
+	//			}
+	//		}
 
-			if (true == UEngineInput::IsPress(VK_LBUTTON))
-			{
-				FVector ScreenPos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
-				
-				TileMapRenderer->SetTile(ScreenPos, SelectTileIndex);
-			}
+	//		if (true == UEngineInput::IsPress(VK_LBUTTON))
+	//		{
+	//			FVector ScreenPos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
+	//			
+	//			TileMapRenderer->SetTile(ScreenPos, SelectTileIndex);
+	//		}
 
-			if (true == UEngineInput::IsPress(VK_RBUTTON))
-			{
-				FVector ScreenPos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
+	//		if (true == UEngineInput::IsPress(VK_RBUTTON))
+	//		{
+	//			FVector ScreenPos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
 
-				TileMapRenderer->RemoveTile(ScreenPos);
-			}
-		}
-	}
+	//			TileMapRenderer->RemoveTile(ScreenPos);
+	//		}
+	//	}
+	//}
 
 	void ObjectMode()
 	{
 		{
 			std::vector<const char*> Arr;
-			//Arr.push_back("Monster");
+			Arr.push_back("TREE");
 			//Arr.push_back("Monster2");
 
-			//ImGui::ListBox("SpawnList", &SelectItem, &Arr[0], 2);
+			ImGui::ListBox("SpawnList", &SelectItem, &Arr[0], 2);
 
 			 //GetMainWindow()->IsScreenOut();
 
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
-				//ESpawnList SelectMonster = static_cast<ESpawnList>(SelectItem);
-				//std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
-				//FVector Pos = Camera->ScreenMousePosToWorldPos();
-				//Pos.Z = 0.0f;
+				ESpawnList SelectCreature = static_cast<ESpawnList>(SelectItem);
+				std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
+				FVector Pos = Camera->ScreenMousePosToWorldPos();
+				Pos.Z = 0.0f;
 
-				//std::shared_ptr<AMon> NewMonster;
+				std::shared_ptr<ACreature> NewCreature;
 
-				//switch (SelectMonster)
-				//{
-				//case ESpawnList::Monster:
-				//	NewMonster = GetWorld()->SpawnActor<AMonster>("Monster");
-				//	break;
-				//case ESpawnList::Monster2:
-				//	NewMonster = GetWorld()->SpawnActor<AMonster2>("Monster2");
-				//	break;
-				//default:
-				//	break;
-				//}
+				switch (SelectCreature)
+				{
+				case ESpawnList::TREE:
+					NewCreature = GetWorld()->SpawnActor<ATree>("TREE");
+					break;
+				default:
+					break;
+				}
 
-				//NewMonster->SetActorLocation(Pos);
+				NewCreature->SetActorLocation(Pos);
 			}
 		}
 
 		{
 			if (ImGui::Button("EditObjectDelete"))
 			{
-				//std::list<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorListByClass<AMon>();
-				//for (std::shared_ptr<AMon> Mon : AllMonsterList)
-				//{
-				//	Mon->Destroy();
-				//}
+				std::list<std::shared_ptr<ACreature>> AllCreatureList = GetWorld()->GetAllActorListByClass<ACreature>();
+				for (std::shared_ptr<ACreature> Creature : AllCreatureList)
+				{
+					Creature->Destroy();
+				}
 			}
 		}
 
 		{
-			//std::vector<std::shared_ptr<AMon>> AllMonsterList = GetWorld()->GetAllActorArrayByClass<AMon>();
+			std::vector<std::shared_ptr<ACreature>> AllCreatureList = GetWorld()->GetAllActorArrayByClass<ACreature>();
 
-			//std::vector<std::string> ArrString;
-			//for (std::shared_ptr<class AActor> Actor : AllMonsterList)
-			//{
-			//	ArrString.push_back(Actor->GetName());
-			//}
+			std::vector<std::string> ArrString;
+			for (std::shared_ptr<class AActor> Actor : AllCreatureList)
+			{
+				ArrString.push_back(Actor->GetName());
+			}
 
-			//std::vector<const char*> Arr;
-			//for (size_t i = 0; i < ArrString.size(); i++)
-			//{
-			//	Arr.push_back(ArrString[i].c_str());
-			//}
+			std::vector<const char*> Arr;
+			for (size_t i = 0; i < ArrString.size(); i++)
+			{
+				Arr.push_back(ArrString[i].c_str());
+			}
 
-			//if (0 < Arr.size())
-			//{
-			//	ImGui::ListBox("AllActorList", &ObjectItem, &Arr[0], static_cast<int>(Arr.size()));
+			if (0 < Arr.size())
+			{
+				ImGui::ListBox("AllActorList", &ObjectItem, &Arr[0], static_cast<int>(Arr.size()));
 
-			//	if (ObjectItem != -1)
-			//	{
-			//	}
+				if (ObjectItem != -1)
+				{
+				}
 
-			//	if (true == ImGui::Button("Delete"))
-			//	{
-			//		AllMonsterList[ObjectItem]->Destroy();
-			//		ObjectItem = -1;
-			//	}
-			//}
+				if (true == ImGui::Button("Delete"))
+				{
+					AllCreatureList[ObjectItem]->Destroy();
+					ObjectItem = -1;
+				}
+			}
 		}
 	}
 
@@ -321,7 +319,7 @@ public:
 		switch (Mode)
 		{
 		case EEDITMode::TileMap:
-			TileMapMode();
+			//TileMapMode();
 			break;
 		case EEDITMode::Object:
 			ObjectMode();
@@ -337,7 +335,7 @@ public:
 
 AMapEditorMode::AMapEditorMode()
 {
-	//GetWorld()->CreateCollisionProfile("Monster");
+	GetWorld()->CreateCollisionProfile("TREE");
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;

@@ -8,6 +8,7 @@
 #include <EngineCore/CameraActor.h>
 #include "Room.h"
 #include "Mongsiri.h"
+#include "Tree.h"
 
 
 AEllie::AEllie()
@@ -205,6 +206,17 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 	if (false == EllieCollision->CollisionCheck("Room", _Dir, Result))
 	{
 		return false;
+	}
+
+	std::vector<UCollision*> Result2;
+	if (true == EllieCollision->CollisionCheck("Tree", _Dir, Result2))
+	{
+		ATree* Tree = dynamic_cast<ATree*>(Result2[0]->GetActor());
+
+		if (GetActorLocation().Z <= Tree->GetActorLocation().Z)
+		{
+		}
+			return false;
 	}
 
 	FVector EllieHalf = EllieSize.Half();

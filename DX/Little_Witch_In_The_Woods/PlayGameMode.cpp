@@ -14,6 +14,8 @@
 #include "MongsiriHole.h"
 #include "EntranceCollision.h"
 
+#include "Tree.h"
+
 
 class UPlayGUIWindow : public UEngineGUIWindow
 {
@@ -43,11 +45,14 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
 	GetWorld()->CreateCollisionProfile("MongsiriHole");
 	GetWorld()->CreateCollisionProfile("Entrance");
+	GetWorld()->CreateCollisionProfile("Tree");
+
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
 	GetWorld()->LinkCollisionProfile("MongsiriInner", "MongsiriHole");
 	GetWorld()->LinkCollisionProfile("Ellie", "Entrance");
+	GetWorld()->LinkCollisionProfile("Ellie", "Tree");
 
 	// Ä«¸Þ¶ó
 	{
@@ -69,9 +74,9 @@ void APlayGameMode::BeginPlay()
 	Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
 	
 	// Mid
-	//Ellie->SetActorLocation({ 0.0f, 0.0f, 10.0f });
+	Ellie->SetActorLocation({ 0.0f, 0.0f, 10.0f });
 	// WitchHouseEntrance
-	Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
+	//Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
@@ -92,6 +97,8 @@ void APlayGameMode::BeginPlay()
 	EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
 	EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
 	EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
+
+	std::shared_ptr<class ATree> Tree = GetWorld()->SpawnActor<ATree>();
 }
 
 void APlayGameMode::Tick(float _DeltaTime)
