@@ -52,7 +52,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 			return;
 		}
 
-		Dir.Append("Play");
+		Dir.Append("Play\\Ellie");
 		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{
@@ -64,6 +64,23 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToMeta("Ellie_Idle.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Collection_Mongsiri.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Ellie_Collection_WitchFlower.png", ".SData");
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+
+		Dir.Append("Play\\Creature");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineTexture::Load(FilePath);
+		}
 
 		UEngineSprite::CreateSpriteToMeta("Mongsiri_Idle.png", ".SData");
 		UEngineSprite::CreateSpriteToMeta("Mongsiri_Jump.png", ".SData");
@@ -71,6 +88,44 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToMeta("Mongsiri_Escape.png", ".SData");
 
 		UEngineSprite::CreateSpriteToMeta("WitchFlower.png", ".SData");
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+
+		Dir.Append("Map");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineTexture::Load(FilePath);
+		}
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+
+		Dir.Append("Map_Object");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineTexture::Load(FilePath);
+		}
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
 	{

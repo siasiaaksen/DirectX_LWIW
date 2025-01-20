@@ -71,6 +71,9 @@
     <ClInclude Include="Tree.h">
       <Filter>Play\Map</Filter>
     </ClInclude>
+    <ClInclude Include="MapObject.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -143,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="Tree.cpp">
       <Filter>Play\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>Play\Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

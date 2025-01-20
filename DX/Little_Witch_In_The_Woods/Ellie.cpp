@@ -213,10 +213,10 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 	{
 		ATree* Tree = dynamic_cast<ATree*>(Result2[0]->GetActor());
 
-		if (GetActorLocation().Z <= Tree->GetActorLocation().Z)
-		{
-		}
-			return false;
+		//if (GetActorLocation().Z <= Tree->GetActorLocation().Z)
+		//{
+		//}
+		//	return false;
 	}
 
 	FVector EllieHalf = EllieSize.Half();

@@ -45,14 +45,14 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
 	GetWorld()->CreateCollisionProfile("MongsiriHole");
 	GetWorld()->CreateCollisionProfile("Entrance");
-	GetWorld()->CreateCollisionProfile("Tree");
+	//GetWorld()->CreateCollisionProfile("Tree");
 
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
 	GetWorld()->LinkCollisionProfile("MongsiriInner", "MongsiriHole");
 	GetWorld()->LinkCollisionProfile("Ellie", "Entrance");
-	GetWorld()->LinkCollisionProfile("Ellie", "Tree");
+	//GetWorld()->LinkCollisionProfile("Ellie", "Tree");
 
 	// Ä«¸Þ¶ó
 	{
@@ -98,7 +98,7 @@ void APlayGameMode::BeginPlay()
 	EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
 	EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
 
-	std::shared_ptr<class ATree> Tree = GetWorld()->SpawnActor<ATree>();
+	//std::shared_ptr<class ATree> Tree = GetWorld()->SpawnActor<ATree>();
 }
 
 void APlayGameMode::Tick(float _DeltaTime)

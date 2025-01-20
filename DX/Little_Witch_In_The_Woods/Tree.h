@@ -1,8 +1,8 @@
 #pragma once
-#include "Creature.h"
+#include "MapObject.h"
 
 
-class ATree : public ACreature
+class ATree : public AMapObject
 {
 public:
 	ATree();
@@ -23,8 +23,8 @@ public:
 		return TreeCollision;
 	}
 
-	void BeginPlay();
-	void Tick(float _DeltaTime);
+	//void BeginPlay();
+	//void Tick(float _DeltaTime);
 
 protected:
 

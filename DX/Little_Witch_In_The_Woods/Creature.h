@@ -4,7 +4,7 @@
 
 enum class ECreatureType
 {
-	TREE,
+	Tree,
 };
 
 

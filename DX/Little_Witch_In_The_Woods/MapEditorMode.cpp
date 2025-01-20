@@ -11,12 +11,15 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include "ContentsEditorGUI.h"
 #include "Creature.h"
+#include "Room.h"
+#include "Ellie.h"
 #include "Tree.h"
 
 
 enum class ESpawnList
 {
-	TREE,
+	Tree_0,
+	Tree_1,
 };
 
 
@@ -70,19 +73,19 @@ public:
 	//			}
 	//		}
 
-	//		ImGui::InputInt("TileMapX", &TileCountX);
-	//		ImGui::InputInt("TileMapY", &TileCountY);
+	//		//ImGui::InputInt("TileMapX", &TileCountX);
+	//		//ImGui::InputInt("TileMapY", &TileCountY);
 
-	//		if (ImGui::Button("TileMap Create"))
-	//		{
-	//			for (int y = 0; y < TileCountY; y++)
-	//			{
-	//				for (int x = 0; x < TileCountX; x++)
-	//				{
-	//					TileMapRenderer->SetTile(x, y, SelectTileIndex);
-	//				}
-	//			}
-	//		}
+	//		//if (ImGui::Button("TileMap Create"))
+	//		//{
+	//		//	for (int y = 0; y < TileCountY; y++)
+	//		//	{
+	//		//		for (int x = 0; x < TileCountX; x++)
+	//		//		{
+	//		//			TileMapRenderer->SetTile(x, y, SelectTileIndex);
+	//		//		}
+	//		//	}
+	//		//}
 
 	//		if (true == UEngineInput::IsPress(VK_LBUTTON))
 	//		{
@@ -100,58 +103,124 @@ public:
 	//	}
 	//}
 
+	void SelectGroundMap()
+	{
+		if (ImGui::Button("MapGround"))
+		{
+			{
+				std::list<std::shared_ptr<ARoom>> AllRoomList = GetWorld()->GetAllActorListByClass<ARoom>();
+				for (std::shared_ptr<ARoom> Rooms : AllRoomList)
+				{
+					Rooms->Destroy();
+				}
+
+				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+				{
+					MapObject->Destroy();
+				}
+			}
+
+			std::shared_ptr<ARoom> Room = GetWorld()->SpawnActor<ARoom>();
+			Room->SetColImage("Map_Col.png", "Map");
+
+			FVector RoomSize = Room->GetColImage().GetImageScale();
+			Room->SetRoomSprite("Map.png", RoomSize);
+			Room->SetRoomColSprite("Map_Col.png");
+
+			FVector ColSize = RoomSize - FVector(70.0f, 100.0f);
+			Room->SetCollisionSize(ColSize);
+			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+		}
+
+		if (ImGui::Button("WitchHouseYard"))
+		{
+			{
+				std::list<std::shared_ptr<ARoom>> AllRoomList = GetWorld()->GetAllActorListByClass<ARoom>();
+				for (std::shared_ptr<ARoom> Rooms : AllRoomList)
+				{
+					Rooms->Destroy();
+				}
+
+				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+				{
+					MapObject->Destroy();
+				}
+			}
+
+			std::shared_ptr<ARoom> Room = GetWorld()->SpawnActor<ARoom>();
+			Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
+
+			FVector RoomSize = Room->GetColImage().GetImageScale();
+			Room->SetRoomSprite("WitchHouse_Outside.png", RoomSize);
+			Room->SetRoomColSprite("WitchHouse_Outside_Col.png");
+
+			FVector ColSize = RoomSize - FVector(70.0f, 100.0f);
+			Room->SetCollisionSize(ColSize);
+			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+		}
+	}
+
+	int SelectObject = 0;
+
 	void ObjectMode()
 	{
 		{
-			ImGui::ListBox("SpawnList", &SelectItem, &Arr[0], Arr.size());
+			std::shared_ptr<UEngineSprite> Sprite = UEngineSprite::Find<UEngineSprite>("Map_Object");
+			for (size_t i = 0; i < Sprite->GetSpriteCount(); i++)
+			{
+				UEngineTexture* Texture = Sprite->GetTexture(i);
+				FSpriteData Data = Sprite->GetSpriteData(i);
 
-		}
+				ImTextureID SRV = reinterpret_cast<ImTextureID>(Texture->GetSRV());
 
-		{
-			std::vector<const char*> Arr;
-			Arr.push_back("TREE");
-			//Arr.push_back("Monster2");
+				std::string Text = std::to_string(i);
 
-			ImGui::ListBox("SpawnCreatureList", &SelectItem, &Arr[0], Arr.size());
+				if (i != 0)
+				{
+					if (0 != (i % 10))
+					{
+						ImGui::SameLine();
+					}
+				}
+
+				ImVec2 Pos = { Data.CuttingPos.X, Data.CuttingPos.Y };
+				ImVec2 Size = { Data.CuttingPos.X + Data.CuttingSize.X, Data.CuttingPos.Y + Data.CuttingSize.Y };
+
+				if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }, Pos, Size))
+				{
+					SelectObject = static_cast<int>(i);
+				}
+			}
+
 
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
-				ESpawnList SelectCreature = static_cast<ESpawnList>(SelectItem);
-				std::shared_ptr<class ACameraActor> Camera = GetWorld()->GetMainCamera();
-				FVector Pos = Camera->ScreenMousePosToWorldPos();
-				Pos.Z = 0.0f;
-
-				std::shared_ptr<ACreature> NewCreature;
-
-				switch (SelectCreature)
-				{
-				case ESpawnList::TREE:
-					NewCreature = GetWorld()->SpawnActor<ATree>("TREE");
-					break;
-				default:
-					break;
-				}
-
-				NewCreature->SetActorLocation(Pos);
+				std::shared_ptr< AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("Tree_0");
+				FVector Pos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
+				NewObject->SetActorLocation(Pos);
+				NewObject->Sprite->SetSprite("Map_Object", SelectObject);
 			}
+
 		}
 
 		{
 			if (ImGui::Button("EditObjectDelete"))
 			{
-				std::list<std::shared_ptr<ACreature>> AllCreatureList = GetWorld()->GetAllActorListByClass<ACreature>();
-				for (std::shared_ptr<ACreature> Creature : AllCreatureList)
+				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 				{
-					Creature->Destroy();
+					MapObject->Destroy();
 				}
 			}
 		}
 
 		{
-			std::vector<std::shared_ptr<ACreature>> AllCreatureList = GetWorld()->GetAllActorArrayByClass<ACreature>();
+			std::vector<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorArrayByClass<AMapObject>();
 
 			std::vector<std::string> ArrString;
-			for (std::shared_ptr<class AActor> Actor : AllCreatureList)
+			for (std::shared_ptr<class AActor> Actor : AllMapObjectList)
 			{
 				ArrString.push_back(Actor->GetName());
 			}
@@ -172,7 +241,7 @@ public:
 
 				if (true == ImGui::Button("Delete"))
 				{
-					AllCreatureList[ObjectItem]->Destroy();
+					AllMapObjectList[ObjectItem]->Destroy();
 					ObjectItem = -1;
 				}
 			}
@@ -282,8 +351,8 @@ public:
 
 					switch (CreatureType)
 					{
-					case ECreatureType::TREE:
-						NewCreature = GetWorld()->SpawnActor<ATree>();
+					case ECreatureType::Tree:
+						//NewCreature = GetWorld()->SpawnActor<ATree>();
 						break;
 					default:
 						break;
@@ -299,35 +368,37 @@ public:
 
 	void OnGUI() override
 	{
-		{
-			if (Mode == EEDITMode::Object)
-			{
-				if (ImGui::Button("ObjectMode"))
-				{
-					Mode = EEDITMode::TileMap;
-				}
-			}
-			else
-			{
-				if (ImGui::Button("TileMapMode"))
-				{
-					Mode = EEDITMode::Object;
-				}
-			}
-		}
+		//{
+		//	if (Mode == EEDITMode::Object)
+		//	{
+		//		if (ImGui::Button("ObjectMode"))
+		//		{
+		//			Mode = EEDITMode::TileMap;
+		//		}
+		//	}
+		//	else
+		//	{
+		//		if (ImGui::Button("TileMapMode"))
+		//		{
+		//			Mode = EEDITMode::Object;
+		//		}
+		//	}
+		//}
 
-		switch (Mode)
-		{
-		case EEDITMode::TileMap:
-			//TileMapMode();
-			break;
-		case EEDITMode::Object:
-			ObjectMode();
-			break;
-		default:
-			break;
-		}
-
+		//switch (Mode)
+		//{
+		//case EEDITMode::TileMap:
+		//	TileMapMode();
+		//	break;
+		//case EEDITMode::Object:
+		//	ObjectMode();
+		//	break;
+		//default:
+		//	break;
+		//}
+		
+		SelectGroundMap();
+		ObjectMode();
 		SaveAndLoad();
 	}
 };
@@ -335,7 +406,8 @@ public:
 
 AMapEditorMode::AMapEditorMode()
 {
-	GetWorld()->CreateCollisionProfile("TREE");
+	GetWorld()->CreateCollisionProfile("Room");
+	//GetWorld()->CreateCollisionProfile("Tree");
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
@@ -347,13 +419,14 @@ AMapEditorMode::AMapEditorMode()
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
-	PivotSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	PivotSpriteRenderer->SetupAttachment(RootComponent);
-	PivotSpriteRenderer->SetRelativeScale3D({ 50.0f, 50.0f, 1.0f });
+	//PivotSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	//PivotSpriteRenderer->SetupAttachment(RootComponent);
+	//PivotSpriteRenderer->SetRelativeScale3D({ 50.0f, 50.0f, 1.0f });
 
-	TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
-	TileMapRenderer->SetupAttachment(RootComponent);
-	TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tiles", TileSize, TileSize, { 0.0f, 0.0f });
+	//TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
+	//TileMapRenderer->SetupAttachment(RootComponent);
+	//TileSize = { 336.0f, 384.0f };
+	//TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tree", TileSize, TileSize, { 0.0f, 0.0f });
 }
 
 AMapEditorMode::~AMapEditorMode()
