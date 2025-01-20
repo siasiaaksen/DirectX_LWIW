@@ -18,8 +18,7 @@
 
 enum class ESpawnList
 {
-	Tree_0,
-	Tree_1,
+	Tree,
 };
 
 
@@ -41,6 +40,9 @@ public:
 	int TileCountX = 10;
 	int TileCountY = 10;
 	int SelectTileIndex = 0;
+
+	float PosX = 0.0f;
+	float PosY = 0.0f;
 
 	//void TileMapMode()
 	//{
@@ -194,15 +196,18 @@ public:
 				}
 			}
 
+			ImGui::InputFloat("PosX", &PosX);
+			ImGui::InputFloat("PosY", &PosY);
+
+			FVector SpritePos = FVector(PosX, PosY);
 
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
-				std::shared_ptr< AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("Tree_0");
+				std::shared_ptr<AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("Tree_0");
 				FVector Pos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
-				NewObject->SetActorLocation(Pos);
+				NewObject->SetActorLocation(SpritePos);
 				NewObject->Sprite->SetSprite("Map_Object", SelectObject);
 			}
-
 		}
 
 		{
