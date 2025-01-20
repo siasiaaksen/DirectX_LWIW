@@ -13,6 +13,9 @@
     <FxCompile Include="EngineTileMapShader.fx">
       <Filter>2D</Filter>
     </FxCompile>
+    <FxCompile Include="EngineTileMapInstShader.fx">
+      <Filter>2D</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="2D">
