@@ -12,10 +12,24 @@ AMapObject::AMapObject()
 
 	Sprite = CreateDefaultSubObject<USpriteRenderer>();
 	Sprite->SetupAttachment(RootComponent);
+
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
+	Collision->SetCollisionProfileName("MapObject");
 }
 
 AMapObject::~AMapObject()
 {
+}
+
+void AMapObject::SetColActive(bool _Value)
+{
+	Collision->SetActive(_Value);
+}
+
+bool AMapObject::GetColActive()
+{
+	return Collision->GetIsActiveValueRef();
 }
 
 void AMapObject::BeginPlay()

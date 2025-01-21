@@ -36,6 +36,9 @@ public:
 		return Collision;
 	}
 
+	void SetColActive(bool _Value);
+	bool GetColActive();
+
 protected:
 
 private:

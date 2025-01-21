@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "MapEditorMode.h"
 #include <EnginePlatform/EngineInput.h>
+#include <EnginePlatform/EngineWindow.h>
 #include <EngineCore/EngineGUIWindow.h>
 #include <EngineCore/EngineGUI.h>
 #include <EngineCore/imgui.h>
@@ -13,7 +14,7 @@
 #include "Creature.h"
 #include "Room.h"
 #include "Ellie.h"
-#include "Tree.h"
+#include "MapObject.h"
 
 
 enum class ESpawnList
@@ -41,9 +42,14 @@ public:
 	int TileCountY = 10;
 	int SelectTileIndex = 0;
 
-	float PosX = 0.0f;
-	float PosY = 0.0f;
+	float SpritePosX = 0.0f;
+	float SpritePosY = 0.0f;
 	float ZSort = 0.0f;
+
+	float ColPosX = 0.0f;
+	float ColPosY = 0.0f;
+	float ColScaleX = 1.0f;
+	float ColScaleY = 1.0f;
 
 	FVector MousePos;
 
@@ -184,7 +190,7 @@ public:
 
 				if (i != 0)
 				{
-					if (0 != (i % 10))
+					if (0 != (i % 5))
 					{
 						ImGui::SameLine();
 					}
@@ -201,10 +207,14 @@ public:
 
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
-				std::shared_ptr<AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("MapObject");
-				MousePos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
-				NewObject->SetActorLocation(MousePos);
-				NewObject->GetSprite()->SetSprite("Map_Object", SelectObject);
+				if (true == GEngine->GetMainWindow().IsFocus())
+				{
+					std::shared_ptr<AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("MapObject");
+					MousePos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
+					NewObject->SetActorLocation(MousePos);
+					NewObject->GetSprite()->SetSprite("Map_Object", SelectObject);
+					NewObject->GetSprite()->SpriteData.Pivot = { 0.5f, 0.0f };
+				}
 			}
 		}
 
@@ -222,7 +232,7 @@ public:
 		{
 			std::vector<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorArrayByClass<AMapObject>();
 
-			std::vector<std::string> ArrString;
+			std::vector<std::string> ArrString; 
 			for (std::shared_ptr<class AActor> Actor : AllMapObjectList)
 			{
 				ArrString.push_back(Actor->GetName());
@@ -240,25 +250,71 @@ public:
 
 				if (ObjectItem != -1)
 				{
-				}
+					if (true == AllMapObjectList[ObjectItem]->GetColActive())
+					{
+						if (true == ImGui::Button("ColActiveFalse"))
+						{
+							AllMapObjectList[ObjectItem]->SetColActive(false);
+						}
+					}
+					else
+					{
+						if (true == ImGui::Button("ColActiveTrue"))
+						{
+							AllMapObjectList[ObjectItem]->SetColActive(true);
+						}
+					}
 
-				PosX = MousePos.X;
-				PosY = MousePos.Y;
+					FVector CurColor = AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor;
 
-				ImGui::InputFloat("PosX", &PosX);
-				ImGui::InputFloat("PosY", &PosY);
+					if (CurColor == FVector(1.0f, 1.0f, 1.0f, 1.0f))
+					{
+						AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 0.0f, 1.0f, 0.8f };
+					}
+					else
+					{
+						AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+					}
 
-				FVector SpritePos = FVector(PosX, PosY, 0.0f);
+					{
+						SpritePosX = AllMapObjectList[ObjectItem]->GetActorLocation().X;
+						SpritePosY = AllMapObjectList[ObjectItem]->GetActorLocation().Y;
 
-				if (true == ImGui::Button("Move"))
-				{
-					AllMapObjectList[ObjectItem]->SetActorLocation(SpritePos);
-				}
+						ImGui::InputFloat("PosX", &SpritePosX);
+						ImGui::InputFloat("PosY", &SpritePosY);
 
-				ImGui::InputFloat("ZSort", &ZSort);
-				if (true == ImGui::Button("Sorting"))
-				{
-					AllMapObjectList[ObjectItem]->SetActorLocation({ AllMapObjectList[ObjectItem]->GetActorLocation().X, AllMapObjectList[ObjectItem]->GetActorLocation().Y, ZSort});
+						FVector SpritePos = FVector(SpritePosX, SpritePosY, 0.0f);
+
+						AllMapObjectList[ObjectItem]->SetActorLocation(SpritePos);
+					}
+
+					{
+						//ColPosX = AllMapObjectList[ObjectItem]->GetActorLocation().X;
+						//ColPosY = AllMapObjectList[ObjectItem]->GetActorLocation().Y;
+
+						ImGui::InputFloat("ColPosX", &ColPosX);
+						ImGui::InputFloat("ColPosY", &ColPosY);
+						ImGui::InputFloat("ColScaleX", &ColScaleX);
+						ImGui::InputFloat("ColScaleY", &ColScaleY);
+
+						FVector ColPos = FVector(ColPosX, ColPosY);
+						FVector ColScale = FVector(ColScaleX, ColScaleY);
+
+						AllMapObjectList[ObjectItem]->GetCollision()->SetWorldLocation(ColPos);
+						AllMapObjectList[ObjectItem]->GetCollision()->SetScale3D(ColScale);
+					}
+
+					{
+						ImGui::InputFloat("ZSort", &ZSort);
+
+						float ZValue = AllMapObjectList[ObjectItem]->GetActorLocation().Z;
+						ImGui::Text(std::to_string(ZValue).c_str());
+
+						if (true == ImGui::Button("ZSorting"))
+						{
+							AllMapObjectList[ObjectItem]->SetActorLocation({ AllMapObjectList[ObjectItem]->GetActorLocation().X, AllMapObjectList[ObjectItem]->GetActorLocation().Y, ZSort });
+						}
+					}
 				}
 
 				if (true == ImGui::Button("Delete"))
@@ -429,7 +485,7 @@ public:
 AMapEditorMode::AMapEditorMode()
 {
 	GetWorld()->CreateCollisionProfile("Room");
-	//GetWorld()->CreateCollisionProfile("Tree");
+	GetWorld()->CreateCollisionProfile("MapObject");
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
