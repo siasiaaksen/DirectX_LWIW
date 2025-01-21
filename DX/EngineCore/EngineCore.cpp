@@ -6,6 +6,7 @@
 #include "IContentsCore.h"
 #include "EngineResources.h"
 #include "EngineConstantBuffer.h"
+#include "EngineStructuredBuffer.h"
 #include "EngineGUI.h"
 #include "Level.h"
 #include "GameInstance.h"
@@ -214,7 +215,9 @@ void UEngineCore::EngineEnd()
 	GEngine->Device.Release();
 
 	UEngineResources::Release();
+
 	UEngineConstantBuffer::Release();
+	UEngineStructuredBuffer::Release();
 
 	GEngine->CurLevel = nullptr;
 	GEngine->NextLevel = nullptr;

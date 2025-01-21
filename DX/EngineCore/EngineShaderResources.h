@@ -2,6 +2,7 @@
 #include "EngineConstantBuffer.h"
 #include "EngineTexture.h"
 #include "EngineSampler.h"
+#include "EngineStructuredBuffer.h"
 
 
 class UEngineShaderRes
@@ -33,6 +34,32 @@ public:
 
 	void Reset()
 	{
+	}
+};
+
+
+class UEngineStructuredBufferRes : public UEngineShaderRes
+{
+public:
+	void* Data = nullptr;
+	UINT DataSize;
+	UINT DataCount;
+	UEngineStructuredBuffer* Res;
+
+	void Setting()
+	{
+		if (nullptr != Data)
+		{
+			Name;
+			Res->ChangeData(Data, DataSize * DataCount);
+		}
+
+		Res->Setting(ShaderType, BindIndex);
+	}
+
+	void Reset()
+	{
+
 	}
 };
 
@@ -85,6 +112,7 @@ public:
 	void CreateSamplerRes(std::string_view _Name, UEngineSamplerRes _Res);
 	void CreateTextureRes(std::string_view _Name, UEngineTextureRes _Res);
 	void CreateConstantBufferRes(std::string_view _Name, UEngineConstantBufferRes Res);
+	void CreateStructuredBufferRes(std::string_view _Name, UEngineStructuredBufferRes Res);
 
 	template<typename DataType>
 	void ConstantBufferLinkData(std::string_view _Name, DataType& Data)
@@ -93,6 +121,14 @@ public:
 	}
 
 	void ConstantBufferLinkData(std::string_view _Name, void* Data);
+
+	template<typename DataType>
+	void StructuredBufferLinkData(std::string_view _Name, std::vector<DataType>& Data)
+	{
+		StructuredBufferLinkData(_Name, static_cast<UINT>(Data.size()), reinterpret_cast<void*>(&Data[0]));
+	}
+
+	void StructuredBufferLinkData(std::string_view _Name, UINT _Count, void* Data);
 
 	void SamplerSetting(std::string_view _Name, std::string_view _ResName);
 
@@ -103,7 +139,8 @@ public:
 	bool IsSampler(std::string_view _Name);
 	bool IsTexture(std::string_view _Name);
 	bool IsConstantBuffer(std::string_view _Name);
-
+	bool IsStructuredBuffer(std::string_view _Name);
+	
 	void Setting();
 
 	void Reset();
@@ -114,5 +151,6 @@ private:
 	std::map<std::string, UEngineConstantBufferRes> ConstantBufferRes;
 	std::map<std::string, UEngineTextureRes> TextureRes;
 	std::map<std::string, UEngineSamplerRes> SamplerRes;
+	std::map<std::string, UEngineStructuredBufferRes> StructuredBufferRes;
 };
 

@@ -15,10 +15,31 @@ public:
 
 	void BeginPlay();
 	void Tick(float _DeltaTime);
-	std::shared_ptr<class USpriteRenderer> Sprite;
+
+	void SetSprite(std::shared_ptr<class USpriteRenderer> _Sprite)
+	{
+		Sprite = _Sprite;
+	}
+
+	std::shared_ptr<class USpriteRenderer>& GetSprite()
+	{
+		return Sprite;
+	}
+
+	void SetCollision(std::shared_ptr<class UCollision> _Collision)
+	{
+		Collision = _Collision;
+	}
+
+	std::shared_ptr<class UCollision>& GetCollision()
+	{
+		return Collision;
+	}
 
 protected:
 
 private:
+	std::shared_ptr<class USpriteRenderer> Sprite;
+	std::shared_ptr<class UCollision> Collision;
 };
 

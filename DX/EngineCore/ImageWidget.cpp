@@ -252,6 +252,14 @@ void UImageWidget::Render(UEngineCamera* Camera, float _DeltaTime)
 {
 	UWidget::Render(Camera, _DeltaTime);
 
+	if (nullptr != CurAnimation)
+	{
+		Sprite = CurAnimation->Sprite;
+
+		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
+		SpriteData = Sprite->GetSpriteData(CurIndex);
+	}
+
 	if (true == IsAutoScale && nullptr != Sprite)
 	{
 		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);

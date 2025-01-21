@@ -6,9 +6,15 @@
 
 UTileMapRenderer::UTileMapRenderer()
 {
+	// 0번 랜더유니트 노말 랜더링 전용
 	CreateRenderUnit();
 	SetMesh("Rect");
 	SetMaterial("TileMap");
+
+	// 1번 랜더 유니트 인스턴싱 랜더링 전용
+	CreateRenderUnit();
+	SetMesh("Rect", 1);
+	SetMaterial("TileMapInst", 1);
 
 	//GetRenderUnit().ConstantBufferLinkData("ResultColor", ColorData);
 	//GetRenderUnit().ConstantBufferLinkData("FSpriteData", SpriteData);
@@ -83,7 +89,7 @@ FVector UTileMapRenderer::TileIndexToWorldPos(FTileIndex _Index)
 
 void UTileMapRenderer::Render(UEngineCamera* _Camera, float _DeltaTime)
 {
-	switch (TileMapRenderMove)
+	switch (TileMapRenderType)
 	{
 	case Normal:
 		RenderNormal(_Camera, _DeltaTime);
@@ -116,6 +122,11 @@ void UTileMapRenderer::SetTile(int _X, int _Y, int _Spriteindex)
 	NewTile.SpriteData.Pivot = { 0.5f, 0.5f };
 	NewTile.ColorData.PlusColor = { 0.0f, 0.0f, 0.0f, 0.0f };
 	NewTile.ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+}
+
+void UTileMapRenderer::InstancingOn()
+{
+	TileMapRenderType = ETileMapRenderType::Instancing;
 }
 
 void UTileMapRenderer::RemoveTile(FVector _Pos)
@@ -193,7 +204,7 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 		return;
 	}
 
-	URenderUnit& Unit = GetRenderUnit();
+	URenderUnit& Unit = GetRenderUnit(0);
 
 	FTransform Trans;
 	FMatrix Scale;
@@ -206,7 +217,7 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 		FTileData& Tile = TilePair.second;
 		FTileIndex Index;
 
-		GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
+		Unit.SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
 		Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
 		Tile.SpriteData.Pivot = { 0.0f, 0.0f };
 
@@ -226,10 +237,9 @@ void UTileMapRenderer::RenderNormal(class UEngineCamera* _Camera, float _DeltaTi
 			continue;
 		}
 
-		GetRenderUnit().ConstantBufferLinkData("FTransform", Trans);
-
-		GetRenderUnit().ConstantBufferLinkData("ResultColor", Tile.ColorData);
-		GetRenderUnit().ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
+		Unit.ConstantBufferLinkData("FTransform", Trans);
+		Unit.ConstantBufferLinkData("ResultColor", Tile.ColorData);
+		Unit.ConstantBufferLinkData("FSpriteData", Tile.SpriteData);
 
 		Unit.Render(_Camera, _DeltaTime);
 	}
@@ -249,7 +259,7 @@ void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _Del
 		return;
 	}
 
-	URenderUnit& Unit = GetRenderUnit();
+	URenderUnit& Unit = GetRenderUnit(1);
 
 	FTransform Trans;
 	FMatrix Scale;
@@ -258,15 +268,17 @@ void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _Del
 	Scale.Scale(ImageSize);
 
 	InstTransform.resize(Tiles.size());
-	InstTransform.resize(InstColorData.size());
-	InstTransform.resize(InstSpriteData.size());
+	InstSpriteData.resize(Tiles.size());
+	InstColorData.resize(Tiles.size());
+
+	int RenderCount = 0;
 
 	for (std::pair<const __int64, FTileData>& TilePair : Tiles)
 	{
 		FTileData& Tile = TilePair.second;
 		FTileIndex Index;
 
-		GetRenderUnit().SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
+		Unit.SetTexture("TileMapTex", Sprite->GetTexture(Tile.SpriteIndex));
 		Tile.SpriteData = Sprite->GetSpriteData(Tile.SpriteIndex);
 		Tile.SpriteData.Pivot = { 0.0f, 0.0f };
 
@@ -278,16 +290,23 @@ void UTileMapRenderer::RenderInstancing(class UEngineCamera* _Camera, float _Del
 
 		Trans.WVP = Scale * Pos * RendererTrans.View * RendererTrans.Projection;
 
-		float OrthX = abs(Trans.WVP.ArrVector[3].Y);
-		float OrthY = abs(Trans.WVP.ArrVector[3].X);
+		//float OrthX = abs(Trans.WVP.ArrVector[3].Y);
+		//float OrthY = abs(Trans.WVP.ArrVector[3].X);
 
-		if (1.0f <= OrthX || 1.0f <= OrthY)
-		{
-			continue;
-		}
+		//if (1.0f <= OrthX || 1.0f <= OrthY)
+		//{
+		//	continue;
+		//}
 
-		InstTransform.push_back(Trans);
-		InstColorData.push_back(Tile.ColorData);
-		InstSpriteData.push_back(Tile.SpriteData);
+		InstTransform[RenderCount] = Trans;
+		InstColorData[RenderCount] = Tile.ColorData;
+		InstSpriteData[RenderCount] = Tile.SpriteData;
+		++RenderCount;
 	}
+
+	Unit.StructuredBufferLinkData("TransformBuffer", InstTransform);
+	Unit.StructuredBufferLinkData("SpriteDataBuffer", InstSpriteData);
+	Unit.StructuredBufferLinkData("ColorDataBuffer", InstColorData);
+	
+	Unit.RenderInst(_Camera, static_cast<UINT>(Tiles.size()), _DeltaTime);
 }

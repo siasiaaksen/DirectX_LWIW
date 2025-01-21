@@ -237,6 +237,12 @@ void UEngineGraphicDevice::MaterialInit()
 	}
 
 	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("TileMapInst");
+		Mat->SetVertexShader("EngineTileMapInstShader.fx");
+		Mat->SetPixelShader("EngineTileMapInstShader.fx");
+	}
+
+	{
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("TargetMerge");
 		Mat->SetVertexShader("EngineTargetMergeShader.fx");
 		Mat->SetPixelShader("EngineTargetMergeShader.fx");

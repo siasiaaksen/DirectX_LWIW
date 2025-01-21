@@ -88,6 +88,8 @@ public:
 	ENGINEAPI void SetTile(FVector _Pos, int _Spriteindex);
 	ENGINEAPI void SetTile(int _X, int _Y, int _Spriteindex);
 
+	ENGINEAPI void InstancingOn();
+
 	ENGINEAPI void RemoveTile(FVector _Pos);
 	ENGINEAPI void RemoveTile(int _X, int _Y);
 
@@ -125,7 +127,7 @@ private:
 	FVector ImageSize;
 	FVector TilePivot;
 	ETileMapType TileMapType = ETileMapType::Rect;
-	ETileMapRenderType TileMapRenderMove = ETileMapRenderType::Normal;
+	ETileMapRenderType TileMapRenderType = ETileMapRenderType::Normal;
 
 	class UEngineSprite* Sprite = nullptr;
 

@@ -57,12 +57,12 @@ VertexShaderOutPut TileMap_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     
-    // ÇÇº¿
     _Vertex.POSITION.x += (1.0f - Pivot.x) - 0.5f;
     _Vertex.POSITION.y += (1.0f - Pivot.y) - 0.5f;
 
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
     
+	OutPut.UV = _Vertex.UV;
     OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
     OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
     

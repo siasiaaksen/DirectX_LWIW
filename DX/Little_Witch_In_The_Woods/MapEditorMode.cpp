@@ -18,7 +18,7 @@
 
 enum class ESpawnList
 {
-	Tree,
+	MapObject,
 };
 
 
@@ -43,6 +43,9 @@ public:
 
 	float PosX = 0.0f;
 	float PosY = 0.0f;
+	float ZSort = 0.0f;
+
+	FVector MousePos;
 
 	//void TileMapMode()
 	//{
@@ -196,17 +199,12 @@ public:
 				}
 			}
 
-			ImGui::InputFloat("PosX", &PosX);
-			ImGui::InputFloat("PosY", &PosY);
-
-			FVector SpritePos = FVector(PosX, PosY);
-
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
-				std::shared_ptr<AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("Tree_0");
-				FVector Pos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
-				NewObject->SetActorLocation(SpritePos);
-				NewObject->Sprite->SetSprite("Map_Object", SelectObject);
+				std::shared_ptr<AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("MapObject");
+				MousePos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
+				NewObject->SetActorLocation(MousePos);
+				NewObject->GetSprite()->SetSprite("Map_Object", SelectObject);
 			}
 		}
 
@@ -242,6 +240,25 @@ public:
 
 				if (ObjectItem != -1)
 				{
+				}
+
+				PosX = MousePos.X;
+				PosY = MousePos.Y;
+
+				ImGui::InputFloat("PosX", &PosX);
+				ImGui::InputFloat("PosY", &PosY);
+
+				FVector SpritePos = FVector(PosX, PosY, 0.0f);
+
+				if (true == ImGui::Button("Move"))
+				{
+					AllMapObjectList[ObjectItem]->SetActorLocation(SpritePos);
+				}
+
+				ImGui::InputFloat("ZSort", &ZSort);
+				if (true == ImGui::Button("Sorting"))
+				{
+					AllMapObjectList[ObjectItem]->SetActorLocation({ AllMapObjectList[ObjectItem]->GetActorLocation().X, AllMapObjectList[ObjectItem]->GetActorLocation().Y, ZSort});
 				}
 
 				if (true == ImGui::Button("Delete"))
@@ -421,6 +438,7 @@ AMapEditorMode::AMapEditorMode()
 	{
 		Camera = GetWorld()->GetMainCamera();
 		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
+		Camera->GetCameraComponent()->SetProjectionType(EProjectionType::Orthographic);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
