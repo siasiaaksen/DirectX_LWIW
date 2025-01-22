@@ -2,7 +2,6 @@
 #include "MapObject.h"
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
-#include <EngineCore/Collision.h>
 
 
 AMapObject::AMapObject()
@@ -12,24 +11,10 @@ AMapObject::AMapObject()
 
 	Sprite = CreateDefaultSubObject<USpriteRenderer>();
 	Sprite->SetupAttachment(RootComponent);
-
-	Collision = CreateDefaultSubObject<UCollision>();
-	Collision->SetupAttachment(RootComponent);
-	Collision->SetCollisionProfileName("MapObject");
 }
 
 AMapObject::~AMapObject()
 {
-}
-
-void AMapObject::SetColActive(bool _Value)
-{
-	Collision->SetActive(_Value);
-}
-
-bool AMapObject::GetColActive()
-{
-	return Collision->GetIsActiveValueRef();
 }
 
 void AMapObject::BeginPlay()
@@ -40,5 +25,10 @@ void AMapObject::BeginPlay()
 void AMapObject::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	FVector Pos = GetActorLocation();
+	Pos.Z = Pos.Y;
+
+	SetActorLocation(Pos);
 }
 

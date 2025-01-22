@@ -52,6 +52,8 @@ public:
 		return LoopActive;
 	}
 
+	ENGINEAPI bool IsMouseScreenOut() const;
+
 	ENGINEAPI HWND GetWindowHandle() const
 	{
 		return WindowHandle;

@@ -53,8 +53,8 @@ public:
 
 	FVector MousePos;
 
-	//void TileMapMode()
-	//{
+	void TileMapMode()
+	{
 	//	{
 	//		UEngineSprite* Sprite = TileMapRenderer->GetSprite();
 
@@ -112,7 +112,7 @@ public:
 	//			TileMapRenderer->RemoveTile(ScreenPos);
 	//		}
 	//	}
-	//}
+	}
 
 	void SelectGroundMap()
 	{
@@ -207,7 +207,7 @@ public:
 
 			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
-				if (true == GEngine->GetMainWindow().IsFocus())
+				if (false == GEngine->GetMainWindow().IsMouseScreenOut())
 				{
 					std::shared_ptr<AMapObject> NewObject = GetWorld()->SpawnActor<AMapObject>("MapObject");
 					MousePos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
@@ -250,31 +250,16 @@ public:
 
 				if (ObjectItem != -1)
 				{
-					if (true == AllMapObjectList[ObjectItem]->GetColActive())
-					{
-						if (true == ImGui::Button("ColActiveFalse"))
-						{
-							AllMapObjectList[ObjectItem]->SetColActive(false);
-						}
-					}
-					else
-					{
-						if (true == ImGui::Button("ColActiveTrue"))
-						{
-							AllMapObjectList[ObjectItem]->SetColActive(true);
-						}
-					}
+					//FVector CurColor = AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor;
 
-					FVector CurColor = AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor;
-
-					if (CurColor == FVector(1.0f, 1.0f, 1.0f, 1.0f))
-					{
-						AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 0.0f, 1.0f, 0.8f };
-					}
-					else
-					{
-						AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
-					}
+					//if (CurColor == FVector(1.0f, 1.0f, 1.0f, 1.0f))
+					//{
+					//	AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 0.0f, 1.0f, 0.8f };
+					//}
+					//else
+					//{
+					//	AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
+					//}
 
 					{
 						SpritePosX = AllMapObjectList[ObjectItem]->GetActorLocation().X;
@@ -283,37 +268,15 @@ public:
 						ImGui::InputFloat("PosX", &SpritePosX);
 						ImGui::InputFloat("PosY", &SpritePosY);
 
-						FVector SpritePos = FVector(SpritePosX, SpritePosY, 0.0f);
+						FVector SpritePos = FVector(SpritePosX, SpritePosY);
 
-						AllMapObjectList[ObjectItem]->SetActorLocation(SpritePos);
-					}
+						ZSort = AllMapObjectList[ObjectItem]->GetActorLocation().Z;
 
-					{
-						//ColPosX = AllMapObjectList[ObjectItem]->GetActorLocation().X;
-						//ColPosY = AllMapObjectList[ObjectItem]->GetActorLocation().Y;
+						//ImGui::InputFloat("ZSort", &ZSort);
 
-						ImGui::InputFloat("ColPosX", &ColPosX);
-						ImGui::InputFloat("ColPosY", &ColPosY);
-						ImGui::InputFloat("ColScaleX", &ColScaleX);
-						ImGui::InputFloat("ColScaleY", &ColScaleY);
+						AllMapObjectList[ObjectItem]->SetActorLocation({ SpritePos.X, SpritePos.Y, ZSort });
 
-						FVector ColPos = FVector(ColPosX, ColPosY);
-						FVector ColScale = FVector(ColScaleX, ColScaleY);
-
-						AllMapObjectList[ObjectItem]->GetCollision()->SetWorldLocation(ColPos);
-						AllMapObjectList[ObjectItem]->GetCollision()->SetScale3D(ColScale);
-					}
-
-					{
-						ImGui::InputFloat("ZSort", &ZSort);
-
-						float ZValue = AllMapObjectList[ObjectItem]->GetActorLocation().Z;
-						ImGui::Text(std::to_string(ZValue).c_str());
-
-						if (true == ImGui::Button("ZSorting"))
-						{
-							AllMapObjectList[ObjectItem]->SetActorLocation({ AllMapObjectList[ObjectItem]->GetActorLocation().X, AllMapObjectList[ObjectItem]->GetActorLocation().Y, ZSort });
-						}
+						ImGui::Text(std::to_string(ZSort).c_str());
 					}
 				}
 
@@ -358,15 +321,16 @@ public:
 
 			if (GetSaveFileNameA(&ofn) == TRUE)
 			{
-				std::list<std::shared_ptr<ACreature>> AllCreatureList = GetWorld()->GetAllActorListByClass<ACreature>();
+				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
 
 				UEngineSerializer Ser;
 
-				Ser << static_cast<int>(AllCreatureList.size());
+				Ser << static_cast<int>(AllMapObjectList.size());
 
-				for (std::shared_ptr<ACreature> Actor : AllCreatureList)
+				for (std::shared_ptr<AMapObject> Actor : AllMapObjectList)
 				{
-					Ser << static_cast<int>(Actor->CreatureTypeValue);
+					//Ser << static_cast<int>(Actor->CreatureTypeValue);
+					Ser << Actor->GetActorLocation();
 					Actor->Serialize(Ser);
 				}
 
@@ -414,29 +378,29 @@ public:
 				NewFile.FileOpen("rb");
 				NewFile.Read(Ser);
 
-				int CreatureCount = 0;
+				int MapObjectCount = 0;
 
-				Ser >> CreatureCount;
+				Ser >> MapObjectCount;
 
-				for (size_t i = 0; i < CreatureCount; i++)
+ 				for (size_t i = 0; i < MapObjectCount; i++)
 				{
-					int CreatureTypeValue = 0;
-					Ser >> CreatureTypeValue;
+					//int CreatureTypeValue = 0;
+					//Ser >> CreatureTypeValue;
 
-					ECreatureType CreatureType = static_cast<ECreatureType>(CreatureTypeValue);
+					//ECreatureType CreatureType = static_cast<ECreatureType>(CreatureTypeValue);
 
-					std::shared_ptr<ACreature> NewCreature = nullptr;
+					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
 
-					switch (CreatureType)
-					{
-					case ECreatureType::Tree:
-						//NewCreature = GetWorld()->SpawnActor<ATree>();
-						break;
-					default:
-						break;
-					}
+					//switch (CreatureType)
+					//{
+					//case ECreatureType::Tree:
+					//	//NewCreature = GetWorld()->SpawnActor<ATree>();
+					//	break;
+					//default:
+					//	break;
+					//}
 
-					NewCreature->DeSerialize(Ser);
+					NewMapObject->DeSerialize(Ser);
 				}
 
 				//TileMapRenderer->DeSerialize(Ser);
@@ -485,7 +449,6 @@ public:
 AMapEditorMode::AMapEditorMode()
 {
 	GetWorld()->CreateCollisionProfile("Room");
-	GetWorld()->CreateCollisionProfile("MapObject");
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
@@ -575,4 +538,5 @@ void AMapEditorMode::LevelChangeStart()
 		TileMapWindow->TileMapRenderer = TileMapRenderer.get();
 	}
 }
+
 

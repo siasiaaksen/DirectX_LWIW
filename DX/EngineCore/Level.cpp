@@ -36,6 +36,7 @@ ULevel::ULevel()
 
 	LastRenderTarget = std::make_shared<UEngineRenderTarget>();
 	LastRenderTarget->CreateTarget(UEngineCore::GetScreenScale());
+	LastRenderTarget->SetClearColor({ 0.0f, 0.0f, 0.0f, 0.0f });
 	LastRenderTarget->CreateDepth();
 }
 
@@ -136,7 +137,7 @@ void ULevel::Render(float _DeltaTime)
 
 		Camera.second->Tick(_DeltaTime);
 		Camera.second->GetCameraComponent()->Render(_DeltaTime);
-		Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
+		//Camera.second->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
 	}
 
 	if (true == Cameras.contains(static_cast<int>(EEngineCameraType::UICamera)))
@@ -152,13 +153,16 @@ void ULevel::Render(float _DeltaTime)
 
 			HUD->UIRender(CameraComponent.get(), _DeltaTime);
 
-			CameraComponent->CameraTarget->MergeTo(LastRenderTarget);
+			//CameraComponent->CameraTarget->MergeTo(LastRenderTarget);
 		}
 	}
 	else
 	{
 		MSGASSERT("UI카메라가 존재하지 않습니다. 엔진 오류입니다. UI카메라를 제작해주세요.");
 	}
+
+	Cameras[static_cast<int>(EEngineCameraType::MainCamera)]->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
+	Cameras[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent()->CameraTarget->MergeTo(LastRenderTarget);
 
 	std::shared_ptr<UEngineRenderTarget> BackBuffer = UEngineCore::GetDevice().GetBackBufferTarget();
 	LastRenderTarget->MergeTo(BackBuffer);

@@ -26,23 +26,9 @@ public:
 		return Sprite;
 	}
 
-	void SetCollision(std::shared_ptr<class UCollision> _Collision)
-	{
-		Collision = _Collision;
-	}
-
-	std::shared_ptr<class UCollision>& GetCollision()
-	{
-		return Collision;
-	}
-
-	void SetColActive(bool _Value);
-	bool GetColActive();
-
 protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> Sprite;
-	std::shared_ptr<class UCollision> Collision;
 };
 
