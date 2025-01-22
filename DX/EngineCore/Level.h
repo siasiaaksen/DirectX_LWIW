@@ -5,6 +5,7 @@
 
 class ULevel : public UObject
 {
+	friend class URenderUnit;
 	friend class UCollision;
 	friend class UEngineCore;
 

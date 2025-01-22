@@ -157,6 +157,178 @@ void UEngineGraphicDevice::MeshInit()
 
 		UMesh::Create("FullRect", "FullRect", "Rect");
 	}
+
+	{
+		std::vector<FEngineVertex> Vertex;
+		Vertex.resize(24);
+		// ¾Õ¸é
+		Vertex[0] = { float4(-0.5f, 0.5f, 0.5f) , float4(0.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		Vertex[1] = { float4(0.5f, 0.5f, 0.5f)  , float4(1.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		Vertex[2] = { float4(0.5f, -0.5f, 0.5f) , float4(1.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		Vertex[3] = { float4(-0.5f, -0.5f, 0.5f), float4(0.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+
+		// µÞ¸é
+		Vertex[4] = { float4(-0.5f, 0.5f, 0.5f).RotationXDegReturn(180) , float4(0.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		Vertex[5] = { float4(0.5f, 0.5f, 0.5f).RotationXDegReturn(180)  , float4(1.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		Vertex[6] = { float4(0.5f, -0.5f, 0.5f).RotationXDegReturn(180) , float4(1.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		Vertex[7] = { float4(-0.5f, -0.5f, 0.5f).RotationXDegReturn(180), float4(0.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+
+		// ¿ÞÂÊ
+		Vertex[8] = { float4(-0.5f, 0.5f, 0.5f).RotationYDegReturn(-90) , float4(0.0f, 0.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		Vertex[9] = { float4(0.5f, 0.5f, 0.5f).RotationYDegReturn(-90)  , float4(1.0f, 0.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		Vertex[10] = { float4(0.5f, -0.5f, 0.5f).RotationYDegReturn(-90) , float4(1.0f, 1.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		Vertex[11] = { float4(-0.5f, -0.5f, 0.5f).RotationYDegReturn(-90), float4(0.0f, 1.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+
+		// ¿À¸¥ÂÊ
+		Vertex[12] = { float4(-0.5f, 0.5f, 0.5f).RotationYDegReturn(90) , float4(0.0f, 0.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		Vertex[13] = { float4(0.5f, 0.5f, 0.5f).RotationYDegReturn(90)  , float4(1.0f, 0.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		Vertex[14] = { float4(0.5f, -0.5f, 0.5f).RotationYDegReturn(90) , float4(1.0f, 1.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		Vertex[15] = { float4(-0.5f, -0.5f, 0.5f).RotationYDegReturn(90), float4(0.0f, 1.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+
+
+		// À§
+		Vertex[16] = { float4(-0.5f, 0.5f, 0.5f).RotationXDegReturn(-90) , float4(0.0f, 0.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		Vertex[17] = { float4(0.5f, 0.5f, 0.5f).RotationXDegReturn(-90)  , float4(1.0f, 0.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		Vertex[18] = { float4(0.5f, -0.5f, 0.5f).RotationXDegReturn(-90) , float4(1.0f, 1.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		Vertex[19] = { float4(-0.5f, -0.5f, 0.5f).RotationXDegReturn(-90), float4(0.0f, 1.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+
+		// ¾Æ·¡
+		Vertex[20] = { float4(-0.5f, 0.5f, 0.5f).RotationXDegReturn(90) , float4(0.0f, 0.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		Vertex[21] = { float4(0.5f, 0.5f, 0.5f).RotationXDegReturn(90)  , float4(1.0f, 0.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		Vertex[22] = { float4(0.5f, -0.5f, 0.5f).RotationXDegReturn(90) , float4(1.0f, 1.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		Vertex[23] = { float4(-0.5f, -0.5f, 0.5f).RotationXDegReturn(90), float4(0.0f, 1.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+
+
+		UEngineVertexBuffer::Create("Box", Vertex);
+	}
+
+	{
+		std::vector<int> Index;
+		for (int i = 0; i < 6; i++)
+		{
+			Index.push_back(i * 4 + 2);
+			Index.push_back(i * 4 + 1);
+			Index.push_back(i * 4 + 0);
+
+			Index.push_back(i * 4 + 3);
+			Index.push_back(i * 4 + 2);
+			Index.push_back(i * 4 + 0);
+		}
+
+
+		UEngineIndexBuffer::Create("Box", Index);
+		UMesh::Create("Box", "Box", "Box");
+	}
+
+
+	// Sphere
+	{
+		FEngineVertex V;
+		std::vector<FEngineVertex> VBVector;
+		std::vector<UINT> IBVector;
+
+		float Radius = 0.5f;
+		// ºÏ±ØÁ¡
+		V.POSITION = float4(0.0f, Radius, 0.0f, 1.0f);
+		V.TEXCOORD = float4(0.5f, 0.0f);
+		V.NORMAL = float4(0.0f, Radius, 0.0f, 1.0f);
+		V.NORMAL.Normalize();
+		V.NORMAL.W = 0.0f;
+		V.TANGENT = float4(1.0f, 0.0f, 0.0f, 0.0f);
+		V.BINORMAL = float4(0.0f, 0.0f, 1.0f, 0.0f);
+
+		VBVector.push_back(V);
+
+		UINT iStackCount = 16; 
+		UINT iSliceCount = 16; 
+
+		float yRotAngle = UEngineMath::PI / (float)iStackCount;
+		float zRotAngle = UEngineMath::PI2 / (float)iSliceCount;
+
+		float yUvRatio = 1.0f / (float)iStackCount;
+		float zUvRatio = 1.0f / (float)iStackCount;
+
+		for (UINT y = 1; y < iStackCount; ++y)
+		{
+			float phi = y * yRotAngle;
+			for (UINT z = 0; z < iSliceCount + 1; ++z)
+			{
+				float theta = z * zRotAngle;
+				V.POSITION = float4{
+					Radius * sinf(y * yRotAngle) * cosf(z * zRotAngle),
+					Radius * cosf(y * yRotAngle),
+					Radius * sinf(y * yRotAngle) * sinf(z * zRotAngle),
+					1.0f 
+				};
+
+				V.TEXCOORD = float4(yUvRatio * z, zUvRatio * y);
+				V.NORMAL = V.POSITION.NormalizeReturn();
+				V.NORMAL.W = 0.0f;
+
+				V.TANGENT.X = -Radius * sinf(phi) * sinf(theta);
+				V.TANGENT.Y = 0.0f;
+				V.TANGENT.Z = Radius * sinf(phi) * cosf(theta);
+				V.TANGENT = V.TANGENT.NormalizeReturn();
+				V.TANGENT.W = 0.0f;
+
+				V.BINORMAL = float4::Cross(V.TANGENT, V.NORMAL);
+				V.BINORMAL = V.BINORMAL.NormalizeReturn();
+				V.BINORMAL.W = 0.0f;
+
+				VBVector.push_back(V);
+			}
+		}
+
+		// ³²±ØÁ¡
+		V.POSITION = float4(0.0f, -Radius, 0.0f, 1.0f);
+		V.TEXCOORD = float4(0.5f, 1.0f);
+		V.NORMAL = float4(0.0f, -Radius, 0.0f, 1.0f);
+		V.NORMAL.Normalize();
+		V.NORMAL.W = 0.0f;
+		V.TANGENT = float4(-1.0f, 0.0f, 0.0f, 0.0f);
+		V.BINORMAL = float4(0.0f, 0.0f, -1.0f, 0.0f);
+		VBVector.push_back(V);
+
+		IBVector.clear();
+
+		// ºÏ±ØÁ¡À» ÀÌ·ç´Â Á¡À» ¸¸µå´Â
+		for (UINT i = 0; i < iSliceCount; i++)
+		{
+			// ½ÃÀÛÀº ¹«Á¶°Ç ºÏ±ØÁ¡
+			IBVector.push_back(0);
+			IBVector.push_back(i + 2);
+			IBVector.push_back(i + 1);
+		}
+
+		for (UINT y = 0; y < iStackCount - 2; y++)
+		{
+			for (UINT z = 0; z < iSliceCount; z++)
+			{
+				IBVector.push_back((iSliceCount + 1) * y + z + 1);
+				IBVector.push_back((iSliceCount + 1) * (y + 1) + (z + 1) + 1);
+				IBVector.push_back((iSliceCount + 1) * (y + 1) + z + 1);
+
+				IBVector.push_back((iSliceCount + 1) * y + z + 1);
+				IBVector.push_back((iSliceCount + 1) * y + (z + 1) + 1);
+				IBVector.push_back((iSliceCount + 1) * (y + 1) + (z + 1) + 1);
+			}
+		}
+
+		// ¸¶Áö¸·À¸·Î ³²±ØÁ¡ ÀÎµ¦½º
+		UINT iBotIndex = (UINT)VBVector.size() - 1;
+		for (UINT i = 0; i < iSliceCount; i++)
+		{
+			// ½ÃÀÛÀº ¹«Á¶°Ç ºÏ±ØÁ¡
+			IBVector.push_back(iBotIndex);
+			IBVector.push_back(iBotIndex - (i + 2));
+			IBVector.push_back(iBotIndex - (i + 1));
+		}
+
+		UEngineVertexBuffer::Create("Sphere", VBVector);
+		UEngineIndexBuffer::Create("Sphere", IBVector);
+
+		UMesh::Create("Sphere");
+	}
 }
 
 void UEngineGraphicDevice::BlendInit()

@@ -6,7 +6,7 @@
 
 class UActorComponent : public UObject
 {
-	friend AActor;
+	friend class AActor;
 
 public:
 	UActorComponent();
@@ -29,7 +29,7 @@ public:
 	ENGINEAPI virtual void BeginPlay() {}
 	ENGINEAPI virtual void ComponentTick(float _DeltaTime) {}
 
-	ULevel* GetWorld();
+	class ULevel* GetWorld();
 
 	ENGINEAPI bool IsActive() override;
 	ENGINEAPI bool IsDestroy() override;

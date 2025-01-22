@@ -40,6 +40,8 @@ public:
 
 	ENGINEAPI FVector GetMousePos();
 
+	ENGINEAPI static int GetWheelDir();
+
 	ENGINEAPI static void ApplicationOff()
 	{
 		LoopActive = false;

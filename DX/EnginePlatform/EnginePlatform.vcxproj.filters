@@ -1,28 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="EngineWindow.h" />
     <ClInclude Include="PreCompile.h">
       <Filter>_PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="EngineInput.h" />
-    <ClInclude Include="EngineWinImage.h" />
-    <ClInclude Include="EngineThread.h" />
-    <ClInclude Include="EngineWorkThreadPool.h" />
+    <ClInclude Include="EngineInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineWorkThreadPool.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineThread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineWindow.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineWinImage.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineSound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EngineWindow.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <Filter>_PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="EngineInput.cpp" />
-    <ClCompile Include="EngineWinImage.cpp" />
-    <ClCompile Include="EngineThread.cpp" />
-    <ClCompile Include="EngineWorkThreadPool.cpp" />
+    <ClCompile Include="EngineInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineWorkThreadPool.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineThread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineWinImage.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineSound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="_PreCompile">
       <UniqueIdentifier>{f0304275-e076-4e95-8c25-9bbb2da39c99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{a7ac89b3-8174-42c8-8612-1603a63faa68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{4009616d-dd34-45d8-aa51-62c7c02b93cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{59d1ecac-0ee9-4942-be8d-7f4025bbf22f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{d6d5e7ac-dd15-464a-9750-3a567f20c13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{2f02b26f-491f-40c4-91ca-36db633cefcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD">
+      <UniqueIdentifier>{c84b14f4-d621-4620-9466-b4e4f685cd06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Debug">
+      <UniqueIdentifier>{c0b68247-e1a7-4145-ab80-a70e1a870cbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Release">
+      <UniqueIdentifier>{999d9763-5dbf-4a72-ada1-3e17b8fcee3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD\Inc">
+      <UniqueIdentifier>{0bce7294-71cb-44b1-872c-9a6e599c0975}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="ThirdParty\FMOD\Debug\fmodL.dll">
+      <Filter>ThirdParty\FMOD\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FMOD\Debug\fmodL_vc.lib">
+      <Filter>ThirdParty\FMOD\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FMOD\Release\fmod.dll">
+      <Filter>ThirdParty\FMOD\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\FMOD\Release\fmod_vc.lib">
+      <Filter>ThirdParty\FMOD\Release</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
