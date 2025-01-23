@@ -32,3 +32,33 @@ void AMapObject::Tick(float _DeltaTime)
 	SetActorLocation(Pos);
 }
 
+void AMapObject::Serialize(UEngineSerializer& _Ser)
+{
+	_Ser << GetActorLocation();
+	_Ser << SpriteIndex;
+	_Ser << SpriteName;
+	_Ser << SpritePivot;
+}
+
+
+void AMapObject::DeSerialize(UEngineSerializer& _Ser)
+{
+	FVector SavePos;
+	_Ser >> SavePos;
+	SetActorLocation(SavePos);
+
+	int SelectObject;
+	_Ser >> SelectObject;
+
+	std::string SpriteName;
+	_Ser >> SpriteName;
+
+	GetSprite()->SetSprite("Map_Object", SelectObject);
+	Sprite->GetSprite()->GetTexture(SelectObject)->SetName(SpriteName);
+	SetName(SpriteName);
+
+	float4 Pivot;
+	_Ser >> Pivot;
+	GetSprite()->SpriteData.Pivot = Pivot;
+}
+

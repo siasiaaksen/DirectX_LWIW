@@ -51,6 +51,8 @@ public:
 	float ColScaleX = 1.0f;
 	float ColScaleY = 1.0f;
 
+	std::string SpriteName;
+
 	FVector MousePos;
 
 	void TileMapMode()
@@ -213,7 +215,12 @@ public:
 					MousePos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
 					NewObject->SetActorLocation(MousePos);
 					NewObject->GetSprite()->SetSprite("Map_Object", SelectObject);
-					NewObject->GetSprite()->SpriteData.Pivot = { 0.5f, 0.0f };
+					NewObject->SetSpriteIndex(SelectObject);
+					NewObject->SetSpritePivot({ 0.5f, 0.0f });
+					NewObject->GetSprite()->SpriteData.Pivot = NewObject->GetSpritePivot();
+					SpriteName = NewObject->GetSprite()->GetSprite()->GetTexture(SelectObject)->GetName();
+					NewObject->SetSpriteName(SpriteName);
+					NewObject->SetName(NewObject->GetSpriteName());
 				}
 			}
 		}
@@ -250,16 +257,11 @@ public:
 
 				if (ObjectItem != -1)
 				{
-					//FVector CurColor = AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor;
+					AllMapObjectList[ObjectItem]->SetSpriteIndex(SelectObject);
 
-					//if (CurColor == FVector(1.0f, 1.0f, 1.0f, 1.0f))
-					//{
-					//	AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 0.0f, 1.0f, 0.8f };
-					//}
-					//else
-					//{
-					//	AllMapObjectList[ObjectItem]->GetSprite()->ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
-					//}
+					int a = AllMapObjectList[ObjectItem]->GetSpriteIndex();
+
+					ImGui::Text(std::to_string(AllMapObjectList[ObjectItem]->GetSpriteIndex()).c_str());
 
 					{
 						SpritePosX = AllMapObjectList[ObjectItem]->GetActorLocation().X;
@@ -272,10 +274,9 @@ public:
 
 						ZSort = AllMapObjectList[ObjectItem]->GetActorLocation().Z;
 
-						//ImGui::InputFloat("ZSort", &ZSort);
-
 						AllMapObjectList[ObjectItem]->SetActorLocation({ SpritePos.X, SpritePos.Y, ZSort });
 
+						ImGui::Text("ZValue");
 						ImGui::Text(std::to_string(ZSort).c_str());
 					}
 				}
@@ -329,12 +330,8 @@ public:
 
 				for (std::shared_ptr<AMapObject> Actor : AllMapObjectList)
 				{
-					//Ser << static_cast<int>(Actor->CreatureTypeValue);
-					Ser << Actor->GetActorLocation();
 					Actor->Serialize(Ser);
 				}
-
-				//TileMapRenderer->Serialize(Ser);
 
 				UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
 
@@ -379,31 +376,14 @@ public:
 				NewFile.Read(Ser);
 
 				int MapObjectCount = 0;
-
 				Ser >> MapObjectCount;
 
  				for (size_t i = 0; i < MapObjectCount; i++)
 				{
-					//int CreatureTypeValue = 0;
-					//Ser >> CreatureTypeValue;
-
-					//ECreatureType CreatureType = static_cast<ECreatureType>(CreatureTypeValue);
-
 					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-					//switch (CreatureType)
-					//{
-					//case ECreatureType::Tree:
-					//	//NewCreature = GetWorld()->SpawnActor<ATree>();
-					//	break;
-					//default:
-					//	break;
-					//}
 
 					NewMapObject->DeSerialize(Ser);
 				}
-
-				//TileMapRenderer->DeSerialize(Ser);
 			}
 		}
 	}
@@ -461,9 +441,9 @@ AMapEditorMode::AMapEditorMode()
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
-	//PivotSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
-	//PivotSpriteRenderer->SetupAttachment(RootComponent);
-	//PivotSpriteRenderer->SetRelativeScale3D({ 50.0f, 50.0f, 1.0f });
+	PivotSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
+	PivotSpriteRenderer->SetupAttachment(RootComponent);
+	PivotSpriteRenderer->SetRelativeScale3D({ 50.0f, 50.0f, 1.0f });
 
 	//TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
 	//TileMapRenderer->SetupAttachment(RootComponent);

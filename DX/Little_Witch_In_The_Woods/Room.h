@@ -23,10 +23,20 @@ public:
 		BaseSprite->SetWorldLocation({ 0.0f, 0.0f, 1000.0f });
 	}
 
+	std::shared_ptr<USpriteRenderer> GetRoomSprite()
+	{
+		return BaseSprite;
+	}
+
 	void SetRoomColSprite(std::string_view _Name)
 	{
 		BaseColSprite->SetTexture(_Name, true, 1.0f);
 		BaseColSprite->SetWorldLocation({ 0.0f, 0.0f, 800.0f });
+	}
+
+	std::shared_ptr<USpriteRenderer> GetRoomColSprite()
+	{
+		return BaseColSprite;
 	}
 
 	void SetRoomSize(FVector _Value)
