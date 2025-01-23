@@ -2,6 +2,7 @@
 #include "MapObject.h"
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Collision.h>
 
 
 AMapObject::AMapObject()
@@ -11,6 +12,9 @@ AMapObject::AMapObject()
 
 	Sprite = CreateDefaultSubObject<USpriteRenderer>();
 	Sprite->SetupAttachment(RootComponent);
+
+	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetupAttachment(RootComponent);
 }
 
 AMapObject::~AMapObject()

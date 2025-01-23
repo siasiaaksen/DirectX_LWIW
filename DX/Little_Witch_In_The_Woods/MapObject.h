@@ -29,6 +29,16 @@ public:
 		return Sprite;
 	}
 
+	void SetCollision(std::shared_ptr<class UCollision> _Collision)
+	{
+		Collision = _Collision;
+	}
+
+	std::shared_ptr<class UCollision>& GetCollision()
+	{
+		return Collision;
+	}
+
 	void SetSpriteIndex(int _SpriteIndex)
 	{
 		SpriteIndex = _SpriteIndex;
@@ -59,10 +69,23 @@ public:
 		return SpritePivot;
 	}
 
+	void SetColActive(bool _Value)
+	{
+		IsColActive = _Value;
+	}
+
+	bool GetColActive()
+	{
+		return IsColActive;
+	}
+
 protected:
 
 private:
 	std::shared_ptr<class USpriteRenderer> Sprite;
+	std::shared_ptr<class UCollision> Collision;
+
+	bool IsColActive = true;
 
 	int SpriteIndex;
 	std::string SpriteName;
