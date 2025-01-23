@@ -47,18 +47,14 @@ void AMapObject::DeSerialize(UEngineSerializer& _Ser)
 	_Ser >> SavePos;
 	SetActorLocation(SavePos);
 
-	int SelectObject;
-	_Ser >> SelectObject;
-
-	std::string SpriteName;
+	_Ser >> SpriteIndex;
 	_Ser >> SpriteName;
 
-	GetSprite()->SetSprite("Map_Object", SelectObject);
-	Sprite->GetSprite()->GetTexture(SelectObject)->SetName(SpriteName);
+	GetSprite()->SetSprite("Map_Object", SpriteIndex);
+	Sprite->SetAutoScale(true);
 	SetName(SpriteName);
 
-	float4 Pivot;
-	_Ser >> Pivot;
-	GetSprite()->SpriteData.Pivot = Pivot;
+	_Ser >> SpritePivot;
+	GetSprite()->SpriteData.Pivot = SpritePivot;
 }
 
