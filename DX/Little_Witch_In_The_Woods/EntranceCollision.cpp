@@ -33,7 +33,7 @@ void AEntranceCollision::Tick(float _DeltaTime)
 void AEntranceCollision::Serialize(UEngineSerializer& _Ser)
 {
 	_Ser << GetActorLocation();
-	_Ser << GetActorTransform().WorldScale;
+	_Ser << EntranceSize;
 	_Ser << EntranceName;
 }
 

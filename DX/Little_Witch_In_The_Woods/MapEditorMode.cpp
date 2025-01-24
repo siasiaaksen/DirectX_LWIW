@@ -31,6 +31,13 @@ enum class EEDITMode
 };
 
 
+enum class EActorList
+{
+	EntColList = 1,
+	MapObejctList = 2,
+};
+
+
 class UMapEditorWindow : public UEngineGUIWindow
 {
 public:
@@ -43,6 +50,9 @@ public:
 	int TileCountX = 10;
 	int TileCountY = 10;
 	int SelectTileIndex = 0;
+
+	FVector EntranceColPos;
+	FVector EntranceColScale;
 
 	float SpritePosX = 0.0f;
 	float SpritePosY = 0.0f;
@@ -122,7 +132,7 @@ public:
 			strncpy_s(Buf, EntColName.c_str(), sizeof(Buf) - 1);
 			ImGui::InputText("EntColName", Buf, sizeof(Buf));
 
-			if (true == UEngineInput::IsDown(VK_RBUTTON))
+			if (true == UEngineInput::IsDown(VK_LBUTTON))
 			{
 				if (false == GEngine->GetMainWindow().IsMouseScreenOut())
 				{
@@ -155,8 +165,8 @@ public:
 				{
 					ImGui::Text(AllEntColList[EntColItem]->GetEntranceName().c_str());
 
-					FVector EntranceColPos = AllEntColList[EntColItem]->GetActorLocation();
-					FVector EntranceColScale = AllEntColList[EntColItem]->GetActorTransform().WorldScale;
+					EntranceColPos = AllEntColList[EntColItem]->GetActorLocation();
+					EntranceColScale = AllEntColList[EntColItem]->GetActorTransform().WorldScale;
 
 					ImGui::InputFloat("EntranceColPosX", &EntranceColPos.X);
 					ImGui::InputFloat("EntranceColPosY", &EntranceColPos.Y);
@@ -164,7 +174,8 @@ public:
 					ImGui::InputFloat("EntranceColScaleY", &EntranceColScale.Y);
 
 					AllEntColList[EntColItem]->SetActorLocation(EntranceColPos);
-					AllEntColList[EntColItem]->SetActorRelativeScale3D(EntranceColScale);
+					AllEntColList[EntColItem]->SetEntranceSize(EntranceColScale);
+					AllEntColList[EntColItem]->SetActorRelativeScale3D(AllEntColList[EntColItem]->GetEntranceSize());
 
 					if (true == ImGui::Button("EntColDelete"))
 					{
@@ -364,16 +375,40 @@ public:
 
 				UEngineSerializer Ser;
 
-				//Ser << static_cast<int>(AllEntColList.size());
-				//for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
-				//{
-				//	EntCol->Serialize(Ser);
-				//}
-
-				Ser << static_cast<int>(AllMapObjectList.size());
-				for (std::shared_ptr<AMapObject> Actor : AllMapObjectList)
 				{
-					Actor->Serialize(Ser);
+					int ListNum = 0;
+
+					if (0 != static_cast<int>(AllEntColList.size()))
+					{
+						ListNum += static_cast<int>(EActorList::EntColList);
+					}
+
+					if (0 != static_cast<int>(AllMapObjectList.size()))
+					{
+						ListNum += static_cast<int>(EActorList::MapObejctList);
+					}
+
+					Ser << ListNum;
+				}
+
+				{
+					if (0 != static_cast<int>(AllEntColList.size()))
+					{
+						Ser << static_cast<int>(AllEntColList.size());
+						for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+						{
+							EntCol->Serialize(Ser);
+						}
+					}
+
+					if (0 != static_cast<int>(AllMapObjectList.size()))
+					{
+						Ser << static_cast<int>(AllMapObjectList.size());
+						for (std::shared_ptr<AMapObject> Actor : AllMapObjectList)
+						{
+							Actor->Serialize(Ser);
+						}
+					}
 				}
 
 				UEngineFile NewFile = Dir.GetFile(ofn.lpstrFile);
@@ -418,22 +453,60 @@ public:
 				NewFile.FileOpen("rb");
 				NewFile.Read(Ser);
 
-				//int EntColCount = 0;
-				//Ser >> EntColCount;
-				//for (size_t i = 0; i < EntColCount; i++)
-				//{
-				//	std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
+				int ListNum;
+				Ser >> ListNum;
 
-				//	NewEntCol->DeSerialize(Ser);
-				//}
-
-				int MapObjectCount = 0;
-				Ser >> MapObjectCount;
- 				for (size_t i = 0; i < MapObjectCount; i++)
+				switch (ListNum)
 				{
-					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+				case 1:
+				{
+					int EntColCount = 0;
+					Ser >> EntColCount;
+					for (size_t i = 0; i < EntColCount; i++)
+					{
+						std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
 
-					NewMapObject->DeSerialize(Ser);
+						NewEntCol->DeSerialize(Ser);
+					}
+
+					break;
+				}
+				case 2:
+				{
+					int MapObjectCount = 0;
+					Ser >> MapObjectCount;
+					for (size_t i = 0; i < MapObjectCount; i++)
+					{
+						std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+						NewMapObject->DeSerialize(Ser);
+					}
+
+					break;
+				}
+				case 3:
+				{
+					int EntColCount = 0;
+					Ser >> EntColCount;
+					for (size_t i = 0; i < EntColCount; i++)
+					{
+						std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
+
+						NewEntCol->DeSerialize(Ser);
+					}
+
+					int MapObjectCount = 0;
+					Ser >> MapObjectCount;
+					for (size_t i = 0; i < MapObjectCount; i++)
+					{
+						std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+						NewMapObject->DeSerialize(Ser);
+					}
+					break;
+				}
+				default:
+					break;
 				}
 			}
 		}

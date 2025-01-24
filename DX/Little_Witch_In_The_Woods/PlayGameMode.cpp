@@ -73,13 +73,95 @@ void APlayGameMode::BeginPlay()
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
-	Room->SetColImage("Map_Col.png", "Map");
-	FVector RoomSize = Room->GetColImage().GetImageScale();
+	//Room->SetColImage("Map_Col.png", "Map");
+	//FVector RoomSize = Room->GetColImage().GetImageScale();
 
-	Room->SetRoomSize(RoomSize);
-	Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
-	Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
-	RoomName = "MainMap";
+	//Room->SetRoomSize(RoomSize);
+	//Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+	//Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+	//RoomName = "MainMap";
+
+	{
+		Ellie->SetColImage("WitchHouse_Outside_Col.png", "Map");
+		Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
+		FVector RoomSize = Room->GetColImage().GetImageScale();
+
+		Room->SetRoomSprite("WitchHouse_Outside.png", RoomSize);
+		Room->SetRoomColSprite("WitchHouse_Outside_Col.png");
+
+		FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+		Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+		Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+
+		Ellie->SetActorLocation({ 0.0f, -500.0f, 10.0f });
+
+		{
+			const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouse_Outside.MapData";
+			UEngineFile FIle = Path;
+			FIle.FileOpen("rb");
+
+			UEngineSerializer Ser;
+			FIle.Read(Ser);
+
+			int ListNum;
+			Ser >> ListNum;
+
+			switch (ListNum)
+			{
+			case 1:
+			{
+				int EntColCount = 0;
+				Ser >> EntColCount;
+				for (size_t i = 0; i < EntColCount; i++)
+				{
+					std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
+
+					NewEntCol->DeSerialize(Ser);
+				}
+
+				break;
+			}
+			case 2:
+			{
+				int MapObjectCount = 0;
+				Ser >> MapObjectCount;
+				for (size_t i = 0; i < MapObjectCount; i++)
+				{
+					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+					NewMapObject->DeSerialize(Ser);
+				}
+
+				break;
+			}
+			case 3:
+			{
+				int EntColCount = 0;
+				Ser >> EntColCount;
+				for (size_t i = 0; i < EntColCount; i++)
+				{
+					std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
+
+					NewEntCol->DeSerialize(Ser);
+				}
+
+				int MapObjectCount = 0;
+				Ser >> MapObjectCount;
+				for (size_t i = 0; i < MapObjectCount; i++)
+				{
+					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+					NewMapObject->DeSerialize(Ser);
+				}
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
+		Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });
+	}
 
 	//Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
 	//Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
@@ -87,9 +169,9 @@ void APlayGameMode::BeginPlay()
 	//std::shared_ptr<AMongsiriHole> MongsiriHole = GetWorld()->SpawnActor<AMongsiriHole>();
 	//MongsiriHole->SetActorLocation({ 0.0f, 0.0f, 10.0f });
 
-	EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
-	EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
-	EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
+	//EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
+	//EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
+	//EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
 }
 
 void APlayGameMode::Tick(float _DeltaTime)
@@ -148,10 +230,29 @@ void APlayGameMode::CameraMove()
 
 void APlayGameMode::RoomChange()
 {
-	std::vector<UCollision*> Result;
-	if (true == EntranceCol->GetEntranceCol()->CollisionCheck("Ellie", Result))
+	std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+	for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
 	{
-		if ("MainMap" == RoomName)
+		std::vector<UCollision*> Result;
+		if (true == EntCol->GetEntranceCol()->CollisionCheck("Ellie", Result))
+		{
+			std::string EntColName = EntCol->GetEntranceName();
+			if (EntCol->GetEntranceName() == "WitchHouseYard")
+			{
+				int a = 0;
+			}
+		}
+	}
+
+	//std::vector<UCollision*> Result;
+	//if (true == EntranceCol->GetEntranceCol()->CollisionCheck("Ellie", Result))
+	//{
+	//	std::string EntColName = EntranceCol->GetEntranceName();
+	//	if (EntranceCol->GetEntranceName() == "WitchHouseYard")
+	//	{
+	//		int a = 0;
+	//	}
+		/*if ("MainMap" == RoomName)
 		{
 			Ellie->SetColImage("WitchHouse_Outside_Col.png", "Map");
 			Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
@@ -226,10 +327,10 @@ void APlayGameMode::RoomChange()
 					NewMapObject->DeSerialize(Ser);
 				}
 			}
-		}
+		}*/
 
-		Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });
-	}
+		//Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });
+	//}
 }
 
 void APlayGameMode::LevelChangeStart()
