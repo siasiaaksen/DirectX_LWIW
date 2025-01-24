@@ -168,10 +168,10 @@ void APlayGameMode::RoomChange()
 
 			EntranceCol->SetActorLocation({ 0.0f, -((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
 
-			RoomName = "WitchHouse";
+			RoomName = "WitchHouseOutside";
 
 			{
-				const std::string Path = ".\\..\\LWIWResources\\Data\\Test.MapData";
+				const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouse_Outside.MapData";
 				UEngineFile FIle = Path;
 				FIle.FileOpen("rb");
 
@@ -189,7 +189,7 @@ void APlayGameMode::RoomChange()
 				}
 			}
 		}
-		else if ("WitchHouse" == RoomName)
+		else if ("WitchHouseOutside" == RoomName)
 		{
 			Ellie->SetColImage("Map_Col.png", "Map");
 			Room->SetColImage("Map_Col.png", "Map");
@@ -209,7 +209,7 @@ void APlayGameMode::RoomChange()
 			RoomName = "MainMap";
 
 			{
-				const std::string Path = ".\\..\\LWIWResources\\Data\\Test.MapData";
+				const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouse_Outside.MapData";
 				UEngineFile FIle = Path;
 				FIle.FileOpen("rb");
 

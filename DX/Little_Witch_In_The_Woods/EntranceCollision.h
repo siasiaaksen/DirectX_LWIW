@@ -17,6 +17,9 @@ public:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void Serialize(UEngineSerializer& _Ser) override;
+	void DeSerialize(UEngineSerializer& _Ser) override;
+
 	void SetEntranceSize(FVector _EntranceSize)
 	{
 		EntranceSize = _EntranceSize;
@@ -42,12 +45,24 @@ public:
 		return EntranceCol;
 	}
 
+	void SetEntranceName(std::string _EntName)
+	{
+		EntranceName = _EntName;
+	}
+
+	std::string& GetEntranceName()
+	{
+		return EntranceName;
+	}
+
 protected:
 
 private:
 	std::shared_ptr<class UCollision> EntranceCol;
 
-	FVector EntranceSize/* = { 300.0f, 100.0f }*/;
 	FVector EntrancePos/* = { 1000.0f, 1395, 0.0f }*/;
+	FVector EntranceSize/* = { 300.0f, 100.0f }*/;
+
+	std::string EntranceName;
 };
 

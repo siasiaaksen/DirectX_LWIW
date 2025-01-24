@@ -48,8 +48,7 @@ public:
 	float SpritePosY = 0.0f;
 	float ZSort = 0.0f;
 
-	FVector EntranceColPos;
-	FVector EntranceColScale;
+	char Buf[255]{};
 
 	std::string SpriteName;
 
@@ -119,24 +118,62 @@ public:
 
 		// EntranceCollision
 		{
-			ImGui::InputFloat("EntranceColPosX", &EntranceColPos.X);
-			ImGui::InputFloat("EntranceColPosY", &EntranceColPos.Y);
-			ImGui::InputFloat("EntranceColScaleX", &EntranceColScale.X);
-			ImGui::InputFloat("EntranceColScaleY", &EntranceColScale.Y);
+			std::string EntColName;
+			strncpy_s(Buf, EntColName.c_str(), sizeof(Buf) - 1);
+			ImGui::InputText("EntColName", Buf, sizeof(Buf));
 
-			if (true == ImGui::Button("EntranceCreate"))
+			if (true == UEngineInput::IsDown(VK_RBUTTON))
 			{
-				std::shared_ptr<AEntranceCollision> EntCol = GetWorld()->SpawnActor<AEntranceCollision>("EntCol");
-				EntCol->SetActorLocation(EntranceColPos);
-				EntCol->SetActorRelativeScale3D(EntranceColScale);
+				if (false == GEngine->GetMainWindow().IsMouseScreenOut())
+				{
+					std::shared_ptr<AEntranceCollision> EntCol = GetWorld()->SpawnActor<AEntranceCollision>("EntCol");
+					MousePos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
+					EntCol->SetActorLocation(MousePos);
+					EntCol->SetEntranceName(Buf);
+					EntCol->SetName(EntCol->GetEntranceName());
+				}
 			}
 
-			if (true == ImGui::Button("EntColDelete"))
+			std::vector<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorArrayByClass<AEntranceCollision>();
+			std::vector<std::string> ArrString;
+			for (std::shared_ptr<class AActor> Actor : AllEntColList)
 			{
-				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
-				for (std::shared_ptr<AEntranceCollision> EntCols : AllEntColList)
+				ArrString.push_back(Actor->GetName());
+			}
+
+			std::vector<const char*> Arr;
+			for (size_t i = 0; i < ArrString.size(); i++)
+			{
+				Arr.push_back(ArrString[i].c_str());
+			}
+
+			if (0 < Arr.size())
+			{
+				ImGui::ListBox("AllEntColList", &EntColItem, &Arr[0], static_cast<int>(Arr.size()));
+
+				if (EntColItem != -1)
 				{
-					EntCols->Destroy();
+					ImGui::Text(AllEntColList[EntColItem]->GetEntranceName().c_str());
+
+					FVector EntranceColPos = AllEntColList[EntColItem]->GetActorLocation();
+					FVector EntranceColScale = AllEntColList[EntColItem]->GetActorTransform().WorldScale;
+
+					ImGui::InputFloat("EntranceColPosX", &EntranceColPos.X);
+					ImGui::InputFloat("EntranceColPosY", &EntranceColPos.Y);
+					ImGui::InputFloat("EntranceColScaleX", &EntranceColScale.X);
+					ImGui::InputFloat("EntranceColScaleY", &EntranceColScale.Y);
+
+					AllEntColList[EntColItem]->SetActorLocation(EntranceColPos);
+					AllEntColList[EntColItem]->SetActorRelativeScale3D(EntranceColScale);
+
+					if (true == ImGui::Button("EntColDelete"))
+					{
+						std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+						for (std::shared_ptr<AEntranceCollision> EntCols : AllEntColList)
+						{
+							EntCols->Destroy();
+						}
+					}
 				}
 			}
 		}
@@ -322,12 +359,18 @@ public:
 
 			if (GetSaveFileNameA(&ofn) == TRUE)
 			{
+				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
 				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
 
 				UEngineSerializer Ser;
 
-				Ser << static_cast<int>(AllMapObjectList.size());
+				//Ser << static_cast<int>(AllEntColList.size());
+				//for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+				//{
+				//	EntCol->Serialize(Ser);
+				//}
 
+				Ser << static_cast<int>(AllMapObjectList.size());
 				for (std::shared_ptr<AMapObject> Actor : AllMapObjectList)
 				{
 					Actor->Serialize(Ser);
@@ -375,9 +418,17 @@ public:
 				NewFile.FileOpen("rb");
 				NewFile.Read(Ser);
 
+				//int EntColCount = 0;
+				//Ser >> EntColCount;
+				//for (size_t i = 0; i < EntColCount; i++)
+				//{
+				//	std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
+
+				//	NewEntCol->DeSerialize(Ser);
+				//}
+
 				int MapObjectCount = 0;
 				Ser >> MapObjectCount;
-
  				for (size_t i = 0; i < MapObjectCount; i++)
 				{
 					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();

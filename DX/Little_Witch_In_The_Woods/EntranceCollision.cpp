@@ -29,3 +29,23 @@ void AEntranceCollision::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 }
+
+void AEntranceCollision::Serialize(UEngineSerializer& _Ser)
+{
+	_Ser << GetActorLocation();
+	_Ser << GetActorTransform().WorldScale;
+	_Ser << EntranceName;
+}
+
+void AEntranceCollision::DeSerialize(UEngineSerializer& _Ser)
+{
+	FVector SavePos;
+	_Ser >> SavePos;
+	SetActorLocation(SavePos);
+
+	_Ser >> EntranceSize;
+	SetActorRelativeScale3D(EntranceSize);
+
+	_Ser >> EntranceName;
+	SetName(EntranceName);
+}
