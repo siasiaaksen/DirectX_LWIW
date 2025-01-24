@@ -22,10 +22,7 @@ protected:
 private:
 	std::shared_ptr<class ACameraActor> Camera;
 
-	std::shared_ptr<class UMapEditorWindow> TileMapWindow;
+	std::shared_ptr<class UMapEditorWindow> MapEditWindow;
 	std::shared_ptr<class USpriteRenderer> PivotSpriteRenderer;
-	std::shared_ptr<class UTileMapRenderer> TileMapRenderer;
-
-	FVector TileSize;
 };
 

@@ -1,8 +1,6 @@
 #include "PreCompile.h"
 #include "MapObject.h"
 #include <EngineCore/DefaultSceneComponent.h>
-#include <EngineCore/SpriteRenderer.h>
-#include <EngineCore/Collision.h>
 
 
 AMapObject::AMapObject()
@@ -11,9 +9,12 @@ AMapObject::AMapObject()
 	RootComponent = Default;
 
 	Sprite = CreateDefaultSubObject<USpriteRenderer>();
+	Sprite->SpriteData.Pivot = { 0.5f, 0.25f };
 	Sprite->SetupAttachment(RootComponent);
 
 	Collision = CreateDefaultSubObject<UCollision>();
+	Collision->SetCollisionProfileName("MapObject");
+	Collision->SetActive(false);
 	Collision->SetupAttachment(RootComponent);
 }
 
@@ -31,7 +32,7 @@ void AMapObject::Tick(float _DeltaTime)
 	AActor::Tick(_DeltaTime);
 
 	FVector Pos = GetActorLocation();
-	Pos.Z = Pos.Y;
+	Pos.Z = Pos.Y - (Sprite->GetWorldScale3D().Y * 0.25f);
 
 	SetActorLocation(Pos);
 }
@@ -41,9 +42,11 @@ void AMapObject::Serialize(UEngineSerializer& _Ser)
 	_Ser << GetActorLocation();
 	_Ser << SpriteIndex;
 	_Ser << SpriteName;
-	_Ser << SpritePivot;
+	_Ser << Sprite->SpriteData.Pivot;
+	_Ser << IsColActive;
+	_Ser << ColPos;
+	_Ser << ColScale;
 }
-
 
 void AMapObject::DeSerialize(UEngineSerializer& _Ser)
 {
@@ -54,11 +57,21 @@ void AMapObject::DeSerialize(UEngineSerializer& _Ser)
 	_Ser >> SpriteIndex;
 	_Ser >> SpriteName;
 
-	GetSprite()->SetSprite("Map_Object", SpriteIndex);
+	Sprite->SetSprite("Map_Object", SpriteIndex);
 	Sprite->SetAutoScale(true);
 	SetName(SpriteName);
 
-	_Ser >> SpritePivot;
-	GetSprite()->SpriteData.Pivot = SpritePivot;
+	float4 Pivot;
+	_Ser >> Pivot;
+	Sprite->SpriteData.Pivot = Pivot;
+
+	_Ser >> IsColActive;
+	Collision->SetActive(IsColActive);
+
+	_Ser >> ColPos;
+	Collision->SetWorldLocation(ColPos);
+
+	_Ser >> ColScale;
+	Collision->SetScale3D(ColScale);
 }
 

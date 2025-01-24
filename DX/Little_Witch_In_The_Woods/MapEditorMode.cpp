@@ -15,6 +15,7 @@
 #include "Room.h"
 #include "Ellie.h"
 #include "MapObject.h"
+#include "EntranceCollision.h"
 
 
 enum class ESpawnList
@@ -25,7 +26,7 @@ enum class ESpawnList
 
 enum class EEDITMode
 {
-	TileMap,
+	MapGround,
 	Object,
 };
 
@@ -35,8 +36,9 @@ class UMapEditorWindow : public UEngineGUIWindow
 public:
 	int SelectItem = 0;
 	int ObjectItem = -1;
+	int EntColItem = -1;
 	UTileMapRenderer* TileMapRenderer = nullptr;
-	EEDITMode Mode = EEDITMode::Object;
+	EEDITMode Mode = EEDITMode::MapGround;
 
 	int TileCountX = 10;
 	int TileCountY = 10;
@@ -46,78 +48,17 @@ public:
 	float SpritePosY = 0.0f;
 	float ZSort = 0.0f;
 
-	float ColPosX = 0.0f;
-	float ColPosY = 0.0f;
-	float ColScaleX = 1.0f;
-	float ColScaleY = 1.0f;
+	FVector EntranceColPos;
+	FVector EntranceColScale;
 
 	std::string SpriteName;
 
 	FVector MousePos;
 
-	void TileMapMode()
-	{
-	//	{
-	//		UEngineSprite* Sprite = TileMapRenderer->GetSprite();
-
-	//		for (size_t i = 0; i < Sprite->GetSpriteCount(); i++)
-	//		{
-	//			UEngineTexture* Texture = Sprite->GetTexture(i);
-	//			FSpriteData Data = Sprite->GetSpriteData(i);
-
-	//			ImTextureID SRV = reinterpret_cast<ImTextureID>(Texture->GetSRV());
-
-	//			std::string Text = std::to_string(i);
-
-	//			if (i != 0)
-	//			{
-	//				if (0 != (i % 10))
-	//				{
-	//					// 엔터를 치지 않는
-	//					ImGui::SameLine();
-	//				}
-	//			}
-
-	//			ImVec2 Pos = { Data.CuttingPos.X, Data.CuttingPos.Y };
-	//			ImVec2 Size = { Data.CuttingPos.X + Data.CuttingSize.X, Data.CuttingPos.Y + Data.CuttingSize.Y };
-	//			if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }, Pos, Size))
-	//			{
-	//				SelectTileIndex = static_cast<int>(i);
-	//			}
-	//		}
-
-	//		//ImGui::InputInt("TileMapX", &TileCountX);
-	//		//ImGui::InputInt("TileMapY", &TileCountY);
-
-	//		//if (ImGui::Button("TileMap Create"))
-	//		//{
-	//		//	for (int y = 0; y < TileCountY; y++)
-	//		//	{
-	//		//		for (int x = 0; x < TileCountX; x++)
-	//		//		{
-	//		//			TileMapRenderer->SetTile(x, y, SelectTileIndex);
-	//		//		}
-	//		//	}
-	//		//}
-
-	//		if (true == UEngineInput::IsPress(VK_LBUTTON))
-	//		{
-	//			FVector ScreenPos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
-	//			
-	//			TileMapRenderer->SetTile(ScreenPos, SelectTileIndex);
-	//		}
-
-	//		if (true == UEngineInput::IsPress(VK_RBUTTON))
-	//		{
-	//			FVector ScreenPos = GetWorld()->GetMainCamera()->ScreenMousePosToWorldPos();
-
-	//			TileMapRenderer->RemoveTile(ScreenPos);
-	//		}
-	//	}
-	}
-
 	void SelectGroundMap()
 	{
+		ImGui::Text("=== Select Map Ground ===");
+
 		if (ImGui::Button("MapGround"))
 		{
 			{
@@ -173,12 +114,40 @@ public:
 			Room->SetCollisionSize(ColSize);
 			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 		}
+
+		ImGui::Text("=== Create Entrance Collision ===");
+
+		// EntranceCollision
+		{
+			ImGui::InputFloat("EntranceColPosX", &EntranceColPos.X);
+			ImGui::InputFloat("EntranceColPosY", &EntranceColPos.Y);
+			ImGui::InputFloat("EntranceColScaleX", &EntranceColScale.X);
+			ImGui::InputFloat("EntranceColScaleY", &EntranceColScale.Y);
+
+			if (true == ImGui::Button("EntranceCreate"))
+			{
+				std::shared_ptr<AEntranceCollision> EntCol = GetWorld()->SpawnActor<AEntranceCollision>("EntCol");
+				EntCol->SetActorLocation(EntranceColPos);
+				EntCol->SetActorRelativeScale3D(EntranceColScale);
+			}
+
+			if (true == ImGui::Button("EntColDelete"))
+			{
+				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+				for (std::shared_ptr<AEntranceCollision> EntCols : AllEntColList)
+				{
+					EntCols->Destroy();
+				}
+			}
+		}
 	}
 
 	int SelectObject = 0;
 
 	void ObjectMode()
 	{
+		ImGui::Text("=== Select Object Sprite ===");
+
 		{
 			std::shared_ptr<UEngineSprite> Sprite = UEngineSprite::Find<UEngineSprite>("Map_Object");
 			for (size_t i = 0; i < Sprite->GetSpriteCount(); i++)
@@ -216,8 +185,7 @@ public:
 					NewObject->SetActorLocation(MousePos);
 					NewObject->GetSprite()->SetSprite("Map_Object", SelectObject);
 					NewObject->SetSpriteIndex(SelectObject);
-					NewObject->SetSpritePivot({ 0.5f, 0.0f });
-					NewObject->GetSprite()->SpriteData.Pivot = NewObject->GetSpritePivot();
+					NewObject->GetSprite()->SpriteData.Pivot = { 0.5f, 0.25f };	// YSorting 때 필요
 					SpriteName = NewObject->GetSprite()->GetSprite()->GetTexture(SelectObject)->GetName();
 					NewObject->SetSpriteName(SpriteName);
 					NewObject->SetName(NewObject->GetSpriteName());
@@ -226,19 +194,7 @@ public:
 		}
 
 		{
-			if (ImGui::Button("EditObjectDelete"))
-			{
-				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
-				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
-				{
-					MapObject->Destroy();
-				}
-			}
-		}
-
-		{
 			std::vector<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorArrayByClass<AMapObject>();
-
 			std::vector<std::string> ArrString; 
 			for (std::shared_ptr<class AActor> Actor : AllMapObjectList)
 			{
@@ -253,22 +209,19 @@ public:
 
 			if (0 < Arr.size())
 			{
-				ImGui::ListBox("AllActorList", &ObjectItem, &Arr[0], static_cast<int>(Arr.size()));
+				ImGui::ListBox("AllObjectList", &ObjectItem, &Arr[0], static_cast<int>(Arr.size()));
 
 				if (ObjectItem != -1)
 				{
-					AllMapObjectList[ObjectItem]->SetSpriteIndex(SelectObject);
+					ImGui::Text("=== Object Sprite Option ===");
 
-					int a = AllMapObjectList[ObjectItem]->GetSpriteIndex();
-
-					ImGui::Text(std::to_string(AllMapObjectList[ObjectItem]->GetSpriteIndex()).c_str());
-
+					// MapObjectSprite
 					{
 						SpritePosX = AllMapObjectList[ObjectItem]->GetActorLocation().X;
 						SpritePosY = AllMapObjectList[ObjectItem]->GetActorLocation().Y;
 
-						ImGui::InputFloat("PosX", &SpritePosX);
-						ImGui::InputFloat("PosY", &SpritePosY);
+						ImGui::InputFloat("SpritePosX", &SpritePosX);
+						ImGui::InputFloat("SpritePosY", &SpritePosY);
 
 						FVector SpritePos = FVector(SpritePosX, SpritePosY);
 
@@ -279,12 +232,59 @@ public:
 						ImGui::Text("ZValue");
 						ImGui::Text(std::to_string(ZSort).c_str());
 					}
+
+					ImGui::Text("=== Object Collision Option ===");
+
+					// MapObjectCollision
+					{
+						bool IsColActive = AllMapObjectList[ObjectItem]->GetColActive();
+						
+						ImGui::Checkbox("IsColActive", &IsColActive);
+
+						if (true == IsColActive)
+						{
+							AllMapObjectList[ObjectItem]->SetColActive(true);
+
+							{
+								FVector ColPos = AllMapObjectList[ObjectItem]->GetCollision()->GetRelativeLocation();
+
+								ImGui::InputFloat("ColPosX", &ColPos.X);
+								ImGui::InputFloat("ColPosY", &ColPos.Y);
+
+								AllMapObjectList[ObjectItem]->SetColPos(ColPos);
+								AllMapObjectList[ObjectItem]->GetCollision()->SetWorldLocation(ColPos);
+							}
+
+							{
+								FVector ColScale = AllMapObjectList[ObjectItem]->GetCollision()->GetWorldScale3D();
+
+								ImGui::InputFloat("ColScaleX", &ColScale.X);
+								ImGui::InputFloat("ColScaleY", &ColScale.Y);
+
+								AllMapObjectList[ObjectItem]->SetColScale(ColScale);
+								AllMapObjectList[ObjectItem]->GetCollision()->SetScale3D(ColScale);
+							}
+						}
+						else
+						{
+							AllMapObjectList[ObjectItem]->SetColActive(false);
+						}
+					}
 				}
 
 				if (true == ImGui::Button("Delete"))
 				{
 					AllMapObjectList[ObjectItem]->Destroy();
 					ObjectItem = -1;
+				}
+
+				if (ImGui::Button("EditObjectDelete"))
+				{
+					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+					{
+						MapObject->Destroy();
+					}
 				}
 			}
 		}
@@ -388,39 +388,38 @@ public:
 		}
 	}
 
+	// MapEditModeSwitch
 	void OnGUI() override
 	{
-		//{
-		//	if (Mode == EEDITMode::Object)
-		//	{
-		//		if (ImGui::Button("ObjectMode"))
-		//		{
-		//			Mode = EEDITMode::TileMap;
-		//		}
-		//	}
-		//	else
-		//	{
-		//		if (ImGui::Button("TileMapMode"))
-		//		{
-		//			Mode = EEDITMode::Object;
-		//		}
-		//	}
-		//}
+		{
+			if (Mode == EEDITMode::Object)
+			{
+				if (ImGui::Button("ObjectMode"))
+				{
+					Mode = EEDITMode::MapGround;
+				}
+			}
+			else
+			{
+				if (ImGui::Button("MapGroundMode"))
+				{
+					Mode = EEDITMode::Object;
+				}
+			}
+		}
 
-		//switch (Mode)
-		//{
-		//case EEDITMode::TileMap:
-		//	TileMapMode();
-		//	break;
-		//case EEDITMode::Object:
-		//	ObjectMode();
-		//	break;
-		//default:
-		//	break;
-		//}
+		switch (Mode)
+		{
+		case EEDITMode::MapGround:
+			SelectGroundMap();
+			break;
+		case EEDITMode::Object:
+			ObjectMode();
+			break;
+		default:
+			break;
+		}
 		
-		SelectGroundMap();
-		ObjectMode();
 		SaveAndLoad();
 	}
 };
@@ -429,6 +428,8 @@ public:
 AMapEditorMode::AMapEditorMode()
 {
 	GetWorld()->CreateCollisionProfile("Room");
+	GetWorld()->CreateCollisionProfile("MapObject");
+	GetWorld()->CreateCollisionProfile("Entrance");
 
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
 	RootComponent = Default;
@@ -441,24 +442,15 @@ AMapEditorMode::AMapEditorMode()
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
+	// 중심 확인 랜더러
 	PivotSpriteRenderer = CreateDefaultSubObject<USpriteRenderer>();
 	PivotSpriteRenderer->SetupAttachment(RootComponent);
 	PivotSpriteRenderer->SetRelativeScale3D({ 50.0f, 50.0f, 1.0f });
-
-	//TileMapRenderer = CreateDefaultSubObject<UTileMapRenderer>();
-	//TileMapRenderer->SetupAttachment(RootComponent);
-	//TileSize = { 336.0f, 384.0f };
-	//TileMapRenderer->SetTileSetting(ETileMapType::Rect, "Tree", TileSize, TileSize, { 0.0f, 0.0f });
 }
 
 AMapEditorMode::~AMapEditorMode()
 {
 }
-
-//void AMapEditorMode::BeginPlay()
-//{
-//	AActor::BeginPlay();
-//}
 
 void AMapEditorMode::Tick(float _DeltaTime)
 {
@@ -507,15 +499,14 @@ void AMapEditorMode::LevelChangeStart()
 	}
 
 	{
-		TileMapWindow = UEngineGUI::FindGUIWindow<UMapEditorWindow>("MapEditorWindow");
+		MapEditWindow = UEngineGUI::FindGUIWindow<UMapEditorWindow>("MapEditorWindow");
 
-		if (nullptr == TileMapWindow)
+		if (nullptr == MapEditWindow)
 		{
-			TileMapWindow = UEngineGUI::CreateGUIWindow<UMapEditorWindow>("MapEditorWindow");
+			MapEditWindow = UEngineGUI::CreateGUIWindow<UMapEditorWindow>("MapEditorWindow");
 		}
 
-		TileMapWindow->SetActive(true);
-		TileMapWindow->TileMapRenderer = TileMapRenderer.get();
+		MapEditWindow->SetActive(true);
 	}
 }
 

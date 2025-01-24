@@ -13,8 +13,7 @@
 #include "Mongsiri.h"
 #include "MongsiriHole.h"
 #include "EntranceCollision.h"
-
-#include "Tree.h"
+#include "MapObject.h"
 
 
 class UPlayGUIWindow : public UEngineGUIWindow
@@ -22,17 +21,12 @@ class UPlayGUIWindow : public UEngineGUIWindow
 public:
 	void OnGUI() override
 	{
-		//if (true == ImGui::Button("WindowButton"))
-		//{
-		//}
-
 		if (true == ImGui::Button("FreeCameraOn"))
 		{
 			GetWorld()->GetMainCamera()->FreeCameraSwitch();
 		}
 
 		ImGui::SameLine();
-		//ImGui::Text("test");
 	}
 };
 
@@ -45,14 +39,13 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
 	GetWorld()->CreateCollisionProfile("MongsiriHole");
 	GetWorld()->CreateCollisionProfile("Entrance");
-	//GetWorld()->CreateCollisionProfile("Tree");
+	GetWorld()->CreateCollisionProfile("MapObject");
 
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
 	GetWorld()->LinkCollisionProfile("MongsiriInner", "MongsiriHole");
 	GetWorld()->LinkCollisionProfile("Ellie", "Entrance");
-	//GetWorld()->LinkCollisionProfile("Ellie", "Tree");
 
 	// Ä«¸Þ¶ó
 	{
@@ -74,9 +67,9 @@ void APlayGameMode::BeginPlay()
 	Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
 	
 	// Mid
-	Ellie->SetActorLocation({ 0.0f, 0.0f, 10.0f });
+	//Ellie->SetActorLocation({ 0.0f, 0.0f, 10.0f });
 	// WitchHouseEntrance
-	//Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
+	Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
@@ -97,8 +90,6 @@ void APlayGameMode::BeginPlay()
 	EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
 	EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
 	EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
-
-	//std::shared_ptr<class ATree> Tree = GetWorld()->SpawnActor<ATree>();
 }
 
 void APlayGameMode::Tick(float _DeltaTime)
@@ -178,6 +169,25 @@ void APlayGameMode::RoomChange()
 			EntranceCol->SetActorLocation({ 0.0f, -((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
 
 			RoomName = "WitchHouse";
+
+			{
+				const std::string Path = ".\\..\\LWIWResources\\Data\\Test.MapData";
+				UEngineFile FIle = Path;
+				FIle.FileOpen("rb");
+
+				UEngineSerializer Ser;
+				FIle.Read(Ser);
+
+				int MapObjectCount = 0;
+				Ser >> MapObjectCount;
+
+				for (size_t i = 0; i < MapObjectCount; i++)
+				{
+					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+					NewMapObject->DeSerialize(Ser);
+				}
+			}
 		}
 		else if ("WitchHouse" == RoomName)
 		{
@@ -197,6 +207,25 @@ void APlayGameMode::RoomChange()
 			EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
 
 			RoomName = "MainMap";
+
+			{
+				const std::string Path = ".\\..\\LWIWResources\\Data\\Test.MapData";
+				UEngineFile FIle = Path;
+				FIle.FileOpen("rb");
+
+				UEngineSerializer Ser;
+				FIle.Read(Ser);
+
+				int MapObjectCount = 0;
+				Ser >> MapObjectCount;
+
+				for (size_t i = 0; i < MapObjectCount; i++)
+				{
+					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+					NewMapObject->DeSerialize(Ser);
+				}
+			}
 		}
 
 		Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });

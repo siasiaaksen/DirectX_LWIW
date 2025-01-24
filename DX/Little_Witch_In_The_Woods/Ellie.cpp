@@ -208,16 +208,16 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 		return false;
 	}
 
-	std::vector<UCollision*> Result2;
-	if (true == EllieCollision->CollisionCheck("Tree", _Dir, Result2))
-	{
-		ATree* Tree = dynamic_cast<ATree*>(Result2[0]->GetActor());
+	//std::vector<UCollision*> Result2;
+	//if (true == EllieCollision->CollisionCheck("Tree", _Dir, Result2))
+	//{
+	//	ATree* Tree = dynamic_cast<ATree*>(Result2[0]->GetActor());
 
-		//if (GetActorLocation().Z <= Tree->GetActorLocation().Z)
-		//{
-		//}
-		//	return false;
-	}
+	//	//if (GetActorLocation().Z <= Tree->GetActorLocation().Z)
+	//	//{
+	//	//}
+	//	//	return false;
+	//}
 
 	FVector EllieHalf = EllieSize.Half();
 

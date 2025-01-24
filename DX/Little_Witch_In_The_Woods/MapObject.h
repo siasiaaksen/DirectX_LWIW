@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/Collision.h>
+#include <EngineCore/SpriteRenderer.h>
 
 
 class AMapObject :public AActor
@@ -61,17 +63,18 @@ public:
 
 	void SetSpritePivot(float4 _SpritePivot)
 	{
-		SpritePivot = _SpritePivot;
+		Sprite->SpriteData.Pivot = _SpritePivot;
 	}
 
 	float4 GetSpritePivot()
 	{
-		return SpritePivot;
+		return Sprite->SpriteData.Pivot;
 	}
 
 	void SetColActive(bool _Value)
 	{
 		IsColActive = _Value;
+		Collision->SetActive(IsColActive);
 	}
 
 	bool GetColActive()
@@ -79,16 +82,38 @@ public:
 		return IsColActive;
 	}
 
+	void SetColPos(FVector _Pos)
+	{
+		ColPos = _Pos;
+	}
+
+	FVector GetColPos()
+	{
+		return ColPos;
+	}
+	
+	void SetColScale(FVector _Scale)
+	{
+		ColScale = _Scale;
+	}
+
+	FVector GetColScale()
+	{
+		return ColScale;
+	}
+
 protected:
 
 private:
-	std::shared_ptr<class USpriteRenderer> Sprite;
-	std::shared_ptr<class UCollision> Collision;
-
-	bool IsColActive = true;
+	std::shared_ptr<USpriteRenderer> Sprite;
+	std::shared_ptr<UCollision> Collision;
 
 	int SpriteIndex;
 	std::string SpriteName;
-	float4 SpritePivot;
+	//float4 SpritePivot;
+
+	bool IsColActive = false;
+	FVector ColPos;
+	FVector ColScale;
 };
 
