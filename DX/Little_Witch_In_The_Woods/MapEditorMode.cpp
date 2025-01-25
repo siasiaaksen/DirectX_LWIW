@@ -77,6 +77,12 @@ public:
 					Rooms->Destroy();
 				}
 
+				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+				for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+				{
+					EntCol->Destroy();
+				}
+
 				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
 				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 				{
@@ -103,6 +109,12 @@ public:
 				for (std::shared_ptr<ARoom> Rooms : AllRoomList)
 				{
 					Rooms->Destroy();
+				}
+
+				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+				for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+				{
+					EntCol->Destroy();
 				}
 
 				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();

@@ -26,7 +26,7 @@ ULWIWContentsCore::~ULWIWContentsCore()
 
 void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 {
-	_Data.WindowPos = { 200, 100 };
+	_Data.WindowPos = { 0, 100 };
 	_Data.WindowSize = { 1280, 720 };
 
 	LWIWResourcesSetting();
