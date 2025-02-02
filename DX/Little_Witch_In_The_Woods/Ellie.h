@@ -59,7 +59,8 @@ protected:
 
 private:
 	std::shared_ptr<USpriteRenderer> EllieRenderer;
-	std::shared_ptr<class UCollision> EllieCollision;
+	std::shared_ptr<class UCollision> EllieOuterCollision;
+	std::shared_ptr<class UCollision> EllieInnerCollision;
 	std::shared_ptr<class ACameraActor> Camera;
 	std::shared_ptr<class ARoom> Room;
 	class AMongsiri* Mongsiri;

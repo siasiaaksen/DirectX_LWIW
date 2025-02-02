@@ -130,13 +130,13 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 
 	{
 		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
 		}
 
-		Dir.Append("Tiles");
+		Dir.Append("Emoticon");
 		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{

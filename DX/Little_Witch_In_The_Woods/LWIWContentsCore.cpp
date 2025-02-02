@@ -26,7 +26,10 @@ ULWIWContentsCore::~ULWIWContentsCore()
 
 void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 {
+	// ≥Î∆Æ∫œ
 	_Data.WindowPos = { 0, 100 };
+	// PC
+	//_Data.WindowPos = { 200, 100 };
 	_Data.WindowSize = { 1280, 720 };
 
 	LWIWResourcesSetting();
@@ -34,7 +37,7 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<ATitleGameMode, APawn, AHUD>("TitleLevel");
 	UEngineCore::CreateLevel<APlayGameMode, AEllie, APlayHUD>("PlayLevel");
 	UEngineCore::CreateLevel<AMapEditorMode, APawn, AHUD>("MapEditorLevel");
-	UEngineCore::OpenLevel("MapEditorLevel");
+	UEngineCore::OpenLevel("PlayLevel");
 
 	UEngineGUI::AllWindowOff();
 

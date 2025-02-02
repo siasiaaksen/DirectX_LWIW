@@ -136,6 +136,74 @@ public:
 			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 		}
 
+		if (ImGui::Button("WitchHouse"))
+		{
+			{
+				std::list<std::shared_ptr<ARoom>> AllRoomList = GetWorld()->GetAllActorListByClass<ARoom>();
+				for (std::shared_ptr<ARoom> Rooms : AllRoomList)
+				{
+					Rooms->Destroy();
+				}
+
+				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+				for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+				{
+					EntCol->Destroy();
+				}
+
+				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+				{
+					MapObject->Destroy();
+				}
+			}
+
+			std::shared_ptr<ARoom> Room = GetWorld()->SpawnActor<ARoom>();
+			Room->SetColImage("WitchHouse1F_Col.png", "Map");
+
+			FVector RoomSize = Room->GetColImage().GetImageScale();
+			Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
+			Room->SetRoomColSprite("WitchHouse1F_Col.png");
+
+			FVector ColSize = RoomSize - FVector(70.0f, 100.0f);
+			Room->SetCollisionSize(ColSize);
+			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+		}
+
+		if (ImGui::Button("Basement"))
+		{
+			{
+				std::list<std::shared_ptr<ARoom>> AllRoomList = GetWorld()->GetAllActorListByClass<ARoom>();
+				for (std::shared_ptr<ARoom> Rooms : AllRoomList)
+				{
+					Rooms->Destroy();
+				}
+
+				std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
+				for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+				{
+					EntCol->Destroy();
+				}
+
+				std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+				for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+				{
+					MapObject->Destroy();
+				}
+			}
+
+			std::shared_ptr<ARoom> Room = GetWorld()->SpawnActor<ARoom>();
+			Room->SetColImage("Basement_Col.png", "Map");
+
+			FVector RoomSize = Room->GetColImage().GetImageScale();
+			Room->SetRoomSprite("Basement.png", RoomSize);
+			Room->SetRoomColSprite("Basement_Col.png");
+
+			FVector ColSize = RoomSize - FVector(70.0f, 100.0f);
+			Room->SetCollisionSize(ColSize);
+			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+		}
+
 		ImGui::Text("=== Create Entrance Collision ===");
 
 		// EntranceCollision

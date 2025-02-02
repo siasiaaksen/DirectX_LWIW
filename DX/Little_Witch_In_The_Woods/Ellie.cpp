@@ -8,7 +8,7 @@
 #include <EngineCore/CameraActor.h>
 #include "Room.h"
 #include "Mongsiri.h"
-#include "Tree.h"
+#include "MapObject.h"
 
 
 AEllie::AEllie()
@@ -66,13 +66,23 @@ AEllie::AEllie()
 	State = EEllieState::IDLE;
 
 	{
-		EllieCollision = CreateDefaultSubObject<UCollision>();
-		EllieCollision->SetCollisionProfileName("Ellie");
-		EllieCollision->SetScale3D(EllieSize);
+		EllieOuterCollision = CreateDefaultSubObject<UCollision>();
+		EllieOuterCollision->SetCollisionProfileName("Ellie");
+		EllieOuterCollision->SetScale3D(EllieSize);
 		FVector CollisionCenter;
 		CollisionCenter.Y = EllieSize.Y - EllieSize.Half().Y;
-		EllieCollision->SetWorldLocation(CollisionCenter);
-		EllieCollision->SetupAttachment(RootComponent);
+		EllieOuterCollision->SetWorldLocation(CollisionCenter);
+		EllieOuterCollision->SetupAttachment(RootComponent);
+	}
+
+	{
+		EllieInnerCollision = CreateDefaultSubObject<UCollision>();
+		EllieInnerCollision->SetCollisionProfileName("EllieInner");
+		EllieInnerCollision->SetScale3D({30.0f, 10.0f});
+		FVector CollisionCenter;
+		CollisionCenter.Y = EllieSize.Y - (EllieSize.Half().Y * 1.25);
+		EllieInnerCollision->SetWorldLocation(CollisionCenter);
+		EllieInnerCollision->SetupAttachment(RootComponent);
 	}
 
 	SetColImage("Map_Col.png", "Map");
@@ -203,21 +213,23 @@ void AEllie::Collecting(float _DeltaTime)
 bool AEllie::IsMoveCheck(FVector _Dir)
 {
 	std::vector<UCollision*> Result;
-	if (false == EllieCollision->CollisionCheck("Room", _Dir, Result))
+	if (false == EllieOuterCollision->CollisionCheck("Room", _Dir, Result))
 	{
 		return false;
 	}
 
-	//std::vector<UCollision*> Result2;
-	//if (true == EllieCollision->CollisionCheck("Tree", _Dir, Result2))
-	//{
-	//	ATree* Tree = dynamic_cast<ATree*>(Result2[0]->GetActor());
+	std::vector<UCollision*> Result2;
+	if (true == EllieInnerCollision->CollisionCheck("MapObject", _Dir, Result2))
+	{
+		AMapObject* MapObject = dynamic_cast<AMapObject*>(Result2[0]->GetActor());
 
-	//	//if (GetActorLocation().Z <= Tree->GetActorLocation().Z)
-	//	//{
-	//	//}
-	//	//	return false;
-	//}
+		if (GetActorLocation().Z <= MapObject->GetActorLocation().Z)
+		{
+			return false;
+		}
+		
+		return false;
+	}
 
 	FVector EllieHalf = EllieSize.Half();
 
@@ -317,7 +329,7 @@ void AEllie::CollectItem(float _DeltaTime)
 	// 엘리 위치 이동 및 크리쳐의 콜랙트 관련 함수 호출
 
 	std::vector<UCollision*> Result;
-	if (true == EllieCollision->CollisionCheck("MongsiriInner", Result))
+	if (true == EllieOuterCollision->CollisionCheck("MongsiriInner", Result))
 	{
 		if (true == UEngineInput::IsDown('Z'))
 		{
