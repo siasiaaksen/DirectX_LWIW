@@ -12,8 +12,9 @@
 #include "Room.h"
 #include "Mongsiri.h"
 #include "MongsiriHole.h"
-#include "EntranceCollision.h"
+#include "InteractCollision.h"
 #include "MapObject.h"
+#include "InteractObject.h"
 
 
 class UPlayGUIWindow : public UEngineGUIWindow
@@ -39,14 +40,15 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("MongsiriOuter");
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
 	GetWorld()->CreateCollisionProfile("MongsiriHole");
-	GetWorld()->CreateCollisionProfile("Entrance");
+	GetWorld()->CreateCollisionProfile("InterCol");
 	GetWorld()->CreateCollisionProfile("MapObject");
+	GetWorld()->CreateCollisionProfile("InteractObject");
 
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
 	GetWorld()->LinkCollisionProfile("MongsiriInner", "MongsiriHole");
-	GetWorld()->LinkCollisionProfile("Ellie", "Entrance");
+	GetWorld()->LinkCollisionProfile("Ellie", "InterCol");
 	GetWorld()->LinkCollisionProfile("EllieInner", "MapObject");
 
 	// Ä«¸Þ¶ó
@@ -75,14 +77,6 @@ void APlayGameMode::BeginPlay()
 
 	Room = GetWorld()->SpawnActor<ARoom>();
 
-	//Room->SetColImage("Map_Col.png", "Map");
-	//FVector RoomSize = Room->GetColImage().GetImageScale();
-
-	//Room->SetRoomSize(RoomSize);
-	//Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
-	//Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
-	//RoomName = "MainMap";
-
 	{
 		Ellie->SetColImage("WitchHouse_Outside_Col.png", "Map");
 		Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
@@ -108,65 +102,14 @@ void APlayGameMode::BeginPlay()
 			int ListNum;
 			Ser >> ListNum;
 
-			switch (ListNum)
-			{
-			case 1:
-			{
-				int EntColCount = 0;
-				Ser >> EntColCount;
-				for (size_t i = 0; i < EntColCount; i++)
-				{
-					std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-					NewEntCol->DeSerialize(Ser);
-				}
-
-				break;
-			}
-			case 2:
-			{
-				int MapObjectCount = 0;
-				Ser >> MapObjectCount;
-				for (size_t i = 0; i < MapObjectCount; i++)
-				{
-					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-					NewMapObject->DeSerialize(Ser);
-				}
-
-				break;
-			}
-			case 3:
-			{
-				int EntColCount = 0;
-				Ser >> EntColCount;
-				for (size_t i = 0; i < EntColCount; i++)
-				{
-					std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-					NewEntCol->DeSerialize(Ser);
-				}
-
-				int MapObjectCount = 0;
-				Ser >> MapObjectCount;
-				for (size_t i = 0; i < MapObjectCount; i++)
-				{
-					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-					NewMapObject->DeSerialize(Ser);
-				}
-				break;
-			}
-			default:
-				break;
-			}
+			LoadData(Ser, ListNum);
 		}
 
 		Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });
 	}
 
-	Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-	Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
+	//Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
+	//Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
 
 	//std::shared_ptr<AMongsiriHole> MongsiriHole = GetWorld()->SpawnActor<AMongsiriHole>();
 	//MongsiriHole->SetActorLocation({ 0.0f, 0.0f, 10.0f });
@@ -232,26 +175,32 @@ void APlayGameMode::CameraMove()
 
 void APlayGameMode::RoomChange()
 {
-	std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
-	for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+	std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+	for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 	{
 		std::vector<UCollision*> Result;
-		if (true == EntCol->GetEntranceCol()->CollisionCheck("Ellie", Result))
+		if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
 		{
-			std::string EntColName = EntCol->GetEntranceName();
-			if (EntCol->GetEntranceName() == "WitchHouseYard")
+			std::string InterColName = InterCol->GetInterColName();
+			if (InterCol->GetInterColName() == "WitchHouseYard")
 			{
 				{
-					std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
-					for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 					{
-						EntCol->Destroy();
+						InterCol->Destroy();
 					}
 
 					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
 					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 					{
 						MapObject->Destroy();
+					}
+
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
 					}
 				}
 
@@ -280,75 +229,30 @@ void APlayGameMode::RoomChange()
 						int ListNum;
 						Ser >> ListNum;
 
-						switch (ListNum)
-						{
-						case 1:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							break;
-						}
-						case 2:
-						{
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-
-							break;
-						}
-						case 3:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-							break;
-						}
-						default:
-							break;
-						}
+						LoadData(Ser, ListNum);
 					}
 				}
 			}
 
-			if (EntCol->GetEntranceName() == "MainMap")
+			if (InterCol->GetInterColName() == "MainMap")
 			{
 				{
-					std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
-					for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 					{
-						EntCol->Destroy();
+						InterCol->Destroy();
 					}
 
 					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
 					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 					{
 						MapObject->Destroy();
+					}
+
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
 					}
 				}
 
@@ -377,69 +281,74 @@ void APlayGameMode::RoomChange()
 						int ListNum;
 						Ser >> ListNum;
 
-						switch (ListNum)
-						{
-						case 1:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							break;
-						}
-						case 2:
-						{
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-
-							break;
-						}
-						case 3:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-							break;
-						}
-						default:
-							break;
-						}
+						LoadData(Ser, ListNum);
 					}
 				}
 			}
 
-			if (EntCol->GetEntranceName() == "WitchHouse")
+			{
+				/*if (InterCol->GetInterColName() == "WitchHouse")
+				{
+					{
+						std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+						for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
+						{
+							InterCol->Destroy();
+						}
+
+						std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+						for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+						{
+							MapObject->Destroy();
+						}
+
+						std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+						for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+						{
+							InteractObject->Destroy();
+						}
+					}
+
+					{
+						Ellie->SetColImage("WitchHouse1F_Col.png", "Map");
+						Room->SetColImage("WitchHouse1F_Col.png", "Map");
+						FVector RoomSize = Room->GetColImage().GetImageScale();
+
+						Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
+						Room->SetRoomColSprite("WitchHouse1F_Col.png");
+
+						FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+						Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+						Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+
+						Ellie->SetActorLocation({ 0.0f, -110.0f, 10.0f });
+
+						Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
+
+						{
+							const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouseF1.MapData";
+							UEngineFile FIle = Path;
+							FIle.FileOpen("rb");
+
+							UEngineSerializer Ser;
+							FIle.Read(Ser);
+
+							int ListNum;
+							Ser >> ListNum;
+
+							LoadData(Ser, ListNum);
+						}
+					}
+				}*/
+			}
+
+			if (InterCol->GetInterColName() == "WitchHouse")
 			{
 				{
-					std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
-					for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 					{
-						EntCol->Destroy();
+						InterCol->Destroy();
 					}
 
 					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
@@ -447,26 +356,32 @@ void APlayGameMode::RoomChange()
 					{
 						MapObject->Destroy();
 					}
+
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
+					}
 				}
 
 				{
-					Ellie->SetColImage("WitchHouse1F_Col.png", "Map");
-					Room->SetColImage("WitchHouse1F_Col.png", "Map");
+					Ellie->SetColImage("Basement_Col.png", "Map");
+					Room->SetColImage("Basement_Col.png", "Map");
 					FVector RoomSize = Room->GetColImage().GetImageScale();
 
-					Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
-					Room->SetRoomColSprite("WitchHouse1F_Col.png");
+					Room->SetRoomSprite("Basement.png", RoomSize);
+					Room->SetRoomColSprite("Basement_Col.png");
 
 					FVector ColSize = RoomSize - (Ellie->GetEllieSize());
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
-					Ellie->SetActorLocation({ 0.0f, -110.0f, 10.0f });
+					Ellie->SetActorLocation({ 20.0f, 10.0f, 10.0f });
 
 					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 
 					{
-						const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouseF1.MapData";
+						const std::string Path = ".\\..\\LWIWResources\\Data\\Basement.MapData";
 						UEngineFile FIle = Path;
 						FIle.FileOpen("rb");
 
@@ -476,75 +391,30 @@ void APlayGameMode::RoomChange()
 						int ListNum;
 						Ser >> ListNum;
 
-						switch (ListNum)
-						{
-						case 1:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							break;
-						}
-						case 2:
-						{
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-
-							break;
-						}
-						case 3:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-							break;
-						}
-						default:
-							break;
-						}
+						LoadData(Ser, ListNum);
 					}
 				}
 			}
 
-			if (EntCol->GetEntranceName() == "WitchHouseF1")
+			if (InterCol->GetInterColName() == "WitchHouseF1")
 			{
 				{
-					std::list<std::shared_ptr<AEntranceCollision>> AllEntColList = GetWorld()->GetAllActorListByClass<AEntranceCollision>();
-					for (std::shared_ptr<AEntranceCollision> EntCol : AllEntColList)
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 					{
-						EntCol->Destroy();
+						InterCol->Destroy();
 					}
 
 					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
 					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 					{
 						MapObject->Destroy();
+					}
+
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
 					}
 				}
 
@@ -575,162 +445,33 @@ void APlayGameMode::RoomChange()
 						int ListNum;
 						Ser >> ListNum;
 
-						switch (ListNum)
+						LoadData(Ser, ListNum);
+
+						std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+						std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+
+						if (0 != static_cast<int>(AllMapObjectList.size()))
 						{
-						case 1:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
+							for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
+								FVector ObjectPos = MapObject->GetActorLocation();
+								MapObject->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
 							}
-
-							break;
 						}
-						case 2:
+
+						if (0 != static_cast<int>(AllInteractObjectList.size()))
 						{
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
+							for (std::shared_ptr<AInteractObject> InteractObj : AllInteractObjectList)
 							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
+								FVector ObjectPos = InteractObj->GetActorLocation();
+								InteractObj->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
 							}
-
-							break;
-						}
-						case 3:
-						{
-							int EntColCount = 0;
-							Ser >> EntColCount;
-							for (size_t i = 0; i < EntColCount; i++)
-							{
-								std::shared_ptr<AEntranceCollision> NewEntCol = GetWorld()->SpawnActor<AEntranceCollision>();
-
-								NewEntCol->DeSerialize(Ser);
-							}
-
-							int MapObjectCount = 0;
-							Ser >> MapObjectCount;
-							for (size_t i = 0; i < MapObjectCount; i++)
-							{
-								std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-								NewMapObject->DeSerialize(Ser);
-							}
-							break;
-						}
-						default:
-							break;
 						}
 					}
 				}
 			}
 		}
 	}
-
-	//std::vector<UCollision*> Result;
-	//if (true == EntranceCol->GetEntranceCol()->CollisionCheck("Ellie", Result))
-	//{
-	//	std::string EntColName = EntranceCol->GetEntranceName();
-	//	if (EntranceCol->GetEntranceName() == "WitchHouseYard")
-	//	{
-	//		int a = 0;
-	//	}
-		/*if ("MainMap" == RoomName)
-		{
-			Ellie->SetColImage("WitchHouse_Outside_Col.png", "Map");
-			Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
-			FVector RoomSize = Room->GetColImage().GetImageScale();
-
-			Room->SetRoomSprite("WitchHouse_Outside.png", RoomSize);
-			Room->SetRoomColSprite("WitchHouse_Outside_Col.png");
-
-			FVector ColSize = RoomSize - (Ellie->GetEllieSize());
-			Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
-			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
-
-			Ellie->SetActorLocation({ 0.0f, -500.0f, 10.0f });
-
-			EntranceCol->SetActorLocation({ 0.0f, -((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
-
-			RoomName = "WitchHouseOutside";
-
-			{
-				const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouse_Outside.MapData";
-				UEngineFile FIle = Path;
-				FIle.FileOpen("rb");
-
-				UEngineSerializer Ser;
-				FIle.Read(Ser);
-
-				int MapObjectCount = 0;
-				Ser >> MapObjectCount;
-
-				for (size_t i = 0; i < MapObjectCount; i++)
-				{
-					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-					NewMapObject->DeSerialize(Ser);
-				}
-			}
-		}
-		else if ("WitchHouseOutside" == RoomName)
-		{
-			Ellie->SetColImage("Map_Col.png", "Map");
-			Room->SetColImage("Map_Col.png", "Map");
-			FVector RoomSize = Room->GetColImage().GetImageScale();
-
-			Room->SetRoomSprite("Map.png", RoomSize);
-			Room->SetRoomColSprite("Map_Col.png");
-
-			FVector ColSize = RoomSize - (Ellie->GetEllieSize());
-			Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
-			Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
-
-			Ellie->SetActorLocation({ 1000.0f, 1200.0f, 10.0f });
-
-			EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
-
-			RoomName = "MainMap";
-
-			{
-				const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouse_Outside.MapData";
-				UEngineFile FIle = Path;
-				FIle.FileOpen("rb");
-
-				UEngineSerializer Ser;
-				FIle.Read(Ser);
-
-				int MapObjectCount = 0;
-				Ser >> MapObjectCount;
-
-				for (size_t i = 0; i < MapObjectCount; i++)
-				{
-					std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
-
-					NewMapObject->DeSerialize(Ser);
-				}
-			}
-		}*/
-	//}
-
-	//FVector CameraPos = { 0.0f, 0.0f };
-	//if (RoomSize.X == 1280.0f || RoomSize.Y == 720.0f)
-	//{
-	//	return;
-	//}
-	//else
-	//{
-	//	CameraPos.X = Ellie->GetActorLocation().X;
-	//	CameraPos.Y = Ellie->GetActorLocation().Y;
-	//}
-
-	//Camera->SetActorLocation({ CameraPos.X, CameraPos.Y, -624.0f, 1.0f });
 }
 
 void APlayGameMode::LevelChangeStart()
@@ -757,5 +498,143 @@ void APlayGameMode::LevelChangeStart()
 		}
 
 		Window->SetActive(true);
+	}
+}
+
+void APlayGameMode::LoadData(UEngineSerializer _Ser, int _ListNum)
+{
+	switch (_ListNum)
+	{
+	case 1:
+	{
+		int InterColCount = 0;
+		_Ser >> InterColCount;
+		for (size_t i = 0; i < InterColCount; i++)
+		{
+			std::shared_ptr<AInteractCollision> NewInterCol = GetWorld()->SpawnActor<AInteractCollision>();
+
+			NewInterCol->DeSerialize(_Ser);
+		}
+		break;
+	}
+	case 2:
+	{
+		int MapObjectCount = 0;
+		_Ser >> MapObjectCount;
+		for (size_t i = 0; i < MapObjectCount; i++)
+		{
+			std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+			NewMapObject->DeSerialize(_Ser);
+		}
+		break;
+	}
+	case 3:
+	{
+		int InterColCount = 0;
+		_Ser >> InterColCount;
+		for (size_t i = 0; i < InterColCount; i++)
+		{
+			std::shared_ptr<AInteractCollision> NewInterCol = GetWorld()->SpawnActor<AInteractCollision>();
+
+			NewInterCol->DeSerialize(_Ser);
+		}
+
+		int MapObjectCount = 0;
+		_Ser >> MapObjectCount;
+		for (size_t i = 0; i < MapObjectCount; i++)
+		{
+			std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+			NewMapObject->DeSerialize(_Ser);
+		}
+		break;
+	}
+	case 4:
+	{
+		int InteractObjCount = 0;
+		_Ser >> InteractObjCount;
+		for (size_t i = 0; i < InteractObjCount; i++)
+		{
+			std::shared_ptr<AInteractObject> NewInteractObj = GetWorld()->SpawnActor<AInteractObject>();
+
+			NewInteractObj->DeSerialize(_Ser);
+		}
+		break;
+	}
+	case 5:
+	{
+		int InterColCount = 0;
+		_Ser >> InterColCount;
+		for (size_t i = 0; i < InterColCount; i++)
+		{
+			std::shared_ptr<AInteractCollision> NewInterCol = GetWorld()->SpawnActor<AInteractCollision>();
+
+			NewInterCol->DeSerialize(_Ser);
+		}
+
+		int InteractObjCount = 0;
+		_Ser >> InteractObjCount;
+		for (size_t i = 0; i < InteractObjCount; i++)
+		{
+			std::shared_ptr<AInteractObject> NewInteractObj = GetWorld()->SpawnActor<AInteractObject>();
+
+			NewInteractObj->DeSerialize(_Ser);
+		}
+		break;
+	}
+	case 6:
+	{
+		int MapObjectCount = 0;
+		_Ser >> MapObjectCount;
+		for (size_t i = 0; i < MapObjectCount; i++)
+		{
+			std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+			NewMapObject->DeSerialize(_Ser);
+		}
+
+		int InteractObjCount = 0;
+		_Ser >> InteractObjCount;
+		for (size_t i = 0; i < InteractObjCount; i++)
+		{
+			std::shared_ptr<AInteractObject> NewInteractObj = GetWorld()->SpawnActor<AInteractObject>();
+
+			NewInteractObj->DeSerialize(_Ser);
+		}
+		break;
+	}
+	case 7:
+	{
+		int InterColCount = 0;
+		_Ser >> InterColCount;
+		for (size_t i = 0; i < InterColCount; i++)
+		{
+			std::shared_ptr<AInteractCollision> NewInterCol = GetWorld()->SpawnActor<AInteractCollision>();
+
+			NewInterCol->DeSerialize(_Ser);
+		}
+
+		int MapObjectCount = 0;
+		_Ser >> MapObjectCount;
+		for (size_t i = 0; i < MapObjectCount; i++)
+		{
+			std::shared_ptr<AMapObject> NewMapObject = GetWorld()->SpawnActor<AMapObject>();
+
+			NewMapObject->DeSerialize(_Ser);
+		}
+
+		int InteractObjCount = 0;
+		_Ser >> InteractObjCount;
+		for (size_t i = 0; i < InteractObjCount; i++)
+		{
+			std::shared_ptr<AInteractObject> NewInteractObj = GetWorld()->SpawnActor<AInteractObject>();
+
+			NewInteractObj->DeSerialize(_Ser);
+		}
+		break;
+	}
+	default:
+		break;
 	}
 }

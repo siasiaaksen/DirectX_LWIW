@@ -13,6 +13,7 @@
 
 void ULWIWContentsCore::LWIWResourcesSetting()
 {
+	// Image\\Title
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
@@ -44,6 +45,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToMeta("Title_Train_SmokeS.png", ".SData");
 	}
 
+	// Image\\Play\\Ellie
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
@@ -66,6 +68,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToMeta("Ellie_Collection_WitchFlower.png", ".SData");
 	}
 
+	// Image\\Play\\Creature
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
@@ -90,6 +93,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToMeta("WitchFlower.png", ".SData");
 	}
 
+	// Image\\Play\\Map
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
@@ -109,6 +113,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+	// Image\\Play\\Map_Object
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
@@ -128,6 +133,7 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
+	// Image\\Play\\Emoticon
 	{
 		UEngineDirectory Dir;
 		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
@@ -137,6 +143,26 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		}
 
 		Dir.Append("Emoticon");
+		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+		for (size_t i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UEngineTexture::Load(FilePath);
+		}
+
+		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
+
+	// Image\\Play\\InteractObject
+	{
+		UEngineDirectory Dir;
+		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image\\Play"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+
+		Dir.Append("InteractObject");
 		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 		for (size_t i = 0; i < ImageFiles.size(); i++)
 		{

@@ -9,6 +9,7 @@
 #include "Room.h"
 #include "Mongsiri.h"
 #include "MapObject.h"
+#include "InteractCollision.h"
 
 
 AEllie::AEllie()
@@ -229,6 +230,17 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 		}
 		
 		return false;
+	}
+
+	std::vector<UCollision*> Result3;
+	if (true == EllieInnerCollision->CollisionCheck("InterCol", _Dir, Result3))
+	{
+		AInteractCollision* InterCol = dynamic_cast<AInteractCollision*>(Result3[0]->GetActor());
+		std::string InterColName = InterCol->GetInterColName();
+		if (InterColName == "CannotMove")
+		{
+			return false;
+		}
 	}
 
 	FVector EllieHalf = EllieSize.Half();

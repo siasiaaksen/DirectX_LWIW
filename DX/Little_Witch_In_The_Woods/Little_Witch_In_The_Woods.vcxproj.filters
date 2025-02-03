@@ -65,13 +65,16 @@
     <ClInclude Include="MongsiriHole.h">
       <Filter>Play</Filter>
     </ClInclude>
-    <ClInclude Include="EntranceCollision.h">
+    <ClInclude Include="InteractCollision.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
     <ClInclude Include="Tree.h">
       <Filter>Play\Map</Filter>
     </ClInclude>
     <ClInclude Include="MapObject.h">
+      <Filter>Play\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractObject.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
   </ItemGroup>
@@ -141,13 +144,16 @@
     <ClCompile Include="MongsiriHole.cpp">
       <Filter>Play</Filter>
     </ClCompile>
-    <ClCompile Include="EntranceCollision.cpp">
+    <ClCompile Include="InteractCollision.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
     <ClCompile Include="Tree.cpp">
       <Filter>Play\Map</Filter>
     </ClCompile>
     <ClCompile Include="MapObject.cpp">
+      <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractObject.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
   </ItemGroup>

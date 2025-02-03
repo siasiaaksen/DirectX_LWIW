@@ -20,6 +20,8 @@ public:
 
 	void RoomChange();
 
+	void LoadData(UEngineSerializer _Ser, int _ListNum);
+
 protected:
 	void LevelChangeStart() override;
 
@@ -27,7 +29,7 @@ private:
 	class AEllie* Ellie = nullptr;
 	std::shared_ptr<class ARoom> Room = nullptr;
 	std::shared_ptr<class AMongsiri> Mongsiri = nullptr;
-	std::shared_ptr<class AEntranceCollision> EntranceCol = nullptr;
+	std::shared_ptr<class AInteractCollision> EntranceCol = nullptr;
 	std::shared_ptr<class ACameraActor> Camera = nullptr;
 
 	FVector RoomSize;
