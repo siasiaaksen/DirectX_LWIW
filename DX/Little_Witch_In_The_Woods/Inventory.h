@@ -1,13 +1,12 @@
 #pragma once
 #include <EngineCore/ImageWidget.h>
-#include <EngineCore/SpriteRenderer.h>
 
 
-class UInvenSlot : public UImageWidget
+class UInvenSlot : public AActor
 {
 public:
 	FIntPoint Index;
-	//USpriteRenderer SlotSprite;
+	std::shared_ptr<class USpriteRenderer> SlotSprite;
 };
 
 
@@ -30,6 +29,9 @@ public:
 protected:
 
 private:
-	std::vector<std::vector<UInvenSlot*>> InvenSlot;
+	std::vector<std::vector<std::shared_ptr<UInvenSlot>>> InvenSlot;
+
+	FVector Pos = { -350.0f, 150.0f };
+	FVector Scale = { 400.0f, 300.0f };
 };
 
