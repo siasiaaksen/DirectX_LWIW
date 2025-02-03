@@ -12,6 +12,8 @@
 #include "InteractCollision.h"
 
 
+bool AEllie::IsEllieMove = true;
+
 AEllie::AEllie()
 {
 	std::shared_ptr<UDefaultSceneComponent> Default = CreateDefaultSubObject<UDefaultSceneComponent>();
@@ -157,6 +159,11 @@ void AEllie::Idle(float _DeltaTime)
 
 void AEllie::Move(float _DeltaTime)
 {
+	if (false == IsEllieMove)
+	{
+		return;
+	}
+
 	DirCheck();
 
 	FVector Pos = FVector::ZERO;
@@ -213,6 +220,11 @@ void AEllie::Collecting(float _DeltaTime)
 
 bool AEllie::IsMoveCheck(FVector _Dir)
 {
+	if (false == IsEllieMove)
+	{
+		return false;
+	}
+	
 	std::vector<UCollision*> Result;
 	if (false == EllieOuterCollision->CollisionCheck("Room", _Dir, Result))
 	{
@@ -279,6 +291,11 @@ bool AEllie::IsMoveCheck(FVector _Dir)
 
 void AEllie::DirCheck()
 {
+	if (false == IsEllieMove)
+	{
+		return;
+	}
+
 	if (true == UEngineInput::IsPress(VK_UP))
 	{
 		if (true == UEngineInput::IsPress(VK_LEFT))

@@ -55,6 +55,8 @@ public:
 		return ColImage;
 	}
 
+	static bool IsEllieMove;
+
 protected:
 
 private:

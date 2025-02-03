@@ -55,8 +55,9 @@ public:
 	UImageWidget& operator=(const UImageWidget& _Other) = delete;
 	UImageWidget& operator=(UImageWidget&& _Other) noexcept = delete;
 
-	void Tick(float _DeltaTime) override;
-	void Render(UEngineCamera* Camera, float _DeltaTime) override;
+	ENGINEAPI void BeginPlay() override;
+	ENGINEAPI void Tick(float _DeltaTime) override;
+	ENGINEAPI void Render(UEngineCamera* Camera, float _DeltaTime) override;
 
 	URenderUnit& GetRenderUnit()
 	{

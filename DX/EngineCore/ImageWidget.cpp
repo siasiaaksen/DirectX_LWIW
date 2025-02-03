@@ -26,8 +26,16 @@ UImageWidget::~UImageWidget()
 {
 }
 
+void UImageWidget::BeginPlay()
+{
+	UWidget::BeginPlay();
+}
+
+
 void UImageWidget::Tick(float _DeltaTime)
 {
+	UWidget::Tick(_DeltaTime);
+
 	if (nullptr != CurAnimation)
 	{
 		FrameAnimation* EventAnimation = nullptr;

@@ -68,14 +68,14 @@
     <ClInclude Include="InteractCollision.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>Play\Map</Filter>
-    </ClInclude>
     <ClInclude Include="MapObject.h">
       <Filter>Play\Global</Filter>
     </ClInclude>
     <ClInclude Include="InteractObject.h">
       <Filter>Play\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Play</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -147,14 +147,14 @@
     <ClCompile Include="InteractCollision.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>Play\Map</Filter>
-    </ClCompile>
     <ClCompile Include="MapObject.cpp">
       <Filter>Play\Global</Filter>
     </ClCompile>
     <ClCompile Include="InteractObject.cpp">
       <Filter>Play\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Play</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,9 +181,6 @@
     </Filter>
     <Filter Include="HUD">
       <UniqueIdentifier>{bdd6481d-6db0-4ce7-8db0-d3783561aa6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Play\Map">
-      <UniqueIdentifier>{604cff64-0b3d-4772-8676-e1cb4fd8ef50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

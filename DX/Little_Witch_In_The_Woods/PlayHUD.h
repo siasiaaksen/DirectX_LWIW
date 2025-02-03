@@ -19,6 +19,7 @@ public:
 protected:
 
 private:
-
+	std::shared_ptr<class UInventory> Inventory;
+	//std::shared_ptr<class UImageWidget> Widget;
 };
 
