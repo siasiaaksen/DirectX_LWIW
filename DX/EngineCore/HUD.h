@@ -34,6 +34,7 @@ public:
 
 		WidgetType* NewPtr = reinterpret_cast<WidgetType*>(Memory);
 		std::shared_ptr<WidgetType> NewWidgetPtr(NewPtr = new(Memory) WidgetType());
+		WidgetPtr->HUD = this;
 		NewWidgetPtr->SetName(_Name);
 		NewWidgetPtr->SetOrder(_ZOrder);
 		Widgets[NewWidgetPtr->GetOrder()].push_back(NewWidgetPtr);

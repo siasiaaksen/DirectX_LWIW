@@ -2,11 +2,23 @@
 #include <EngineCore/ImageWidget.h>
 
 
-class UInvenSlot : public AActor
+class USlotCursor : public UImageWidget
 {
 public:
-	FIntPoint Index;
-	std::shared_ptr<class USpriteRenderer> SlotSprite;
+
+protected:
+
+private:
+
+};
+
+
+class UInvenSlot : public UImageWidget
+{
+public:
+	FVector Pos;
+	FVector Scale;
+	FIntPoint CurIndex;
 };
 
 
@@ -26,12 +38,22 @@ public:
 
 	void InvenInit();
 
+	void AllSlotSetActive(bool _Value);
+
+	void InvenSetActiveSwitch();
+
+	void IndexCheck();
+
 protected:
 
 private:
 	std::vector<std::vector<std::shared_ptr<UInvenSlot>>> InvenSlot;
+	std::shared_ptr<UInvenSlot> Slot;
+	std::shared_ptr<USlotCursor> Cursor;
 
-	FVector Pos = { -350.0f, 150.0f };
-	FVector Scale = { 400.0f, 300.0f };
+	bool IsSlotsActive = false;
+
+	FVector Pos = { -350.0f, 90.0f };
+	FVector Scale = { 330.0f, 390.0f };
 };
 

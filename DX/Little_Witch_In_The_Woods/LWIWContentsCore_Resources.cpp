@@ -189,6 +189,8 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UEngineTexture::Load(FilePath);
 		}
+
+		UEngineSprite::CreateSpriteToMeta("Inventory_Cursor.png", ".SData");
 	}
 }
 

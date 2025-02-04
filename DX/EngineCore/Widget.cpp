@@ -58,3 +58,8 @@ ULevel* UWidget::GetWorld()
 	return HUD->GetWorld();
 }
 
+AHUD* UWidget::GetHUD()
+{
+	return HUD;
+}
+

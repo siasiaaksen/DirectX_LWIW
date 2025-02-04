@@ -22,6 +22,7 @@ public:
 	ENGINEAPI virtual void Render(class UEngineCamera* Camera, float _DeltaTime);
 
 	ENGINEAPI class ULevel* GetWorld();
+	ENGINEAPI class AHUD* GetHUD();
 
 	void SetHoverEvent(std::function<void()> _Value)
 	{

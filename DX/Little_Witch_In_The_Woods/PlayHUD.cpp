@@ -29,7 +29,9 @@ void APlayHUD::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsDown('I'))
 	{
 		AEllie* Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
-		Inventory->SetActiveSwitch();
+
+		Inventory->InvenSetActiveSwitch();
+
 		if (true == Ellie->IsEllieMove)
 		{
 			Ellie->IsEllieMove = false;

@@ -54,16 +54,13 @@
       <Filter>Play\Global</Filter>
     </ClInclude>
     <ClInclude Include="Mongsiri.h">
-      <Filter>Play\Creatures</Filter>
+      <Filter>Play\InteractObject</Filter>
     </ClInclude>
     <ClInclude Include="PlayHUD.h">
       <Filter>HUD</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
       <Filter>Play\Global</Filter>
-    </ClInclude>
-    <ClInclude Include="MongsiriHole.h">
-      <Filter>Play</Filter>
     </ClInclude>
     <ClInclude Include="InteractCollision.h">
       <Filter>Play\Global</Filter>
@@ -75,7 +72,10 @@
       <Filter>Play\Global</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>Play</Filter>
+      <Filter>Play\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="MongsiriHole.h">
+      <Filter>Play\InteractObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -133,16 +133,13 @@
       <Filter>Play\Global</Filter>
     </ClCompile>
     <ClCompile Include="Mongsiri.cpp">
-      <Filter>Play\Creatures</Filter>
+      <Filter>Play\InteractObject</Filter>
     </ClCompile>
     <ClCompile Include="PlayHUD.cpp">
       <Filter>HUD</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
       <Filter>Play\Global</Filter>
-    </ClCompile>
-    <ClCompile Include="MongsiriHole.cpp">
-      <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="InteractCollision.cpp">
       <Filter>Play\Global</Filter>
@@ -154,7 +151,10 @@
       <Filter>Play\Global</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>Play</Filter>
+      <Filter>Play\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="MongsiriHole.cpp">
+      <Filter>Play\InteractObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,11 +176,14 @@
     <Filter Include="Play\Global">
       <UniqueIdentifier>{41b66bab-ae82-4b57-929f-174ae54f05a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Play\Creatures">
-      <UniqueIdentifier>{908d5220-e2fd-4b33-a36f-b259ad223949}</UniqueIdentifier>
-    </Filter>
     <Filter Include="HUD">
       <UniqueIdentifier>{bdd6481d-6db0-4ce7-8db0-d3783561aa6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Inventory">
+      <UniqueIdentifier>{ef3cd0cb-eecb-44cf-81d9-2161ff33a665}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\InteractObject">
+      <UniqueIdentifier>{908d5220-e2fd-4b33-a36f-b259ad223949}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
