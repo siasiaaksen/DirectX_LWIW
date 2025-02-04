@@ -11,7 +11,6 @@
 #include "Ellie.h"
 #include "Room.h"
 #include "Mongsiri.h"
-#include "MongsiriHole.h"
 #include "InteractCollision.h"
 #include "MapObject.h"
 #include "InteractObject.h"
@@ -39,7 +38,7 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("EllieInner");
 	GetWorld()->CreateCollisionProfile("MongsiriOuter");
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
-	GetWorld()->CreateCollisionProfile("MongsiriHole");
+	GetWorld()->CreateCollisionProfile("MongsiriEscape");
 	GetWorld()->CreateCollisionProfile("InterCol");
 	GetWorld()->CreateCollisionProfile("MapObject");
 	GetWorld()->CreateCollisionProfile("InteractObject");
@@ -47,7 +46,7 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
-	GetWorld()->LinkCollisionProfile("MongsiriInner", "MongsiriHole");
+	GetWorld()->LinkCollisionProfile("MongsiriEscape", "InterCol");
 	GetWorld()->LinkCollisionProfile("Ellie", "InterCol");
 	GetWorld()->LinkCollisionProfile("EllieInner", "MapObject");
 
@@ -107,16 +106,6 @@ void APlayGameMode::BeginPlay()
 
 		Camera->SetActorLocation({ Ellie->GetActorLocation().X, Ellie->GetActorLocation().Y, -624.0f, 1.0f });
 	}
-
-	//Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-	//Mongsiri->SetActorLocation({ 0.0f, -300.0f, 100.0f });
-
-	//std::shared_ptr<AMongsiriHole> MongsiriHole = GetWorld()->SpawnActor<AMongsiriHole>();
-	//MongsiriHole->SetActorLocation({ 0.0f, 0.0f, 10.0f });
-
-	//EntranceCol = GetWorld()->SpawnActor<AEntranceCollision>();
-	//EntranceCol->SetActorLocation({ 1000.0f, ((RoomSize.Y / 2) + (Ellie->GetEllieSize().Y / 2)), 0.0f });
-	//EntranceCol->SetActorRelativeScale3D({ 300.0f, 100.0f });
 }
 
 void APlayGameMode::Tick(float _DeltaTime)
@@ -131,6 +120,16 @@ void APlayGameMode::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsDown(VK_HOME))
 	{
 		UEngineCore::OpenLevel("TitleLevel");
+	}
+	if (true == UEngineInput::IsDown(VK_F2))
+	{
+		std::list<std::shared_ptr<UCollision>> AllColList = GetWorld()->GetAllActorListByClass<UCollision>();
+		for (std::shared_ptr<UCollision> Collision : AllColList)
+		{
+			Collision->DebugRenderSwitch();
+		}
+
+		Room->GetRoomColSprite()->SetActiveSwitch();
 	}
 }
 
@@ -217,6 +216,9 @@ void APlayGameMode::RoomChange()
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
 					Ellie->SetActorLocation({ 450.0f, 1200.0f, 10.0f });
+
+					Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
+					Mongsiri->SetActorLocation({ 1100.0f, 1000.0f, 100.0f });
 
 					{
 						const std::string Path = ".\\..\\LWIWResources\\Data\\MainMap.MapData";
@@ -376,7 +378,7 @@ void APlayGameMode::RoomChange()
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
-					Ellie->SetActorLocation({ 20.0f, 10.0f, 10.0f });
+					Ellie->SetActorLocation({ 20.0f, 20.0f, 10.0f });
 
 					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 
@@ -396,7 +398,7 @@ void APlayGameMode::RoomChange()
 				}
 			}
 
-			if (InterCol->GetInterColName() == "WitchHouseF1")
+			if (InterCol->GetInterColName() == "Basement")
 			{
 				{
 					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();

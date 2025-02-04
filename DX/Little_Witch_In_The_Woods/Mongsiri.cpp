@@ -7,7 +7,8 @@
 #include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
 #include "Ellie.h"
-#include "MongsiriHole.h"
+#include "InteractObject.h"
+#include "InteractCollision.h"
 
 
 AMongsiri::AMongsiri()
@@ -54,7 +55,7 @@ AMongsiri::AMongsiri()
 		{
 			MongsiriOuterCol = CreateDefaultSubObject<UCollision>();
 			MongsiriOuterCol->SetCollisionProfileName("MongsiriOuter");
-			MongsiriOuterCol->SetScale3D(MongsiriSize * 15);
+			MongsiriOuterCol->SetScale3D(MongsiriSize * 8);
 			FVector CollisionCenter;
 			CollisionCenter.Y = MongsiriSize.Y - MongsiriSize.Half().Y;
 			MongsiriOuterCol->SetWorldLocation(CollisionCenter);
@@ -64,11 +65,21 @@ AMongsiri::AMongsiri()
 		{
 			MongsiriInnerCol = CreateDefaultSubObject<UCollision>();
 			MongsiriInnerCol->SetCollisionProfileName("MongsiriInner");
-			MongsiriInnerCol->SetScale3D(MongsiriSize * 2);
+			MongsiriInnerCol->SetScale3D(MongsiriSize * 0.8f);
 			FVector CollisionCenter;
 			CollisionCenter.Y = MongsiriSize.Y - MongsiriSize.Half().Y;
 			MongsiriInnerCol->SetWorldLocation(CollisionCenter);
 			MongsiriInnerCol->SetupAttachment(RootComponent);
+		}
+
+		{
+			MongsiriEscapeCol = CreateDefaultSubObject<UCollision>();
+			MongsiriEscapeCol->SetCollisionProfileName("MongsiriEscape");
+			MongsiriEscapeCol->SetScale3D(MongsiriSize * 0.1f);
+			FVector CollisionCenter;
+			CollisionCenter.Y = MongsiriSize.Y - (MongsiriSize.Half().Y * 1.5f);
+			MongsiriEscapeCol->SetWorldLocation(CollisionCenter);
+			MongsiriEscapeCol->SetupAttachment(RootComponent);
 		}
 	}
 
@@ -89,12 +100,12 @@ AMongsiri::~AMongsiri()
 
 void AMongsiri::BeginPlay()
 {
-	ACreature::BeginPlay();
+	AInteractObject::BeginPlay();
 }
 
 void AMongsiri::Tick(float _DeltaTime)
 {
-	ACreature::Tick(_DeltaTime);
+	AInteractObject::Tick(_DeltaTime);
 
 	switch (State)
 	{
@@ -109,6 +120,9 @@ void AMongsiri::Tick(float _DeltaTime)
 		break;
 	case EMongsiriState::ESCAPE:
 		Escape(_DeltaTime);
+		break;
+	case EMongsiriState::DISAPPEAR:
+		Disappear(_DeltaTime);
 		break;
 	default:
 		break;
@@ -151,6 +165,7 @@ void AMongsiri::Collected(float _DeltaTime)
 		Frame = 7;
 	}
 
+	FindMark->SetActive(false);
 	MongsiriRenderer->ChangeAnimation("Mongsiri_Collected" + DirName);
 	MongsiriRenderer->SetAnimationEvent("Mongsiri_Collected" + DirName, Frame, 
 		[this, Ellie]() 
@@ -168,35 +183,44 @@ void AMongsiri::Collected(float _DeltaTime)
 
 void AMongsiri::Escape(float _DeltaTime)
 {
-	std::vector<UCollision*> Result;
-	if (true == MongsiriOuterCol->CollisionCheck("MongsiriHole", Result))
+	std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+	for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 	{
-		MongsiriRenderer->ChangeAnimation("Mongsiri_Jump_FLeft");
-
-		AMongsiriHole* Hole = dynamic_cast<AMongsiriHole*>(Result[0]->GetActor());
-
-		FVector StartPos = GetActorLocation();
-		FVector EndPos = Hole->GetActorLocation();
-
-		FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * 1.0f);
-
-		if (CurPos != EndPos)
+		std::string InterColName = InterCol->GetInterColName();
+		if (InterColName == "MongsiriHole")
 		{
-			SetActorLocation(CurPos);
-		}
-		else
-		{
-			if (true == MongsiriInnerCol->CollisionCheck("MongsiriHole", Result))
+			FVector StartPos = GetActorLocation();
+			FVector EndPos = InterCol->GetActorLocation();
+			FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * 0.2f);
+
+			if (CurPos != EndPos)
 			{
-				MongsiriRenderer->ChangeAnimation("Mongsiri_Escape_FLeft");
-				MongsiriRenderer->SetAnimationEvent("Mongsiri_Escape_FLeft", 23,
-					[this]()
-					{
-						SetActive(false);
-					});
+				FindMark->SetActive(true);
+				FindMark->SetTexture("Exclamation.png", true, 0.05f);
+				MongsiriRenderer->ChangeAnimation("Mongsiri_Jump_FRight");
+				SetActorLocation(CurPos);
+			}
+
+			std::vector<UCollision*> Result;
+			if (true == MongsiriEscapeCol->CollisionCheck("InterCol", Result))
+			{
+				SetActorLocation({ InterCol->GetActorLocation().X, InterCol->GetActorLocation().Y - 12.0f });
+				SetActorRotation({ 0.0f, 180.0f, 0.0f });
+				State = EMongsiriState::DISAPPEAR;
 			}
 		}
 	}
+}
+
+void AMongsiri::Disappear(float _DeltaTime)
+{
+	FindMark->SetActive(false);
+	MongsiriRenderer->ChangeAnimation("Mongsiri_Escape_FLeft");
+	MongsiriRenderer->SetAnimationEvent("Mongsiri_Escape_FLeft", 23,
+		[this]()
+		{
+			MongsiriRenderer->SetActive(false);
+		});
 }
 
 void AMongsiri::YSorting()

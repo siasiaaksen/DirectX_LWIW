@@ -75,43 +75,68 @@ void UInventory::Tick(float _DeltaTime)
 {
 	UImageWidget::Tick(_DeltaTime);
 
+	KeyInput();
 	IndexCheck();
 
+	Cursor->SetWorldLocation(InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y].get()->Pos);
+}
+
+void UInventory::AddItem(std::string_view _SpriteName)
+{
+	if (false == InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->IsEmpty)
+	{
+
+	}
+
+	std::shared_ptr<UItem> SlotItem = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Item;
+	std::shared_ptr<ItemInfo> SlotItemInfo = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Info;
+	SlotItem = GetHUD()->CreateWidget<UItem>(8);
+	SlotItem->SetItem(_SpriteName);
+	SlotItem->SetWorldLocation(InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y].get()->Pos);
+	SlotItemInfo->ItemIndex = { Slot->CurIndex.X, Slot->CurIndex.Y };
+
+
+}
+
+void UInventory::KeyInput()
+{
 	if (true == UEngineInput::IsDown(VK_UP))
-	{
-		Slot->CurIndex.Y -= 1;
-	}
-	if (true == UEngineInput::IsDown(VK_DOWN))
-	{
-		Slot->CurIndex.Y += 1;
-	}
-	if (true == UEngineInput::IsDown(VK_LEFT))
 	{
 		Slot->CurIndex.X -= 1;
 	}
-	if (true == UEngineInput::IsDown(VK_RIGHT))
+	if (true == UEngineInput::IsDown(VK_DOWN))
 	{
 		Slot->CurIndex.X += 1;
 	}
-
-	Cursor->SetWorldLocation(InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y].get()->Pos);
+	if (true == UEngineInput::IsDown(VK_LEFT))
+	{
+		Slot->CurIndex.Y -= 1;
+	}
+	if (true == UEngineInput::IsDown(VK_RIGHT))
+	{
+		Slot->CurIndex.Y += 1;
+	}
+	if (true == UEngineInput::IsDown(VK_SPACE))
+	{
+		int a = 0;
+	}
 }
 
 void UInventory::IndexCheck()
 {
 	if (Slot->CurIndex.X < 0)
 	{
-		Slot->CurIndex.X = 4;
+		Slot->CurIndex.X = 5;
 	}
-	if (Slot->CurIndex.X > 4)
+	if (Slot->CurIndex.X > 5)
 	{
 		Slot->CurIndex.X = 0;
 	}
 	if (Slot->CurIndex.Y < 0)
 	{
-		Slot->CurIndex.Y = InvenSlot.size();
+		Slot->CurIndex.Y = 4;
 	}
-	if (Slot->CurIndex.Y > InvenSlot.size() - 1)
+	if (Slot->CurIndex.Y > 4)
 	{
 		Slot->CurIndex.Y = 0;
 	}

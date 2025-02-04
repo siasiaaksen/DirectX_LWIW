@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineBase/EngineRandom.h>
-#include "Creature.h"
+#include "InteractObject.h"
 
 
 enum class EMongsiriState
@@ -9,11 +9,12 @@ enum class EMongsiriState
 	MOVE,
 	COLLECTED,
 	ESCAPE,
+	DISAPPEAR,
 	MAX,
 };
 
 
-class AMongsiri : public ACreature
+class AMongsiri : public AInteractObject
 {
 public:
 	AMongsiri();
@@ -31,6 +32,7 @@ public:
 	void Move(float _DeltaTime);
 	void Collected(float _DeltaTime);
 	void Escape(float _DeltaTime);
+	void Disappear(float _DeltaTime);
 
 	void FindCheck(float _DeltaTime);
 	void MoveToEllie(float _DeltaTime);
@@ -56,6 +58,7 @@ private:
 	std::shared_ptr<class USpriteRenderer> MongsiriRenderer;
 	std::shared_ptr<class UCollision> MongsiriOuterCol;
 	std::shared_ptr<class UCollision> MongsiriInnerCol;
+	std::shared_ptr<class UCollision> MongsiriEscapeCol;
 	std::shared_ptr<class ACameraActor> Camera;
 
 	EMongsiriState State;

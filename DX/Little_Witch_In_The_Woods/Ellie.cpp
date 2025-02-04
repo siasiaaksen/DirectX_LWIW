@@ -10,6 +10,7 @@
 #include "Mongsiri.h"
 #include "MapObject.h"
 #include "InteractCollision.h"
+#include "Inventory.h"
 
 
 bool AEllie::IsEllieMove = true;
@@ -360,7 +361,7 @@ void AEllie::CollectItem(float _DeltaTime)
 	std::vector<UCollision*> Result;
 	if (true == EllieOuterCollision->CollisionCheck("MongsiriInner", Result))
 	{
-		if (true == UEngineInput::IsDown('Z'))
+		if (true == UEngineInput::IsDown(VK_SPACE))
 		{
 			Mongsiri = dynamic_cast<AMongsiri*>(Result[0]->GetActor());
 
@@ -374,6 +375,8 @@ void AEllie::CollectItem(float _DeltaTime)
 			State = EEllieState::COLLECTING;
 			Mongsiri->SetSort(false);
 			Mongsiri->SetState(EMongsiriState::COLLECTED);
+
+			// 인벤토리 아이템 추가
 		}
 	}
 }

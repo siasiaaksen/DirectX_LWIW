@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Level.h"
+#include <EnginePlatform/EngineInput.h>
 #include "Actor.h"
 #include "Renderer.h"
 #include "Collision.h"
@@ -182,7 +183,10 @@ void ULevel::Render(float _DeltaTime)
 					continue;
 				}
 
+#ifdef _DEBUG
 				_Collision->DebugRender(Camera->GetCameraComponent().get(), _DeltaTime);
+#else
+#endif
 			}
 		}
 	}

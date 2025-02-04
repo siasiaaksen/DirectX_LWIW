@@ -31,6 +31,11 @@ ARoom::ARoom()
 		BaseCollision->SetupAttachment(RootComponent);
 	}
 
+#ifdef _DEBUG
+	BaseColSprite->SetActive(true);
+#else
+	BaseColSprite->SetActive(false);
+#endif
 }
 
 ARoom::~ARoom()
@@ -45,11 +50,6 @@ void ARoom::BeginPlay()
 void ARoom::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-
-	if (true == UEngineInput::IsDown(VK_F2))
-	{
-		BaseColSprite->SetActiveSwitch();
-	}
 }
 
 void ARoom::SetColImage(std::string_view _ColImageName, std::string_view _FolderName)

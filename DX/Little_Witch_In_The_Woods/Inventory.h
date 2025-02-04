@@ -1,15 +1,12 @@
 #pragma once
 #include <EngineCore/ImageWidget.h>
+#include "Item.h"
 
 
 class USlotCursor : public UImageWidget
 {
 public:
-
-protected:
-
-private:
-
+	bool IsSelect = false;
 };
 
 
@@ -19,6 +16,11 @@ public:
 	FVector Pos;
 	FVector Scale;
 	FIntPoint CurIndex;
+	
+	bool IsEmpty = true;
+
+	std::shared_ptr<UItem> Item;
+	std::shared_ptr<ItemInfo> Info;
 };
 
 
@@ -43,6 +45,10 @@ public:
 	void InvenSetActiveSwitch();
 
 	void IndexCheck();
+
+	void KeyInput();
+
+	void AddItem(std::string_view _SpriteName);
 
 protected:
 

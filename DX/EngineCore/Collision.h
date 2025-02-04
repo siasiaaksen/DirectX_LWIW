@@ -49,6 +49,21 @@ public:
 		return Enter != nullptr || Stay != nullptr || End != nullptr;
 	}
 
+	void DebugRenderOn()
+	{
+		IsDebugRenderOn = true;
+	}
+
+	void DebugRenderOff()
+	{
+		IsDebugRenderOn = false;
+	}
+
+	void DebugRenderSwitch()
+	{
+		IsDebugRenderOn = !IsDebugRenderOn;
+	}
+
 private:
 
 public:
@@ -68,5 +83,11 @@ public:
 
 	// Ãæµ¹ ³¡.
 	std::function<void(UCollision*, UCollision*)> End;
+
+#ifdef _DEBUG
+	bool IsDebugRenderOn = true;
+#else
+	bool IsDebugRenderOn = false;
+#endif
 };
 

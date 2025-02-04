@@ -491,7 +491,7 @@ public:
 
 				if (ImGui::ImageButton(Text.c_str(), SRV, { 60, 60 }, Pos, Size))
 				{
-					SelectObject = static_cast<int>(i);
+					SelectInteract = static_cast<int>(i);
 				}
 			}
 
@@ -987,6 +987,14 @@ void AMapEditorMode::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsPress(VK_F3))
 	{
 		Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
+	}
+	if (true == UEngineInput::IsDown(VK_F2))
+	{
+		std::list<std::shared_ptr<ARoom>> AllRoomList = GetWorld()->GetAllActorListByClass<ARoom>();
+		for (std::shared_ptr<ARoom> Rooms : AllRoomList)
+		{
+			Rooms->GetRoomColSprite()->SetActiveSwitch();
+		}
 	}
 }
 

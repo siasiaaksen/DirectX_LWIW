@@ -74,8 +74,8 @@
     <ClInclude Include="Inventory.h">
       <Filter>Play\Inventory</Filter>
     </ClInclude>
-    <ClInclude Include="MongsiriHole.h">
-      <Filter>Play\InteractObject</Filter>
+    <ClInclude Include="Item.h">
+      <Filter>Play\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -153,8 +153,8 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>Play\Inventory</Filter>
     </ClCompile>
-    <ClCompile Include="MongsiriHole.cpp">
-      <Filter>Play\InteractObject</Filter>
+    <ClCompile Include="Item.cpp">
+      <Filter>Play\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
