@@ -89,11 +89,13 @@ void UInventory::AddItem(std::string_view _SpriteName)
 	}
 
 	std::shared_ptr<UItem> SlotItem = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Item;
-	std::shared_ptr<ItemInfo> SlotItemInfo = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Info;
 	SlotItem = GetHUD()->CreateWidget<UItem>(8);
 	SlotItem->SetItem(_SpriteName);
 	SlotItem->SetWorldLocation(InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y].get()->Pos);
-	SlotItemInfo->ItemIndex = { Slot->CurIndex.X, Slot->CurIndex.Y };
+
+	//std::shared_ptr<ItemInfo> SlotItemInfo = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Info;
+	//SlotItemInfo = SlotItem->GetInfo();
+	//SlotItemInfo->ItemIndex = { Slot->CurIndex.X, Slot->CurIndex.Y };
 
 
 }

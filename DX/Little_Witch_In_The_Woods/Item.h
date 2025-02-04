@@ -23,9 +23,14 @@ public:
 
 	void SetItem(std::string_view _SpriteName);
 
+	std::shared_ptr<ItemInfo> GetInfo()
+	{
+		return Info;
+	}
+
 protected:
 
 private:
-	ItemInfo Info;
+	std::shared_ptr<ItemInfo> Info;
 };
 

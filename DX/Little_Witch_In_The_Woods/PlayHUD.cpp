@@ -26,9 +26,10 @@ void APlayHUD::Tick(float _DeltaTime)
 {
 	AHUD::Tick(_DeltaTime);
 
+	AEllie* Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
+	
 	if (true == UEngineInput::IsDown('I'))
 	{
-		AEllie* Ellie = dynamic_cast<AEllie*>(GetWorld()->GetMainPawn());
 
 		Inventory->InvenSetActiveSwitch();
 
@@ -40,5 +41,19 @@ void APlayHUD::Tick(float _DeltaTime)
 		{
 			Ellie->IsEllieMove = true;
 		}
+	}
+
+	int CollectItemNum = static_cast<int>(AEllie::EllieCollectItem);
+	std::string_view ItemName;
+
+	switch (CollectItemNum)
+	{
+	case 0:
+		ItemName = "Mongsiri_Collect.png";
+		Inventory->AddItem(ItemName);
+		break;
+	case 1:
+	default:
+		break;
 	}
 }

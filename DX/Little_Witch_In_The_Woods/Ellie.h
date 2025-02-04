@@ -4,6 +4,12 @@
 #include <EngineCore/SpriteRenderer.h>
 
 
+enum class ECollectItem
+{
+	MONGSIRI,
+	MAX,
+};
+
 enum class EEllieState
 {
 	IDLE,
@@ -56,6 +62,7 @@ public:
 	}
 
 	static bool IsEllieMove;
+	static ECollectItem EllieCollectItem;
 
 protected:
 
