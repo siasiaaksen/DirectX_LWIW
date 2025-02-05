@@ -5,6 +5,7 @@
 class ItemInfo
 {
 public:
+	std::string ItemName;
 	FIntPoint ItemIndex;
 	int ItemCount;
 };
@@ -21,9 +22,9 @@ public:
 	UItem& operator=(const UItem& _Other) = delete;
 	UItem& operator=(UItem&& _Other) noexcept = delete;
 
-	void SetItem(std::string_view _SpriteName);
+	void SetItem(std::string_view _ItemName, FIntPoint _ItemIndex, int _ItemCount);
 
-	std::shared_ptr<ItemInfo> GetInfo()
+	ItemInfo& GetInfo()
 	{
 		return Info;
 	}
@@ -31,6 +32,6 @@ public:
 protected:
 
 private:
-	std::shared_ptr<ItemInfo> Info;
+	ItemInfo Info;
 };
 

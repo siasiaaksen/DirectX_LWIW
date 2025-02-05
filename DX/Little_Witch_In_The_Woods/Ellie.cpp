@@ -14,7 +14,6 @@
 
 
 bool AEllie::IsEllieMove = true;
-ECollectItem AEllie::EllieCollectItem = ECollectItem::MAX;
 
 AEllie::AEllie()
 {
@@ -378,7 +377,7 @@ void AEllie::CollectItem(float _DeltaTime)
 			Mongsiri->SetState(EMongsiriState::COLLECTED);
 
 			// 인벤토리 아이템 추가
-			EllieCollectItem = ECollectItem::MONGSIRI;
+			ItemType = ECollectItem::MONGSIRI;
 		}
 	}
 }

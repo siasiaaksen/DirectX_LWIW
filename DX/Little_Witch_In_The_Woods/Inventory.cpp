@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "Inventory.h"
+#include <EngineBase/EngineString.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/HUD.h>
 #include <EnginePlatform/EngineInput.h>
@@ -81,23 +82,36 @@ void UInventory::Tick(float _DeltaTime)
 	Cursor->SetWorldLocation(InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y].get()->Pos);
 }
 
-void UInventory::AddItem(std::string_view _SpriteName)
+void UInventory::AddItem(std::string_view _SpriteName, std::string_view _ItemName)
 {
-	if (false == InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->IsEmpty)
+	std::string UpperName = UEngineString::ToUpper(_ItemName);
+	for (int x = 0; x < InvenSlot.size(); x++)
 	{
-
+		for (int y = 0; y < InvenSlot[x].size(); y++)
+		{
+			std::shared_ptr<UInvenSlot> CurSlot = InvenSlot[x][y];
+			if (true == CurSlot->IsEmpty)
+			{
+				CurSlot->Item = GetHUD()->CreateWidget<UItem>(8);
+				CurSlot->Item->SetItem(_ItemName, {x, y}, 1);
+				CurSlot->Item->SetTexture(_SpriteName);
+				CurSlot->Item->SetWorldLocation(CurSlot->Pos);
+				CurSlot->Item->SetScale3D({ 50.0f, 50.0f });
+				CurSlot->Item->SetActive(false);
+				CurSlot->IsEmpty = false;
+				return;
+			}
+			else if (false == CurSlot->IsEmpty && UpperName == CurSlot->Item->GetInfo().ItemName)
+			{
+				CurSlot->Item->GetInfo().ItemCount += 1;
+				return;
+			}
+			else if (false == CurSlot->IsEmpty && UpperName != CurSlot->Item->GetInfo().ItemName)
+			{
+				continue;
+			}
+		}
 	}
-
-	std::shared_ptr<UItem> SlotItem = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Item;
-	SlotItem = GetHUD()->CreateWidget<UItem>(8);
-	SlotItem->SetItem(_SpriteName);
-	SlotItem->SetWorldLocation(InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y].get()->Pos);
-
-	//std::shared_ptr<ItemInfo> SlotItemInfo = InvenSlot[Slot->CurIndex.X][Slot->CurIndex.Y]->Info;
-	//SlotItemInfo = SlotItem->GetInfo();
-	//SlotItemInfo->ItemIndex = { Slot->CurIndex.X, Slot->CurIndex.Y };
-
-
 }
 
 void UInventory::KeyInput()
@@ -148,8 +162,13 @@ void UInventory::AllSlotSetActive(bool _Value)
 {
 	for (size_t x = 0; x < InvenSlot.size(); x++)
 	{
-		for (size_t y = 0; y < 5; y++)
+		for (size_t y = 0; y < InvenSlot[x].size(); y++)
 		{
+			if (nullptr != InvenSlot[x][y]->Item)
+			{
+				InvenSlot[x][y]->Item->SetActive(_Value);
+			}
+
 			InvenSlot[x][y]->SetActive(_Value);
 			IsSlotsActive = _Value;
 		}

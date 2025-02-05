@@ -20,7 +20,6 @@ public:
 	bool IsEmpty = true;
 
 	std::shared_ptr<UItem> Item;
-	std::shared_ptr<ItemInfo> Info;
 };
 
 
@@ -48,7 +47,7 @@ public:
 
 	void KeyInput();
 
-	void AddItem(std::string_view _SpriteName);
+	void AddItem(std::string_view _SpriteName, std::string_view _ItemName);
 
 protected:
 

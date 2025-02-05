@@ -43,17 +43,9 @@ void APlayHUD::Tick(float _DeltaTime)
 		}
 	}
 
-	int CollectItemNum = static_cast<int>(AEllie::EllieCollectItem);
-	std::string_view ItemName;
-
-	switch (CollectItemNum)
+	if (ECollectItem::MONGSIRI == Ellie->ItemType)
 	{
-	case 0:
-		ItemName = "Mongsiri_Collect.png";
-		Inventory->AddItem(ItemName);
-		break;
-	case 1:
-	default:
-		break;
+		Inventory->AddItem("Mongsiri_Collect.png", "MongsiriFur");
+		Ellie->ItemType = ECollectItem::MAX;
 	}
 }

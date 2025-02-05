@@ -62,7 +62,7 @@ public:
 	}
 
 	static bool IsEllieMove;
-	static ECollectItem EllieCollectItem;
+	ECollectItem ItemType;
 
 protected:
 
