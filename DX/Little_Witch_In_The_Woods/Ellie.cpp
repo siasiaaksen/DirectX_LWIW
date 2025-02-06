@@ -8,6 +8,7 @@
 #include <EngineCore/CameraActor.h>
 #include "Room.h"
 #include "Mongsiri.h"
+#include "WitchFlower.h"
 #include "MapObject.h"
 #include "InteractCollision.h"
 #include "Inventory.h"
@@ -204,16 +205,16 @@ void AEllie::Collecting(float _DeltaTime)
 {
 	int Frame = 0;
 
-	if (Mongsiri->GetActorLocation().X - GetActorLocation().X <= 0)
+	//if (Mongsiri->GetActorLocation().X - GetActorLocation().X <= 0)
 	{
 		DirName = "_FLeft";
 		Frame = 4;
 	}
-	else
-	{
-		DirName = "_FRight";
-		Frame = 9;
-	}
+	//else
+	//{
+	//	DirName = "_FRight";
+	//	Frame = 9;
+	//}
 
 	EllieRenderer->ChangeAnimation("Ellie_Collecting" + DirName + "_M");
 	EllieRenderer->SetAnimationEvent("Ellie_Collecting" + DirName + "_M", Frame, [this]() { State = EEllieState::IDLE; });
@@ -357,27 +358,54 @@ void AEllie::SetColImage(std::string_view _ColImageName, std::string_view _Folde
 void AEllie::CollectItem(float _DeltaTime)
 {
 	// 엘리 위치 이동 및 크리쳐의 콜랙트 관련 함수 호출
-
-	std::vector<UCollision*> Result;
-	if (true == EllieOuterCollision->CollisionCheck("MongsiriInner", Result))
+	if (true == UEngineInput::IsDown(VK_SPACE))
 	{
-		if (true == UEngineInput::IsDown(VK_SPACE))
+		// Mongsiri
 		{
-			Mongsiri = dynamic_cast<AMongsiri*>(Result[0]->GetActor());
+			std::vector<UCollision*> Result;
+			if (true == EllieOuterCollision->CollisionCheck("MongsiriInner", Result))
+			{
+				Mongsiri = dynamic_cast<AMongsiri*>(Result[0]->GetActor());
 
-			FVector StartPos = GetActorLocation();
-			FVector EndPos = Mongsiri->GetActorLocation();
+				if (true == Mongsiri->CollectedState())
+				{
+					return;
+				}
 
-			FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * 2.0f);
+				FVector StartPos = GetActorLocation();
+				FVector EndPos = Mongsiri->GetActorLocation();
 
-			SetActorLocation(CurPos);
-			
-			State = EEllieState::COLLECTING;
-			Mongsiri->SetSort(false);
-			Mongsiri->SetState(EMongsiriState::COLLECTED);
+				FVector CurPos = FVector::Lerp(StartPos, EndPos, _DeltaTime * 2.0f);
 
-			// 인벤토리 아이템 추가
-			ItemType = ECollectItem::MONGSIRI;
+				SetActorLocation(CurPos);
+
+				State = EEllieState::COLLECTING;
+				Mongsiri->SetSort(false);
+				Mongsiri->SetState(EMongsiriState::COLLECTED);
+
+				// 인벤토리 아이템 추가
+				ItemType = ECollectItem::MONGSIRI;
+			}
+		}
+
+		// WitchFlower
+		{
+			std::vector<UCollision*> Result;
+			if (true == EllieOuterCollision->CollisionCheck("WitchFlower", Result))
+			{
+				AWitchFlower* WitchFlower = dynamic_cast<AWitchFlower*>(Result[0]->GetActor());
+
+				if (true == WitchFlower->CollectedState())
+				{
+					return;
+				}
+
+				State = EEllieState::COLLECTING;
+				WitchFlower->SetState(EWitchFlowerState::COLLECTED);
+
+				// 인벤토리 아이템 추가
+				ItemType = ECollectItem::WITCHFLOWER;
+			}
 		}
 	}
 }

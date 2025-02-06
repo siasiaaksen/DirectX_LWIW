@@ -7,6 +7,7 @@
 enum class ECollectItem
 {
 	MONGSIRI,
+	WITCHFLOWER,
 	MAX,
 };
 

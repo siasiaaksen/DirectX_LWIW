@@ -68,31 +68,6 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		UEngineSprite::CreateSpriteToMeta("Ellie_Collection_WitchFlower.png", ".SData");
 	}
 
-	// Image\\Play\\Creature
-	{
-		UEngineDirectory Dir;
-		if (false == Dir.MoveParentToDirectory("LWIWResources\\Image"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			return;
-		}
-
-		Dir.Append("Play\\Creature");
-		std::vector<UEngineFile> ImageFiles = Dir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
-		for (size_t i = 0; i < ImageFiles.size(); i++)
-		{
-			std::string FilePath = ImageFiles[i].GetPathToString();
-			UEngineTexture::Load(FilePath);
-		}
-
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Idle.png", ".SData");
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Jump.png", ".SData");
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Collected.png", ".SData");
-		UEngineSprite::CreateSpriteToMeta("Mongsiri_Escape.png", ".SData");
-
-		UEngineSprite::CreateSpriteToMeta("WitchFlower.png", ".SData");
-	}
-
 	// Image\\Play\\Map
 	{
 		UEngineDirectory Dir;
@@ -171,6 +146,13 @@ void ULWIWContentsCore::LWIWResourcesSetting()
 		}
 
 		UEngineSprite::CreateSpriteToFolder(Dir.GetPathToString());
+
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Idle.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Jump.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Collected.png", ".SData");
+		UEngineSprite::CreateSpriteToMeta("Mongsiri_Escape.png", ".SData");
+
+		UEngineSprite::CreateSpriteToMeta("WitchFlower.png", ".SData");
 	}
 
 	// Image\\Play\\Inventory

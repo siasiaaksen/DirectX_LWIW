@@ -4,7 +4,6 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/EngineSprite.h>
 #include <EngineCore/Collision.h>
-#include <EnginePlatform/EngineInput.h>
 #include <EngineCore/CameraActor.h>
 #include "Ellie.h"
 #include "InteractObject.h"
@@ -92,6 +91,7 @@ AMongsiri::AMongsiri()
 	}
 
 	State = EMongsiriState::IDLE;
+	IsCollected = false;
 }
 
 AMongsiri::~AMongsiri()
@@ -176,7 +176,7 @@ void AMongsiri::Collected(float _DeltaTime)
 
 			// Escape Part
 			State = EMongsiriState::ESCAPE;
-			IsEscape = true;
+			IsCollected = true;
 		});
 	
 }
@@ -236,7 +236,7 @@ void AMongsiri::FindCheck(float _DeltaTime)
 	std::vector<UCollision*> Result;
 	if (true == MongsiriOuterCol->CollisionCheck("Ellie", Result))
 	{
-		if (false == IsEscape)
+		if (false == IsCollected)
 		{
 			FindMark->SetActive(true);
 			State = EMongsiriState::MOVE;

@@ -48,4 +48,9 @@ void APlayHUD::Tick(float _DeltaTime)
 		Inventory->AddItem("Mongsiri_Collect.png", "MongsiriFur");
 		Ellie->ItemType = ECollectItem::MAX;
 	}
+	else if (ECollectItem::WITCHFLOWER == Ellie->ItemType)
+	{
+		Inventory->AddItem("WitchFlower_Collect.png", "WitchFlower");
+		Ellie->ItemType = ECollectItem::MAX;
+	}
 }

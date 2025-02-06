@@ -11,6 +11,7 @@
 #include "Ellie.h"
 #include "Room.h"
 #include "Mongsiri.h"
+#include "WitchFlower.h"
 #include "InteractCollision.h"
 #include "MapObject.h"
 #include "InteractObject.h"
@@ -39,6 +40,7 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->CreateCollisionProfile("MongsiriOuter");
 	GetWorld()->CreateCollisionProfile("MongsiriInner");
 	GetWorld()->CreateCollisionProfile("MongsiriEscape");
+	GetWorld()->CreateCollisionProfile("WitchFlower");
 	GetWorld()->CreateCollisionProfile("InterCol");
 	GetWorld()->CreateCollisionProfile("MapObject");
 	GetWorld()->CreateCollisionProfile("InteractObject");
@@ -46,6 +48,7 @@ APlayGameMode::APlayGameMode()
 	GetWorld()->LinkCollisionProfile("Room", "Ellie");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriOuter");
 	GetWorld()->LinkCollisionProfile("Ellie", "MongsiriInner");
+	GetWorld()->LinkCollisionProfile("Ellie", "WitchFlower");
 	GetWorld()->LinkCollisionProfile("MongsiriEscape", "InterCol");
 	GetWorld()->LinkCollisionProfile("Ellie", "InterCol");
 	GetWorld()->LinkCollisionProfile("EllieInner", "MapObject");
@@ -217,8 +220,14 @@ void APlayGameMode::RoomChange()
 
 					Ellie->SetActorLocation({ 450.0f, 1200.0f, 10.0f });
 
-					Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
-					Mongsiri->SetActorLocation({ 1100.0f, 1000.0f, 100.0f });
+					// Creature
+					{
+						Mongsiri = GetWorld()->SpawnActor<AMongsiri>();
+						Mongsiri->SetActorLocation({ 1100.0f, 1000.0f, 100.0f });
+
+						WitchFlower = GetWorld()->SpawnActor<AWitchFlower>();
+						WitchFlower->SetActorLocation({ 800.0f, 900.0f, 100.0f });
+					}
 
 					{
 						const std::string Path = ".\\..\\LWIWResources\\Data\\MainMap.MapData";

@@ -29,6 +29,7 @@ private:
 	class AEllie* Ellie = nullptr;
 	std::shared_ptr<class ARoom> Room = nullptr;
 	std::shared_ptr<class AMongsiri> Mongsiri = nullptr;
+	std::shared_ptr<class AWitchFlower> WitchFlower = nullptr;
 	std::shared_ptr<class AInteractCollision> EntranceCol = nullptr;
 	std::shared_ptr<class ACameraActor> Camera = nullptr;
 

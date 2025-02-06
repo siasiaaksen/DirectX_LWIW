@@ -44,6 +44,11 @@ public:
 		State = _State;
 	}
 
+	bool CollectedState()
+	{
+		return IsCollected;
+	}
+
 	void SetSort(bool _Value)
 	{
 		IsSort = _Value;
@@ -69,6 +74,6 @@ private:
 	float MoveSpeed = 0.3f;
 
 	bool IsSort = true;
-	bool IsEscape = false;
+	bool IsCollected = false;
 };
 
