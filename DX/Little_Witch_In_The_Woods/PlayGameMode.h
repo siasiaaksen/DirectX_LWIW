@@ -2,6 +2,14 @@
 #include <EngineCore/GameMode.h>
 
 
+enum class EPlayType
+{
+	PLAY,
+	POTION,
+	MAX
+};
+
+
 class APlayGameMode : public AGameMode
 {
 public:
@@ -15,6 +23,11 @@ public:
 
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void Play();
+	void Potion();
+
+	void KeyInput();
 
 	void CameraMove();
 
@@ -35,5 +48,7 @@ private:
 
 	FVector RoomSize;
 	std::string RoomName;
+
+	EPlayType PlayType = EPlayType::MAX;
 };
 

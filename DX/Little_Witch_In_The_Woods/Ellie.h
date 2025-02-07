@@ -16,6 +16,7 @@ enum class EEllieState
 	IDLE,
 	MOVE,
 	COLLECTING,
+	POTION,
 	MAX,
 };
 
@@ -44,6 +45,7 @@ public:
 	void Idle(float _DeltaTime);
 	void Move(float _DeltaTime);
 	void Collecting(float _DeltaTime);
+	void Potion();
 
 	bool IsMoveCheck(FVector _Dir);
 	void DirCheck();
@@ -60,6 +62,11 @@ public:
 	UEngineWinImage& GetColImage()
 	{
 		return ColImage;
+	}
+
+	EEllieState& GetEllieState()
+	{
+		return State;
 	}
 
 	static bool IsEllieMove;

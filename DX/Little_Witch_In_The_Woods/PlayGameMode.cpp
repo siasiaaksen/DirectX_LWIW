@@ -60,6 +60,8 @@ APlayGameMode::APlayGameMode()
 		Camera->GetCameraComponent()->SetProjectionType(EProjectionType::Orthographic);
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
+
+	PlayType = EPlayType::PLAY;
 }
 
 APlayGameMode::~APlayGameMode()
@@ -118,8 +120,39 @@ void APlayGameMode::Tick(float _DeltaTime)
 
 	CameraMove();
 
+	switch (PlayType)
+	{
+	case EPlayType::PLAY:
+		Play();
+		break;
+	case EPlayType::POTION:
+		Potion();
+		break;
+	default:
+		break;
+	}
+
+	KeyInput();
+}
+
+void APlayGameMode::Play()
+{
 	RoomChange();
 
+	if (EEllieState::POTION == Ellie->GetEllieState())
+	{
+		PlayType = EPlayType::POTION;
+	}
+}
+
+void APlayGameMode::Potion()
+{
+	// 물약 제조 전 카메라 이동
+	//Camera->SetActorLocation({ -100.0f, -100.0f, -1000.0f, 1.0f });
+}
+
+void APlayGameMode::KeyInput()
+{
 	if (true == UEngineInput::IsDown(VK_HOME))
 	{
 		UEngineCore::OpenLevel("TitleLevel");
@@ -180,11 +213,11 @@ void APlayGameMode::RoomChange()
 	std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
 	for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 	{
-		std::vector<UCollision*> Result;
-		if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
+		std::string InterColName = InterCol->GetInterColName();
+		if (InterCol->GetInterColName() == "WitchHouseYard")
 		{
-			std::string InterColName = InterCol->GetInterColName();
-			if (InterCol->GetInterColName() == "WitchHouseYard")
+			std::vector<UCollision*> Result;
+			if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result) || true == UEngineInput::IsDown(VK_NUMPAD1))
 			{
 				{
 					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
@@ -244,8 +277,12 @@ void APlayGameMode::RoomChange()
 					}
 				}
 			}
+		}
 
-			if (InterCol->GetInterColName() == "MainMap")
+		if (InterCol->GetInterColName() == "MainMap")
+		{
+			std::vector<UCollision*> Result;
+			if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result) || true == UEngineInput::IsDown(VK_NUMPAD2))
 			{
 				{
 					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
@@ -296,64 +333,68 @@ void APlayGameMode::RoomChange()
 					}
 				}
 			}
+		}
 
+		{
+			/*if (InterCol->GetInterColName() == "WitchHouse")
 			{
-				/*if (InterCol->GetInterColName() == "WitchHouse")
 				{
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
 					{
-						std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
-						for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
-						{
-							InterCol->Destroy();
-						}
-
-						std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
-						for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
-						{
-							MapObject->Destroy();
-						}
-
-						std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
-						for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
-						{
-							InteractObject->Destroy();
-						}
+						InterCol->Destroy();
 					}
 
+					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
 					{
-						Ellie->SetColImage("WitchHouse1F_Col.png", "Map");
-						Room->SetColImage("WitchHouse1F_Col.png", "Map");
-						FVector RoomSize = Room->GetColImage().GetImageScale();
-
-						Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
-						Room->SetRoomColSprite("WitchHouse1F_Col.png");
-
-						FVector ColSize = RoomSize - (Ellie->GetEllieSize());
-						Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
-						Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
-
-						Ellie->SetActorLocation({ 0.0f, -110.0f, 10.0f });
-
-						Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
-
-						{
-							const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouseF1.MapData";
-							UEngineFile FIle = Path;
-							FIle.FileOpen("rb");
-
-							UEngineSerializer Ser;
-							FIle.Read(Ser);
-
-							int ListNum;
-							Ser >> ListNum;
-
-							LoadData(Ser, ListNum);
-						}
+						MapObject->Destroy();
 					}
-				}*/
-			}
 
-			if (InterCol->GetInterColName() == "WitchHouse")
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
+					}
+				}
+
+				{
+					Ellie->SetColImage("WitchHouse1F_Col.png", "Map");
+					Room->SetColImage("WitchHouse1F_Col.png", "Map");
+					FVector RoomSize = Room->GetColImage().GetImageScale();
+
+					Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
+					Room->SetRoomColSprite("WitchHouse1F_Col.png");
+
+					FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+
+					Ellie->SetActorLocation({ 0.0f, -110.0f, 10.0f });
+
+					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
+
+					{
+						const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouseF1.MapData";
+						UEngineFile FIle = Path;
+						FIle.FileOpen("rb");
+
+						UEngineSerializer Ser;
+						FIle.Read(Ser);
+
+						int ListNum;
+						Ser >> ListNum;
+
+						LoadData(Ser, ListNum);
+					}
+				}
+			}*/
+		}
+
+		if (InterCol->GetInterColName() == "WitchHouse")
+		{
+			std::vector<UCollision*> Result;
+			if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result) || true == UEngineInput::IsDown(VK_NUMPAD3))
 			{
 				{
 					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
@@ -406,8 +447,12 @@ void APlayGameMode::RoomChange()
 					}
 				}
 			}
+		}
 
-			if (InterCol->GetInterColName() == "Basement")
+		if (InterCol->GetInterColName() == "Basement")
+		{
+			std::vector<UCollision*> Result;
+			if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result) || true == UEngineInput::IsDown(VK_NUMPAD2))
 			{
 				{
 					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
@@ -484,6 +529,7 @@ void APlayGameMode::RoomChange()
 		}
 	}
 }
+
 
 void APlayGameMode::LoadData(UEngineSerializer _Ser, int _ListNum)
 {

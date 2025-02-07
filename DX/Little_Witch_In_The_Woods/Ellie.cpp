@@ -12,6 +12,7 @@
 #include "MapObject.h"
 #include "InteractCollision.h"
 #include "Inventory.h"
+#include "PlayGameMode.h"
 
 
 bool AEllie::IsEllieMove = true;
@@ -133,6 +134,9 @@ void AEllie::Tick(float _DeltaTime)
 	case EEllieState::COLLECTING:
 		Collecting(_DeltaTime);
 		break;
+	case EEllieState::POTION:
+		Potion();
+		break;
 	default:
 		break;
 	}
@@ -199,6 +203,20 @@ void AEllie::Move(float _DeltaTime)
 	{
 		State = EEllieState::IDLE;
 	}
+
+	std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+	for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
+	{
+		std::vector<UCollision*> Result;
+		if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
+		{
+			std::string InterColName = InterCol->GetInterColName();
+			if (InterCol->GetInterColName() == "Pot")
+			{
+				State = EEllieState::POTION;
+			}
+		}
+	}
 }
 
 void AEllie::Collecting(float _DeltaTime)
@@ -218,6 +236,10 @@ void AEllie::Collecting(float _DeltaTime)
 
 	EllieRenderer->ChangeAnimation("Ellie_Collecting" + DirName + "_M");
 	EllieRenderer->SetAnimationEvent("Ellie_Collecting" + DirName + "_M", Frame, [this]() { State = EEllieState::IDLE; });
+}
+
+void AEllie::Potion()
+{
 }
 
 bool AEllie::IsMoveCheck(FVector _Dir)

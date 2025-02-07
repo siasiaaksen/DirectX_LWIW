@@ -80,6 +80,9 @@
     <ClInclude Include="WitchFlower.h">
       <Filter>Play\InteractObject</Filter>
     </ClInclude>
+    <ClInclude Include="PotionIngredient.h">
+      <Filter>Play\InteractObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompile.cpp">
@@ -160,6 +163,9 @@
       <Filter>Play\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="WitchFlower.cpp">
+      <Filter>Play\InteractObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PotionIngredient.cpp">
       <Filter>Play\InteractObject</Filter>
     </ClCompile>
   </ItemGroup>

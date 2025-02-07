@@ -1035,7 +1035,7 @@ void AMapEditorMode::LevelChangeStart()
 
 		MapEditWindow->SetActive(true);
 	}
-#esle
+#else
 #endif
 }
 
