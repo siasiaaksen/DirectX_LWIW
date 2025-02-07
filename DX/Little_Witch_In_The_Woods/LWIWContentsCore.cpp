@@ -39,11 +39,14 @@ void ULWIWContentsCore::EngineStart(UEngineInitData& _Data)
 	UEngineCore::CreateLevel<AMapEditorMode, APawn, AHUD>("MapEditorLevel");
 	UEngineCore::OpenLevel("PlayLevel");
 
+#ifdef _DEBUG
 	UEngineGUI::AllWindowOff();
 
 	UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
 	Window->SetActive(true);
+#else
+#endif
 }
 
 void ULWIWContentsCore::EngineTick(float _DeltaTime)

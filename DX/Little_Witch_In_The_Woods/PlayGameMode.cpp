@@ -485,33 +485,6 @@ void APlayGameMode::RoomChange()
 	}
 }
 
-void APlayGameMode::LevelChangeStart()
-{
-	UEngineGUI::AllWindowOff();
-
-	{
-		std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
-
-		if (nullptr == Window)
-		{
-			Window = UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
-		}
-
-		Window->SetActive(true);
-	}
-
-	{
-		std::shared_ptr<UPlayGUIWindow> Window = UEngineGUI::FindGUIWindow<UPlayGUIWindow>("UPlayGUIWindow");
-
-		if (nullptr == Window)
-		{
-			Window = UEngineGUI::CreateGUIWindow<UPlayGUIWindow>("UPlayGUIWindow");
-		}
-
-		Window->SetActive(true);
-	}
-}
-
 void APlayGameMode::LoadData(UEngineSerializer _Ser, int _ListNum)
 {
 	switch (_ListNum)
@@ -649,3 +622,34 @@ void APlayGameMode::LoadData(UEngineSerializer _Ser, int _ListNum)
 		break;
 	}
 }
+
+void APlayGameMode::LevelChangeStart()
+{
+#ifdef _DEBUG
+	UEngineGUI::AllWindowOff();
+
+	{
+		std::shared_ptr<UContentsEditorGUI> Window = UEngineGUI::FindGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<UContentsEditorGUI>("ContentsEditorGUI");
+		}
+
+		Window->SetActive(true);
+	}
+
+	{
+		std::shared_ptr<UPlayGUIWindow> Window = UEngineGUI::FindGUIWindow<UPlayGUIWindow>("UPlayGUIWindow");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<UPlayGUIWindow>("UPlayGUIWindow");
+		}
+
+		Window->SetActive(true);
+	}
+#else
+#endif
+}
+

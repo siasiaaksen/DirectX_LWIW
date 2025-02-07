@@ -89,6 +89,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 
 void ATitleGameMode::LevelChangeStart()
 {
+#ifdef _DEBUG
 	UEngineGUI::AllWindowOff();
 
 	{
@@ -112,4 +113,6 @@ void ATitleGameMode::LevelChangeStart()
 
 		Window->SetActive(true);
 	}
+#else
+#endif
 }

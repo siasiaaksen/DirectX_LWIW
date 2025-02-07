@@ -1000,6 +1000,7 @@ void AMapEditorMode::Tick(float _DeltaTime)
 
 void AMapEditorMode::LevelChangeStart()
 {
+#ifdef _DEBUG
 	UEngineGUI::AllWindowOff();
 
 	{
@@ -1034,6 +1035,8 @@ void AMapEditorMode::LevelChangeStart()
 
 		MapEditWindow->SetActive(true);
 	}
+#esle
+#endif
 }
 
 
