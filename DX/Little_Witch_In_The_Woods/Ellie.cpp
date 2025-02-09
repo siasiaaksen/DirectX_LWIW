@@ -31,23 +31,23 @@ AEllie::AEllie()
 		{
 			EllieRenderer->SetSprite("Ellie_Walk.png");
 			//EllieRenderer->SetRelativeScale3D({ 73, 92, 1.0f });
-			EllieRenderer->CreateAnimation("Ellie_Walk_FLeft", "Ellie_Walk.png", 28, 35, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Walk_Front", "Ellie_Walk.png", 12, 19, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Walk_FRight", "Ellie_Walk.png", 44, 51, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Walk_BLeft", "Ellie_Walk.png", 60, 67, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Walk_Back", "Ellie_Walk.png", 68, 75, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Walk_BRight", "Ellie_Walk.png", 80, 87, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Walk_Back", "Ellie_Walk.png", 0, 7, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Walk_Front", "Ellie_Walk.png", 8, 15, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Walk_FLeft", "Ellie_Walk.png", 16, 23, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Walk_BLeft", "Ellie_Walk.png", 24, 31, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Walk_FRight", "Ellie_Walk.png", 32, 39, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Walk_BRight", "Ellie_Walk.png", 40, 48, AnimSpeed);
 		}
 
 		// EllieIdle
 		{
 			EllieRenderer->SetSprite("Ellie_Idle.png");
 			//EllieRenderer->SetRelativeScale3D({ 76, 96, 1.0f });
-			EllieRenderer->CreateAnimation("Ellie_Idle_FLeft", "Ellie_Idle.png", 0, 3, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Idle_Back", "Ellie_Idle.png", 0, 3, AnimSpeed);
 			EllieRenderer->CreateAnimation("Ellie_Idle_Front", "Ellie_Idle.png", 4, 7, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Idle_FRight", "Ellie_Idle.png", 8, 11, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Idle_FLeft", "Ellie_Idle.png", 8, 11, AnimSpeed);
 			EllieRenderer->CreateAnimation("Ellie_Idle_BLeft", "Ellie_Idle.png", 12, 15, AnimSpeed);
-			EllieRenderer->CreateAnimation("Ellie_Idle_Back", "Ellie_Idle.png", 16, 19, AnimSpeed);
+			EllieRenderer->CreateAnimation("Ellie_Idle_FRight", "Ellie_Idle.png", 16, 19, AnimSpeed);
 			EllieRenderer->CreateAnimation("Ellie_Idle_BRight", "Ellie_Idle.png", 20, 23, AnimSpeed);
 		}
 
@@ -204,19 +204,19 @@ void AEllie::Move(float _DeltaTime)
 		State = EEllieState::IDLE;
 	}
 
-	std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
-	for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
-	{
-		std::vector<UCollision*> Result;
-		if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
-		{
-			std::string InterColName = InterCol->GetInterColName();
-			if (InterCol->GetInterColName() == "Pot")
-			{
-				State = EEllieState::POTION;
-			}
-		}
-	}
+	//std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+	//for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
+	//{
+	//	std::vector<UCollision*> Result;
+	//	if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
+	//	{
+	//		std::string InterColName = InterCol->GetInterColName();
+	//		if (InterCol->GetInterColName() == "Pot")
+	//		{
+	//			State = EEllieState::POTION;
+	//		}
+	//	}
+	//}
 }
 
 void AEllie::Collecting(float _DeltaTime)
@@ -240,6 +240,7 @@ void AEllie::Collecting(float _DeltaTime)
 
 void AEllie::Potion()
 {
+
 }
 
 bool AEllie::IsMoveCheck(FVector _Dir)

@@ -18,6 +18,9 @@
 #include "TitleStar.h"
 #include "TitleTrainSmoke.h"
 #include "TitleCloud.h"
+#include "PlayGameMode.h"
+#include "Ellie.h"
+#include "PlayHUD.h"
 
 
 class UTitleGUIWindow : public UEngineGUIWindow
@@ -79,6 +82,7 @@ void ATitleGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::IsPress(VK_SPACE))
 	{
+		UEngineCore::ResetLevel<APlayGameMode, AEllie, APlayHUD>("PlayLevel");
 		UEngineCore::OpenLevel("PlayLevel");
 	}
 	if (true == UEngineInput::IsPress(VK_F1))

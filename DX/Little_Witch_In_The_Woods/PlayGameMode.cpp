@@ -15,7 +15,8 @@
 #include "InteractCollision.h"
 #include "MapObject.h"
 #include "InteractObject.h"
-
+#include "TitleGameMode.h"
+#include <EngineCore/HUD.h>
 
 class UPlayGUIWindow : public UEngineGUIWindow
 {
@@ -155,6 +156,7 @@ void APlayGameMode::KeyInput()
 {
 	if (true == UEngineInput::IsDown(VK_HOME))
 	{
+		UEngineCore::ResetLevel<ATitleGameMode, APawn, AHUD>("TitleLevel");
 		UEngineCore::OpenLevel("TitleLevel");
 	}
 	if (true == UEngineInput::IsDown(VK_F2))
@@ -252,6 +254,7 @@ void APlayGameMode::RoomChange()
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
 					Ellie->SetActorLocation({ 450.0f, 1200.0f, 10.0f });
+					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
 					// Creature
 					{
@@ -317,6 +320,7 @@ void APlayGameMode::RoomChange()
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
 					Ellie->SetActorLocation({ -50.0f, -500.0f, 10.0f });
+					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
 					{
 						const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouse_Outside.MapData";
@@ -429,6 +433,7 @@ void APlayGameMode::RoomChange()
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
 					Ellie->SetActorLocation({ 20.0f, 20.0f, 10.0f });
+					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
 					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 
@@ -486,7 +491,8 @@ void APlayGameMode::RoomChange()
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
-					Ellie->SetActorLocation({ -40.0f, -110.0f, 10.0f });
+					Ellie->SetActorLocation({ -40.0f, -170.0f, 10.0f });
+					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
 					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 
@@ -503,26 +509,26 @@ void APlayGameMode::RoomChange()
 
 						LoadData(Ser, ListNum);
 
-						std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
-						std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+						//std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+						//std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
 
-						if (0 != static_cast<int>(AllMapObjectList.size()))
-						{
-							for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
-							{
-								FVector ObjectPos = MapObject->GetActorLocation();
-								MapObject->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
-							}
-						}
+						//if (0 != static_cast<int>(AllMapObjectList.size()))
+						//{
+						//	for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+						//	{
+						//		FVector ObjectPos = MapObject->GetActorLocation();
+						//		MapObject->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
+						//	}
+						//}
 
-						if (0 != static_cast<int>(AllInteractObjectList.size()))
-						{
-							for (std::shared_ptr<AInteractObject> InteractObj : AllInteractObjectList)
-							{
-								FVector ObjectPos = InteractObj->GetActorLocation();
-								InteractObj->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
-							}
-						}
+						//if (0 != static_cast<int>(AllInteractObjectList.size()))
+						//{
+						//	for (std::shared_ptr<AInteractObject> InteractObj : AllInteractObjectList)
+						//	{
+						//		FVector ObjectPos = InteractObj->GetActorLocation();
+						//		InteractObj->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
+						//	}
+						//}
 					}
 				}
 			}
