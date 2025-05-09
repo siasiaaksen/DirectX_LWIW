@@ -253,6 +253,7 @@ void APlayGameMode::RoomChange()
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
+					Ellie->SetZSortLock(false);
 					Ellie->SetActorLocation({ 450.0f, 1200.0f, 10.0f });
 					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
@@ -319,6 +320,7 @@ void APlayGameMode::RoomChange()
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
+					Ellie->SetZSortLock(false);
 					Ellie->SetActorLocation({ -50.0f, -500.0f, 10.0f });
 					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
@@ -421,24 +423,25 @@ void APlayGameMode::RoomChange()
 				}
 
 				{
-					Ellie->SetColImage("Basement_Col.png", "Map");
-					Room->SetColImage("Basement_Col.png", "Map");
+					Ellie->SetColImage("WitchHouse1F_Col.png", "Map");
+					Room->SetColImage("WitchHouse1F_Col.png", "Map");
 					FVector RoomSize = Room->GetColImage().GetImageScale();
 
-					Room->SetRoomSprite("Basement.png", RoomSize);
-					Room->SetRoomColSprite("Basement_Col.png");
+					Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
+					Room->SetRoomColSprite("WitchHouse1F_Col.png");
 
 					FVector ColSize = RoomSize - (Ellie->GetEllieSize());
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
-					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+					Room->SetActorLocation({ 0.0f, 0.0f, -1000.0f });
 
-					Ellie->SetActorLocation({ 20.0f, 20.0f, 10.0f });
+					Ellie->SetZSortLock(true);
+					Ellie->SetActorLocation({ 20.0f, -120.0f, -1500.0f });
 					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
 					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
 
 					{
-						const std::string Path = ".\\..\\LWIWResources\\Data\\Basement.MapData";
+						const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouseF1.MapData";
 						UEngineFile FIle = Path;
 						FIle.FileOpen("rb");
 
@@ -480,6 +483,66 @@ void APlayGameMode::RoomChange()
 				}
 
 				{
+					Ellie->SetColImage("WitchHouse1F_Col.png", "Map");
+					Room->SetColImage("WitchHouse1F_Col.png", "Map");
+					FVector RoomSize = Room->GetColImage().GetImageScale();
+
+					Room->SetRoomSprite("WitchHouse1F.png", RoomSize);
+					Room->SetRoomColSprite("WitchHouse1F_Col.png");
+
+					FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+					Room->SetActorLocation({ 0.0f, 0.0f, -1000.0f });
+
+					Ellie->SetZSortLock(true);
+					Ellie->SetActorLocation({ 20.0f, 0.0f, -1500.0f });
+					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
+
+					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
+
+					{
+						const std::string Path = ".\\..\\LWIWResources\\Data\\WitchHouseF1.MapData";
+						UEngineFile FIle = Path;
+						FIle.FileOpen("rb");
+
+						UEngineSerializer Ser;
+						FIle.Read(Ser);
+
+						int ListNum;
+						Ser >> ListNum;
+
+						LoadData(Ser, ListNum);
+					}
+				}
+			}
+		}
+
+		if (InterCol->GetInterColName() == "WitchHouseF1")
+		{
+			std::vector<UCollision*> Result;
+			if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result) || true == UEngineInput::IsDown(VK_NUMPAD2))
+			{
+				{
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
+					{
+						InterCol->Destroy();
+					}
+
+					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+					{
+						MapObject->Destroy();
+					}
+
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
+					}
+				}
+
+				{
 					Ellie->SetColImage("WitchHouse_Outside_Col.png", "Map");
 					Room->SetColImage("WitchHouse_Outside_Col.png", "Map");
 					FVector RoomSize = Room->GetColImage().GetImageScale();
@@ -491,6 +554,7 @@ void APlayGameMode::RoomChange()
 					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
 					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
 
+					Ellie->SetZSortLock(false);
 					Ellie->SetActorLocation({ -40.0f, -170.0f, 10.0f });
 					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
 
@@ -508,27 +572,66 @@ void APlayGameMode::RoomChange()
 						Ser >> ListNum;
 
 						LoadData(Ser, ListNum);
+					}
+				}
+			}
+		}
 
-						//std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
-						//std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+		if (InterCol->GetInterColName() == "Elevator")
+		{
+			std::vector<UCollision*> Result;
+			if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result) || true == UEngineInput::IsDown(VK_NUMPAD2))
+			{
+				{
+					std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+					for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
+					{
+						InterCol->Destroy();
+					}
 
-						//if (0 != static_cast<int>(AllMapObjectList.size()))
-						//{
-						//	for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
-						//	{
-						//		FVector ObjectPos = MapObject->GetActorLocation();
-						//		MapObject->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
-						//	}
-						//}
+					std::list<std::shared_ptr<AMapObject>> AllMapObjectList = GetWorld()->GetAllActorListByClass<AMapObject>();
+					for (std::shared_ptr<AMapObject> MapObject : AllMapObjectList)
+					{
+						MapObject->Destroy();
+					}
 
-						//if (0 != static_cast<int>(AllInteractObjectList.size()))
-						//{
-						//	for (std::shared_ptr<AInteractObject> InteractObj : AllInteractObjectList)
-						//	{
-						//		FVector ObjectPos = InteractObj->GetActorLocation();
-						//		InteractObj->SetActorLocation({ ObjectPos.X, ObjectPos.Y, ObjectPos.Z + -300.0f });
-						//	}
-						//}
+					std::list<std::shared_ptr<AInteractObject>> AllInteractObjectList = GetWorld()->GetAllActorListByClass<AInteractObject>();
+					for (std::shared_ptr<AInteractObject> InteractObject : AllInteractObjectList)
+					{
+						InteractObject->Destroy();
+					}
+				}
+
+				{
+					Ellie->SetColImage("Basement_Col.png", "Map");
+					Room->SetColImage("Basement_Col.png", "Map");
+					FVector RoomSize = Room->GetColImage().GetImageScale();
+
+					Room->SetRoomSprite("Basement.png", RoomSize);
+					Room->SetRoomColSprite("Basement_Col.png");
+
+					FVector ColSize = RoomSize - (Ellie->GetEllieSize());
+					Room->SetCollisionSize(RoomSize - (Ellie->GetEllieSize()));
+					Room->SetActorLocation({ 0.0f, 0.0f, 1000.0f });
+
+					Ellie->SetZSortLock(false);
+					Ellie->SetActorLocation({ 20.0f, 0.0f, 10.0f });
+					Ellie->GetRenderer()->ChangeAnimation("Ellie_Idle_Front");
+
+					Camera->SetActorLocation({ 0.0f, 0.0f, -624.0f, 1.0f });
+
+					{
+						const std::string Path = ".\\..\\LWIWResources\\Data\\Basement.MapData";
+						UEngineFile FIle = Path;
+						FIle.FileOpen("rb");
+
+						UEngineSerializer Ser;
+						FIle.Read(Ser);
+
+						int ListNum;
+						Ser >> ListNum;
+
+						LoadData(Ser, ListNum);
 					}
 				}
 			}

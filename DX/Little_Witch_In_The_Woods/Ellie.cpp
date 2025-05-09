@@ -142,6 +142,7 @@ void AEllie::Tick(float _DeltaTime)
 	}
 	
 	// Sorting
+	if (false == ZSortLock)
 	{
 		FVector Pos = GetActorLocation();
 		Pos.Z = Pos.Y;
@@ -204,19 +205,22 @@ void AEllie::Move(float _DeltaTime)
 		State = EEllieState::IDLE;
 	}
 
-	//std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
-	//for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
-	//{
-	//	std::vector<UCollision*> Result;
-	//	if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
-	//	{
-	//		std::string InterColName = InterCol->GetInterColName();
-	//		if (InterCol->GetInterColName() == "Pot")
-	//		{
-	//			State = EEllieState::POTION;
-	//		}
-	//	}
-	//}
+	std::list<std::shared_ptr<AInteractCollision>> AllInterColList = GetWorld()->GetAllActorListByClass<AInteractCollision>();
+	for (std::shared_ptr<AInteractCollision> InterCol : AllInterColList)
+	{
+		std::vector<UCollision*> Result;
+		if (true == InterCol->GetInterCol()->CollisionCheck("Ellie", Result))
+		{
+			std::string InterColName = InterCol->GetInterColName();
+			if (InterCol->GetInterColName() == "Pot")
+			{
+				if (true == UEngineInput::IsDown(VK_SPACE))
+				{
+					State = EEllieState::POTION;
+				}
+			}
+		}
+	}
 }
 
 void AEllie::Collecting(float _DeltaTime)
@@ -240,7 +244,7 @@ void AEllie::Collecting(float _DeltaTime)
 
 void AEllie::Potion()
 {
-
+	int a = 0;
 }
 
 bool AEllie::IsMoveCheck(FVector _Dir)

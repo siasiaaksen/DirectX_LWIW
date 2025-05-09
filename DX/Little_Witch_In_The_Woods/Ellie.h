@@ -72,6 +72,11 @@ public:
 	static bool IsEllieMove;
 	ECollectItem ItemType;
 
+	void SetZSortLock(bool _Value)
+	{
+		ZSortLock = _Value;
+	}
+
 protected:
 
 private:
@@ -90,5 +95,7 @@ private:
 	float AnimSpeed = 0.1f;
 
 	UEngineWinImage ColImage;
+
+	bool ZSortLock = false;
 };
 
